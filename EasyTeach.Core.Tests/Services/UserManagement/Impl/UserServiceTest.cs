@@ -10,44 +10,47 @@ using Xunit;
 
 namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
 {
-    public class UserServiceTest
+    public sealed class UserServiceTest
     {
+        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
+
+        public UserServiceTest()
+        {
+            _userRepository = A.Fake<IUserRepository>();
+            _userService = new UserService(_userRepository);
+        }
+
         [Fact]
         public void CreateUser_ValidStudentUser_UserCreated()
         {
-            //Arrange
-            var userRepo = A.Fake<IUserRepository>();
-            IUserService userService = new UserService();
-            userService.UserRepository = userRepo;
-            User user = new User();
-            user.FirstName = "test";
-            user.LastName = "test";
-            user.UserType = UserType.Student;
-            user.Group = new Group { GroupNumber = 2, Year = 2009 };
-            user.Email = "test@test.com";
+            var user = new User
+            {
+                FirstName = "test",
+                LastName = "test",
+                UserType = UserType.Student,
+                Group = new Group { GroupNumber = 2, Year = 2009 },
+                Email = "test@test.com"
+            };
 
-            //Act/Assert
-            Assert.DoesNotThrow(() => userService.CreateUser(user));
-            A.CallTo(() => userRepo.SaveUser(user)).MustHaveHappened();
+            Assert.DoesNotThrow(() => _userService.CreateUser(user));
+            A.CallTo(() => _userRepository.SaveUser(user)).MustHaveHappened();
         }
 
         [Fact]
         public void CreateUser_InvalidUser_InvalidUserExceptionThrownUserNotCreatedProperError()
         {
-            //Arrange
-            var userRepo = A.Fake<IUserRepository>();
-            IUserService userService = new UserService();
-            userService.UserRepository = userRepo;
-            User user = new User();
+            var user = new User();
 
-            //Act/ASsert
-            var exception = Assert.Throws<InvalidUserException>(() => userService.CreateUser(user));
+            var exception = Assert.Throws<InvalidUserException>(() => _userService.CreateUser(user));
+
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "FirstName"));
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "LastName"));
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "Email"));
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "Group"));
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "UserType"));
-            A.CallTo(() => userRepo.SaveUser(user)).MustNotHaveHappened();
+
+            A.CallTo(() => _userRepository.SaveUser(user)).MustNotHaveHappened();
         }
     }
 }

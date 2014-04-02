@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using EasyTeach.Core.Entities;
 using EasyTeach.Core.Repositories;
@@ -6,14 +7,29 @@ using EasyTeach.Core.Services.UserManagement.Exceptions;
 
 namespace EasyTeach.Core.Services.UserManagement.Impl
 {
-    public class UserService : IUserService
+    public sealed class UserService : IUserService
     {
-        public IUserRepository UserRepository { get; set; }
+        private readonly IUserRepository _userRepository;
+
+        public UserService(IUserRepository userRepository)
+        {
+            if (userRepository == null)
+            {
+                throw new ArgumentNullException("userRepository");
+            }
+
+            _userRepository = userRepository;
+        }
 
         public void CreateUser(User newUser)
         {
+            if (newUser == null)
+            {
+                throw new ArgumentNullException("newUser");
+            }
+
             var validationResults = new List<ValidationResult>();
-            var userIsValid = Validator.TryValidateObject(newUser,
+            bool userIsValid = Validator.TryValidateObject(newUser,
                                                         new ValidationContext(newUser, null, null),
                                                         validationResults);
 
@@ -21,7 +37,8 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             {
                 throw new InvalidUserException(validationResults);
             }
-            UserRepository.SaveUser(newUser);
+
+            _userRepository.SaveUser(newUser);
         }
     }
 }

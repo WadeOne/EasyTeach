@@ -1,10 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
 
 namespace EasyTeach.Core.Entities
 {
-    public class Group
+    public sealed class Group
     {
         public int GroupId { get; set; }
 

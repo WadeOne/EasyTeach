@@ -2,7 +2,7 @@
 
 namespace EasyTeach.Core.Entities
 {
-    public sealed class Group
+    public class Group
     {
         public int GroupId { get; set; }
 
@@ -16,6 +16,6 @@ namespace EasyTeach.Core.Entities
         /// </summary>
         public int Year { get; set; }
 
-        public ICollection<User> Students { get; set; }
+        public virtual ICollection<User> Students { get; set; }
     }
 }

@@ -1,9 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+using EasyTeach.Core.Enums;
+
 namespace EasyTeach.Core.Entities
 {
     public class User
     {
+        public int UserId { get; set; }
+
         [Required]
         public string FirstName { get; set; }
 
@@ -14,9 +18,12 @@ namespace EasyTeach.Core.Entities
         public Group Group { get; set; }
 
         [Required]
-        [RegularExpression("@", ErrorMessage = "Not valid Email address")]
+        [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Not valid Email address")]
         public string Email { get; set; }
 
         public bool EmailIsValidated { get; set; }
+
+        [Required]
+        public UserType? UserType { get; set; }
     }
 }

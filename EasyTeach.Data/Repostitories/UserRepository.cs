@@ -1,10 +1,10 @@
 ﻿using EasyTeach.Core.Entities;
-using EasyTeach.Core.Interfaces.Repositories;
+using EasyTeach.Core.Repositories;
 using EasyTeach.Data.Context;
 
 namespace EasyTeach.Data.Repostitories
 {
-    public class UserRepository : IUserRepository
+    public sealed class UserRepository : IUserRepository
     {
         private EasyTeachContext dbContext;
 

@@ -1,7 +1,7 @@
 ﻿using EasyTeach.Core.Entities;
-using EasyTeach.Core.Interfaces.Repositories;
+using EasyTeach.Core.Repositories;
 
-namespace EasyTeach.Core.Interfaces.Services
+namespace EasyTeach.Core.Services.UserManagement
 {
     public interface IUserService
     {

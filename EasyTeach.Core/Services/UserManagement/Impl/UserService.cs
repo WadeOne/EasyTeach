@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-
 using EasyTeach.Core.Entities;
-using EasyTeach.Core.Exceptions;
-using EasyTeach.Core.Interfaces.Repositories;
-using EasyTeach.Core.Interfaces.Services;
+using EasyTeach.Core.Repositories;
+using EasyTeach.Core.Services.UserManagement.Exceptions;
 
-namespace EasyTeach.Domain.Services
+namespace EasyTeach.Core.Services.UserManagement.Impl
 {
     public class UserService : IUserService
     {

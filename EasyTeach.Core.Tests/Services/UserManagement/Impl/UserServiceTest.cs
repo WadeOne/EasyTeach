@@ -1,16 +1,14 @@
 ﻿using System.Linq;
-
 using EasyTeach.Core.Entities;
-using EasyTeach.Core.Exceptions;
-using EasyTeach.Core.Interfaces.Repositories;
-using EasyTeach.Core.Interfaces.Services;
-using EasyTeach.Domain.Services;
-
+using EasyTeach.Core.Enums;
+using EasyTeach.Core.Repositories;
+using EasyTeach.Core.Services.UserManagement;
+using EasyTeach.Core.Services.UserManagement.Exceptions;
+using EasyTeach.Core.Services.UserManagement.Impl;
 using FakeItEasy;
-
 using Xunit;
 
-namespace EasyTeach.Tests
+namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
 {
     public class UserServiceTest
     {
@@ -24,6 +22,7 @@ namespace EasyTeach.Tests
             User user = new User();
             user.FirstName = "test";
             user.LastName = "test";
+            user.UserType = UserType.Student;
             user.Group = new Group { GroupNumber = 2, Year = 2009 };
             user.Email = "test@test.com";
 

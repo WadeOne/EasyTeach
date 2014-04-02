@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace EasyTeach.Core.Exceptions
+namespace EasyTeach.Core.Services.UserManagement.Exceptions
 {
     public class InvalidUserException : Exception
     {

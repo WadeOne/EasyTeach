@@ -1,6 +1,6 @@
 ﻿using EasyTeach.Core.Entities;
 
-namespace EasyTeach.Core.Interfaces.Repositories
+namespace EasyTeach.Core.Repositories
 {
     public interface IUserRepository
     {

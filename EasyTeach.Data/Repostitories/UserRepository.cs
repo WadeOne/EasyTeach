@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using EasyTeach.Core.Entities;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Data.Context;
@@ -17,6 +18,11 @@ namespace EasyTeach.Data.Repostitories
             }
 
             _context = context;
+        }
+
+        public User GetUserByEmail(string email)
+        {
+            return _context.Users.SingleOrDefault(u => u.Email == email);
         }
 
         public void SaveUser(User newUser)

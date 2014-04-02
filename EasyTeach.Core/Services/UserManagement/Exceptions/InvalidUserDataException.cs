@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EasyTeach.Core.Services.UserManagement.Exceptions
 {
-    public sealed class InvalidUserException : Exception
+    public sealed class InvalidUserDataException : Exception
     {
         public ICollection<ValidationResult> ValidationResults { get; private set; }
 
-        public InvalidUserException(ICollection<ValidationResult> validationResults)
+        public InvalidUserDataException(ICollection<ValidationResult> validationResults)
         {
             if (validationResults == null)
             {
@@ -18,7 +18,7 @@ namespace EasyTeach.Core.Services.UserManagement.Exceptions
             ValidationResults = validationResults;
         }
 
-        public InvalidUserException()
+        public InvalidUserDataException()
         {
         }
     }

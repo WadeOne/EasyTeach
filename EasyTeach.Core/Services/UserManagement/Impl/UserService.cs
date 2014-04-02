@@ -33,9 +33,19 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
                                                         new ValidationContext(newUser, null, null),
                                                         validationResults);
 
+            if (!String.IsNullOrWhiteSpace(newUser.Email))
+            {
+                User user = _userRepository.GetUserByEmail(newUser.Email);
+                if (user != null)
+                {
+                    validationResults.Add(new ValidationResult(String.Format("This email '{0}' has taken by another user", newUser.Email), new[] { "Email" }));
+                    userIsValid = false;
+                }
+            }
+
             if (userIsValid == false)
             {
-                throw new InvalidUserException(validationResults);
+                throw new InvalidUserDataException(validationResults);
             }
 
             _userRepository.SaveUser(newUser);

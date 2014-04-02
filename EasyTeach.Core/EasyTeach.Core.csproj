@@ -45,7 +45,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
-    <Compile Include="Services\UserManagement\Exceptions\InvalidUserException.cs" />
+    <Compile Include="Services\UserManagement\Exceptions\InvalidUserDataException.cs" />
     <Compile Include="Services\UserManagement\Impl\UserService.cs" />
     <Compile Include="Services\UserManagement\IUserService.cs" />
   </ItemGroup>

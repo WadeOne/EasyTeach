@@ -33,6 +33,8 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
                 Email = "test@test.com"
             };
 
+            A.CallTo(() => _userRepository.GetUserByEmail(A<string>.Ignored)).Returns(null);
+
             Assert.DoesNotThrow(() => _userService.CreateUser(user));
             A.CallTo(() => _userRepository.SaveUser(user)).MustHaveHappened();
         }
@@ -42,7 +44,7 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
         {
             var user = new User();
 
-            var exception = Assert.Throws<InvalidUserException>(() => _userService.CreateUser(user));
+            var exception = Assert.Throws<InvalidUserDataException>(() => _userService.CreateUser(user));
 
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "FirstName"));
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "LastName"));
@@ -50,6 +52,26 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "Group"));
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "UserType"));
 
+            A.CallTo(() => _userRepository.SaveUser(user)).MustNotHaveHappened();
+        }
+
+        [Fact]
+        public void CreateUser_UserWithDuplicateEmail_InvalidUserExceptionThrownUserNotCreatedProperError()
+        {
+            var user = new User
+            {
+                FirstName = "test",
+                LastName = "test",
+                UserType = UserType.Student,
+                Group = new Group { GroupNumber = 2, Year = 2009 },
+                Email = "test@test.com"
+            };
+
+            A.CallTo(() => _userRepository.GetUserByEmail("test@test.com")).Returns(new User());
+
+            var exception = Assert.Throws<InvalidUserDataException>(() => _userService.CreateUser(user));
+
+            Assert.True(exception.ValidationResults.All(x => x.MemberNames.First() == "Email"));
             A.CallTo(() => _userRepository.SaveUser(user)).MustNotHaveHappened();
         }
     }

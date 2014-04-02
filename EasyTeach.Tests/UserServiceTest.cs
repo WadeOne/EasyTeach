@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 
 using EasyTeach.Core.Entities;
 using EasyTeach.Core.Exceptions;
@@ -48,6 +47,7 @@ namespace EasyTeach.Tests
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "LastName"));
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "Email"));
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "Group"));
+            Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "UserType"));
             A.CallTo(() => userRepo.SaveUser(user)).MustNotHaveHappened();
         }
     }

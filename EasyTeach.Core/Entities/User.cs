@@ -1,5 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
+using EasyTeach.Core.Enums;
+
 namespace EasyTeach.Core.Entities
 {
     public class User
@@ -20,5 +22,8 @@ namespace EasyTeach.Core.Entities
         public string Email { get; set; }
 
         public bool EmailIsValidated { get; set; }
+
+        [Required]
+        public UserType? UserType { get; set; }
     }
 }

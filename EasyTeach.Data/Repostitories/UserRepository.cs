@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Linq;
-using EasyTeach.Core.Entities;
+
+using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Data.Context;
+using EasyTeach.Data.Entities;
 
 namespace EasyTeach.Data.Repostitories
 {
@@ -20,19 +22,19 @@ namespace EasyTeach.Data.Repostitories
             _context = context;
         }
 
-        public User GetUserByEmail(string email)
+        public IUserDto GetUserByEmail(string email)
         {
             return _context.Users.SingleOrDefault(u => u.Email == email);
         }
 
-        public void SaveUser(User newUser)
+        public void SaveUser(IUserDto newUser)
         {
             if (newUser == null)
             {
                 throw new ArgumentNullException("newUser");
             }
 
-            _context.Users.Add(newUser);
+            _context.Users.Add((UserDto)newUser);
             _context.SaveChanges();
         }
     }

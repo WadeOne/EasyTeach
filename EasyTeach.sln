@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyTeach.Core.Tests", "Eas
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyTeach.Web.Tests", "EasyTeach.Web.Tests\EasyTeach.Web.Tests.csproj", "{A7442666-9F4A-4670-8852-41A2145DCFCD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyTeach.Data.Tests", "EasyTeach.Data.Tests\EasyTeach.Data.Tests.csproj", "{8FE617AF-46F7-454E-A8DF-2AEB09319AB6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{A7442666-9F4A-4670-8852-41A2145DCFCD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A7442666-9F4A-4670-8852-41A2145DCFCD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A7442666-9F4A-4670-8852-41A2145DCFCD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FE617AF-46F7-454E-A8DF-2AEB09319AB6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FE617AF-46F7-454E-A8DF-2AEB09319AB6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FE617AF-46F7-454E-A8DF-2AEB09319AB6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FE617AF-46F7-454E-A8DF-2AEB09319AB6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,5 +61,6 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{B53F3FC4-D4F6-4F5D-BF0D-AFE08278CEDC} = {6C1161C4-B049-4AD5-9F86-296D255B03FF}
 		{A7442666-9F4A-4670-8852-41A2145DCFCD} = {6C1161C4-B049-4AD5-9F86-296D255B03FF}
+		{8FE617AF-46F7-454E-A8DF-2AEB09319AB6} = {6C1161C4-B049-4AD5-9F86-296D255B03FF}
 	EndGlobalSection
 EndGlobal

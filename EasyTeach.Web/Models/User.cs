@@ -1,10 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
+using EasyTeach.Core.Entities;
+using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Enums;
 
-namespace EasyTeach.Core.Entities
+namespace EasyTeach.Web.Models
 {
-    public class User
+    public sealed class User : IUserModel
     {
         public int UserId { get; set; }
 
@@ -23,7 +24,7 @@ namespace EasyTeach.Core.Entities
 
         public bool EmailIsValidated { get; set; }
 
-        [Required]
-        public UserType? UserType { get; set; }
+        [EnumDataType(typeof(UserType))]
+        public UserType UserType { get; set; }
     }
 }

@@ -1,11 +1,11 @@
-﻿using EasyTeach.Core.Entities;
+﻿using EasyTeach.Core.Entities.Data;
 
 namespace EasyTeach.Core.Repositories
 {
     public interface IUserRepository
     {
-        User GetUserByEmail(string email);
+        IUserDto GetUserByEmail(string email);
 
-        void SaveUser(User newUser);
+        void SaveUser(IUserDto newUser);
     }
 }

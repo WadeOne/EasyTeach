@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Linq.Expressions;
+
 using EasyTeach.Core.Entities;
+using EasyTeach.Core.Entities.Data;
+using EasyTeach.Core.Entities.Services;
+using EasyTeach.Core.Enums;
 using EasyTeach.Data.Context;
+using EasyTeach.Data.Entities;
 using EasyTeach.Data.Repostitories;
+
 using FakeItEasy;
+
 using Xunit;
 
 namespace EasyTeach.Data.Tests.Repostitories
@@ -27,28 +30,28 @@ namespace EasyTeach.Data.Tests.Repostitories
         [Fact]
         public void SaveUser_NotNullUser_UserAdd()
         {
-            IDbSet<User> users = A.Fake<IDbSet<User>>();
+            IDbSet<UserDto> users = A.Fake<IDbSet<UserDto>>();
             A.CallTo(() => _context.Users).Returns(users);
 
-            _userRepository.SaveUser(new User());
+            _userRepository.SaveUser(new UserDto());
 
-            A.CallTo(() => users.Add(A<User>.Ignored)).MustHaveHappened();
+            A.CallTo(() => users.Add(A<UserDto>.Ignored)).MustHaveHappened();
             A.CallTo(() => _context.SaveChanges()).MustHaveHappened();
         }
 
         [Fact]
         public void GetUserByEmail_ExistingEmail_User()
         {
-            var data = new List<User>
+            var data = new List<UserDto>
             {
-                new User { Email = "test" },
-                new User { Email = "john.doe@example.com" }
+                new UserDto { Email = "test" },
+                new UserDto { Email = "john.doe@example.com" }
             };
 
-            IDbSet<User> users = GetFakeDbSet(data.AsQueryable());
+            IDbSet<UserDto> users = GetFakeDbSet(data.AsQueryable());
             A.CallTo(() => _context.Users).Returns(users);
 
-            User user = _userRepository.GetUserByEmail("john.doe@example.com");
+            IUserDto user = _userRepository.GetUserByEmail("john.doe@example.com");
 
             Assert.Equal("john.doe@example.com", user.Email);
         }
@@ -56,11 +59,11 @@ namespace EasyTeach.Data.Tests.Repostitories
         [Fact]
         public void GetUserByEmail_NonExistingEmail_Null()
         {
-            var data = new List<User> { new User { Email = "test" } };
-            IDbSet<User> users = GetFakeDbSet(data.AsQueryable());
+            var data = new List<UserDto> { new UserDto { Email = "test" } };
+            IDbSet<UserDto> users = GetFakeDbSet(data.AsQueryable());
             A.CallTo(() => _context.Users).Returns(users);
 
-            User user = _userRepository.GetUserByEmail("john.doe@example.com");
+            IUserDto user = _userRepository.GetUserByEmail("john.doe@example.com");
 
             Assert.Null(user);
         }

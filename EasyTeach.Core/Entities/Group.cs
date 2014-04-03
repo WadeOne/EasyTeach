@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Core.Entities
 {
@@ -14,8 +15,8 @@ namespace EasyTeach.Core.Entities
         /// <summary>
         /// University entering year
         /// </summary>
-        public int Year { get; set; }
+        public uint Year { get; set; }
 
-        public virtual ICollection<User> Students { get; set; }
+        public virtual ICollection<IUserModel> Students { get; set; }
     }
 }

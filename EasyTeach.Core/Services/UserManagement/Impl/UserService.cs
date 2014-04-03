@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories;
+using EasyTeach.Core.Repositories.Mappers;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
 
 namespace EasyTeach.Core.Services.UserManagement.Impl
@@ -13,22 +13,22 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
     {
         private readonly IUserRepository _userRepository;
 
-        private readonly IDtoMapper _dtoMapper;
+        private readonly IUserDtoMapper _userDtoMapper;
 
-        public UserService(IUserRepository userRepository, IDtoMapper dtoMapper)
+        public UserService(IUserRepository userRepository, IUserDtoMapper userDtoMapper)
         {
             if (userRepository == null)
             {
                 throw new ArgumentNullException("userRepository");
             }
 
-            if (dtoMapper == null)
+            if (userDtoMapper == null)
             {
-                throw new ArgumentNullException("dtoMapper");
+                throw new ArgumentNullException("userDtoMapper");
             }
 
             _userRepository = userRepository;
-            _dtoMapper = dtoMapper;
+            _userDtoMapper = userDtoMapper;
         }
 
         public void CreateUser(IUserModel newUser)
@@ -58,7 +58,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
                 throw new InvalidUserDataException(validationResults);
             }
             
-            _userRepository.SaveUser(_dtoMapper.Map(newUser));
+            _userRepository.SaveUser(_userDtoMapper.Map(newUser));
         }
     }
 }

@@ -1,9 +1,9 @@
 ﻿using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Services;
 
-namespace EasyTeach.Core.Services
+namespace EasyTeach.Core.Repositories.Mappers
 {
-    public interface IDtoMapper
+    public interface IUserDtoMapper
     {
         IUserDto Map(IUserModel userModel);
     }

@@ -1,4 +1,6 @@
-﻿using EasyTeach.Core.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+
+using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Enums;
 
@@ -6,6 +8,7 @@ namespace EasyTeach.Data.Entities
 {
     public class UserDto : IUserDto
     {
+        [Key]
         public int UserId { get; set; }
 
         public string FirstName { get; set; }

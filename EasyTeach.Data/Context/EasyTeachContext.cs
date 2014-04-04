@@ -1,6 +1,5 @@
 ﻿using System.Data.Entity;
 using EasyTeach.Core.Entities;
-using EasyTeach.Core.Entities.Data;
 using EasyTeach.Data.Entities;
 
 namespace EasyTeach.Data.Context

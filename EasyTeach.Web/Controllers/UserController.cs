@@ -3,6 +3,10 @@ using System.Linq;
 using System.Web.Http;
 using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
+using EasyTeach.Core.Services.UserManagement.Impl;
+using EasyTeach.Data.Context;
+using EasyTeach.Data.Repostitories;
+using EasyTeach.Data.Repostitories.Mappers;
 using EasyTeach.Web.Models;
 using EasyTeach.Web.Models.Results;
 
@@ -21,6 +25,10 @@ namespace EasyTeach.Web.Controllers
             _userService = userService;
         }
 
+        public UserController()
+        {
+            _userService = new UserService(new UserRepository(new EasyTeachContext()), new UserDtoMapper() );
+        }
 
         public UserCreationResult Post(User id)
         {
@@ -40,9 +48,11 @@ namespace EasyTeach.Web.Controllers
                     Message = "Some fields are not correct",
                     Errors =
                         exception.ValidationResults.Select(
-                            vr => new ErrorItem {PropertyName = vr.MemberNames.First(), Message = vr.ErrorMessage})
+                            vr => new ErrorItem { PropertyName = vr.MemberNames.First(), Message = vr.ErrorMessage })
                             .ToList()
                 };
+                //ModelState.AddModelError("FirstName", "required");
+                //return BadRequest(ModelState);
             }
 
             return new UserCreationResult
@@ -51,6 +61,8 @@ namespace EasyTeach.Web.Controllers
                 Message = "User have been successfully created",
                 Errors = null
             };
+
+            //return Ok();
         }
 
     }

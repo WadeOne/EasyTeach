@@ -1,6 +1,5 @@
 @using System.Web.Http
-@using Dictator.Areas.HelpPage.Models
-@model HelpPageApiModel
+@model EasyTeach.Web.Areas.HelpPage.Models.HelpPageApiModel
 
 @{
     var description = Model.ApiDescription;
@@ -20,6 +19,8 @@
     </section>
 </div>
 
+@Html.DisplayForModel("TestClientDialogs")
 @section Scripts {
+    @Html.DisplayForModel("TestClientReferences")
     <link type="text/css" href="~/Areas/HelpPage/HelpPage.css" rel="stylesheet" />
 }

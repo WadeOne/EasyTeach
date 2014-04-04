@@ -1,4 +1,4 @@
-﻿namespace EasyTeach.Web.Models
+﻿namespace EasyTeach.Web.Models.Results
 {
     public class ErrorItem
     {

@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 
-namespace EasyTeach.Web.Models
+namespace EasyTeach.Web.Models.Results
 {
-    public class Result
+    public class UserCreationResult
     {
         public bool Success { get; set; }
  

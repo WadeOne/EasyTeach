@@ -139,8 +139,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ErrorItem.cs" />
-    <Compile Include="Models\Result.cs" />
+    <Compile Include="Models\Results\ErrorItem.cs" />
+    <Compile Include="Models\Results\UserCreationResult.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

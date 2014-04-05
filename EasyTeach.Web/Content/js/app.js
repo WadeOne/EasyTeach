@@ -1,6 +1,11 @@
 // Foundation JavaScript
 // Documentation can be found at: http://foundation.zurb.com/docs
-//$(document).foundation();
+$(document).foundation({
+	tab: {
+      callback : function (tab) {
+      }
+    }
+});
 
 $( document ).ready(function() {
 	 $('#create-user-button').on('click', function(event) {

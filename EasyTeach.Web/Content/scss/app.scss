@@ -2,7 +2,7 @@
 @import "foundation";
 
 // Or selectively include components
-// @import
+//@import
 //   "foundation/components/accordion",
 //   "foundation/components/alert-boxes",
 //   "foundation/components/block-grid",
@@ -31,7 +31,7 @@
 //   "foundation/components/sub-nav",
 //   "foundation/components/switch",
 //   "foundation/components/tables",
-//   "foundation/components/tabs",
+@import "foundation/components/tabs";
 //   "foundation/components/thumbs",
 //   "foundation/components/tooltips",
 //   "foundation/components/top-bar",

@@ -6740,7 +6740,7 @@ table tfoot tr td {
 }
 /* line 43, ../bower_components/foundation/scss/foundation/components/_tabs.scss */
 .tabs dd > a:hover {
-  background: #e1e1e1;
+  background: #e2e2e2;
 }
 /* line 45, ../bower_components/foundation/scss/foundation/components/_tabs.scss */
 .tabs dd.active a {
@@ -6775,7 +6775,7 @@ table tfoot tr td {
 /* line 65, ../bower_components/foundation/scss/foundation/components/_tabs.scss */
 .tabs-content {
   *zoom: 1;
-  margin-bottom: 1.5rem;
+  margin-bottom: rem-calc(24);
   width: 100%;
 }
 /* line 145, ../bower_components/foundation/scss/foundation/components/_global.scss */

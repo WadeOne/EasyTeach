@@ -3,7 +3,7 @@
 
 // Or selectively include components
 //@import
-//   "foundation/components/accordion",
+@import "foundation/components/accordion";
 //   "foundation/components/alert-boxes",
 //   "foundation/components/block-grid",
 //   "foundation/components/breadcrumbs",
@@ -39,6 +39,9 @@
 //   "foundation/components/offcanvas",
 //   "foundation/components/visibility";
 
+html {
+
+}
 html, body {
     height: 100%;
     width: 100%;
@@ -59,7 +62,7 @@ header {
     height: auto !important;
     height: 100%;
     background: #f2f2f2;
-    .content {
+    .page-content {
     	padding-bottom: 50px;
     	.row {
     		padding-top: 30px;

@@ -12,18 +12,50 @@
       <header> 
         <div class="row"><div class="logo">WEB MMF</div></div>     
       </header>
-      <div class="content"> 
+      <div class="page-content"> 
         <div class="row">
             <dl class="tabs" data-tab>
-              <dd class="active"><a href="#panel2-1">1 семестр</a></dd>
-              <dd><a href="#panel2-2">2 семестр</a></dd>
+              <dd class="active"><a href="#first-term">1 семестр</a></dd>
+              <dd><a href="#second-term">2 семестр</a></dd>
             </dl>
             <div class="tabs-content">
-              <div class="content active" id="panel2-1">
-                <p>First panel content goes here...</p>
+              <div class="content active" id="first-term">
+                <dl class="accordion" data-accordion>
+                  <dd class="active">
+                    <a href="#panel1">04.04.2014 - 10.04.2014</a>
+                    <div id="panel1" class="content active">
+                      <ul class="no-bullet">
+                        <li>List item with a much longer description or more content.</li>
+                        <li>List item</li>
+                        <li>List item</li>
+                        <li>List item</li>
+                        <li>List item</li>
+                       </ul>
+                    </div>
+                  </dd>
+                  <dd>
+                    <a href="#panel2">11.04.2014 - 17.04.2014</a>
+                    <div id="panel2" class="content">
+                      <ul class="no-bullet">
+                        <li>List item with a much longer description or more content.</li>
+                        <li>List item</li>
+                        <li>List item</li>
+                      </ul>
+                    </div>
+                  </dd>
+                  <dd>
+                    <a href="#panel3">18.04.2014 - 24.04.2014</a>
+                    <div id="panel3" class="content">
+                      <ul class="no-bullet">
+                        <li>List item</li>
+                        <li>List item</li>
+                        <li>List item</li>
+                      </ul>
+                    </div>
+                  </dd>
+                </dl>
               </div>
-              <div class="content" id="panel2-2">
-                <p>Second panel content goes here...</p>
+              <div class="content" id="second-term">
               </div>
             </div>
         </div>

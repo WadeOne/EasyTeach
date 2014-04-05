@@ -1482,13 +1482,13 @@ select {
 }
 /* line 32, ../bower_components/foundation/scss/foundation/components/_accordion.scss */
 .accordion dd.active > a {
-  background: #e8e8e8;
+  background: #e3e3e3;
 }
 /* line 33, ../bower_components/foundation/scss/foundation/components/_accordion.scss */
 .accordion dd > a {
   background: #efefef;
   color: #222222;
-  padding: 1rem;
+  padding: 0.5rem;
   display: block;
   font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   font-size: 1rem;
@@ -6734,7 +6734,7 @@ table tfoot tr td {
   display: block;
   background: #efefef;
   color: #222222;
-  padding: 1rem 2rem;
+  padding: 0.5rem 1rem;
   font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
   font-size: 1rem;
 }
@@ -6744,7 +6744,7 @@ table tfoot tr td {
 }
 /* line 45, ../bower_components/foundation/scss/foundation/components/_tabs.scss */
 .tabs dd.active a {
-  background: white;
+  background: #e3e3e3;
 }
 /* line 49, ../bower_components/foundation/scss/foundation/components/_tabs.scss */
 .tabs.radius dd:first-child a {
@@ -9403,7 +9403,7 @@ th.hide-for-touch {
   display: table-cell !important;
 }
 
-/* line 42, ../scss/app.scss */
+/* line 45, ../scss/app.scss */
 html, body {
   height: 100%;
   width: 100%;
@@ -9411,11 +9411,11 @@ html, body {
   padding: 0px;
 }
 
-/* line 48, ../scss/app.scss */
+/* line 51, ../scss/app.scss */
 header {
   background: #5bb5d7;
 }
-/* line 50, ../scss/app.scss */
+/* line 53, ../scss/app.scss */
 header .logo {
   color: #ffffff;
   padding: 20px 0;
@@ -9423,48 +9423,48 @@ header .logo {
   font-weight: bold;
 }
 
-/* line 57, ../scss/app.scss */
+/* line 60, ../scss/app.scss */
 .page-wrapper {
   min-height: 100%;
   height: auto !important;
   height: 100%;
   background: #f2f2f2;
 }
-/* line 62, ../scss/app.scss */
-.page-wrapper .content {
+/* line 65, ../scss/app.scss */
+.page-wrapper .page-content {
   padding-bottom: 50px;
 }
-/* line 64, ../scss/app.scss */
-.page-wrapper .content .row {
+/* line 67, ../scss/app.scss */
+.page-wrapper .page-content .row {
   padding-top: 30px;
 }
-/* line 67, ../scss/app.scss */
-.page-wrapper .content label {
+/* line 70, ../scss/app.scss */
+.page-wrapper .page-content label {
   font-size: 20px;
 }
-/* line 70, ../scss/app.scss */
-.page-wrapper .content .login-wrapper {
+/* line 73, ../scss/app.scss */
+.page-wrapper .page-content .login-wrapper {
   margin: 30px 0;
 }
-/* line 73, ../scss/app.scss */
-.page-wrapper .content .image-container {
+/* line 76, ../scss/app.scss */
+.page-wrapper .page-content .image-container {
   margin: 30px 0;
 }
 
-/* line 78, ../scss/app.scss */
+/* line 81, ../scss/app.scss */
 footer {
   height: 50px;
   margin-top: -50px;
   background: #3f4349;
 }
-/* line 82, ../scss/app.scss */
+/* line 85, ../scss/app.scss */
 footer .copyright {
   color: #ffffff;
   padding-top: 10px;
 }
 
 /*grid */
-/* line 89, ../scss/app.scss */
+/* line 92, ../scss/app.scss */
 .custom-button {
   width: 180px;
   background: #67cac7;
@@ -9473,7 +9473,7 @@ footer .copyright {
   margin-bottom: 20px;
 }
 
-/* line 96, ../scss/app.scss */
+/* line 99, ../scss/app.scss */
 .logout-button {
   float: right;
   margin-top: 10px;

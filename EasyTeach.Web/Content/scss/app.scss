@@ -103,3 +103,25 @@ footer {
 	float: right;
 	margin-top: 10px;
 }
+
+/*homeworks page*/
+.tabs-content {
+  .accordion {
+    .content {
+      ul{
+        li{
+          margin-bottom: 5px;
+        }
+      }
+    }
+  }
+}
+.download-all-homeworks-button {
+  float: right;
+  margin-right: 10px;
+}
+.download-single-homework-button {
+  float: right;
+  margin-right: 30px;
+}
+

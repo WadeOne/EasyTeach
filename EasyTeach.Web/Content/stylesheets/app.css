@@ -9483,3 +9483,21 @@ footer .copyright {
   float: right;
   margin-top: 10px;
 }
+
+/*homeworks page*/
+/* line 112, ../scss/app.scss */
+.tabs-content .accordion .content ul li {
+  margin-bottom: 5px;
+}
+
+/* line 119, ../scss/app.scss */
+.download-all-homeworks-button {
+  float: right;
+  margin-right: 10px;
+}
+
+/* line 123, ../scss/app.scss */
+.download-single-homework-button {
+  float: right;
+  margin-right: 30px;
+}

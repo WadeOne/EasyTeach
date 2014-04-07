@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Web.Http.Results;
 
 using EasyTeach.Core.Entities;
 using EasyTeach.Core.Enums;
@@ -9,6 +10,8 @@ using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
 using EasyTeach.Web.Controllers;
 using EasyTeach.Web.Models;
+using EasyTeach.Web.Models.ViewModels;
+
 using FakeItEasy;
 using Xunit;
 
@@ -28,51 +31,47 @@ namespace EasyTeach.Web.Tests.Controllers
         [Fact]
         public void Post_ValidUser_UserCreatedAndOkResultSent()
         {
-            var user = new User
+            var user = A.Fake<CreateUserViewModel>();
+            var userModel = new User
             {
                 FirstName = "John",
                 LastName = "Doe",
                 Email = "test@test.com",
-                Group = new Group
-                {
-                    GroupNumber = 2,
-                    Year = 2009
-                },
-                UserType = UserType.Student
+                Group = new Group { GroupNumber = 2, Year = 2009 },
+                EmailIsValidated = false
             };
 
-            var result = _userController.Post(user);
-            A.CallTo(() => _userService.CreateUser(user)).MustHaveHappened();
-            Assert.True(result.Success);
-            Assert.Null(result.Errors);
-            Assert.True(result.Message.Equals("User have been successfully created"));
+            A.CallTo(() => user.ToUser()).Returns(userModel);
+
+            var result = _userController.Post(user) as OkResult;
+            A.CallTo(() => _userService.CreateUser(userModel)).MustHaveHappened();
+            Assert.NotNull(result);
         }
 
         [Fact]
         public void Post_InvalidUser_UserNotCreatedErrorResultSent()
         {
-            var user = new User();
-            A.CallTo(() => _userService.CreateUser(user))
+            var userModel = new User();
+            var user = A.Fake<CreateUserViewModel>();
+
+            A.CallTo(() => user.ToUser()).Returns(userModel);
+            A.CallTo(() => _userService.CreateUser(userModel))
                 .Throws(() => new InvalidUserDataException(new Collection<ValidationResult>
                                                            {
                                                                new ValidationResult("FirstName is required", new List<string> {"FirstName"}),
                                                                new ValidationResult("LastName is required", new List<string> {"LastName"}),
-                                                               new ValidationResult("Group is required", new List<string> {"Group"}),
                                                                new ValidationResult("Email is required", new List<string> {"Email"}),
                                                                new ValidationResult("Wrong UserType", new List<string> {"UserType"}),
                                                            }));
 
-            var result = _userController.Post(user);
+            var result = _userController.Post(user) as InvalidModelStateResult;
 
-            A.CallTo(() => _userService.CreateUser(user)).MustHaveHappened();
-            Assert.False(result.Success);
-            Assert.True(result.Message.Equals("Some fields are not correct"));
-            Assert.NotNull(result.Errors);
-            Assert.True(result.Errors.Any(ei => ei.PropertyName == "FirstName"));
-            Assert.True(result.Errors.Any(ei => ei.PropertyName == "LastName"));
-            Assert.True(result.Errors.Any(ei => ei.PropertyName == "Group"));
-            Assert.True(result.Errors.Any(ei => ei.PropertyName == "Email"));
-            Assert.True(result.Errors.Any(ei => ei.PropertyName == "UserType"));
+            A.CallTo(() => _userService.CreateUser(userModel)).MustHaveHappened();
+            Assert.NotNull(result);
+            Assert.True(result.ModelState.Any(ei => ei.Key == "FirstName"));
+            Assert.True(result.ModelState.Any(ei => ei.Key == "LastName"));
+            Assert.True(result.ModelState.Any(ei => ei.Key == "Email"));
+            Assert.True(result.ModelState.Any(ei => ei.Key == "UserType"));
         }
     }
 }

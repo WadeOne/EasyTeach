@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace EasyTeach.Core.Entities.Services
+﻿namespace EasyTeach.Core.Entities.Services
 {
-    interface IGroupModel
+    public interface IGroupModel
     {
     }
 }

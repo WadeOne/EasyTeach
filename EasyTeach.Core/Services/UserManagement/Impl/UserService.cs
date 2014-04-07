@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Services;
+using EasyTeach.Core.Enums;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
@@ -57,7 +58,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             {
                 throw new InvalidUserDataException(validationResults);
             }
-            
+
             _userRepository.SaveUser(_userDtoMapper.Map(newUser));
         }
     }

@@ -7,8 +7,7 @@ using EasyTeach.Core.Services.UserManagement.Impl;
 using EasyTeach.Data.Context;
 using EasyTeach.Data.Repostitories;
 using EasyTeach.Data.Repostitories.Mappers;
-using EasyTeach.Web.Models;
-using EasyTeach.Web.Models.Results;
+using EasyTeach.Web.Models.ViewModels;
 
 namespace EasyTeach.Web.Controllers
 {
@@ -30,7 +29,7 @@ namespace EasyTeach.Web.Controllers
             _userService = new UserService(new UserRepository(new EasyTeachContext()), new UserDtoMapper() );
         }
 
-        public UserCreationResult Post(User id)
+        public IHttpActionResult Post(CreateUserViewModel id)
         {
             if (id == null)
             {
@@ -38,31 +37,18 @@ namespace EasyTeach.Web.Controllers
             }
             try
             {
-                _userService.CreateUser(id);
+                _userService.CreateUser(id.ToUser());
             }
             catch (InvalidUserDataException exception)
             {
-                return new UserCreationResult
+                foreach (var validationResult in exception.ValidationResults)
                 {
-                    Success = false,
-                    Message = "Some fields are not correct",
-                    Errors =
-                        exception.ValidationResults.Select(
-                            vr => new ErrorItem { PropertyName = vr.MemberNames.First(), Message = vr.ErrorMessage })
-                            .ToList()
-                };
-                //ModelState.AddModelError("FirstName", "required");
-                //return BadRequest(ModelState);
+                    ModelState.AddModelError(validationResult.MemberNames.First(), validationResult.ErrorMessage);
+                }
+                return BadRequest(ModelState);
             }
 
-            return new UserCreationResult
-            {
-                Success = true,
-                Message = "User have been successfully created",
-                Errors = null
-            };
-
-            //return Ok();
+            return Ok();
         }
 
     }

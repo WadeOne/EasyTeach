@@ -1,9 +1,9 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using EasyTeach.Core.Entities;
+
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Enums;
 
-namespace EasyTeach.Web.Models
+namespace EasyTeach.Core.Entities
 {
     public sealed class User : IUserModel
     {

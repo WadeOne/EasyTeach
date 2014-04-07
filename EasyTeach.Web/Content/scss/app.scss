@@ -34,7 +34,7 @@
 @import "foundation/components/tabs";
 //   "foundation/components/thumbs",
 //   "foundation/components/tooltips",
-//   "foundation/components/top-bar",
+@import "foundation/components/top-bar";
 //   "foundation/components/type",
 //   "foundation/components/offcanvas",
 //   "foundation/components/visibility";
@@ -52,7 +52,7 @@ header {
 	background: #5bb5d7;
 	.logo {
 		color: #ffffff;
-		padding: 20px 0;
+		padding: 20px 0.9375rem;
 		font-size: 28px;
 		font-weight: bold;
 	}
@@ -128,16 +128,19 @@ footer {
 .loader {
   position: relative;
   min-height: 200px;
+  &:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    background: rgb(138, 138, 138) url('../image/loader.gif') no-repeat 50%;
+    opacity: .1;
+  }
 }
 
-.loader:after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: 2;
-  width: 100%;
-  height: 100%;
-  background: rgb(138, 138, 138) url('../image/loader.gif') no-repeat 50%;
-  opacity: .1;
+.top-bar .row {
+  max-width: 62.5rem;
 }

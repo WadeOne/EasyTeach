@@ -9418,7 +9418,7 @@ header {
 /* line 53, ../scss/app.scss */
 header .logo {
   color: #ffffff;
-  padding: 20px 0;
+  padding: 20px 0.9375rem;
   font-size: 28px;
   font-weight: bold;
 }
@@ -9507,8 +9507,7 @@ footer .copyright {
   position: relative;
   min-height: 200px;
 }
-
-/* line 133, ../scss/app.scss */
+/* line 131, ../scss/app.scss */
 .loader:after {
   content: '';
   position: absolute;
@@ -9519,4 +9518,9 @@ footer .copyright {
   height: 100%;
   background: #8a8a8a url("../image/loader.gif") no-repeat 50%;
   opacity: .1;
+}
+
+/* line 144, ../scss/app.scss */
+.top-bar .row {
+  max-width: 62.5rem;
 }

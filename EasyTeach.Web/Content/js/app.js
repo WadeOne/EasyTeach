@@ -16,19 +16,24 @@ $(document).foundation({
   	}
 });
 
+
 $( document ).ready(function() {
 	 $('#create-user-button').on('click', function(event) {
-		  var $form = $('#user-registration-form');
-		  $.ajax({
-		    url: $form.attr('action'),
-		    type: 'POST',
-		    data: $form.serialize(),
-		    traditional: true,
-		    error: function (jqXHR, textStatus, error) {
-		     
-		    },
-		    success: function (data) {
-		    }
+	 		event.preventDefault();
+			var $form = $('#user-registration-form');
+			$form.addClass('loader');
+			setTimeout(function(){console.log('waiting')}, 2000)
+			$.ajax({
+				url: $form.attr('action'),
+				type: 'POST',
+				data: $form.serialize(),
+				traditional: true,
+				error: function (jqXHR, textStatus, error) {
+					$form.removeClass('loader');
+				},
+				success: function (data) {
+					$form.removeClass('loader');
+				}
 		  });
-	 })
+	 });
 });

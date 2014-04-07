@@ -9524,3 +9524,8 @@ footer .copyright {
 .top-bar .row {
   max-width: 62.5rem;
 }
+
+/* line 151, ../scss/app.scss */
+.add-homework-button {
+  margin-top: 40px;
+}

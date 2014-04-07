@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login</title>
+    <title>Add homework</title>
     <link rel="stylesheet" href="../Content/stylesheets/app.css" />
     <script src="../Scripts/vendor/bower_components/modernizr/modernizr.js"></script>
   </head>
@@ -23,9 +23,9 @@
         </ul>
         <section class="top-bar-section row">
           <ul class="left">
-            <li><a href="./homeworks.html">Students list</a></li>
+            <li><a href="./grid.html">Students list</a></li>
             <li class="divider"></li>
-            <li><a href="./homeworks.html">Register student</a></li>
+            <li><a href="./registration.html">Register student</a></li>
             <li class="divider"></li>
             <li><a href="./homeworks.html">Done Homeworks</a></li>
             <li class="divider"></li>
@@ -43,14 +43,18 @@
         <form class="row">
           <div class="large-6 medium-6 columns">
             <h3>Add homework</h3>
-            <div class="login-wrapper">
+            <div class="row">
+              <div class="large-10 columns">
               <input type="File" placeholder="Add file"/>
               <!-- if description is empty use the name of the file -->
               <textarea type="password" placeholder="Description"></textarea>
+            </div>   
+            <div class="large-2 columns">
+              <a href="#" class="button small add-homework-button">Add</a>
+            </div>            
             </div>
-            <button class="button">Add</button>
+            
           </div>
-
         </form>
         <div class="row">
             <h3>Uploaded assignments</h3>

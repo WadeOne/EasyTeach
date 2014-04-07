@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-
+using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Data.Context;
@@ -27,15 +27,39 @@ namespace EasyTeach.Data.Repostitories
             return _context.Users.SingleOrDefault(u => u.Email == email);
         }
 
-        public void SaveUser(IUserDto newUser)
+        public void Dispose()
         {
-            if (newUser == null)
+        }
+
+        public async Task CreateAsync(IUserDto user)
+        {
+            if (user == null)
             {
-                throw new ArgumentNullException("newUser");
+                throw new ArgumentNullException("user");
             }
 
-            _context.Users.Add((UserDto)newUser);
-            _context.SaveChanges();
+            _context.Users.Add((UserDto)user);
+            await _context.SaveChangesAsync();
+        }
+
+        public Task UpdateAsync(IUserDto user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAsync(IUserDto user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IUserDto> FindByIdAsync(int userId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<IUserDto> FindByNameAsync(string userName)
+        {
+            return new Task<IUserDto>(() => GetUserByEmail(userName));
         }
     }
 }

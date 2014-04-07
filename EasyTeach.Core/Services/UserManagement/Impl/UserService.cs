@@ -1,26 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Services;
-using EasyTeach.Core.Enums;
-using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
+using Microsoft.AspNet.Identity;
 
 namespace EasyTeach.Core.Services.UserManagement.Impl
 {
     public sealed class UserService : IUserService
     {
-        private readonly IUserRepository _userRepository;
-
         private readonly IUserDtoMapper _userDtoMapper;
+        private readonly UserManager<IUserDto, int> _userManager;
 
-        public UserService(IUserRepository userRepository, IUserDtoMapper userDtoMapper)
+        public UserService(UserManager<IUserDto, int> userManager, IUserDtoMapper userDtoMapper)
         {
-            if (userRepository == null)
+            if (userManager == null)
             {
-                throw new ArgumentNullException("userRepository");
+                throw new ArgumentNullException("userManager");
             }
 
             if (userDtoMapper == null)
@@ -28,11 +27,11 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
                 throw new ArgumentNullException("userDtoMapper");
             }
 
-            _userRepository = userRepository;
             _userDtoMapper = userDtoMapper;
+            _userManager = userManager;
         }
 
-        public void CreateUser(IUserModel newUser)
+        public async Task CreateUserAsync(IUserModel newUser)
         {
             if (newUser == null)
             {
@@ -46,7 +45,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
             if (!String.IsNullOrWhiteSpace(newUser.Email))
             {
-                IUserDto user = _userRepository.GetUserByEmail(newUser.Email);
+                IUserDto user = await _userManager.FindByEmailAsync(newUser.Email);
                 if (user != null)
                 {
                     validationResults.Add(new ValidationResult(String.Format("This email '{0}' has taken by another user", newUser.Email), new[] { "Email" }));
@@ -59,7 +58,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
                 throw new InvalidUserDataException(validationResults);
             }
 
-            _userRepository.SaveUser(_userDtoMapper.Map(newUser));
+            await _userManager.CreateAsync(_userDtoMapper.Map(newUser));
         }
     }
 }

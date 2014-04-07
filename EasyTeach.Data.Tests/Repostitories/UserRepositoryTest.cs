@@ -1,11 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-
-using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data;
-using EasyTeach.Core.Entities.Services;
-using EasyTeach.Core.Enums;
 using EasyTeach.Data.Context;
 using EasyTeach.Data.Entities;
 using EasyTeach.Data.Repostitories;
@@ -28,15 +24,15 @@ namespace EasyTeach.Data.Tests.Repostitories
         }
 
         [Fact]
-        public void SaveUser_NotNullUser_UserAdd()
+        public void CreateUserAsync_NotNullUser_UserAdd()
         {
             IDbSet<UserDto> users = A.Fake<IDbSet<UserDto>>();
             A.CallTo(() => _context.Users).Returns(users);
 
-            _userRepository.SaveUser(new UserDto());
+            _userRepository.CreateAsync(new UserDto()).Wait();
 
             A.CallTo(() => users.Add(A<UserDto>.Ignored)).MustHaveHappened();
-            A.CallTo(() => _context.SaveChanges()).MustHaveHappened();
+            A.CallTo(() => _context.SaveChangesAsync()).MustHaveHappened();
         }
 
         [Fact]

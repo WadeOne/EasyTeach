@@ -1,16 +1,17 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Enums;
-using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers;
 using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
 using EasyTeach.Core.Services.UserManagement.Impl;
 
 using FakeItEasy;
+using Microsoft.AspNet.Identity;
 using Xunit;
 
 namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
@@ -40,7 +41,7 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
             public UserType UserType { get; set; }
         }
 
-        private readonly IUserRepository _userRepository;
+        private readonly UserManager<IUserDto, int> _userManager;
         private readonly IUserService _userService;
         private readonly IUserDtoMapper _userDtoMapper;
 
@@ -48,9 +49,9 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
 
         public UserServiceTest()
         {
-            _userRepository = A.Fake<IUserRepository>();
+            _userManager = A.Fake<UserManager<IUserDto, int>>();
             _userDtoMapper = A.Fake<IUserDtoMapper>();
-            _userService = new UserService(_userRepository, _userDtoMapper);
+            _userService = new UserService(_userManager, _userDtoMapper);
 
             _validUser = new User
             {
@@ -63,26 +64,27 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
         }
 
         [Fact]
-        public void CreateUser_ValidStudentUser_UserCreated()
+        public void CreateUserAsync_ValidStudentUser_UserCreated()
         {
             var userDto = A.Fake<IUserDto>();
 
             A.CallTo(() => _userDtoMapper.Map(_validUser)).Returns(userDto);
-            A.CallTo(() => _userRepository.GetUserByEmail(A<string>.Ignored)).Returns(null);
+            A.CallTo(() => _userManager.FindByEmailAsync(A<string>.Ignored)).Returns((IUserDto)null);
 
-            Assert.DoesNotThrow(() => _userService.CreateUser(_validUser));
-            A.CallTo(() => _userRepository.SaveUser(userDto)).MustHaveHappened();
+            Assert.DoesNotThrow(() => _userService.CreateUserAsync(_validUser).Wait());
+            A.CallTo(() => _userManager.CreateAsync(userDto)).MustHaveHappened();
             A.CallTo(() => _userDtoMapper.Map(_validUser)).MustHaveHappened();
         }
 
         [Fact]
-        public void CreateUser_InvalidUser_InvalidUserExceptionThrownUserNotCreatedProperError()
+        public void CreateUserAsync_InvalidUser_InvalidUserExceptionThrownUserNotCreatedProperError()
         {
             var user = new User();
             var userDto = A.Fake<IUserDto>();
             A.CallTo(() => _userDtoMapper.Map(user)).Returns(userDto);
 
-            var exception = Assert.Throws<InvalidUserDataException>(() => _userService.CreateUser(user));
+            var aggregateException = Assert.Throws<AggregateException>(() => _userService.CreateUserAsync(user).Wait());
+            var exception = (InvalidUserDataException) aggregateException.GetBaseException();
 
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "FirstName"));
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "LastName"));
@@ -90,22 +92,23 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "Group"));
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "UserType"));
 
-            A.CallTo(() => _userRepository.SaveUser(A<IUserDto>.Ignored)).MustNotHaveHappened();
+            A.CallTo(() => _userManager.CreateAsync(A<IUserDto>.Ignored)).MustNotHaveHappened();
             A.CallTo(() => _userDtoMapper.Map(A<IUserModel>.Ignored)).MustNotHaveHappened();
         }
 
         [Fact]
-        public void CreateUser_UserWithDuplicateEmail_InvalidUserExceptionThrownUserNotCreatedProperError()
+        public void CreateUserAsync_UserWithDuplicateEmail_InvalidUserExceptionThrownUserNotCreatedProperError()
         {
             var userDto = A.Fake<IUserDto>();
             A.CallTo(() => _userDtoMapper.Map(_validUser)).Returns(userDto);
 
-            A.CallTo(() => _userRepository.GetUserByEmail("test@test.com")).Returns(userDto);
+            A.CallTo(() => _userManager.FindByEmailAsync("test@test.com")).Returns(userDto);
 
-            var exception = Assert.Throws<InvalidUserDataException>(() => _userService.CreateUser(_validUser));
+            var aggregateException = Assert.Throws<AggregateException>(() => _userService.CreateUserAsync(_validUser).Wait());
+            var exception = (InvalidUserDataException)aggregateException.GetBaseException();
 
             Assert.True(exception.ValidationResults.All(x => x.MemberNames.First() == "Email"));
-            A.CallTo(() => _userRepository.SaveUser(A<IUserDto>.Ignored)).MustNotHaveHappened();
+            A.CallTo(() => _userManager.CreateAsync(A<IUserDto>.Ignored)).MustNotHaveHappened();
             A.CallTo(() => _userDtoMapper.Map(A<IUserModel>.Ignored)).MustNotHaveHappened();
         }
     }

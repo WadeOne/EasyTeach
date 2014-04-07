@@ -1,8 +1,9 @@
 ﻿using EasyTeach.Core.Enums;
+using Microsoft.AspNet.Identity;
 
 namespace EasyTeach.Core.Entities.Data
 {
-    public interface IUserDto
+    public interface IUserDto : IUser<int>
     {
         int UserId { get; set; }
 

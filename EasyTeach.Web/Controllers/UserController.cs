@@ -45,8 +45,9 @@ namespace EasyTeach.Web.Controllers
         {
             _userService = new UserService(
                 new UserManager<IUserDto, int>(
-                    new UserRepository(
-                        new EasyTeachContext())),
+                    new UserStore(
+                        new UserRepository(
+                            new EasyTeachContext()))),
                 new UserDtoMapper());
 
             _authenticationManagerFactory = () => Request.GetOwinContext().Authentication;

@@ -18,5 +18,7 @@ namespace EasyTeach.Core.Entities.Data
         bool EmailIsValidated { get; set; }
 
         UserType UserType { get; set; }
+
+        string PasswordHash { get; set; }
     }
 }

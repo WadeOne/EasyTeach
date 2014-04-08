@@ -1,11 +1,14 @@
 ﻿using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data;
-using Microsoft.AspNet.Identity;
 
 namespace EasyTeach.Core.Repositories
 {
-    public interface IUserRepository : IUserStore<IUserDto, int>
+    public interface IUserRepository
     {
         Task<IUserDto> GetUserByEmail(string email);
+
+        Task CreateAsync(IUserDto user);
+
+        Task UpdateAsync(IUserDto user);
     }
 }

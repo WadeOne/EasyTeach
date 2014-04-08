@@ -63,6 +63,10 @@
     <Compile Include="Migrations\201404041337202_InitialCreate.Designer.cs">
       <DependentUpon>201404041337202_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201404082233256_AddUserPasswordHash.cs" />
+    <Compile Include="Migrations\201404082233256_AddUserPasswordHash.Designer.cs">
+      <DependentUpon>201404082233256_AddUserPasswordHash.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repostitories\Mappers\UserDtoMapper.cs" />
@@ -87,6 +91,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201404041337202_InitialCreate.resx">
       <DependentUpon>201404041337202_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404082233256_AddUserPasswordHash.resx">
+      <DependentUpon>201404082233256_AddUserPasswordHash.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

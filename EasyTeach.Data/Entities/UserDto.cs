@@ -23,6 +23,8 @@ namespace EasyTeach.Data.Entities
 
         public UserType UserType { get; set; }
 
+        public string PasswordHash { get; set; }
+
         int IUser<int>.Id
         {
             get { return UserId; }

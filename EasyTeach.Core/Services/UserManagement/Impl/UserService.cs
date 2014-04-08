@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Services;
@@ -58,7 +59,12 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
                 throw new InvalidUserDataException(validationResults);
             }
 
-            await _userManager.CreateAsync(_userDtoMapper.Map(newUser));
+            IdentityResult identityResult = await _userManager.CreateAsync(_userDtoMapper.Map(newUser));
+            if (!identityResult.Succeeded)
+            {
+                validationResults.AddRange(identityResult.Errors.Select(e => new ValidationResult(e)));
+                throw new InvalidUserDataException(validationResults);
+            }
         }
     }
 }

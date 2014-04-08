@@ -70,6 +70,7 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
 
             A.CallTo(() => _userDtoMapper.Map(_validUser)).Returns(userDto);
             A.CallTo(() => _userManager.FindByEmailAsync(A<string>.Ignored)).Returns((IUserDto)null);
+            A.CallTo(() => _userManager.CreateAsync(userDto)).Returns(IdentityResult.Success);
 
             Assert.DoesNotThrow(() => _userService.CreateUserAsync(_validUser).Wait());
             A.CallTo(() => _userManager.CreateAsync(userDto)).MustHaveHappened();

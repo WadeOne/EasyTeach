@@ -56,6 +56,7 @@
     <Compile Include="Repositories\Mappers\IUserDtoMapper.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidUserDataException.cs" />
     <Compile Include="Services\UserManagement\Impl\UserService.cs" />
+    <Compile Include="Services\UserManagement\Impl\UserStore.cs" />
     <Compile Include="Services\UserManagement\IUserService.cs" />
   </ItemGroup>
   <ItemGroup>

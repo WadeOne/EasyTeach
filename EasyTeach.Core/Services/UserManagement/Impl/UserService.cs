@@ -66,5 +66,10 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
                 throw new InvalidUserDataException(validationResults);
             }
         }
+
+        public Task<IUserModel> Login(string email, string password)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

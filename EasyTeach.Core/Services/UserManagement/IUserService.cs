@@ -6,5 +6,7 @@ namespace EasyTeach.Core.Services.UserManagement
     public interface IUserService
     {
         Task CreateUserAsync(IUserModel newUser);
+
+        Task<IUserModel> Login(string login, string password);
     }
 }

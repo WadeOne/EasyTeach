@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Context\EasyTeachContext.cs" />
     <Compile Include="Entities\UserDto.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repostitories\Mappers\UserDtoMapper.cs" />
     <Compile Include="Repostitories\UserRepository.cs" />

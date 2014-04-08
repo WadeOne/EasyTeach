@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data;
@@ -22,9 +23,9 @@ namespace EasyTeach.Data.Repostitories
             _context = context;
         }
 
-        public IUserDto GetUserByEmail(string email)
+        public async Task<IUserDto> GetUserByEmail(string email)
         {
-            return _context.Users.SingleOrDefault(u => u.Email == email);
+            return await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
         }
 
         public void Dispose()
@@ -59,7 +60,7 @@ namespace EasyTeach.Data.Repostitories
 
         public Task<IUserDto> FindByNameAsync(string userName)
         {
-            return new Task<IUserDto>(() => GetUserByEmail(userName));
+            return GetUserByEmail(userName);
         }
     }
 }

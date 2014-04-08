@@ -47,7 +47,7 @@ namespace EasyTeach.Data.Tests.Repostitories
             IDbSet<UserDto> users = GetFakeDbSet(data.AsQueryable());
             A.CallTo(() => _context.Users).Returns(users);
 
-            IUserDto user = _userRepository.GetUserByEmail("john.doe@example.com");
+            IUserDto user = _userRepository.GetUserByEmail("john.doe@example.com").Result;
 
             Assert.Equal("john.doe@example.com", user.Email);
         }
@@ -59,7 +59,7 @@ namespace EasyTeach.Data.Tests.Repostitories
             IDbSet<UserDto> users = GetFakeDbSet(data.AsQueryable());
             A.CallTo(() => _context.Users).Returns(users);
 
-            IUserDto user = _userRepository.GetUserByEmail("john.doe@example.com");
+            IUserDto user = _userRepository.GetUserByEmail("john.doe@example.com").Result;
 
             Assert.Null(user);
         }

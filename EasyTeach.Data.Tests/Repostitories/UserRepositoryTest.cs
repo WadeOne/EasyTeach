@@ -1,11 +1,9 @@
-﻿using System.Collections.Generic;
-using System.Data.Entity;
-using System.Linq;
+﻿using System.Data.Entity;
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Data.Context;
 using EasyTeach.Data.Entities;
 using EasyTeach.Data.Repostitories;
-
+using EasyTeach.Data.Tests.Context;
 using FakeItEasy;
 
 using Xunit;
@@ -38,13 +36,13 @@ namespace EasyTeach.Data.Tests.Repostitories
         [Fact]
         public void GetUserByEmail_ExistingEmail_User()
         {
-            var data = new List<UserDto>
+            var data = new[]
             {
                 new UserDto { Email = "test" },
                 new UserDto { Email = "john.doe@example.com" }
             };
 
-            IDbSet<UserDto> users = GetFakeDbSet(data.AsQueryable());
+            IDbSet<UserDto> users = new FakeDbSet<UserDto>(data);
             A.CallTo(() => _context.Users).Returns(users);
 
             IUserDto user = _userRepository.GetUserByEmail("john.doe@example.com").Result;
@@ -55,23 +53,12 @@ namespace EasyTeach.Data.Tests.Repostitories
         [Fact]
         public void GetUserByEmail_NonExistingEmail_Null()
         {
-            var data = new List<UserDto> { new UserDto { Email = "test" } };
-            IDbSet<UserDto> users = GetFakeDbSet(data.AsQueryable());
+            IDbSet<UserDto> users = new FakeDbSet<UserDto>(new[] { new UserDto { Email = "test" } });
             A.CallTo(() => _context.Users).Returns(users);
 
             IUserDto user = _userRepository.GetUserByEmail("john.doe@example.com").Result;
 
             Assert.Null(user);
-        }
-
-        private IDbSet<T> GetFakeDbSet<T>(IQueryable<T> data) where T : class 
-        {
-            IDbSet<T> dataSet = A.Fake<IDbSet<T>>();
-            A.CallTo(() => dataSet.Provider).Returns(data.Provider);
-            A.CallTo(() => dataSet.Expression).Returns(data.Expression);
-            A.CallTo(() => dataSet.ElementType).Returns(data.ElementType);
-            A.CallTo(() => dataSet.GetEnumerator()).Returns(data.GetEnumerator());
-            return dataSet;
         }
     }
 }

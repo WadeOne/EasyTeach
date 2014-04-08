@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Context\AsyncEnumerableQuery.cs" />
+    <Compile Include="Context\AsyncEnumeratorWrapper.cs" />
+    <Compile Include="Context\AsyncQueryProviderWrapper.cs" />
+    <Compile Include="Context\FakeDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repostitories\Mappers\UserDtoMapperTest.cs" />
     <Compile Include="Repostitories\UserRepositoryTest.cs" />

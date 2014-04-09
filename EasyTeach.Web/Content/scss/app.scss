@@ -65,7 +65,7 @@ ul {
     min-height: 100%;
     height: auto !important;
     height: 100%;
-    background: #f2f2f2;
+    background: rgba(224, 228, 204, 0.3);
     .page-content {
     	padding-bottom: 50px;
     	.row {
@@ -150,4 +150,9 @@ footer {
 // add homeworks page
 .add-homework-button {
   margin-top: 40px;
+  background: #f38630;
+  border: none;
+  &:hover{
+    background: #fa6900;
+  }
 }

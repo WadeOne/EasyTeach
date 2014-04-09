@@ -6,7 +6,7 @@ using Microsoft.AspNet.Identity;
 
 namespace EasyTeach.Core.Services.UserManagement.Impl
 {
-    public sealed class UserStore : IUserPasswordStore<IUserDto, int>
+    public sealed class UserStore : IUserPasswordStore<IUserDto, int>, IUserEmailStore<IUserDto, int>
     {
         private readonly IUserRepository _userRepository;
 
@@ -56,12 +56,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
         public Task<IUserDto> FindByNameAsync(string userName)
         {
-            if (userName == null)
-            {
-                throw new ArgumentNullException("userName");
-            }
-
-            return _userRepository.GetUserByEmail(userName);
+            return FindByEmailAsync(userName);
         }
 
         public Task SetPasswordHashAsync(IUserDto user, string passwordHash)
@@ -94,6 +89,60 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             }
 
             return Task.FromResult(user.PasswordHash != null);
+        }
+
+        public Task SetEmailAsync(IUserDto user, string email)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            if (email == null)
+            {
+                throw new ArgumentNullException("email");
+            }
+
+            user.Email = email;
+
+            return Task.FromResult(0);
+        }
+
+        public Task<string> GetEmailAsync(IUserDto user)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> GetEmailConfirmedAsync(IUserDto user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            return Task.FromResult(user.EmailIsValidated);
+        }
+
+        public Task SetEmailConfirmedAsync(IUserDto user, bool confirmed)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            user.EmailIsValidated = confirmed;
+
+            return Task.FromResult(0);
+        }
+
+        public Task<IUserDto> FindByEmailAsync(string email)
+        {
+            if (email == null)
+            {
+                throw new ArgumentNullException("email");
+            }
+
+            return _userRepository.GetUserByEmail(email);
         }
     }
 }

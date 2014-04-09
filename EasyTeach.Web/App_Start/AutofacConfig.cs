@@ -3,11 +3,11 @@ using System.Net.Http;
 using System.Reflection;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Description;
 using Autofac;
 using Autofac.Integration.WebApi;
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Data.Context;
+using EasyTeach.Web.Areas.HelpPage;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
@@ -26,7 +26,7 @@ namespace EasyTeach.Web
                 .AsImplementedInterfaces()
                 .AsSelf()
                 .Except<EasyTeachContext>(x => x.AsSelf().InstancePerApiRequest())
-                .Except<IDocumentationProvider>();
+                .Except<XmlDocumentationProvider>();
 
             builder.Register<Func<IAuthenticationManager>>(c => () => ((HttpRequestMessage)HttpContext.Current.Items["MS_HttpRequestMessage"]).GetOwinContext().Authentication);
             builder.RegisterType<UserManager<IUserDto, int>>().AsSelf();

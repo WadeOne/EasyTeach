@@ -1,7 +1,7 @@
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-
+using EasyTeach.Web.Areas.HelpPage.ModelDescriptions;
 using EasyTeach.Web.Areas.HelpPage.Models;
 
 namespace EasyTeach.Web.Areas.HelpPage.Controllers
@@ -11,6 +11,8 @@ namespace EasyTeach.Web.Areas.HelpPage.Controllers
     /// </summary>
     public class HelpController : Controller
     {
+        private const string ErrorViewName = "Error";
+
         public HelpController()
             : this(GlobalConfiguration.Configuration)
         {
@@ -26,8 +28,7 @@ namespace EasyTeach.Web.Areas.HelpPage.Controllers
         public ActionResult Index()
         {
             ViewBag.DocumentationProvider = Configuration.Services.GetDocumentationProvider();
-            var apiDescr = Configuration.Services.GetApiExplorer().ApiDescriptions;
-            return View(apiDescr);
+            return View(Configuration.Services.GetApiExplorer().ApiDescriptions);
         }
 
         public ActionResult Api(string apiId)
@@ -41,7 +42,22 @@ namespace EasyTeach.Web.Areas.HelpPage.Controllers
                 }
             }
 
-            return View("Error");
+            return View(ErrorViewName);
+        }
+
+        public ActionResult ResourceModel(string modelName)
+        {
+            if (!String.IsNullOrEmpty(modelName))
+            {
+                ModelDescriptionGenerator modelDescriptionGenerator = Configuration.GetModelDescriptionGenerator();
+                ModelDescription modelDescription;
+                if (modelDescriptionGenerator.GeneratedModels.TryGetValue(modelName, out modelDescription))
+                {
+                    return View(modelDescription);
+                }
+            }
+
+            return View(ErrorViewName);
         }
     }
 }

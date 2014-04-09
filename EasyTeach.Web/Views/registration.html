@@ -8,7 +8,7 @@
     <script src="../Scripts/vendor/bower_components/modernizr/modernizr.js"></script>
 	</head>
 	<body>
-		<div class="page-wrapper">
+		<div class="page-wrapper registration-page">
 			<header>
 				<div class="row"><div class="logo">EasyTeach</div></div>
 			</header>
@@ -40,10 +40,10 @@
 					<form id="user-registration-form" method="post">
 						<div class="large-6 medium-6 columns">
 							<div class="large-8 medium-8">
-								 <div class="login-wrapper">
-									<label>Year</label>
-									<input type="number" placeholder="Year" name="year" required/>
-									<label>Course</label>
+								<div class="login-wrapper">
+									<label>Год</label>
+									<input type="number" placeholder="Год" name="year" required/>
+									<label>Курс</label>
 									<select>
 										<option value="1">1</option>
 										<option value="2">2</option>
@@ -51,24 +51,24 @@
 										<option value="4">4</option>
 										<option value="5">5</option>
 									</select>
-									<label>Group</label>
-									<input type="number" min="1" placeholder="Group" name="group" required/>
+									<label>Группа</label>
+									<input type="number" min="1" placeholder="Группа" name="group" required/>
 								</div>
 							</div>
 						</div>
 						<div class="large-6 medium-6 columns">
-								<div class="large-8 medium-8">
-										<div class="login-wrapper">
-											<label>Name</label>
-											<input type="text" placeholder="Name" name="name" required/>
-											<label>Surname</label>
-											<input type="text" placeholder="Surname" name="surname" required/>
-											<label>Email</label>
-											<input type="email" placeholder="Email" name="email" required/>
-										</div>
+							<div class="large-8 medium-8">
+								<div class="login-wrapper">
+									<label>Имя</label>
+									<input type="text" placeholder="Имя" name="name" required/>
+									<label>Фамилия</label>
+									<input type="text" placeholder="Фамилия" name="surname" required/>
+									<label>Почта</label>
+									<input type="email" placeholder="Почта" name="email" required/>
 								</div>
+							</div>
 						</div>
-						<button id="create-user-button">Submit</button>
+						<a id="create-user-button" href="#" class="easy-teach-button">Создать</a>
 					</form>
 				</div>
 			</div>

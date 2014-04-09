@@ -6976,7 +6976,7 @@ meta.foundation-mq-topbar {
 /* line 108, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_top-bar.scss */
 .contain-to-grid {
   width: 100%;
-  background: #fa6900;
+  background: #69d2e7;
 }
 /* line 112, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_top-bar.scss */
 .contain-to-grid .top-bar {
@@ -7016,7 +7016,7 @@ meta.foundation-mq-topbar {
   height: 45px;
   line-height: 45px;
   position: relative;
-  background: #fa6900;
+  background: #69d2e7;
   margin-bottom: 0;
 }
 /* line 151, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_top-bar.scss */
@@ -7125,7 +7125,7 @@ meta.foundation-mq-topbar {
 }
 /* line 261, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar.expanded .title-area {
-  background: #fa6900;
+  background: #69d2e7;
 }
 /* line 264, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar.expanded .toggle-topbar a {
@@ -7331,7 +7331,7 @@ meta.foundation-mq-topbar {
 @media only screen and (min-width: 40.063em) {
   /* line 447, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar {
-    background: #fa6900;
+    background: #69d2e7;
     *zoom: 1;
     overflow: visible;
   }
@@ -7365,7 +7365,7 @@ meta.foundation-mq-topbar {
   }
   /* line 464, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar.expanded {
-    background: #fa6900;
+    background: #69d2e7;
   }
 
   /* line 467, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_top-bar.scss */
@@ -7405,7 +7405,7 @@ meta.foundation-mq-topbar {
   .top-bar-section li:not(.has-form) a:not(.button) {
     padding: 0 15px;
     line-height: 45px;
-    background: #fa6900;
+    background: #69d2e7;
   }
   /* line 500, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar-section li:not(.has-form) a:not(.button):hover {
@@ -7506,7 +7506,7 @@ meta.foundation-mq-topbar {
   }
   /* line 594, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar-section .has-form {
-    background: #fa6900;
+    background: #69d2e7;
     padding: 0 15px;
     height: 45px;
   }
@@ -9428,48 +9428,48 @@ ul {
   margin-bottom: 0;
 }
 
-/* line 64, ../scss/app.scss */
+/* line 65, ../scss/app.scss */
 .page-wrapper {
   min-height: 100%;
   height: auto !important;
   height: 100%;
   background: rgba(224, 228, 204, 0.3);
 }
-/* line 69, ../scss/app.scss */
+/* line 70, ../scss/app.scss */
 .page-wrapper .page-content {
   padding-bottom: 50px;
 }
-/* line 71, ../scss/app.scss */
+/* line 72, ../scss/app.scss */
 .page-wrapper .page-content .row {
   padding-top: 30px;
 }
-/* line 74, ../scss/app.scss */
+/* line 75, ../scss/app.scss */
 .page-wrapper .page-content label {
   font-size: 20px;
 }
-/* line 77, ../scss/app.scss */
+/* line 78, ../scss/app.scss */
 .page-wrapper .page-content .login-wrapper {
   margin: 30px 0;
 }
-/* line 80, ../scss/app.scss */
+/* line 81, ../scss/app.scss */
 .page-wrapper .page-content .image-container {
   margin: 30px 0;
 }
 
-/* line 85, ../scss/app.scss */
+/* line 86, ../scss/app.scss */
 footer {
   height: 50px;
   margin-top: -50px;
   background: #3f4349;
 }
-/* line 89, ../scss/app.scss */
+/* line 90, ../scss/app.scss */
 footer .copyright {
   color: #ffffff;
   padding-top: 10px;
 }
 
 /*grid */
-/* line 96, ../scss/app.scss */
+/* line 97, ../scss/app.scss */
 .custom-button {
   width: 180px;
   background: #67cac7;
@@ -9478,36 +9478,36 @@ footer .copyright {
   margin-bottom: 20px;
 }
 
-/* line 103, ../scss/app.scss */
+/* line 104, ../scss/app.scss */
 .logout-button {
   float: right;
   margin-top: 10px;
 }
 
 /*homeworks page*/
-/* line 113, ../scss/app.scss */
+/* line 114, ../scss/app.scss */
 .tabs-content .accordion .content ul li {
   margin-bottom: 5px;
 }
 
-/* line 120, ../scss/app.scss */
+/* line 121, ../scss/app.scss */
 .download-all-homeworks-button {
   float: right;
   margin-right: 10px;
 }
 
-/* line 124, ../scss/app.scss */
+/* line 125, ../scss/app.scss */
 .download-single-homework-button {
   float: right;
   margin-right: 30px;
 }
 
-/* line 129, ../scss/app.scss */
+/* line 130, ../scss/app.scss */
 .loader {
   position: relative;
   min-height: 200px;
 }
-/* line 132, ../scss/app.scss */
+/* line 133, ../scss/app.scss */
 .loader:after {
   content: '';
   position: absolute;
@@ -9520,18 +9520,32 @@ footer .copyright {
   opacity: .1;
 }
 
-/* line 145, ../scss/app.scss */
+/* line 146, ../scss/app.scss */
 .top-bar .row {
   max-width: 62.5rem;
 }
 
-/* line 151, ../scss/app.scss */
+/* line 152, ../scss/app.scss */
 .add-homework-button {
   margin-top: 40px;
-  background: #f38630;
-  border: none;
 }
-/* line 155, ../scss/app.scss */
-.add-homework-button:hover {
+
+/* line 158, ../scss/app.scss */
+.registration-page .columns {
+  padding: 0;
+}
+
+/* line 164, ../scss/app.scss */
+.easy-teach-button {
+  display: inline-block;
+  padding: 15px 20px;
+  background: #f38630;
+  color: #ffffff;
+  text-align: center;
+  white-space: nowrap;
+}
+/* line 171, ../scss/app.scss */
+.easy-teach-button:hover {
   background: #fa6900;
+  color: #ffffff;
 }

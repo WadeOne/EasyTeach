@@ -26,7 +26,8 @@ namespace EasyTeach.Web.Areas.HelpPage.Controllers
         public ActionResult Index()
         {
             ViewBag.DocumentationProvider = Configuration.Services.GetDocumentationProvider();
-            return View(Configuration.Services.GetApiExplorer().ApiDescriptions);
+            var apiDescr = Configuration.Services.GetApiExplorer().ApiDescriptions;
+            return View(apiDescr);
         }
 
         public ActionResult Api(string apiId)

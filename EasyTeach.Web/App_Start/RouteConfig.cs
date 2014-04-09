@@ -9,6 +9,8 @@ namespace EasyTeach.Web
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            routes.IgnoreRoute("*.html");
+
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",

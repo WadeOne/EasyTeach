@@ -1,41 +1,45 @@
 ﻿using System;
 using System.Web.Http;
-
+using System.Web.Http.Dependencies;
+using Autofac;
 using Autofac.Core;
-
+using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Repositories.Mappers;
+using EasyTeach.Core.Services.UserManagement.Impl;
 using EasyTeach.Data.Context;
-using EasyTeach.Data.Repostitories;
-using EasyTeach.Data.Repostitories.Mappers;
-
+using EasyTeach.Web.Controllers;
+using Microsoft.AspNet.Identity;
 using Xunit;
+using Xunit.Extensions;
 
 namespace EasyTeach.Web.Tests.Config
 {
-    public class AutofacConfigTest
+    public sealed class AutofacConfigTest
     {
+        private readonly IDependencyResolver _resolver;
+
         public AutofacConfigTest()
         {
-            AutofacConfig.RegisterDependencies();
-        }
-
-        [Fact]
-        public void ClassesRegistered_ResolvedCorrectly()
-        {
-            var resolver = GlobalConfiguration.Configuration.DependencyResolver;
-
-            var instance = resolver.GetService(typeof(IUserDtoMapper));
-
-            Assert.NotNull(instance);
-            Assert.True(instance is UserDtoMapper);
+            AutofacConfig.RegisterDependencies(new ContainerBuilder());
+            _resolver = GlobalConfiguration.Configuration.DependencyResolver;
         }
 
         [Fact]
         public void ClassesRegistered_RequestedInstanceRegisteredAsPerApiRequest_ExceptionThrown()
         {
-            var resolver = GlobalConfiguration.Configuration.DependencyResolver;
+            Assert.Throws<DependencyResolutionException>(() => _resolver.GetService(typeof(EasyTeachContext)));
+        }
 
-            Assert.Throws<DependencyResolutionException>(() => resolver.GetService(typeof(EasyTeachContext)));
+        [Theory]
+        [InlineData(typeof(UserManager<IUserDto, int>))]
+        [InlineData(typeof(UserStore))]
+        [InlineData(typeof(IUserDtoMapper))]
+        [InlineData(typeof(UserController))]
+        public void RegisterDependencies_ResolvedTypeCorrectly(Type typeToResolve)
+        {
+            object instance = _resolver.GetService(typeToResolve);
+            Assert.NotNull(instance);
+            Assert.IsAssignableFrom(typeToResolve, instance);
         }
     }
 }

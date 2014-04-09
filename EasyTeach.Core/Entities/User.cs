@@ -22,8 +22,6 @@ namespace EasyTeach.Core.Entities
         [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Not valid Email address")]
         public string Email { get; set; }
 
-        public bool EmailIsValidated { get; set; }
-
         [EnumDataType(typeof(UserType))]
         public UserType UserType { get; set; }
     }

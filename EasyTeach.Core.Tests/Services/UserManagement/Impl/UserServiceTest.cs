@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading.Tasks;
 using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Services;
@@ -34,8 +35,6 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
             [Required]
             [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Not valid Email address")]
             public string Email { get; set; }
-
-            public bool EmailIsValidated { get; set; }
 
             [EnumDataType(typeof(UserType))]
             public UserType UserType { get; set; }
@@ -111,6 +110,28 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
             Assert.True(exception.ValidationResults.All(x => x.MemberNames.First() == "Email"));
             A.CallTo(() => _userManager.CreateAsync(A<IUserDto>.Ignored)).MustNotHaveHappened();
             A.CallTo(() => _userDtoMapper.Map(A<IUserModel>.Ignored)).MustNotHaveHappened();
+        }
+
+        [Fact]
+        public void FindUserByCredentialsAsync_ValidCredentails_ReturnUserIdentity()
+        {
+            var userDto = A.Fake<IUserDto>();
+            A.CallTo(() => userDto.Email).Returns("test@example.com");
+            A.CallTo(() => userDto.UserId).Returns(42);
+            A.CallTo(() => _userManager.FindAsync("test@example.com", "test")).Returns(userDto);
+
+            IUserIdentityModel userIdentity = _userService.FindUserByCredentialsAsync("test@example.com", "test").Result;
+            Assert.Equal("test@example.com", userIdentity.Email);
+            Assert.Equal(42, userIdentity.UserId);
+        }
+
+        [Fact]
+        public void FindUserByCredentialsAsync_InvalidCredentails_ReturnNull()
+        {
+            A.CallTo(() => _userManager.FindAsync("test@example.com", "test")).Returns(Task.FromResult<IUserDto>(null));
+
+            IUserIdentityModel userIdentity = _userService.FindUserByCredentialsAsync("test@example.com", "test").Result;
+            Assert.Null(userIdentity);
         }
     }
 }

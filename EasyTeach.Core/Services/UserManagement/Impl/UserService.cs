@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
+using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories.Mappers;
@@ -67,9 +69,44 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             }
         }
 
-        public Task<IUserModel> Login(string email, string password)
+        public async Task<IUserIdentityModel> FindUserByCredentialsAsync(string email, string password)
         {
-            throw new NotImplementedException();
+            if (String.IsNullOrWhiteSpace(email))
+            {
+                throw new ArgumentNullException("email");
+            }
+
+            if (password == null)
+            {
+                throw new ArgumentNullException("password");
+            }
+
+            IUserDto userDto = await _userManager.FindAsync(email, password);
+            if (userDto == null)
+            {
+                return null;
+            }
+
+            return new User
+            {
+                Email = userDto.Email,
+                UserId = userDto.UserId,
+            };
+        }
+
+        public Task<ClaimsIdentity> CreateUserIdentityClaimsAsync(IUserIdentityModel userIdentity, string authenicationType)
+        {
+            if (userIdentity == null)
+            {
+                throw new ArgumentNullException("userIdentity");
+            }
+
+            if (String.IsNullOrWhiteSpace(authenicationType))
+            {
+                throw new ArgumentNullException("authenicationType");
+            }
+
+            return _userManager.CreateIdentityAsync(_userDtoMapper.Map(userIdentity), authenicationType);
         }
     }
 }

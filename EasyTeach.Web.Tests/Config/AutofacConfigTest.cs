@@ -20,14 +20,15 @@ namespace EasyTeach.Web.Tests.Config
 
         public AutofacConfigTest()
         {
-            AutofacConfig.RegisterDependencies(new ContainerBuilder());
+            AutofacConfig.RegisterDependencies(builder => builder.RegisterType<EasyTeachContext>().AsSelf());
             _resolver = GlobalConfiguration.Configuration.DependencyResolver;
         }
 
         [Fact]
         public void ClassesRegistered_RequestedInstanceRegisteredAsPerApiRequest_ExceptionThrown()
         {
-            Assert.Throws<DependencyResolutionException>(() => _resolver.GetService(typeof(EasyTeachContext)));
+            AutofacConfig.RegisterDependencies();
+            Assert.Throws<DependencyResolutionException>(() => GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(EasyTeachContext)));
         }
 
         [Theory]

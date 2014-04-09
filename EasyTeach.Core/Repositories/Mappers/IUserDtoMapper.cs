@@ -6,5 +6,7 @@ namespace EasyTeach.Core.Repositories.Mappers
     public interface IUserDtoMapper
     {
         IUserDto Map(IUserModel userModel);
+
+        IUserDto Map(IUserIdentityModel userIdentityModel);
     }
 }

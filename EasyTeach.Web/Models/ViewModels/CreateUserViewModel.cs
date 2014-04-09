@@ -21,7 +21,6 @@ namespace EasyTeach.Web.Models.ViewModels
             return new User
                    {
                        Email = Email,
-                       EmailIsValidated = false,
                        FirstName = FirstName,
                        Group = Group,
                        LastName = LastName,

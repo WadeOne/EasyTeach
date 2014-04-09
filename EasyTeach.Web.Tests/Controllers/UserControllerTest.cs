@@ -39,7 +39,6 @@ namespace EasyTeach.Web.Tests.Controllers
                 LastName = "Doe",
                 Email = "test@test.com",
                 Group = new Group { GroupNumber = 2, Year = 2009 },
-                EmailIsValidated = false
             };
 
             A.CallTo(() => user.ToUser()).Returns(userModel);

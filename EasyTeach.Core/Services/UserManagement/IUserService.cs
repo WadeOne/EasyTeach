@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Security.Claims;
+using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Core.Services.UserManagement
@@ -7,6 +8,8 @@ namespace EasyTeach.Core.Services.UserManagement
     {
         Task CreateUserAsync(IUserModel newUser);
 
-        Task<IUserModel> Login(string login, string password);
+        Task<IUserIdentityModel> FindUserByCredentialsAsync(string email, string password);
+
+        Task<ClaimsIdentity> CreateUserIdentityClaimsAsync(IUserIdentityModel userIdentity, string authenicationType);
     }
 }

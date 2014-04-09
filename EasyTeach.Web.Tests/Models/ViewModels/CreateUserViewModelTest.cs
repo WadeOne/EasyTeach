@@ -32,7 +32,6 @@ namespace EasyTeach.Web.Tests.Models.ViewModels
             Assert.Equal(Email, userModel.Email);
             Assert.Equal(Group.GroupNumber, userModel.Group.GroupNumber);
             Assert.Equal(Group.Year, userModel.Group.Year);
-            Assert.False(userModel.EmailIsValidated);
             Assert.Equal(UserType.Student, userModel.UserType);
             Assert.Equal(default(int), userModel.UserId);
         }

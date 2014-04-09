@@ -1,4 +1,5 @@
 ﻿using EasyTeach.Core.Entities;
+using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Enums;
 using EasyTeach.Data.Repostitories.Mappers;
@@ -9,14 +10,9 @@ using Xunit;
 
 namespace EasyTeach.Data.Tests.Repostitories.Mappers
 {
-    public class UserDtoMapperTest
+    public sealed class UserDtoMapperTest
     {
-        private readonly UserDtoMapper mapper;
-
-        public UserDtoMapperTest()
-        {
-            mapper = new UserDtoMapper();
-        }
+        private readonly UserDtoMapper _mapper = new UserDtoMapper();
 
         [Fact]
         public void Map_UserModel_MappedCorrectly()
@@ -27,18 +23,28 @@ namespace EasyTeach.Data.Tests.Repostitories.Mappers
             A.CallTo(() => userModel.Email).Returns("test@test.com");
             A.CallTo(() => userModel.Group).Returns(new Group{GroupId = 1, GroupNumber = 2, Year = 2009});
             A.CallTo(() => userModel.UserType).Returns(UserType.Student);
-            A.CallTo(() => userModel.EmailIsValidated).Returns(true);
 
-            var userDto = mapper.Map(userModel);
+            IUserDto userDto = _mapper.Map(userModel);
 
-            Assert.True(userDto.FirstName.Equals(userModel.FirstName));
-            Assert.True(userDto.LastName.Equals(userModel.LastName));
-            Assert.True(userDto.Email.Equals(userModel.Email));
-            Assert.True(userDto.UserType.Equals(userModel.UserType));
-            Assert.True(userDto.EmailIsValidated.Equals(userModel.EmailIsValidated));
-            Assert.True(userDto.Group.GroupId.Equals(userModel.Group.GroupId));
-            Assert.True(userDto.Group.GroupNumber.Equals(userModel.Group.GroupNumber));
-            Assert.True(userDto.Group.Year.Equals(userModel.Group.Year));
+            Assert.Equal(userDto.FirstName, userModel.FirstName);
+            Assert.Equal(userDto.LastName, userModel.LastName);
+            Assert.Equal(userDto.Email, userModel.Email);
+            Assert.Equal(userDto.UserType, userModel.UserType);
+            Assert.Equal(userDto.Group.GroupId, userModel.Group.GroupId);
+            Assert.Equal(userDto.Group.GroupNumber, userModel.Group.GroupNumber);
+            Assert.Equal(userDto.Group.Year, userModel.Group.Year);
+        }
+
+        [Fact]
+        public void Map_UserIdentityModel_MappedCorrectly()
+        {
+            var userModel = A.Fake<IUserIdentityModel>();
+            A.CallTo(() => userModel.Email).Returns("test@test.com");
+            A.CallTo(() => userModel.UserId).Returns(42);
+
+            IUserDto userDto = _mapper.Map(userModel);
+            Assert.Equal(userDto.Email, userModel.Email);
+            Assert.Equal(userDto.UserId, userModel.UserId);
         }
     }
 }

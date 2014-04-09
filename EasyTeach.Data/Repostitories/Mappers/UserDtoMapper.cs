@@ -18,5 +18,14 @@ namespace EasyTeach.Data.Repostitories.Mappers
         {
             return Mapper.Map<UserDto>(userModel);
         }
+
+        public IUserDto Map(IUserIdentityModel userIdentityModel)
+        {
+            return new UserDto
+            {
+                UserId = userIdentityModel.UserId,
+                Email = userIdentityModel.Email
+            };
+        }
     }
 }

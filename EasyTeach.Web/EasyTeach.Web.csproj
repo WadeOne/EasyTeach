@@ -196,7 +196,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HomeworkController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserManagementController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -896,6 +899,7 @@
     <Content Include="Scripts\vendor\humans.txt" />
     <Content Include="Scripts\vendor\robots.txt" />
     <Content Include="Scripts\WebApiTestClient.js" />
+    <Content Include="Views\add_homework.html" />
     <Content Include="Views\grid.html" />
     <Content Include="Content\humans.txt" />
     <Content Include="Content\image\download.png" />
@@ -903,6 +907,10 @@
     <Content Include="Content\image\logout.png" />
     <Content Include="Content\image\single_download.png" />
     <Content Include="Content\js\app.js" />
+    <Content Include="Views\homeworks.html" />
+    <None Include="Views\Homework\AddHomework.cshtml" />
+    <None Include="Views\Homework\Grid.cshtml" />
+    <None Include="Views\Homework\Homeworks.cshtml" />
     <Content Include="Views\login.html" />
     <Content Include="Views\registration.html" />
     <Content Include="Content\robots.txt" />
@@ -1027,6 +1035,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
+    <Content Include="Views\UserManagement\Index.cshtml" />
+    <None Include="Views\UserManagement\Registration.cshtml" />
+    <None Include="Views\UserManagement\Login.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

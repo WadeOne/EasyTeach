@@ -7,6 +7,7 @@ using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Enums;
 using EasyTeach.Core.Repositories.Mappers;
+using EasyTeach.Core.Services.Email;
 using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
 using EasyTeach.Core.Services.UserManagement.Impl;
@@ -43,14 +44,15 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
         private readonly UserManager<IUserDto, int> _userManager;
         private readonly IUserService _userService;
         private readonly IUserDtoMapper _userDtoMapper;
-
+        private readonly IEmailService _emailService;
         private readonly IUserModel _validUser;
 
         public UserServiceTest()
         {
             _userManager = A.Fake<UserManager<IUserDto, int>>();
             _userDtoMapper = A.Fake<IUserDtoMapper>();
-            _userService = new UserService(_userManager, _userDtoMapper);
+            _emailService = A.Fake<IEmailService>();
+            _userService = new UserService(_userManager, _userDtoMapper, _emailService);
 
             _validUser = new User
             {

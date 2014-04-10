@@ -51,7 +51,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
         public Task<IUserDto> FindByIdAsync(int userId)
         {
-            throw new NotImplementedException();
+            return _userRepository.GetUserById(userId);
         }
 
         public Task<IUserDto> FindByNameAsync(string userName)

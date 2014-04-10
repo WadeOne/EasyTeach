@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Data\IUserDto.cs" />
+    <Compile Include="Entities\Data\IUserTokenDto.cs" />
     <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\Services\IGroupModel.cs" />
     <Compile Include="Entities\Services\IUserIdentityModel.cs" />
@@ -54,10 +55,18 @@
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
+    <Compile Include="Repositories\IUserTokenRepository.cs" />
     <Compile Include="Repositories\Mappers\IUserDtoMapper.cs" />
+    <Compile Include="Repositories\Mappers\IUserTokenDtoMapper.cs" />
+    <Compile Include="Services\Email\Email.cs" />
+    <Compile Include="Services\Email\IEmailBuilder.cs" />
+    <Compile Include="Services\Email\IEmailService.cs" />
+    <Compile Include="Services\Email\Impl\EmailService.cs" />
+    <Compile Include="Services\Email\Impl\IdentityMessageService.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidUserDataException.cs" />
     <Compile Include="Services\UserManagement\Impl\UserService.cs" />
     <Compile Include="Services\UserManagement\Impl\UserStore.cs" />
+    <Compile Include="Services\UserManagement\Impl\UserTokenProvider.cs" />
     <Compile Include="Services\UserManagement\IUserService.cs" />
   </ItemGroup>
   <ItemGroup>

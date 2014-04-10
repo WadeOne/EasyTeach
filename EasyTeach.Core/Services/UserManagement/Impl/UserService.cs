@@ -8,6 +8,7 @@ using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories.Mappers;
+using EasyTeach.Core.Services.Email;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
 using Microsoft.AspNet.Identity;
 
@@ -16,9 +17,10 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
     public sealed class UserService : IUserService
     {
         private readonly IUserDtoMapper _userDtoMapper;
+        private readonly IEmailService _emailService;
         private readonly UserManager<IUserDto, int> _userManager;
 
-        public UserService(UserManager<IUserDto, int> userManager, IUserDtoMapper userDtoMapper)
+        public UserService(UserManager<IUserDto, int> userManager, IUserDtoMapper userDtoMapper, IEmailService emailService)
         {
             if (userManager == null)
             {
@@ -30,7 +32,13 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
                 throw new ArgumentNullException("userDtoMapper");
             }
 
+            if (emailService == null)
+            {
+                throw new ArgumentNullException("emailService");
+            }
+
             _userDtoMapper = userDtoMapper;
+            _emailService = emailService;
             _userManager = userManager;
         }
 
@@ -67,6 +75,10 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
                 validationResults.AddRange(identityResult.Errors.Select(e => new ValidationResult(e)));
                 throw new InvalidUserDataException(validationResults);
             }
+
+            IUserDto createdUser = await _userManager.FindByEmailAsync(newUser.Email);
+
+            await _emailService.SendUserRegistrationConfirmationEmailAsync(createdUser);
         }
 
         public async Task<IUserIdentityModel> FindUserByCredentialsAsync(string email, string password)
@@ -87,11 +99,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
                 return null;
             }
 
-            return new User
-            {
-                Email = userDto.Email,
-                UserId = userDto.UserId,
-            };
+            return CreateIdentityFromDto(userDto);
         }
 
         public Task<ClaimsIdentity> CreateUserIdentityClaimsAsync(IUserIdentityModel userIdentity, string authenicationType)
@@ -107,6 +115,15 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             }
 
             return _userManager.CreateIdentityAsync(_userDtoMapper.Map(userIdentity), authenicationType);
+        }
+
+        private static IUserIdentityModel CreateIdentityFromDto(IUserDto userDto)
+        {
+            return new User
+            {
+                Email = userDto.Email,
+                UserId = userDto.UserId,
+            };
         }
     }
 }

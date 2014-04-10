@@ -49,7 +49,7 @@ namespace EasyTeach.Web.Providers
                 context.AdditionalResponseParameters.Add(property.Key, property.Value);
             }
 
-            return Task.FromResult<object>(null);
+            return Task.FromResult(0);
         }
 
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)

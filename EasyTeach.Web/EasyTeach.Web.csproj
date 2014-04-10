@@ -31,7 +31,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\EasyTeach.Web.XML</DocumentationFile>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -160,6 +161,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\EmailTemplates\" />
     <Folder Include="Content\fonts\" />
   </ItemGroup>
   <ItemGroup>
@@ -208,6 +210,7 @@
     <Compile Include="Models\ViewModels\CreateUserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Services\Email\Impl\EmailBuilder.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

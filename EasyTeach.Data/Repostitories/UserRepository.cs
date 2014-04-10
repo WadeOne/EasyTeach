@@ -27,6 +27,11 @@ namespace EasyTeach.Data.Repostitories
             return await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
         }
 
+        public async Task<IUserDto> GetUserById(int userId)
+        {
+            return await _context.Users.SingleOrDefaultAsync(u => u.UserId == userId);
+        }
+
         public async Task CreateAsync(IUserDto user)
         {
             if (user == null)

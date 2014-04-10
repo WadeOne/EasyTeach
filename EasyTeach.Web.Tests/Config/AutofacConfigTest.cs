@@ -36,6 +36,7 @@ namespace EasyTeach.Web.Tests.Config
         [InlineData(typeof(UserStore))]
         [InlineData(typeof(IUserDtoMapper))]
         [InlineData(typeof(UserController))]
+        [InlineData(typeof(UserTokenProvider))]
         public void RegisterDependencies_ResolvedTypeCorrectly(Type typeToResolve)
         {
             object instance = _resolver.GetService(typeToResolve);

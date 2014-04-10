@@ -7,6 +7,8 @@ namespace EasyTeach.Core.Repositories
     {
         Task<IUserDto> GetUserByEmail(string email);
 
+        Task<IUserDto> GetUserById(int userId);
+
         Task CreateAsync(IUserDto user);
 
         Task UpdateAsync(IUserDto user);

@@ -29,7 +29,7 @@ namespace EasyTeach.Web
                 .Except<XmlDocumentationProvider>();
 
             builder.Register<Func<IAuthenticationManager>>(c => () => ((HttpRequestMessage)HttpContext.Current.Items["MS_HttpRequestMessage"]).GetOwinContext().Authentication);
-            builder.RegisterType<UserManager<IUserDto, int>>().AsSelf();
+            builder.RegisterType<UserManager<IUserDto, int>>().AsSelf().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues);
 
             if (beforeBuild != null)
             {

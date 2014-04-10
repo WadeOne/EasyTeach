@@ -1,73 +1,37 @@
-﻿		<div class="page-wrapper registration-page">
-			<header>
-				<div class="row"><div class="logo">EasyTeach</div></div>
-			</header>
-			<nav class="top-bar" data-topbar>
-		        <ul class="title-area">
-		          <!-- Title Area -->
-		          <li class="name">
-		          </li>
-		          <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
-		          <li class="toggle-topbar menu-icon"><a href="javascript:void(0)">Menu</a></li>
-		        </ul>
-		        <section class="top-bar-section row">
-		          <ul class="left">
-		            <li class="active"><a href="#">Студенты</a></li>
-		            <li class="divider"></li>
-		            <li><a href="./grid.html">Таблица с баллами</a></li>
-		            <li class="divider"></li>
-		            <li><a href="./add_homework.html">Список заданий</a></li>
-		            <li class="divider"></li>
-		            <li><a href="./homeworks.html">Выполненые задания</a></li>
-		            <li class="divider"></li>
-		            <li><a href="#">Тесты</a></li>
-		            <li class="divider"></li>
-		          </ul>
-		        </section>
-	      	</nav>
-			<div class="page-content">
-				<div class="row">
-                    <form id="user-registration-form" action="http://localhost:56015/api/User/Register" method="post">
-                        <div class="large-6 medium-6 columns">
-                            <div class="large-8 medium-8">
-                                <div class="login-wrapper">
-                                    <label>Год</label>
-                                    <input type="number" placeholder="Год" name="year" required />
-                                    <label>Курс</label>
-                                    <select>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                    <label>Группа</label>
-                                    <input type="number" min="1" placeholder="Группа" name="group" required />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="large-6 medium-6 columns">
-                            <div class="large-8 medium-8">
-                                <div class="login-wrapper">
-                                    <label>Имя</label>
-                                    <input type="text" placeholder="Имя" name="name" required />
-                                    <label>Фамилия</label>
-                                    <input type="text" placeholder="Фамилия" name="surname" required />
-                                    <label>Почта</label>
-                                    <input type="email" placeholder="Почта" name="email" required />
-                                </div>
-                            </div>
-                        </div>
-                        <button id="create-user-button" class="easy-teach-button">Создать</button>
-                    </form>
-				</div>
-			</div>
-		</div>
-		<footer>
-			<div class="row">
-				<div class="copyright">&copy; mmf 2014</div>
-			</div>
-		</footer>
-    	<script src="../Scripts/vendor/bower_components/jquery/dist/jquery.min.js"></script>
-    	<script src="../Scripts/vendor/bower_components/foundation/js/foundation.min.js"></script>
-		<script src="../Scripts/app/app.js"></script>
+﻿<div class="page-content registration-page">
+    <div class="row">
+        <form id="user-registration-form" action="http://localhost:56015/api/User/Register" method="post">
+            <div class="large-6 medium-6 columns">
+                <div class="large-8 medium-8">
+                    <div class="login-wrapper">
+                        <label>Год</label>
+                        <input type="number" placeholder="Год" name="year" required />
+                        <label>Курс</label>
+                        <select>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <label>Группа</label>
+                        <input type="number" min="1" placeholder="Группа" name="group" required />
+                    </div>
+                </div>
+            </div>
+            <div class="large-6 medium-6 columns">
+                <div class="large-8 medium-8">
+                    <div class="login-wrapper">
+                        <label>Имя</label>
+                        <input type="text" placeholder="Имя" name="name" required />
+                        <label>Фамилия</label>
+                        <input type="text" placeholder="Фамилия" name="surname" required />
+                        <label>Почта</label>
+                        <input type="email" placeholder="Почта" name="email" required />
+                    </div>
+                </div>
+            </div>
+            <button id="create-user-button" class="easy-teach-button">Создать</button>
+        </form>
+    </div>
+</div>

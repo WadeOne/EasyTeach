@@ -3,7 +3,7 @@ using System.Net.Mail;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 
-namespace EasyTeach.Core.Services.Email.Impl
+namespace EasyTeach.Core.Services.Messaging.Impl
 {
     public sealed class IdentityMessageService : IIdentityMessageService
     {

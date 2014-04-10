@@ -58,11 +58,11 @@
     <Compile Include="Repositories\IUserTokenRepository.cs" />
     <Compile Include="Repositories\Mappers\IUserDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\IUserTokenDtoMapper.cs" />
-    <Compile Include="Services\Email\Email.cs" />
-    <Compile Include="Services\Email\IEmailBuilder.cs" />
-    <Compile Include="Services\Email\IEmailService.cs" />
-    <Compile Include="Services\Email\Impl\EmailService.cs" />
-    <Compile Include="Services\Email\Impl\IdentityMessageService.cs" />
+    <Compile Include="Services\Messaging\Email.cs" />
+    <Compile Include="Services\Messaging\IEmailBuilder.cs" />
+    <Compile Include="Services\Messaging\IEmailService.cs" />
+    <Compile Include="Services\Messaging\Impl\EmailService.cs" />
+    <Compile Include="Services\Messaging\Impl\IdentityMessageService.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidUserDataException.cs" />
     <Compile Include="Services\UserManagement\Impl\UserService.cs" />
     <Compile Include="Services\UserManagement\Impl\UserStore.cs" />

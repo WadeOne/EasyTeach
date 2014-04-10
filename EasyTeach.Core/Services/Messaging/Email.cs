@@ -1,4 +1,4 @@
-﻿namespace EasyTeach.Core.Services.Email
+﻿namespace EasyTeach.Core.Services.Messaging
 {
     public sealed class Email
     {

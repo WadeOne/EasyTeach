@@ -8,7 +8,7 @@ using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories.Mappers;
-using EasyTeach.Core.Services.Email;
+using EasyTeach.Core.Services.Messaging;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
 using Microsoft.AspNet.Identity;
 

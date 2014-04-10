@@ -23,6 +23,16 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
         public Task<string> GenerateAsync(string purpose, UserManager<IUserDto, int> manager, IUserDto user)
         {
+            if (String.IsNullOrWhiteSpace(purpose))
+            {
+                throw new ArgumentNullException("purpose");
+            }
+
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
             string token = GenerateToken();
 
             _userTokenRepository.CreateAsync(purpose, token, user.UserId);
@@ -32,7 +42,12 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
         public async Task<bool> ValidateAsync(string purpose, string token, UserManager<IUserDto, int> manager, IUserDto user)
         {
-            IUserTokenDto userToken = await _userTokenRepository.GetUserToken(purpose, token, user.UserId);
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            IUserTokenDto userToken = await _userTokenRepository.GetUserTokenAsync(purpose, token, user.UserId);
 
             return userToken != null;
         }

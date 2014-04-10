@@ -7,7 +7,7 @@ using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Enums;
 using EasyTeach.Core.Repositories.Mappers;
-using EasyTeach.Core.Services.Email;
+using EasyTeach.Core.Services.Messaging;
 using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
 using EasyTeach.Core.Services.UserManagement.Impl;
@@ -76,6 +76,7 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
             Assert.DoesNotThrow(() => _userService.CreateUserAsync(_validUser).Wait());
             A.CallTo(() => _userManager.CreateAsync(userDto)).MustHaveHappened();
             A.CallTo(() => _userDtoMapper.Map(_validUser)).MustHaveHappened();
+            A.CallTo(() => _emailService.SendUserRegistrationConfirmationEmailAsync(A<IUserDto>.Ignored)).MustHaveHappened();
         }
 
         [Fact]
@@ -96,6 +97,7 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
 
             A.CallTo(() => _userManager.CreateAsync(A<IUserDto>.Ignored)).MustNotHaveHappened();
             A.CallTo(() => _userDtoMapper.Map(A<IUserModel>.Ignored)).MustNotHaveHappened();
+            A.CallTo(() => _emailService.SendUserRegistrationConfirmationEmailAsync(A<IUserDto>.Ignored)).MustNotHaveHappened();
         }
 
         [Fact]
@@ -112,6 +114,7 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
             Assert.True(exception.ValidationResults.All(x => x.MemberNames.First() == "Email"));
             A.CallTo(() => _userManager.CreateAsync(A<IUserDto>.Ignored)).MustNotHaveHappened();
             A.CallTo(() => _userDtoMapper.Map(A<IUserModel>.Ignored)).MustNotHaveHappened();
+            A.CallTo(() => _emailService.SendUserRegistrationConfirmationEmailAsync(A<IUserDto>.Ignored)).MustNotHaveHappened();
         }
 
         [Fact]

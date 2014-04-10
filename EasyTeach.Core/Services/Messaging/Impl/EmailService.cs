@@ -3,7 +3,7 @@ using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data;
 using Microsoft.AspNet.Identity;
 
-namespace EasyTeach.Core.Services.Email.Impl
+namespace EasyTeach.Core.Services.Messaging.Impl
 {
     public sealed class EmailService : IEmailService
     {

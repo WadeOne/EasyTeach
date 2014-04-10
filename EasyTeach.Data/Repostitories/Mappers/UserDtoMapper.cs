@@ -7,7 +7,7 @@ using EasyTeach.Data.Entities;
 
 namespace EasyTeach.Data.Repostitories.Mappers
 {
-    public class UserDtoMapper : IUserDtoMapper
+    public sealed class UserDtoMapper : IUserDtoMapper
     {
         public UserDtoMapper()
         {

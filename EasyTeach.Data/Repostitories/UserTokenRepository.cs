@@ -24,6 +24,16 @@ namespace EasyTeach.Data.Repostitories
 
         public async Task CreateAsync(string purpose, string token, int userId)
         {
+            if (String.IsNullOrWhiteSpace(purpose))
+            {
+                throw new ArgumentNullException("purpose");
+            }
+
+            if (String.IsNullOrWhiteSpace(token))
+            {
+                throw new ArgumentNullException("token");
+            }
+
             _context.UserTokens.Add(new UserTokenDto
             {
                 Created = DateTime.UtcNow,
@@ -35,7 +45,7 @@ namespace EasyTeach.Data.Repostitories
             await _context.SaveChangesAsync();
         }
 
-        public async Task<IUserTokenDto> GetUserToken(string purpose, string token, int userId)
+        public async Task<IUserTokenDto> GetUserTokenAsync(string purpose, string token, int userId)
         {
             return await _context.UserTokens.SingleOrDefaultAsync(t => t.Puprose == purpose && t.Token == token && t.UserId == userId);
         }

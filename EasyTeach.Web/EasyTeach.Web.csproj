@@ -161,7 +161,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\EmailTemplates\" />
     <Folder Include="Content\fonts\" />
   </ItemGroup>
   <ItemGroup>
@@ -210,7 +209,7 @@
     <Compile Include="Models\ViewModels\CreateUserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
-    <Compile Include="Services\Email\Impl\EmailBuilder.cs" />
+    <Compile Include="Services\Messaging\Impl\EmailBuilder.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +221,7 @@
     <Content Include="App_Data\EasyTeach_log.ldf">
       <DependentUpon>EasyTeach.mdf</DependentUpon>
     </Content>
+    <Content Include="App_Data\EmailTemplates\RegistrationConfirmationEmail.txt" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Areas\HelpPage\TestClient.css" />
     <Content Include="Content\bootstrap-theme.css" />

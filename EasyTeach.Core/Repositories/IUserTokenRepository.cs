@@ -7,6 +7,6 @@ namespace EasyTeach.Core.Repositories
     {
         Task CreateAsync(string purpose, string token, int userId);
 
-        Task<IUserTokenDto> GetUserToken(string purpose, string token, int userId);
+        Task<IUserTokenDto> GetUserTokenAsync(string purpose, string token, int userId);
     }
 }

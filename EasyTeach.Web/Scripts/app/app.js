@@ -19,10 +19,9 @@ $(document).foundation({
 
 $( document ).ready(function() {
 	 $('#create-user-button').on('click', function(event) {
-	 		event.preventDefault();
+	 		//event.preventDefault();
 			var $form = $('#user-registration-form');
 			$form.addClass('loader');
-			setTimeout(function(){console.log('waiting')}, 2000)
 			$.ajax({
 				url: $form.attr('action'),
 				type: 'POST',

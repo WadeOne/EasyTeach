@@ -587,6 +587,10 @@
     <Content Include="Scripts\jquery-ui-1.9.2.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
     <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\vendor\bower_components\backbone\.gitignore" />
+    <Content Include="Scripts\vendor\bower_components\backbone\backbone.js" />
+    <Content Include="Scripts\vendor\bower_components\backbone\index.html" />
+    <Content Include="Scripts\vendor\bower_components\backbone\index.js" />
     <Content Include="Scripts\vendor\bower_components\bower-foundation\css\foundation.css" />
     <Content Include="Scripts\vendor\bower_components\bower-foundation\css\foundation.min.css" />
     <Content Include="Scripts\vendor\bower_components\bower-foundation\css\normalize.css" />
@@ -610,6 +614,8 @@
     <Content Include="Scripts\vendor\bower_components\bower-foundation\js\foundation\foundation.tooltips.js" />
     <Content Include="Scripts\vendor\bower_components\bower-foundation\js\foundation\foundation.topbar.js" />
     <Content Include="Scripts\vendor\bower_components\bower-foundation\robots.txt" />
+    <Content Include="Scripts\vendor\bower_components\chaplin\chaplin.js" />
+    <Content Include="Scripts\vendor\bower_components\chaplin\chaplin.min.js" />
     <Content Include="Scripts\vendor\bower_components\fastclick\lib\fastclick.js" />
     <Content Include="Scripts\vendor\bower_components\fastclick\LICENSE.txt" />
     <Content Include="Scripts\vendor\bower_components\foundation\css\foundation.css" />
@@ -885,6 +891,8 @@
     <Content Include="Scripts\vendor\bower_components\modernizr\test\qunit\qunit.js" />
     <Content Include="Scripts\vendor\bower_components\modernizr\test\qunit\run-qunit.js" />
     <Content Include="Scripts\vendor\bower_components\normalize-css\normalize.css" />
+    <Content Include="Scripts\vendor\bower_components\underscore\.gitignore" />
+    <Content Include="Scripts\vendor\bower_components\underscore\underscore.js" />
     <Content Include="Scripts\vendor\humans.txt" />
     <Content Include="Scripts\vendor\robots.txt" />
     <Content Include="Scripts\WebApiTestClient.js" />
@@ -1116,6 +1124,27 @@
     <Content Include="Scripts\vendor\bower_components\normalize-css\README.md" />
     <Content Include="Scripts\vendor\config.rb" />
     <Content Include="Scripts\vendor\README.md" />
+    <Content Include="Scripts\vendor\bower_components\chaplin\.bower.json" />
+    <Content Include="Scripts\vendor\bower_components\chaplin\bower.json" />
+    <Content Include="Scripts\vendor\bower_components\chaplin\component.json" />
+    <Content Include="Scripts\vendor\bower_components\chaplin\package.json" />
+    <Content Include="Scripts\vendor\bower_components\chaplin\README.md" />
+    <Content Include="Scripts\vendor\bower_components\backbone\.bower.json" />
+    <Content Include="Scripts\vendor\bower_components\backbone\.npmignore" />
+    <Content Include="Scripts\vendor\bower_components\backbone\bower.json" />
+    <Content Include="Scripts\vendor\bower_components\backbone\CNAME" />
+    <Content Include="Scripts\vendor\bower_components\backbone\component.json" />
+    <Content Include="Scripts\vendor\bower_components\backbone\CONTRIBUTING.md" />
+    <Content Include="Scripts\vendor\bower_components\backbone\LICENSE" />
+    <Content Include="Scripts\vendor\bower_components\backbone\package.json" />
+    <Content Include="Scripts\vendor\bower_components\backbone\README.md" />
+    <Content Include="Scripts\vendor\bower_components\underscore\.bower.json" />
+    <Content Include="Scripts\vendor\bower_components\underscore\.editorconfig" />
+    <Content Include="Scripts\vendor\bower_components\underscore\bower.json" />
+    <Content Include="Scripts\vendor\bower_components\underscore\component.json" />
+    <Content Include="Scripts\vendor\bower_components\underscore\LICENSE" />
+    <Content Include="Scripts\vendor\bower_components\underscore\package.json" />
+    <Content Include="Scripts\vendor\bower_components\underscore\README.md" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EasyTeach.Core\EasyTeach.Core.csproj">

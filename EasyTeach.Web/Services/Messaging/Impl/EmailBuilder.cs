@@ -2,11 +2,11 @@
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Services.Messaging;
 
-namespace EasyTeach.Web.Services.Email.Impl
+namespace EasyTeach.Web.Services.Messaging.Impl
 {
     public sealed class EmailBuilder : IEmailBuilder
     {
-        public Core.Services.Messaging.Email BuildRegsitrationConfirmationEmail(IUserDto user, string token)
+        public Email BuildRegsitrationConfirmationEmail(IUserDto user, string token)
         {
             if (user == null)
             {
@@ -18,7 +18,7 @@ namespace EasyTeach.Web.Services.Email.Impl
                 throw new ArgumentNullException("token");
             }
 
-            return new Core.Services.Messaging.Email
+            return new Email
             {
                 Body = token,
                 Subject = "Confirmation EasyTeach registration"

@@ -2,20 +2,15 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
+using EasyTeach.Core.Services.Base.Exceptions;
+
 namespace EasyTeach.Core.Services.UserManagement.Exceptions
 {
-    public sealed class InvalidUserDataException : Exception
+    public sealed class InvalidUserDataException : ModelValidationException
     {
-        public ICollection<ValidationResult> ValidationResults { get; private set; }
-
         public InvalidUserDataException(ICollection<ValidationResult> validationResults)
+            : base(validationResults)
         {
-            if (validationResults == null)
-            {
-                throw new ArgumentNullException("validationResults");
-            }
-
-            ValidationResults = validationResults;
         }
 
         public InvalidUserDataException()

@@ -27,6 +27,7 @@ $( document ).ready(function() {
 				type: 'POST',
 				data: $form.serialize(),
 				dataType: 'json',
+                contentType: 'application/json',
 				traditional: true,
 				error: function (jqXHR, textStatus, error) {
 					$form.removeClass('loader');

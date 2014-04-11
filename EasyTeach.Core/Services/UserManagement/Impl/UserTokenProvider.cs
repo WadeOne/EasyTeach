@@ -9,6 +9,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 {
     public sealed class UserTokenProvider : IUserTokenProvider<IUserDto, int>
     {
+        private static readonly TimeSpan ExpirationTokenPeriod = new TimeSpan(14, 0, 0, 0);
         private readonly IUserTokenRepository _userTokenRepository;
 
         public UserTokenProvider(IUserTokenRepository userTokenRepository)
@@ -49,7 +50,12 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
             IUserTokenDto userToken = await _userTokenRepository.GetUserTokenAsync(purpose, token, user.UserId);
 
-            return userToken != null;
+            if (userToken == null)
+            {
+                return false;
+            }
+
+            return DateTime.UtcNow - userToken.Created < ExpirationTokenPeriod;
         }
 
         public Task NotifyAsync(string token, UserManager<IUserDto, int> manager, IUserDto user)

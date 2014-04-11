@@ -1,14 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace EasyTeach.Core.Services.UserManagement.Exceptions
 {
     public sealed class InvalidUserDataException : Exception
     {
-        public ICollection<ValidationResult> ValidationResults { get; private set; }
+        public IEnumerable<ValidationResult> ValidationResults { get; private set; }
 
-        public InvalidUserDataException(ICollection<ValidationResult> validationResults)
+        public InvalidUserDataException(IEnumerable<ValidationResult> validationResults)
         {
             if (validationResults == null)
             {
@@ -19,6 +20,7 @@ namespace EasyTeach.Core.Services.UserManagement.Exceptions
         }
 
         public InvalidUserDataException()
+            : this(Enumerable.Empty<ValidationResult>())
         {
         }
     }

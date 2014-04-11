@@ -11,5 +11,9 @@ namespace EasyTeach.Core.Services.UserManagement
         Task<IUserIdentityModel> FindUserByCredentialsAsync(string email, string password);
 
         Task<ClaimsIdentity> CreateUserIdentityClaimsAsync(IUserIdentityModel userIdentity, string authenicationType);
+
+        Task<string> ConfirmUserEmailAsync(int userId, string token);
+
+        Task SetUserPasswordAsync(int userId, string resetPasswordToken, string password);
     }
 }

@@ -1,4 +1,5 @@
-﻿using EasyTeach.Core.Entities.Data;
+﻿using System;
+using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Services.UserManagement.Impl;
 using FakeItEasy;
@@ -62,14 +63,29 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
         }
 
         [Fact]
-        public void ValidateAsync_ExsitingToken_True()
+        public void ValidateAsync_ExsitingTokenNonExpired_True()
         {
-            var user = A.Fake<IUserDto>();
-            A.CallTo(() => _userTokenRepository.GetUserTokenAsync("purpose", "token", A<int>.Ignored)).Returns(A.Fake<IUserTokenDto>());
+            var token = A.Fake<IUserTokenDto>();
+            A.CallTo(() => token.Created).Returns(DateTime.UtcNow.AddDays(-13));
 
-            bool valid = _userTokenProvider.ValidateAsync("purpose", "token", null, user).Result;
+            A.CallTo(() => _userTokenRepository.GetUserTokenAsync("purpose", "token", A<int>.Ignored)).Returns(token);
+
+            bool valid = _userTokenProvider.ValidateAsync("purpose", "token", null, A.Fake<IUserDto>()).Result;
 
             Assert.True(valid);
+        }
+
+        [Fact]
+        public void ValidateAsync_ExsitingTokenExpired_False()
+        {
+            var token = A.Fake<IUserTokenDto>();
+            A.CallTo(() => token.Created).Returns(DateTime.UtcNow.AddDays(-15));
+
+            A.CallTo(() => _userTokenRepository.GetUserTokenAsync("purpose", "token", A<int>.Ignored)).Returns(token);
+
+            bool valid = _userTokenProvider.ValidateAsync("purpose", "token", null, A.Fake<IUserDto>()).Result;
+
+            Assert.False(valid);
         }
     }
 }

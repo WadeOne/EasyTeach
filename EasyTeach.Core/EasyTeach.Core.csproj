@@ -63,7 +63,10 @@
     <Compile Include="Services\Messaging\IEmailService.cs" />
     <Compile Include="Services\Messaging\Impl\EmailService.cs" />
     <Compile Include="Services\Messaging\Impl\IdentityMessageService.cs" />
+    <Compile Include="Services\UserManagement\Exceptions\InvalidConfirmationTokenException.cs" />
+    <Compile Include="Services\UserManagement\Exceptions\InvalidResetPasswordDataException.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidUserDataException.cs" />
+    <Compile Include="Services\UserManagement\Impl\PasswordValidator.cs" />
     <Compile Include="Services\UserManagement\Impl\UserService.cs" />
     <Compile Include="Services\UserManagement\Impl\UserStore.cs" />
     <Compile Include="Services\UserManagement\Impl\UserTokenProvider.cs" />

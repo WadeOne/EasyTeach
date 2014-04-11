@@ -117,6 +117,67 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             return _userManager.CreateIdentityAsync(_userDtoMapper.Map(userIdentity), authenicationType);
         }
 
+        public async Task<string> ConfirmUserEmailAsync(int userId, string token)
+        {
+            if (token == null)
+            {
+                throw new ArgumentNullException("token");
+            }
+
+            try
+            {
+                IdentityResult identityResult = await _userManager.ConfirmEmailAsync(userId, token);
+                if (!identityResult.Succeeded)
+                {
+                    throw new InvalidConfirmationTokenException(identityResult.Errors.Select(e => new ValidationResult(e)));
+                }
+
+                return await _userManager.GeneratePasswordResetTokenAsync(userId);
+            }
+            catch (AggregateException ex)
+            {
+                if (ex.GetBaseException() is InvalidOperationException)
+                {
+                    throw new InvalidConfirmationTokenException(
+                        new ValidationResult(String.Format("Cannot find user by id '{0}'", userId)));
+                }
+
+                throw;
+            }
+        }
+
+        public async Task SetUserPasswordAsync(int userId, string resetPasswordToken, string password)
+        {
+            if (resetPasswordToken == null)
+            {
+                throw new ArgumentNullException("resetPasswordToken");
+            }
+
+            if (password == null)
+            {
+                throw new ArgumentNullException("password");
+            }
+
+            try
+            {
+                IdentityResult identityResult = await _userManager.ResetPasswordAsync(userId, resetPasswordToken, password);
+                if (!identityResult.Succeeded)
+                {
+                    throw new InvalidResetPasswordDataException(identityResult.Errors.Select(e => new ValidationResult(e)));
+                }
+            }
+            catch (AggregateException ex)
+            {
+                if (ex.GetBaseException() is InvalidOperationException)
+                {
+                    throw new InvalidResetPasswordDataException(
+                        new ValidationResult(String.Format("Cannot find user by id '{0}'", userId)));
+                }
+
+                throw;
+            }
+        }
+
         private static IUserIdentityModel CreateIdentityFromDto(IUserDto userDto)
         {
             return new User

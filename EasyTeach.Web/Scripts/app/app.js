@@ -26,6 +26,7 @@ $( document ).ready(function() {
 				url: $form.attr('action'),
 				type: 'POST',
 				data: $form.serialize(),
+				dataType: 'json',
 				traditional: true,
 				error: function (jqXHR, textStatus, error) {
 					$form.removeClass('loader');

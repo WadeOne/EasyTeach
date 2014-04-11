@@ -6,9 +6,9 @@ namespace EasyTeach.Core.Services.Base.Exceptions
 {
     public class ModelValidationException: Exception
     {
-        public virtual ICollection<ValidationResult> ValidationResults { get; private set; }
+        public virtual IEnumerable<ValidationResult> ValidationResults { get; private set; }
 
-        public ModelValidationException(ICollection<ValidationResult> validationResults)
+        public ModelValidationException(IEnumerable<ValidationResult> validationResults)
         {
             if (validationResults == null)
             {

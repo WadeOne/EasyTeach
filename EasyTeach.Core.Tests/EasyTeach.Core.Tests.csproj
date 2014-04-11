@@ -54,6 +54,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Messaging\Impl\EmailServiceTest.cs" />
     <Compile Include="Services\Tests\Impl\TestsManagementServiceTest.cs" />
+    <Compile Include="Services\UserManagement\Impl\PasswordValidatorTest.cs" />
     <Compile Include="Services\UserManagement\Impl\UserServiceTest.cs" />
     <Compile Include="Services\UserManagement\Impl\UserStoreTest.cs" />
     <Compile Include="Services\UserManagement\Impl\UserTokenProviderTest.cs" />

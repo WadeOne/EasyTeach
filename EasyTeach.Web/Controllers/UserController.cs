@@ -60,6 +60,67 @@ namespace EasyTeach.Web.Controllers
             return Ok();
         }
 
+        // GET api/User/ConfirmEmail
+        [HttpGet]
+        [Route("ConfirmEmail")]
+        public async Task<IHttpActionResult> ConfirmEmail([FromUri]ConfirmActionViewModel model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException("model");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                string resetPassowrdToken = await _userService.ConfirmUserEmailAsync(model.UserId, model.ConfirmEmailToken);
+                return Ok(resetPassowrdToken);
+            }
+            catch (InvalidConfirmationTokenException ex)
+            {
+                foreach (var validationResult in ex.ValidationResults)
+                {
+                    ModelState.AddModelError(validationResult.MemberNames.First(), validationResult.ErrorMessage);
+                }
+
+                return BadRequest(ModelState);
+            }
+        }
+
+        // POST api/User/SetPassword
+        [Route("SetPassword")]
+        public async Task<IHttpActionResult> SetPassword(SetPasswordViewModel model)
+        {
+            if (model == null)
+            {
+                throw new ArgumentNullException("model");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                await _userService.SetUserPasswordAsync(model.UserId, model.ResetPasswordToken, model.NewPassword);
+                return Ok();
+            }
+            catch (InvalidConfirmationTokenException ex)
+            {
+                foreach (var validationResult in ex.ValidationResults)
+                {
+                    ModelState.AddModelError(validationResult.MemberNames.First(), validationResult.ErrorMessage);
+                }
+
+                return BadRequest(ModelState);
+            }
+        }
+
         // POST api/User/Logout
         [Route("Logout")]
         public IHttpActionResult Logout()

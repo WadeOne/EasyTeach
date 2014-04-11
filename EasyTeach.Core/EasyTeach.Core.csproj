@@ -73,7 +73,10 @@
     <Compile Include="Services\Tests\Exceptions\InvalidTestException.cs" />
     <Compile Include="Services\Tests\ITestsManagementService.cs" />
     <Compile Include="Entities\Services\ITestModel.cs" />
+    <Compile Include="Services\UserManagement\Exceptions\InvalidConfirmationTokenException.cs" />
+    <Compile Include="Services\UserManagement\Exceptions\InvalidResetPasswordDataException.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidUserDataException.cs" />
+    <Compile Include="Services\UserManagement\Impl\PasswordValidator.cs" />
     <Compile Include="Services\UserManagement\Impl\UserService.cs" />
     <Compile Include="Services\UserManagement\Impl\UserStore.cs" />
     <Compile Include="Services\UserManagement\Impl\UserTokenProvider.cs" />

@@ -35,7 +35,7 @@ namespace EasyTeach.Core.Services.Messaging.Impl
 
             string token = await _userManager.GenerateEmailConfirmationTokenAsync(user.UserId);
 
-            Email email = _emailBuilder.BuildRegsitrationConfirmationEmail(user, token);
+            Email email = await _emailBuilder.BuildRegsitrationConfirmationEmailAsync(user, token);
 
             await _userManager.SendEmailAsync(user.UserId, email.Subject, email.Body);
         }

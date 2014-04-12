@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Net.Http;
 using System.Reflection;
-using System.Web;
 using System.Web.Http;
+using System.Web.Http.Routing;
 using Autofac;
 using Autofac.Integration.WebApi;
 using EasyTeach.Core.Entities.Data;
@@ -18,6 +18,7 @@ namespace EasyTeach.Web
         public static void RegisterDependencies(Action<ContainerBuilder> beforeBuild = null)
         {
             var builder = new ContainerBuilder();
+            builder.RegisterHttpRequestMessage(GlobalConfiguration.Configuration);
 
             builder.RegisterAssemblyTypes(
                 Assembly.Load("EasyTeach.Web"),
@@ -28,8 +29,9 @@ namespace EasyTeach.Web
                 .Except<EasyTeachContext>(x => x.AsSelf().InstancePerApiRequest())
                 .Except<XmlDocumentationProvider>();
 
-            builder.Register<Func<IAuthenticationManager>>(c => () => ((HttpRequestMessage)HttpContext.Current.Items["MS_HttpRequestMessage"]).GetOwinContext().Authentication);
+            builder.Register<Func<IAuthenticationManager>>(c => () => c.Resolve<HttpRequestMessage>().GetOwinContext().Authentication).InstancePerApiRequest();
             builder.RegisterType<UserManager<IUserDto, int>>().AsSelf().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues);
+            builder.Register(c => new UrlHelper(c.Resolve<HttpRequestMessage>())).InstancePerApiRequest();
 
             if (beforeBuild != null)
             {

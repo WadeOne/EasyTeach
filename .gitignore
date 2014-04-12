@@ -10,3 +10,4 @@ packages
 /EasyTeach.Web/Scripts/vendor/.sass-cache
 EasyTeach.Web/App_Data/EasyTeach.mdf
 EasyTeach.Web/App_Data/EasyTeach_log.ldf
+TestResults/

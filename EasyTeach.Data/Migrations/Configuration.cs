@@ -1,14 +1,15 @@
+using EasyTeach.Data.Context;
+
 namespace EasyTeach.Data.Migrations
 {
-    using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
-    using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<EasyTeach.Data.Context.EasyTeachContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<EasyTeachContext>
     {
         public Configuration()
         {
+            Database.SetInitializer(new CreateDatabaseIfNotExists<EasyTeachContext>());
             AutomaticMigrationsEnabled = false;
             ContextKey = "EasyTeach.Data.Context.EasyTeachContext";
         }

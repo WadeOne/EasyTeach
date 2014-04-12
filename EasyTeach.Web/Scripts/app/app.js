@@ -19,7 +19,7 @@ $(document).foundation({
 
 $( document ).ready(function() {
 	 $('#create-user-button').on('click', function(event) {
-	 		//event.preventDefault();
+	 		event.preventDefault();
 			var $form = $('#user-registration-form');
 			$form.addClass('loader');
 			$.ajax({
@@ -31,6 +31,30 @@ $( document ).ready(function() {
 				traditional: true,
 				error: function (jqXHR, textStatus, error) {
 					$form.removeClass('loader');
+					console.log(jqXHR)
+				},
+				success: function (data) {
+					$form.removeClass('loader');
+				}
+		  });
+	 });
+	  $('#login-btn').on('click', function(event) {
+	 		event.preventDefault();
+			var $form = $('#login-form'),
+				param_value = "password";
+			debugger;
+			console.log($form.serialize());
+			$form.addClass('loader');
+			$.ajax({
+				url: $form.attr('action'),
+				type: 'POST',
+				data: $form.serialize()+ '&grant_type=' + param_value,
+				dataType: 'json',
+                contentType: 'application/json',
+				traditional: true,
+				error: function (jqXHR, textStatus, error) {
+					$form.removeClass('loader');
+					console.log(jqXHR)
 				},
 				success: function (data) {
 					$form.removeClass('loader');

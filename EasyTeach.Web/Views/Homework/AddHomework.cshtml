@@ -1,19 +1,24 @@
 ﻿<div class="page-content">
-    <form class="row">
-        <div class="large-6 medium-6 columns">
-            <h3>Добавить задание</h3>
-            <div class="row">
-                <div class="large-10 columns">
-                    <input type="File" placeholder="Add file" />
-                    <!-- if description is empty use the name of the file -->
-                    <textarea type="password" placeholder="Description"></textarea>
-                </div>
-                <div class="large-2 columns">
-                    <a href="" class="easy-teach-button add-homework-button">Добавить задание</a>
+    <div class="row">
+        <form>
+            <div class="large-6 medium-6 columns">
+                <h3>Добавить задание</h3>
+                <div class="row">
+                    <div class="large-10">
+                        <label class="file-upload">
+                            <span class="choose-file-button">Выбрать</span>
+                            <mark>Файл не выбран</mark>
+                            <input type="file">
+                        </label>
+                    </div>
+                    <div class="large-12 add-homework-wrapper">
+                        <textarea type="text" placeholder="Description"></textarea>
+                        <button id="add-homework-button" class="easy-teach-button">Добавить задание</button>
+                    </div>
                 </div>
             </div>
-        </div>
-    </form>
+        </form>
+    </div>
     <div class="row">
         <h3>Список заданий</h3>
         <dl class="tabs" data-tab>

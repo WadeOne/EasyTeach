@@ -226,6 +226,7 @@
     <Content Include="App_Data\EmailTemplates\RegistrationConfirmationEmail.txt" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Areas\HelpPage\TestClient.css" />
+    <Content Include="Content\.gitignore" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -591,6 +592,7 @@
     <Content Include="Content\themes\base\minified\jquery.ui.tooltip.min.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\fileUpload.js" />
     <Content Include="Scripts\jquery-ui-1.9.2.js" />
     <Content Include="Scripts\jquery-ui-1.9.2.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
@@ -916,6 +918,7 @@
     <None Include="Views\Homework\AddHomework.cshtml" />
     <None Include="Views\Homework\Grid.cshtml" />
     <None Include="Views\Homework\Homeworks.cshtml" />
+    <Content Include="Views\index.html" />
     <Content Include="Views\login.html" />
     <Content Include="Views\registration.html" />
     <Content Include="Content\robots.txt" />

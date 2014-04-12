@@ -149,8 +149,51 @@ footer {
 
 
 // add homeworks page
-.add-homework-button {
-  margin-top: 40px;
+.file-upload {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  font-size: 1rem;
+  height: 2em;
+  line-height: 2em ;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(0,0,0,0.1);
+  transition: box-shadow 0.1s linear;
+  margin-bottom: 30px;
+  input[type=file]{
+    position: absolute;
+    top: 0;
+    opacity: 0;
+  }
+  .choose-file-button {
+    display: block;
+    float: right;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    width: 8em;
+    height: 100%;
+    text-align: center;
+    background: #f38630;
+    color: #ffffff;
+    font-size: 1rem;
+  }
+  mark {
+    display: block;
+    cursor: pointer; 
+    background: transparent;
+    padding-left: 1em;
+    color: #cccccc;
+    font-size: 1rem;
+  }
+}
+.add-homework-wrapper {
+  textarea {
+    display: inline-block;
+  }
+  #add-homework-button {
+    vertical-align: top;
+  }
 }
 
 //registartion page

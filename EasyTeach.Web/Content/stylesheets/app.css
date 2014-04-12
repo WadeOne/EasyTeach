@@ -9526,16 +9526,63 @@ footer .copyright {
 }
 
 /* line 152, ../scss/app.scss */
-.add-homework-button {
-  margin-top: 40px;
+.file-upload {
+  display: block;
+  position: relative;
+  overflow: hidden;
+  font-size: 1rem;
+  height: 2em;
+  line-height: 2em;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.1s linear;
+  margin-bottom: 30px;
+}
+/* line 164, ../scss/app.scss */
+.file-upload input[type=file] {
+  position: absolute;
+  top: 0;
+  opacity: 0;
+}
+/* line 169, ../scss/app.scss */
+.file-upload .choose-file-button {
+  display: block;
+  float: right;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  width: 8em;
+  height: 100%;
+  text-align: center;
+  background: #f38630;
+  color: #ffffff;
+  font-size: 1rem;
+}
+/* line 181, ../scss/app.scss */
+.file-upload mark {
+  display: block;
+  cursor: pointer;
+  background: transparent;
+  padding-left: 1em;
+  color: #cccccc;
+  font-size: 1rem;
 }
 
-/* line 158, ../scss/app.scss */
+/* line 191, ../scss/app.scss */
+.add-homework-wrapper textarea {
+  display: inline-block;
+}
+/* line 194, ../scss/app.scss */
+.add-homework-wrapper #add-homework-button {
+  vertical-align: top;
+}
+
+/* line 201, ../scss/app.scss */
 .registration-page .columns {
   padding: 0;
 }
 
-/* line 164, ../scss/app.scss */
+/* line 207, ../scss/app.scss */
 .easy-teach-button {
   display: inline-block;
   padding: 15px 20px;
@@ -9544,7 +9591,7 @@ footer .copyright {
   text-align: center;
   white-space: nowrap;
 }
-/* line 171, ../scss/app.scss */
+/* line 214, ../scss/app.scss */
 .easy-teach-button:hover {
   background: #fa6900;
   color: #ffffff;

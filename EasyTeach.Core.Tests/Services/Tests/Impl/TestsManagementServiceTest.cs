@@ -58,7 +58,7 @@ namespace EasyTeach.Core.Tests.Services.Tests.Impl
         [Fact]
         public void CreateTestAsync_InvalidTest_ExceptionThrown()
         {
-            var invalidTest = A.Fake<ITestModel>();
+            var invalidTest = new TestModel();
 
             var aggregateException = Assert.Throws<AggregateException>(() => _testsManagementService.CreateTestAsync(invalidTest).Wait());
             var exception = (InvalidTestException)aggregateException.GetBaseException();

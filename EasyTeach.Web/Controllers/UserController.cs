@@ -33,6 +33,11 @@ namespace EasyTeach.Web.Controllers
             _authenticationManagerFactory = authenticationManagerFactory;
         }
 
+        public UserController()
+        {
+            
+        }
+
         // POST api/User/Register
         [AllowAnonymous]
         [Route("Register")]

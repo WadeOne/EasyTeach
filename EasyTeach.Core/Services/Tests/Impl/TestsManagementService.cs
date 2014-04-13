@@ -61,5 +61,10 @@ namespace EasyTeach.Core.Services.Tests.Impl
 
             await _testsRepository.CreateTestAsync(newTestDto);
         }
+
+        public Task AssignTestToGroupAsync(ITestModel test, IGroupModel @group, DateTime startDate, DateTime endDate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

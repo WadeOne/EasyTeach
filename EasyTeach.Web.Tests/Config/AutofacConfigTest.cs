@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Dependencies;
+using System.Web.Http.Routing;
 using Autofac;
 using Autofac.Core;
 using EasyTeach.Core.Entities.Data;
@@ -21,6 +23,7 @@ namespace EasyTeach.Web.Tests.Config
         public AutofacConfigTest()
         {
             AutofacConfig.RegisterDependencies(builder => builder.RegisterType<EasyTeachContext>().AsSelf());
+            
             _resolver = GlobalConfiguration.Configuration.DependencyResolver;
         }
 
@@ -35,7 +38,6 @@ namespace EasyTeach.Web.Tests.Config
         [InlineData(typeof(UserManager<IUserDto, int>))]
         [InlineData(typeof(UserStore))]
         [InlineData(typeof(IUserDtoMapper))]
-        [InlineData(typeof(UserController))]
         [InlineData(typeof(UserTokenProvider))]
         public void RegisterDependencies_ResolvedTypeCorrectly(Type typeToResolve)
         {

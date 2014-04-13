@@ -26,7 +26,7 @@ namespace EasyTeach.Core.Tests.Services.Messaging.Impl
             _emailService.SendUserRegistrationConfirmationEmailAsync(A.Dummy<IUserDto>()).Wait();
 
             A.CallTo(() => _userManager.GenerateEmailConfirmationTokenAsync(A<int>.Ignored)).MustHaveHappened();
-            A.CallTo(() => _emailBuilder.BuildRegsitrationConfirmationEmail(A<IUserDto>.Ignored, A<string>.Ignored)).MustHaveHappened();
+            A.CallTo(() => _emailBuilder.BuildRegsitrationConfirmationEmailAsync(A<IUserDto>.Ignored, A<string>.Ignored)).MustHaveHappened();
         }
     }
 }

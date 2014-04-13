@@ -18,6 +18,23 @@ $(document).foundation({
 
 
 $( document ).ready(function() {
+
+	$.fn.serializeObject = function () {
+	    var o = {};
+	    var a = this.serializeArray();
+	    $.each(a, function () {
+	        if (o[this.name]) {
+	            if (!o[this.name].push) {
+	                o[this.name] = [o[this.name]];
+	            }
+	            o[this.name].push(this.value || '');
+	        } else {
+	            o[this.name] = this.value || '';
+	        }
+	    });
+	    return o;
+	};
+	
 	 $('#create-user-button').on('click', function(event) {
 	 		event.preventDefault();
 			var $form = $('#user-registration-form');
@@ -25,7 +42,7 @@ $( document ).ready(function() {
 			$.ajax({
 				url: $form.attr('action'),
 				type: 'POST',
-				data: $form.serialize(),
+				data: JSON.stringify($form.serializeObject()),
 				dataType: 'json',
                 contentType: 'application/json',
 				traditional: true,

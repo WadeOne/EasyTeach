@@ -58,6 +58,7 @@
     <Compile Include="Services\UserManagement\Impl\UserServiceTest.cs" />
     <Compile Include="Services\UserManagement\Impl\UserStoreTest.cs" />
     <Compile Include="Services\UserManagement\Impl\UserTokenProviderTest.cs" />
+    <Compile Include="Validation\EntityValidatorTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

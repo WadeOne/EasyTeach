@@ -4,10 +4,10 @@ namespace EasyTeach.Core.Entities.Services
 {
     public interface ITestModel
     {
-        string Name { get; set; }
+        string Name { get; }
 
-        string Description { get; set; }
+        string Description { get; }
 
-        IEnumerable<IQuestionModel> Questions { get; set; }
+        IEnumerable<IQuestionModel> Questions { get; }
     }
 }

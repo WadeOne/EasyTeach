@@ -7,8 +7,8 @@ namespace EasyTeach.Core.Services.Tests
 {
     public interface ITestsManagementService
     {
-        Task CreateTestAsync(ITestModel testModel);
+        Task CreateTestAsync(ITestModel newTest);
 
-        Task AssignTestToGroupAsync(ITestModel test, IGroupModel group, DateTime startDate, DateTime endDate);
+        Task AssignTestToGroupAsync(IAssignedTestModel assignedTest);
     }
 }

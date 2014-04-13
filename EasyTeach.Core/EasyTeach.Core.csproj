@@ -45,10 +45,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Data\IAssignedTestDto.cs" />
     <Compile Include="Entities\Data\IUserDto.cs" />
     <Compile Include="Entities\Data\IUserTokenDto.cs" />
     <Compile Include="Entities\Group.cs" />
-    <Compile Include="Entities\Services\IGroupModel.cs" />
     <Compile Include="Entities\Services\IQuestionModel.cs" />
     <Compile Include="Entities\Services\IUserIdentityModel.cs" />
     <Compile Include="Entities\Services\IUserModel.cs" />
@@ -62,13 +62,15 @@
     <Compile Include="Repositories\IUserTokenRepository.cs" />
     <Compile Include="Repositories\Mappers\IUserDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\IUserTokenDtoMapper.cs" />
-    <Compile Include="Services\Base\Exceptions\ValidationException.cs" />
+    <Compile Include="Services\Base\Exceptions\ModelValidationException.cs" />
     <Compile Include="Services\Messaging\Email.cs" />
     <Compile Include="Services\Messaging\IEmailBuilder.cs" />
     <Compile Include="Services\Messaging\IEmailService.cs" />
     <Compile Include="Services\Messaging\Impl\EmailService.cs" />
     <Compile Include="Services\Messaging\Impl\IdentityMessageService.cs" />
     <Compile Include="Repositories\Mappers\ITestDtoMapper.cs" />
+    <Compile Include="Entities\Services\IAssignedTestModel.cs" />
+    <Compile Include="Services\Tests\Exceptions\InvalidAssignedTestException.cs" />
     <Compile Include="Services\Tests\Impl\TestsManagementService.cs" />
     <Compile Include="Services\Tests\Exceptions\InvalidTestException.cs" />
     <Compile Include="Services\Tests\ITestsManagementService.cs" />
@@ -81,6 +83,8 @@
     <Compile Include="Services\UserManagement\Impl\UserStore.cs" />
     <Compile Include="Services\UserManagement\Impl\UserTokenProvider.cs" />
     <Compile Include="Services\UserManagement\IUserService.cs" />
+    <Compile Include="Validation\EntityValidator.cs" />
+    <Compile Include="Validation\IErrorsAddable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

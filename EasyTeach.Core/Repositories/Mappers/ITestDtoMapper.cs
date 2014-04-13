@@ -5,6 +5,8 @@ namespace EasyTeach.Core.Repositories.Mappers
 {
     public interface ITestDtoMapper
     {
-        ITestDto Map(ITestModel testModel);
+        ITestDto Map(ITestModel test);
+
+        IAssignedTestDto Map(IAssignedTestModel assignedTest);
     }
 }

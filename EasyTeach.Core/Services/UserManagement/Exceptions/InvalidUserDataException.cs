@@ -9,13 +9,13 @@ namespace EasyTeach.Core.Services.UserManagement.Exceptions
 {
     public sealed class InvalidUserDataException : ModelValidationException
     {
-        public InvalidUserDataException(IEnumerable<ValidationResult> validationResults)
+        public InvalidUserDataException(IList<ValidationResult> validationResults)
             : base(validationResults)
         {
         }
 
         public InvalidUserDataException()
-            : this(Enumerable.Empty<ValidationResult>())
+            : this(new List<ValidationResult>())
         {
         }
     }

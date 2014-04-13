@@ -3,22 +3,24 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
-
-using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers;
+using EasyTeach.Core.Services.Base.Exceptions;
 using EasyTeach.Core.Services.Tests.Exceptions;
+using EasyTeach.Core.Validation;
 
 namespace EasyTeach.Core.Services.Tests.Impl
 {
     public class TestsManagementService : ITestsManagementService
     {
-        private ITestsRepository _testsRepository;
+        private readonly ITestsRepository _testsRepository;
 
-        private ITestDtoMapper _testDtoMapper;
+        private readonly ITestDtoMapper _testDtoMapper;
 
-        public TestsManagementService(ITestsRepository testsRepository, ITestDtoMapper testDtoMapper)
+        private readonly EntityValidator _entityValidator;
+
+        public TestsManagementService(ITestsRepository testsRepository, ITestDtoMapper testDtoMapper, EntityValidator entityValidator)
         {
             if (testsRepository == null)
             {
@@ -30,8 +32,14 @@ namespace EasyTeach.Core.Services.Tests.Impl
                 throw new ArgumentNullException("testDtoMapper");
             }
 
+            if (entityValidator == null)
+            {
+                throw new ArgumentNullException("entityValidator");
+            }
+
             _testsRepository = testsRepository;
             _testDtoMapper = testDtoMapper;
+            _entityValidator = entityValidator;
         }
 
         public async Task CreateTestAsync(ITestModel newTest)
@@ -41,20 +49,14 @@ namespace EasyTeach.Core.Services.Tests.Impl
                 throw new ArgumentNullException("newTest");
             }
 
-            var validationResults = new List<ValidationResult>();
-            bool testIsValid = Validator.TryValidateObject(newTest,
-                                                        new ValidationContext(newTest, null, null),
-                                                        validationResults, true);
-
-            if (newTest.Questions != null && newTest.Questions.Any() == false)
+            var additionalValidation = new Dictionary<Func<ITestModel, bool>, ValidationResult>
             {
-                validationResults.Add(new ValidationResult(String.Format("Test can't contain no questions", newTest.Questions), new[] { "Questions" }));
-                testIsValid = false;
-            }
-
-            if (testIsValid == false)
+                {x => x.Questions != null && x.Questions.Any() == false, new ValidationResult("Test can't contain no questions", new[] { "Questions" })}
+            };
+            var exception = _entityValidator.ValidateEntity<ITestModel, InvalidTestException>(newTest, additionalValidation);
+            if (exception != null)
             {
-                throw new InvalidTestException(validationResults);
+                throw exception;
             }
 
             var newTestDto = _testDtoMapper.Map(newTest);
@@ -62,9 +64,28 @@ namespace EasyTeach.Core.Services.Tests.Impl
             await _testsRepository.CreateTestAsync(newTestDto);
         }
 
-        public Task AssignTestToGroupAsync(ITestModel test, IGroupModel @group, DateTime startDate, DateTime endDate)
+        public async Task AssignTestToGroupAsync(IAssignedTestModel assignedTest)
         {
-            throw new NotImplementedException();
+            if (assignedTest == null)
+            {
+                throw new ArgumentNullException("assignedTest");
+            }
+
+            var additionalValidation = new Dictionary<Func<IAssignedTestModel, bool>, ValidationResult>
+            {
+                {x => x.EndDate <= x.StartDate, new ValidationResult("EndDate must be larger than StartDate", new[] {"StartDate", "EndDate"})}
+            };
+            var exception = _entityValidator.ValidateEntity<IAssignedTestModel, InvalidAssignedTestException>(assignedTest, additionalValidation);
+            if (exception != null)
+            {
+                throw exception;
+            }
+
+            var assignmentDto = _testDtoMapper.Map(assignedTest);
+
+            await _testsRepository.AssignTestAsync(assignmentDto);
         }
+
+        
     }
 }

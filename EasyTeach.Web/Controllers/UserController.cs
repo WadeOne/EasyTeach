@@ -35,7 +35,6 @@ namespace EasyTeach.Web.Controllers
 
         public UserController()
         {
-            
         }
 
         // POST api/User/Register
@@ -65,10 +64,10 @@ namespace EasyTeach.Web.Controllers
             return Ok();
         }
 
-        // GET api/User/ConfirmEmail
-        [HttpGet]
+        // POST api/User/ConfirmEmail
+        [AllowAnonymous]
         [Route("ConfirmEmail")]
-        public async Task<IHttpActionResult> ConfirmEmail([FromUri]ConfirmActionViewModel model)
+        public async Task<IHttpActionResult> ConfirmEmail(ConfirmActionViewModel model)
         {
             if (model == null)
             {
@@ -85,11 +84,11 @@ namespace EasyTeach.Web.Controllers
                 string resetPassowrdToken = await _userService.ConfirmUserEmailAsync(model.UserId, model.ConfirmEmailToken);
                 return Ok(resetPassowrdToken);
             }
-            catch (InvalidConfirmationTokenException ex)
+            catch (InvalidEmailConfirmationOperationException ex)
             {
                 foreach (var validationResult in ex.ValidationResults)
                 {
-                    ModelState.AddModelError(validationResult.MemberNames.First(), validationResult.ErrorMessage);
+                    ModelState.AddModelError(validationResult.MemberNames.FirstOrDefault() ?? "email", validationResult.ErrorMessage);
                 }
 
                 return BadRequest(ModelState);
@@ -98,6 +97,7 @@ namespace EasyTeach.Web.Controllers
 
         // POST api/User/SetPassword
         [Route("SetPassword")]
+        [AllowAnonymous]
         public async Task<IHttpActionResult> SetPassword(SetPasswordViewModel model)
         {
             if (model == null)
@@ -115,11 +115,39 @@ namespace EasyTeach.Web.Controllers
                 await _userService.SetUserPasswordAsync(model.UserId, model.ResetPasswordToken, model.NewPassword);
                 return Ok();
             }
-            catch (InvalidConfirmationTokenException ex)
+            catch (InvalidSetPasswordOperationException ex)
             {
                 foreach (var validationResult in ex.ValidationResults)
                 {
-                    ModelState.AddModelError(validationResult.MemberNames.First(), validationResult.ErrorMessage);
+                    ModelState.AddModelError(validationResult.MemberNames.FirstOrDefault() ?? "email", validationResult.ErrorMessage);
+                }
+
+                return BadRequest(ModelState);
+            }
+        }
+
+        // POST api/User/ResetPassword
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("ResetPassword")]
+        public async Task<IHttpActionResult> ResetPassword(string email)
+        {
+            if (String.IsNullOrWhiteSpace(email))
+            {
+                ModelState.AddModelError("email", "Email is required");
+                return BadRequest(ModelState);
+            }
+
+            try
+            {
+                await _userService.ResetUserPasswordAsync(email);
+                return Ok();
+            }
+            catch (InvalidResetPasswordOperationException ex)
+            {
+                foreach (var validationResult in ex.ValidationResults)
+                {
+                    ModelState.AddModelError(validationResult.MemberNames.FirstOrDefault() ?? "email", validationResult.ErrorMessage);
                 }
 
                 return BadRequest(ModelState);

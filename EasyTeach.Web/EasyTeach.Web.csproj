@@ -225,6 +225,7 @@
       <Link>AutoMapper.Net4.dll</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="App_Data\EmailTemplates\ResetPasswordEmail.txt" />
     <Content Include="App_Data\EmailTemplates\RegistrationConfirmationEmail.txt" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Areas\HelpPage\TestClient.css" />

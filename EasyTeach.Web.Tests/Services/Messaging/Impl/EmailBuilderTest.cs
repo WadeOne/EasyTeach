@@ -44,27 +44,5 @@ namespace EasyTeach.Web.Tests.Services.Messaging.Impl
             Assert.Equal("Hi John!", email.Subject);
             Assert.Equal("Your LastName is 'Doe'.\r\n", email.Body);
         }
-
-        [Fact]
-        public void BuildRegsitrationConfirmationEmailAsync_EmailTemplateAndUserData_EmailWithConfirmationUrl()
-        {
-            A.CallTo(() => _urlHelper.Link("DefaultApi", A<object>.Ignored)).Returns("/token");
-
-            var reader = A.Fake<StreamReader>(x => x.WithArgumentsForConstructor(new object[] { new MemoryStream() }));
-            A.CallTo(() => reader.ReadLineAsync())
-                .ReturnsNextFromSequence(
-                    Task.FromResult("Subject"),
-                    Task.FromResult("Url: {{ConfirmationUrl}}"),
-                    Task.FromResult((string)null));
-
-            A.CallTo(() => _templateProvider.GetTemplate(TemplateType.EmailConfirmation))
-                .Returns(reader);
-
-            Email email = _emailBuilder.BuildRegsitrationConfirmationEmailAsync(A.Fake<IUserDto>(), "token").Result;
-
-            Assert.Equal("Subject", email.Subject);
-            Assert.Equal("Url: /token\r\n", email.Body);
-            A.CallTo(() => _urlHelper.Link("DefaultApi", A<object>.Ignored)).MustHaveHappened();
-        }
     }
 }

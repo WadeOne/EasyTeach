@@ -129,7 +129,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
                 IdentityResult identityResult = await _userManager.ConfirmEmailAsync(userId, token);
                 if (!identityResult.Succeeded)
                 {
-                    throw new InvalidConfirmationTokenException(identityResult.Errors.Select(e => new ValidationResult(e)));
+                    throw new InvalidEmailConfirmationOperationException(identityResult.Errors.Select(e => new ValidationResult(e)));
                 }
 
                 return await _userManager.GeneratePasswordResetTokenAsync(userId);
@@ -138,7 +138,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             {
                 if (ex.GetBaseException() is InvalidOperationException)
                 {
-                    throw new InvalidConfirmationTokenException(
+                    throw new InvalidEmailConfirmationOperationException(
                         new ValidationResult(String.Format("Cannot find user by id '{0}'", userId)));
                 }
 
@@ -163,19 +163,40 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
                 IdentityResult identityResult = await _userManager.ResetPasswordAsync(userId, resetPasswordToken, password);
                 if (!identityResult.Succeeded)
                 {
-                    throw new InvalidResetPasswordDataException(identityResult.Errors.Select(e => new ValidationResult(e)));
+                    throw new InvalidSetPasswordOperationException(identityResult.Errors.Select(e => new ValidationResult(e)));
                 }
             }
             catch (AggregateException ex)
             {
                 if (ex.GetBaseException() is InvalidOperationException)
                 {
-                    throw new InvalidResetPasswordDataException(
+                    throw new InvalidSetPasswordOperationException(
                         new ValidationResult(String.Format("Cannot find user by id '{0}'", userId)));
                 }
 
                 throw;
             }
+        }
+
+        public async Task ResetUserPasswordAsync(string email)
+        {
+            if (String.IsNullOrWhiteSpace(email))
+            {
+                throw new ArgumentNullException("email");
+            }
+
+            IUserDto userDto = await _userManager.FindByEmailAsync(email);
+            if (userDto == null)
+            {
+                throw new InvalidResetPasswordOperationException(new ValidationResult(String.Format("Cannot find user by email '{0}'", email)));
+            }
+
+            if (!userDto.EmailIsValidated)
+            {
+                throw new InvalidResetPasswordOperationException(new ValidationResult(String.Format("User email address '{0}' has not been validated", email)));
+            }
+
+            await _emailService.SendResetUserPasswordEmailAsync(userDto);
         }
 
         private static IUserIdentityModel CreateIdentityFromDto(IUserDto userDto)

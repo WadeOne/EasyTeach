@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-
 using EasyTeach.Core.Services.Base.Exceptions;
 
 namespace EasyTeach.Core.Services.UserManagement.Exceptions

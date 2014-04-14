@@ -6,5 +6,7 @@ namespace EasyTeach.Core.Services.Messaging
     public interface IEmailService
     {
         Task SendUserRegistrationConfirmationEmailAsync(IUserDto user);
+
+        Task SendResetUserPasswordEmailAsync(IUserDto user);
     }
 }

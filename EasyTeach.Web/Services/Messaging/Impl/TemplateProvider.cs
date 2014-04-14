@@ -11,14 +11,19 @@ namespace EasyTeach.Web.Services.Messaging.Impl
             switch (templateType)
             {
                 case TemplateType.EmailConfirmation:
-                    return
-                        File.OpenText(
-                            HttpContext.Current.Server.MapPath(
-                                "~/App_Data/EmailTemplates/RegistrationConfirmationEmail.txt"));
+                    return OpenStreamReader("~/App_Data/EmailTemplates/RegistrationConfirmationEmail.txt");
+
+                case TemplateType.ResetPassword:
+                    return OpenStreamReader("~/App_Data/EmailTemplates/ResetPasswordEmail.txt");
 
                 default:
                     throw new NotSupportedException(String.Format("Template type '{0}' is not supported", templateType));
             }
+        }
+
+        private static StreamReader OpenStreamReader(string path)
+        {
+            return File.OpenText(HttpContext.Current.Server.MapPath(path));
         }
     }
 }

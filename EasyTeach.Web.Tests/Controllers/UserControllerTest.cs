@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Http.Results;
 
 using EasyTeach.Core.Entities;
@@ -72,6 +73,88 @@ namespace EasyTeach.Web.Tests.Controllers
             Assert.True(result.ModelState.Any(ei => ei.Key == "LastName"));
             Assert.True(result.ModelState.Any(ei => ei.Key == "Email"));
             Assert.True(result.ModelState.Any(ei => ei.Key == "UserType"));
+        }
+
+        [Fact]
+        public void ConfirmEmail_ValidUserAndToken_OkResultWithResetPasswordToken()
+        {
+            A.CallTo(() => _userService.ConfirmUserEmailAsync(A<int>.Ignored, A<string>.Ignored))
+                .Returns(Task.FromResult("resetPassToken"));
+
+            var result = Assert.IsAssignableFrom<OkNegotiatedContentResult<string>>(_userController.ConfirmEmail(new ConfirmActionViewModel
+            {
+                ConfirmEmailToken = "test",
+                UserId = 42
+            }).Result);
+
+            Assert.Equal("resetPassToken", result.Content);
+        }
+
+        [Fact]
+        public void ConfirmEmail_InvalidModel_InvalidModelStateResult()
+        {
+            _userController.ModelState.AddModelError("token", "invalid");
+
+            Assert.IsAssignableFrom<InvalidModelStateResult>(_userController.ConfirmEmail(new ConfirmActionViewModel
+            {
+                ConfirmEmailToken = null,
+                UserId = 42
+            }).Result);
+
+            A.CallTo(() => _userService.ConfirmUserEmailAsync(A<int>.Ignored, A<string>.Ignored))
+                .MustNotHaveHappened();
+        }
+
+        [Fact]
+        public void ConfirmEmail_ConfirmUserEmailAsyncThrowsInvalidEmailConfirmationOperationException_InvalidModelStateResult()
+        {
+            var exception = new InvalidEmailConfirmationOperationException(new ValidationResult(" "));
+
+            A.CallTo(() => _userService.ConfirmUserEmailAsync(A<int>.Ignored, A<string>.Ignored))
+                .Throws(exception);
+
+            Assert.IsAssignableFrom<InvalidModelStateResult>(_userController.ConfirmEmail(new ConfirmActionViewModel
+            {
+                ConfirmEmailToken = "test",
+                UserId = 42
+            }).Result);
+
+            A.CallTo(() => _userService.ConfirmUserEmailAsync(A<int>.Ignored, A<string>.Ignored))
+                .MustHaveHappened();
+        }
+
+        [Fact]
+        public void ResetPassword_ValidUserEmail_OkResult()
+        {
+            A.CallTo(() => _userService.ResetUserPasswordAsync( A<string>.Ignored))
+                .Returns(Task.FromResult(0));
+
+            Assert.IsAssignableFrom<OkResult>(_userController.ResetPassword("test@example.com").Result);
+
+            A.CallTo(() => _userService.ResetUserPasswordAsync(A<string>.Ignored))
+                .MustHaveHappened();
+        }
+
+        [Fact]
+        public void ResetPassword_EmptyEmail_InvalidModelStateResult()
+        {
+            Assert.IsAssignableFrom<InvalidModelStateResult>(_userController.ResetPassword("").Result);
+
+            A.CallTo(() => _userService.ResetUserPasswordAsync(A<string>.Ignored)).MustNotHaveHappened();
+        }
+
+        [Fact]
+        public void ResetPassword_ResetUserPasswordAsyncThrowsInvalidResetPasswordOperationException_InvalidModelStateResult()
+        {
+            var exception = new InvalidResetPasswordOperationException(new ValidationResult(" "));
+
+            A.CallTo(() => _userService.ResetUserPasswordAsync(A<string>.Ignored))
+                .Throws(exception);
+
+            Assert.IsAssignableFrom<InvalidModelStateResult>(_userController.ResetPassword("test@example.com").Result);
+
+            A.CallTo(() => _userService.ResetUserPasswordAsync(A<string>.Ignored))
+                .MustHaveHappened();
         }
 
         [Fact]

@@ -15,5 +15,7 @@ namespace EasyTeach.Core.Services.UserManagement
         Task<string> ConfirmUserEmailAsync(int userId, string token);
 
         Task SetUserPasswordAsync(int userId, string resetPasswordToken, string password);
+
+        Task ResetUserPasswordAsync(string email);
     }
 }

@@ -39,5 +39,14 @@ namespace EasyTeach.Core.Services.Messaging.Impl
 
             await _userManager.SendEmailAsync(user.UserId, email.Subject, email.Body);
         }
+
+        public async Task SendResetUserPasswordEmailAsync(IUserDto user)
+        {
+            string resetPasswordToken = await _userManager.GeneratePasswordResetTokenAsync(user.UserId);
+
+            Email email = await _emailBuilder.BuildResetPasswordEmailAsync(user, resetPasswordToken);
+
+            await _userManager.SendEmailAsync(user.UserId, email.Subject, email.Body);
+        }
     }
 }

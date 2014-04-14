@@ -140,27 +140,27 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
         }
 
         [Fact]
-        public void ConfirmUserEmailAsync_InvalidToken_InvalidConfirmationTokenExceptionThrown()
+        public void ConfirmUserEmailAsync_InvalidToken_InvalidEmailConfirmationOperationExceptionThrown()
         {
             A.CallTo(() => _userManager.ConfirmEmailAsync(A<int>.Ignored, A<string>.Ignored)).Returns(new IdentityResult());
 
             var aggregateException = Assert.Throws<AggregateException>(() => _userService.ConfirmUserEmailAsync(A<int>.Ignored, "SomeToken").Wait());
 
-            Assert.IsAssignableFrom<InvalidConfirmationTokenException>(aggregateException.GetBaseException());
+            Assert.IsAssignableFrom<InvalidEmailConfirmationOperationException>(aggregateException.GetBaseException());
         }
 
         [Fact]
-        public void ConfirmUserEmailAsync_NotFoundUser_InvalidConfirmationTokenExceptionThrown()
+        public void ConfirmUserEmailAsync_NotFoundUser_InvalidEmailConfirmationOperationExceptionThrown()
         {
             A.CallTo(() => _userManager.ConfirmEmailAsync(A<int>.Ignored, A<string>.Ignored)).Throws(new AggregateException(new InvalidOperationException()));
 
             var aggregateException = Assert.Throws<AggregateException>(() => _userService.ConfirmUserEmailAsync(A<int>.Ignored, "SomeToken").Wait());
 
-            Assert.IsAssignableFrom<InvalidConfirmationTokenException>(aggregateException.GetBaseException());
+            Assert.IsAssignableFrom<InvalidEmailConfirmationOperationException>(aggregateException.GetBaseException());
         }
 
         [Fact]
-        public void ConfirmUserEmailAsync_ExtisngUserAndValidToken_GeneratePasswordResetTokenAsyncCalled()
+        public void ConfirmUserEmailAsync_ExistingUserAndValidToken_GeneratePasswordResetTokenAsyncCalled()
         {
             A.CallTo(() => _userManager.ConfirmEmailAsync(A<int>.Ignored, A<string>.Ignored)).Returns(IdentityResult.Success);
 
@@ -170,31 +170,67 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
         }
 
         [Fact]
-        public void SetUserPasswordAsync_InvalidToken_InvalidResetPasswordDataExceptionThrown()
+        public void SetUserPasswordAsync_InvalidToken_InvalidSetPasswordOperationExceptionThrown()
         {
             A.CallTo(() => _userManager.ResetPasswordAsync(A<int>.Ignored, A<string>.Ignored, A<string>.Ignored)).Returns(new IdentityResult());
 
             var aggregateException = Assert.Throws<AggregateException>(() => _userService.SetUserPasswordAsync(A<int>.Ignored, "SomeToken", "SomePassword").Wait());
 
-            Assert.IsAssignableFrom<InvalidResetPasswordDataException>(aggregateException.GetBaseException());
+            Assert.IsAssignableFrom<InvalidSetPasswordOperationException>(aggregateException.GetBaseException());
         }
 
         [Fact]
-        public void SetUserPasswordAsync_NotFoundUser_InvalidResetPasswordDataExceptionThrown()
+        public void SetUserPasswordAsync_NotFoundUser_InvalidSetPasswordOperationExceptionThrown()
         {
             A.CallTo(() => _userManager.ResetPasswordAsync(A<int>.Ignored, A<string>.Ignored, A<string>.Ignored)).Throws(new AggregateException(new InvalidOperationException()));
 
             var aggregateException = Assert.Throws<AggregateException>(() => _userService.SetUserPasswordAsync(A<int>.Ignored, "SomeToken", "SomePassword").Wait());
 
-            Assert.IsAssignableFrom<InvalidResetPasswordDataException>(aggregateException.GetBaseException());
+            Assert.IsAssignableFrom<InvalidSetPasswordOperationException>(aggregateException.GetBaseException());
         }
 
         [Fact]
-        public void SetUserPasswordAsync_ExtisngUserAndValidToken_NotThrownException()
+        public void SetUserPasswordAsync_ExistingUserAndValidToken_NotThrownException()
         {
             A.CallTo(() => _userManager.ResetPasswordAsync(A<int>.Ignored, A<string>.Ignored, A<string>.Ignored)).Returns(IdentityResult.Success);
 
             Assert.DoesNotThrow(() => _userService.SetUserPasswordAsync(A<int>.Ignored, "SomeToken", "SomePassword").Wait());
+        }
+
+        [Fact]
+        public void ResetUserPasswordAsync_UserEmailNotValidated_InvalidResetPasswordOperationExceptionThrown()
+        {
+            var user = A.Fake<IUserDto>();
+            A.CallTo(() => user.EmailIsValidated).Returns(false);
+
+            A.CallTo(() => _userManager.FindByEmailAsync(A<string>.Ignored)).Returns(user);
+
+            var aggregateException = Assert.Throws<AggregateException>(() => _userService.ResetUserPasswordAsync("test@example.org").Wait());
+
+            Assert.IsAssignableFrom<InvalidResetPasswordOperationException>(aggregateException.GetBaseException());
+        }
+
+        [Fact]
+        public void ResetUserPasswordAsync_NotFoundUser_InvalidResetPasswordOperationExceptionThrown()
+        {
+            A.CallTo(() => _userManager.FindByEmailAsync(A<string>.Ignored)).Returns((IUserDto)null);
+
+            var aggregateException = Assert.Throws<AggregateException>(() => _userService.ResetUserPasswordAsync("test@example.org").Wait());
+
+            Assert.IsAssignableFrom<InvalidResetPasswordOperationException>(aggregateException.GetBaseException());
+        }
+
+        [Fact]
+        public void ResetUserPasswordAsync_ExtisngUserWithValidedEmail_SendResetUserPasswordEmailAsyncCalled()
+        {
+            var user = A.Fake<IUserDto>();
+            A.CallTo(() => user.EmailIsValidated).Returns(true);
+
+            A.CallTo(() => _userManager.FindByEmailAsync(A<string>.Ignored)).Returns(user);
+
+            _userService.ResetUserPasswordAsync("test@example.com").Wait();
+
+            A.CallTo(() => _emailService.SendResetUserPasswordEmailAsync(user)).MustHaveHappened();
         }
     }
 }

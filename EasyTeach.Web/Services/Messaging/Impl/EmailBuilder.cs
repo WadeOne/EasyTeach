@@ -42,21 +42,29 @@ namespace EasyTeach.Web.Services.Messaging.Impl
                 throw new ArgumentNullException("token");
             }
 
+            Email email = await BuildEmail(user, TemplateType.EmailConfirmation);
+
+            // TODO replace URL meta tag
+            return email;
+        }
+
+        private async Task<Email> BuildEmail(IUserDto user, TemplateType templateType)
+        {
             var email = new Email { Subject = String.Empty };
             var bodyBuilder = new StringBuilder(200);
 
-            using (StreamReader reader = _templateProvider.GetTemplate(TemplateType.EmailConfirmation))
+            using (StreamReader reader = _templateProvider.GetTemplate(templateType))
             {
                 string line = await reader.ReadLineAsync();
                 for (int i = 0; line != null; i++)
                 {
                     if (i == 0)
                     {
-                        email.Subject = ReplaceMetaTagsWithData(line, user, token);
+                        email.Subject = ReplaceMetaTagsWithUserData(line, user);
                     }
                     else
                     {
-                        bodyBuilder.AppendLine(ReplaceMetaTagsWithData(line, user, token));
+                        bodyBuilder.AppendLine(ReplaceMetaTagsWithUserData(line, user));
                     }
 
                     line = await reader.ReadLineAsync();
@@ -67,19 +75,31 @@ namespace EasyTeach.Web.Services.Messaging.Impl
             return email;
         }
 
-        private string ReplaceMetaTagsWithData(string line, IUserDto userDto, string token)
+        public async Task<Email> BuildResetPasswordEmailAsync(IUserDto user, string resetPasswordToken)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            if (String.IsNullOrWhiteSpace(resetPasswordToken))
+            {
+                throw new ArgumentNullException("resetPasswordToken");
+            }
+
+            Email email = await BuildEmail(user, TemplateType.ResetPassword);
+
+            // TODO replace URL meta tag
+            return email;
+        }
+
+        private string ReplaceMetaTagsWithUserData(string line, IUserDto userDto)
         {
             return line.Replace("{{FirstName}}", userDto.FirstName)
                        .Replace("{{LastName}}", userDto.LastName)
                        .Replace("{{GroupNumber}}", userDto.Group.GroupNumber.ToString(CultureInfo.InvariantCulture))
                        .Replace("{{GroupYear}}", userDto.Group.Year.ToString(CultureInfo.InvariantCulture))
-                       .Replace("{{Email}}", userDto.Email)
-                       .Replace("{{ConfirmationUrl}}", _urlHelper.Link("DefaultApi", new { controller = "User", action = "ConfirmEmail", confirmEmailToken = token, userId = userDto.UserId }));
-        }
-
-        public Task<Email> BuildResetPasswordConfirmationEmailAsync(IUserDto user, string token)
-        {
-            throw new NotImplementedException();
+                       .Replace("{{Email}}", userDto.Email);
         }
     }
 }

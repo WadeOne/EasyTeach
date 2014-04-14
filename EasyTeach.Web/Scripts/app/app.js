@@ -36,13 +36,22 @@ $( document ).ready(function() {
 	};
 	
 	 $('#create-user-button').on('click', function(event) {
-	 		event.preventDefault();
-			var $form = $('#user-registration-form');
-			$form.addClass('loader');
-			$.ajax({
+	 	event.preventDefault();
+		var $form = $('#user-registration-form');
+		$form.addClass('loader');
+	     var user = {	            
+	         firstName: $form.find('input[name=firstName]').val(),
+	         lastName: $form.find('input[name=lastName]').val(),
+	         group: {
+	             groupNumber: $form.find('input[name=groupNumber]').val(),
+	             year: $form.find('input[name=year]').val()
+	         },
+	         email: $form.find('input[name=email]').val()
+	     };
+	     $.ajax({
 				url: $form.attr('action'),
 				type: 'POST',
-				data: JSON.stringify($form.serializeObject()),
+				data: JSON.stringify(user),
 				dataType: 'json',
                 contentType: 'application/json',
 				traditional: true,

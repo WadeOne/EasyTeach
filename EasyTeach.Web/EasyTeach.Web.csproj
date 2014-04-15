@@ -1047,7 +1047,7 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Views\UserManagement\Index.cshtml" />
-    <Content Include="Views\resetPassword.html" />
+    <Content Include="Views\setPassword.html" />
     <None Include="Views\UserManagement\Registration.cshtml" />
     <None Include="Views\UserManagement\Login.cshtml" />
     <Content Include="Web.config">

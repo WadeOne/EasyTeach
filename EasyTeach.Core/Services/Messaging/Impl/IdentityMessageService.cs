@@ -14,6 +14,8 @@ namespace EasyTeach.Core.Services.Messaging.Impl
                 throw new ArgumentNullException("message");
             }
 
+            return;
+
             using (var smtpClient = new SmtpClient())
             {
                 await smtpClient.SendMailAsync(

@@ -110,7 +110,12 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
         public Task<string> GetEmailAsync(IUserDto user)
         {
-            throw new NotImplementedException();
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            return Task.FromResult(user.Email);
         }
 
         public Task<bool> GetEmailConfirmedAsync(IUserDto user)

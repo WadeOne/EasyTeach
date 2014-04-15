@@ -68,8 +68,6 @@ $( document ).ready(function() {
 	 		event.preventDefault();
 			var $form = $('#login-form'),
 				param_value = "password";
-			debugger;
-			console.log($form.serialize());
 			$form.addClass('loader');
 			$.ajax({
 				url: $form.attr('action'),
@@ -86,6 +84,28 @@ $( document ).ready(function() {
 					$form.removeClass('loader');
 				}
 		  });
-	 });
+	  });
+
+    //set password
+	  $('#set-password-button').on('click', function (event) {
+	      event.preventDefault();
+	      var $form = $('#set-password-form');
+	      $form.addClass('loader');
+	      $.ajax({
+	          url: $form.attr('action'),
+	          type: 'POST',
+	          data: JSON.stringify($form.find('input[name=password]').val()),
+	          dataType: 'json',
+	          contentType: 'application/json',
+	          traditional: true,
+	          error: function (jqXHR, textStatus, error) {
+	              $form.removeClass('loader');
+	              console.log(jqXHR)
+	          },
+	          success: function (data) {
+	              $form.removeClass('loader');
+	          }
+	      });
+	  });
 
 });

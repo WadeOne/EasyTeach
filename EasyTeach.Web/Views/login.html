@@ -1,43 +1,43 @@
-<!doctype html>
+﻿<!doctype html>
 <html class="no-js" lang="en">
-  <head>
+<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Login</title>
     <link rel="stylesheet" href="../Content/stylesheets/app.css" />
     <script src="../Scripts/vendor/bower_components/modernizr/modernizr.js"></script>
-  </head>
-  <body>
+</head>
+<body>
     <div class="page-wrapper">
-      <header>
-        <div class="row"><div class="logo">EasyTeach</div></div>
-      </header>
-      <div class="page-content">
-        <div class="row">
-          <div class="large-4 medium-4 columns">
-            <div class="login-wrapper">
-              <label>Login</label>
-              <input type="email" placeholder="Login"/>
-              <label>Password</label>
-              <input type="password" placeholder="Password"/>
-              <button class="button small">Login</button>
+        <header>
+            <div class="row">
+                <div class="logo">EasyTeach</div>
             </div>
-          </div>
-          <div class="large-8 medium-4 columns">
-            <div class="image-container">
-                <!--<img src="image/icon_css.png" alt="">-->
+        </header>
+        <div class="page-content">
+            <div class="row">
+                <div class="large-4 medium-4 columns">
+                    <form id="login-form" class="login-wrapper" action="/Token">
+                        <label>Логин</label>
+                        <input type="email" name="username" placeholder="Логин" />
+                        <label>Пароль</label>
+                        <input type="password" name="password" placeholder="Пароль" />
+                        <button id="login-btn" class="easy-teach-button">Войти</button>
+                        <div>
+                            <a href="" >Восстановить пароль</a>
+                        </div>                        
+                    </form>
+                </div>
             </div>
-          </div>
         </div>
-      </div>
     </div>
     <footer>
-      <div class="row">
-        <div class="copyright">&copy; mmf 2014</div>
-      </div>
+        <div class="row">
+            <div class="copyright">&copy; mmf 2014</div>
+        </div>
     </footer>
     <script src="../Scripts/vendor/bower_components/jquery/dist/jquery.min.js"></script>
     <script src="../Scripts/vendor/bower_components/foundation/js/foundation.min.js"></script>
     <script src="../Scripts/app/app.js"></script>
-  </body>
+</body>
 </html>

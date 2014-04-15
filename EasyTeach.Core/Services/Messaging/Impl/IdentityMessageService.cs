@@ -14,10 +14,10 @@ namespace EasyTeach.Core.Services.Messaging.Impl
                 throw new ArgumentNullException("message");
             }
 
-            return;
-
             using (var smtpClient = new SmtpClient())
             {
+                smtpClient.Timeout = 3000;
+
                 await smtpClient.SendMailAsync(
                     new MailMessage(
                         new MailAddress("easyteach@example.com"),

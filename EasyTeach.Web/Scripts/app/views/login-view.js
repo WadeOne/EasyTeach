@@ -6,12 +6,11 @@ define([
 
   var LoginView = View.extend({
     // Automatically render after initialize
-    autorender: true,
-    className: 'login',
-
-    // Save the template string in a prototype property.
-    // This is overwritten with the compiled template function.
-    // In the end you might want to used precompiled templates.
+    container: '#content',
+    id: 'site-container',
+    regions: {
+      main: '#main-container'
+    },
     template: template
   });
 

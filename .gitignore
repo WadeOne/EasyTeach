@@ -4,7 +4,6 @@ _ReSharper.*
 bin
 obj
 packages
-.nuget
 *.mdf
 *.ldf
 /EasyTeach.Web/Scripts/vendor/.sass-cache

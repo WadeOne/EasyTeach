@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title></title>
+    <link rel="stylesheet" href="/Content/stylesheets/app.css" />
+</head>
+<body>
+    <div class="page-wrapper registration-page">
+        <header>
+            <div class="row">
+                <div class="logo">EasyTeach</div>
+            </div>
+        </header>
+        <nav class="top-bar" data-topbar>
+            <ul class="title-area">
+                <!-- Title Area -->
+                <li class="name"></li>
+                <!-- Remove the class "menu-icon" to get rid of menu icon. Take out "Menu" to just have icon alone -->
+                <li class="toggle-topbar menu-icon"><a href="javascript:void(0)">Menu</a></li>
+            </ul>
+            <section class="top-bar-section row">
+                <ul class="left">
+                    <li class="active"><a href="#">Студенты</a></li>
+                    <li class="divider"></li>
+                    <li><a href="./grid.html">Таблица с баллами</a></li>
+                    <li class="divider"></li>
+                    <li><a href="./add_homework.html">Список заданий</a></li>
+                    <li class="divider"></li>
+                    <li><a href="./homeworks.html">Выполненые задания</a></li>
+                    <li class="divider"></li>
+                    <li><a href="#">Тесты</a></li>
+                    <li class="divider"></li>
+                </ul>
+            </section>
+        </nav>
+    </div>
+    <footer>
+        <div class="row">
+            <div class="copyright">&copy; mmf 2014</div>
+        </div>
+    </footer>
+    <script src="/Scripts/vendor/bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="/Scripts/vendor/bower_components/foundation/js/foundation.min.js"></script>
+    <script src="/Scripts/app/app.js"></script>
+    <script src="/Scripts/app/fileUpload.js"></script>
+    <script src="/Scripts/vendor/bower_components/modernizr/modernizr.js"></script>
+    <script src="/Scripts/vendor/bower_components/requirejs/require.js"></script>
+    <script>
+        // Configure the AMD module loader
+        requirejs.config({
+            // The path where your JavaScripts are located
+            // Specify the paths of vendor libraries
+            baseUrl: './Scripts/app',
+            paths: {
+                jquery: '../vendor/bower_components/jquery/dist/jquery',
+                underscore: '../vendor/bower_components/lodash/dist/lodash',
+                backbone: '../vendor/bower_components/backbone/backbone',
+                handlebars: '../vendor/bower_components/handlebars/handlebars',
+                text: '../vendor/bower_components/requirejs-text/text',
+                chaplin: '../vendor/bower_components/chaplin/chaplin'
+            },
+            // Underscore and Backbone are not AMD-capable per default,
+            // so we need to use the AMD wrapping of RequireJS
+            shim: {
+                underscore: {
+                    exports: '_'
+                },
+                backbone: {
+                    deps: ['underscore', 'jquery'],
+                    exports: 'Backbone'
+                },
+                handlebars: {
+                    exports: 'Handlebars'
+                }
+            }
+            // For easier development, disable browser caching
+            // Of course, this should be removed in a production environment
+            //, urlArgs: 'bust=' +  (new Date()).getTime()
+        });
+
+        // Bootstrap the application
+        require(['application', 'routes'], function (Application, routes) {
+            new Application({ routes: routes, controllerSuffix: '-controller' });
+        });
+    </script>
+</body>
+</html>

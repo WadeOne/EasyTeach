@@ -310,6 +310,7 @@
     <Content Include="Scripts\app\models\base\collection.js" />
     <Content Include="Scripts\app\models\base\model.js" />
     <Content Include="Scripts\app\models\hello-world.js" />
+    <Content Include="Scripts\app\models\user-login.js" />
     <Content Include="Scripts\app\models\user.js" />
     <Content Include="Scripts\app\routes.js" />
     <Content Include="Scripts\app\templates\login.html" />

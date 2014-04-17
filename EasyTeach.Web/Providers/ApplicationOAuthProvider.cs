@@ -80,7 +80,7 @@ namespace EasyTeach.Web.Providers
         {
             IDictionary<string, string> data = new Dictionary<string, string>
             {
-                { "email", email }
+                { ClaimTypes.Email, email }
             };
 
             return new AuthenticationProperties(data);

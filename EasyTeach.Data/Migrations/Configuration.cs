@@ -1,4 +1,8 @@
+using System.Linq;
+using EasyTeach.Core.Entities;
+using EasyTeach.Core.Enums;
 using EasyTeach.Data.Context;
+using EasyTeach.Data.Entities;
 
 namespace EasyTeach.Data.Migrations
 {
@@ -14,20 +18,41 @@ namespace EasyTeach.Data.Migrations
             ContextKey = "EasyTeach.Data.Context.EasyTeachContext";
         }
 
-        protected override void Seed(EasyTeach.Data.Context.EasyTeachContext context)
+        protected override void Seed(EasyTeachContext context)
         {
-            //  This method will be called after migrating to the latest version.
+            context.Groups.AddOrUpdate(new Group
+            {
+                GroupId = 1,
+                GroupNumber = 1,
+                Year = 1953
+            });
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            context.Users.AddOrUpdate(
+            // password: testMoBiLe13
+            new UserDto
+            {
+                UserId = 2,
+                Email = "test@hiqo-solutions.com",
+                EmailIsValidated = true,
+                FirstName = "Леонид Сергеевич",
+                LastName = "Броневой",
+                PasswordHash = "ALTARCbT6yTe7DSX5LSHgKhBB0t2cR+OPUabn0vmCEmxPBIVT/jb9r64jRVfvpwD5A==",
+                UserType = UserType.Student,
+                Group = context.Groups.FirstOrDefault(g => g.GroupId == 1)
+            },
+
+            // password: testMoBiLe13
+            new UserDto
+            {
+                UserId = 1,
+                Email = "svetlana.panina@hiqo-solutions.com",
+                EmailIsValidated = true,
+                FirstName = "Светлана",
+                LastName = "Панина",
+                PasswordHash = "ALTARCbT6yTe7DSX5LSHgKhBB0t2cR+OPUabn0vmCEmxPBIVT/jb9r64jRVfvpwD5A==",
+                UserType = UserType.Teacher,
+                Group = null
+            });
         }
     }
 }

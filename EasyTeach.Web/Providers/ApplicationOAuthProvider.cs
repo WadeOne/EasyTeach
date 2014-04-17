@@ -26,7 +26,6 @@ namespace EasyTeach.Web.Providers
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            // TODO resolve dependency
             IUserService userService = _userServiceFactory();
 
             IUserIdentityModel user = await userService.FindUserByCredentialsAsync(context.UserName, context.Password);

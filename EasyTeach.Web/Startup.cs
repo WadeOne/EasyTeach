@@ -2,8 +2,16 @@
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
+using EasyTeach.Core.Entities.Data;
+using EasyTeach.Core.Services.Messaging.Impl;
 using EasyTeach.Core.Services.UserManagement;
+using EasyTeach.Core.Services.UserManagement.Impl;
+using EasyTeach.Data.Context;
+using EasyTeach.Data.Repostitories;
+using EasyTeach.Data.Repostitories.Mappers;
 using EasyTeach.Web.Providers;
+using EasyTeach.Web.Services.Messaging.Impl;
+using Microsoft.AspNet.Identity;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.OAuth;
@@ -37,6 +45,13 @@ namespace EasyTeach.Web
 
         private IUserService CreateUserService()
         {
+            // TODO: resolve dependency
+            var manager = new UserManager<IUserDto, int>(new UserStore(new UserRepository(new EasyTeachContext())));
+
+            return
+                new UserService(manager, new UserDtoMapper(),
+                    new EmailService(manager, new EmailBuilder(new TemplateProvider())));
+            /*
             IDependencyResolver resolver = GlobalConfiguration.Configuration.DependencyResolver;
             if (resolver == null)
             {
@@ -46,7 +61,7 @@ namespace EasyTeach.Web
             using (ILifetimeScope scope = resolver.GetRootLifetimeScope())
             {
                 return scope.Resolve<IUserService>();
-            }
+            }*/
         }
     }
 }

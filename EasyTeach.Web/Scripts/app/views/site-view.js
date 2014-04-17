@@ -3,9 +3,9 @@ define(['views/base/view', 'text!templates/site.html'], function(View, template)
 
   var SiteView = View.extend({
     container: 'body',
-    id: 'site-container',
+    //id: 'site-container',
     regions: {
-      main: '#main-container'
+        main: '#content'
     },
     template: template
   });

@@ -8,10 +8,8 @@ define([
     // Automatically render after initialize
     container: '#content',
     id: 'site-container',
-    regions: {
-      main: '#main-container'
-    },
-    template: template
+    template: template,
+    autoRender: true
   });
 
   return LoginView;

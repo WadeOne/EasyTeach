@@ -1,11 +1,11 @@
-define(['chaplin', 'views/login-view'], function(Chaplin, LoginView) {
+define(['chaplin', ''], function(Chaplin) {
   'use strict';
 
   var Controller = Chaplin.Controller.extend({
     // Place your application-specific controller features here.
-    beforeAction: function() {
+    /*beforeAction: function() {
       this.reuse('login', LoginView);
-    }
+    }*/
   });
 
   return Controller;

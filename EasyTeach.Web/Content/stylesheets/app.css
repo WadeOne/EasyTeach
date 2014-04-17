@@ -9430,46 +9430,27 @@ ul {
 
 /* line 65, ../scss/app.scss */
 .page-wrapper {
-  min-height: 100%;
-  height: auto !important;
-  height: 100%;
   background: rgba(224, 228, 204, 0.3);
 }
-/* line 70, ../scss/app.scss */
-.page-wrapper .page-content {
-  padding-bottom: 50px;
-}
-/* line 72, ../scss/app.scss */
+/* line 68, ../scss/app.scss */
 .page-wrapper .page-content .row {
   padding-top: 30px;
 }
-/* line 75, ../scss/app.scss */
+/* line 71, ../scss/app.scss */
 .page-wrapper .page-content label {
   font-size: 20px;
 }
-/* line 78, ../scss/app.scss */
+/* line 74, ../scss/app.scss */
 .page-wrapper .page-content .login-wrapper {
   margin: 30px 0;
 }
-/* line 81, ../scss/app.scss */
+/* line 77, ../scss/app.scss */
 .page-wrapper .page-content .image-container {
   margin: 30px 0;
 }
 
-/* line 86, ../scss/app.scss */
-footer {
-  height: 50px;
-  margin-top: -50px;
-  background: #3f4349;
-}
-/* line 90, ../scss/app.scss */
-footer .copyright {
-  color: #ffffff;
-  padding-top: 10px;
-}
-
 /*grid */
-/* line 97, ../scss/app.scss */
+/* line 84, ../scss/app.scss */
 .custom-button {
   width: 180px;
   background: #67cac7;
@@ -9478,36 +9459,36 @@ footer .copyright {
   margin-bottom: 20px;
 }
 
-/* line 104, ../scss/app.scss */
+/* line 91, ../scss/app.scss */
 .logout-button {
   float: right;
   margin-top: 10px;
 }
 
 /*homeworks page*/
-/* line 114, ../scss/app.scss */
+/* line 101, ../scss/app.scss */
 .tabs-content .accordion .content ul li {
   margin-bottom: 5px;
 }
 
-/* line 121, ../scss/app.scss */
+/* line 108, ../scss/app.scss */
 .download-all-homeworks-button {
   float: right;
   margin-right: 10px;
 }
 
-/* line 125, ../scss/app.scss */
+/* line 112, ../scss/app.scss */
 .download-single-homework-button {
   float: right;
   margin-right: 30px;
 }
 
-/* line 130, ../scss/app.scss */
+/* line 117, ../scss/app.scss */
 .loader {
   position: relative;
   min-height: 200px;
 }
-/* line 133, ../scss/app.scss */
+/* line 120, ../scss/app.scss */
 .loader:after {
   content: '';
   position: absolute;
@@ -9520,12 +9501,12 @@ footer .copyright {
   opacity: .1;
 }
 
-/* line 146, ../scss/app.scss */
+/* line 133, ../scss/app.scss */
 .top-bar .row {
   max-width: 62.5rem;
 }
 
-/* line 152, ../scss/app.scss */
+/* line 139, ../scss/app.scss */
 .file-upload {
   display: block;
   position: relative;
@@ -9539,13 +9520,13 @@ footer .copyright {
   transition: box-shadow 0.1s linear;
   margin-bottom: 30px;
 }
-/* line 164, ../scss/app.scss */
+/* line 151, ../scss/app.scss */
 .file-upload input[type=file] {
   position: absolute;
   top: 0;
   opacity: 0;
 }
-/* line 169, ../scss/app.scss */
+/* line 156, ../scss/app.scss */
 .file-upload .choose-file-button {
   display: block;
   float: right;
@@ -9558,7 +9539,7 @@ footer .copyright {
   color: #ffffff;
   font-size: 1rem;
 }
-/* line 181, ../scss/app.scss */
+/* line 168, ../scss/app.scss */
 .file-upload mark {
   display: block;
   cursor: pointer;
@@ -9568,21 +9549,21 @@ footer .copyright {
   font-size: 1rem;
 }
 
-/* line 191, ../scss/app.scss */
+/* line 178, ../scss/app.scss */
 .add-homework-wrapper textarea {
   display: inline-block;
 }
-/* line 194, ../scss/app.scss */
+/* line 181, ../scss/app.scss */
 .add-homework-wrapper #add-homework-button {
   vertical-align: top;
 }
 
-/* line 201, ../scss/app.scss */
+/* line 188, ../scss/app.scss */
 .registration-page .columns {
   padding: 0;
 }
 
-/* line 207, ../scss/app.scss */
+/* line 194, ../scss/app.scss */
 .easy-teach-button {
   display: inline-block;
   padding: 15px 20px;
@@ -9591,7 +9572,7 @@ footer .copyright {
   text-align: center;
   white-space: nowrap;
 }
-/* line 214, ../scss/app.scss */
+/* line 201, ../scss/app.scss */
 .easy-teach-button:hover {
   background: #fa6900;
   color: #ffffff;

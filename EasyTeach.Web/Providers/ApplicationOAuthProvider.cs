@@ -12,33 +12,36 @@ namespace EasyTeach.Web.Providers
 {
     public sealed class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
-        private readonly IUserService _userService;
+        private readonly Func<IUserService> _userServiceFactory;
 
-        public ApplicationOAuthProvider(IUserService userService)
+        public ApplicationOAuthProvider(Func<IUserService> userServiceFactory)
         {
-            if (userService == null)
+            if (userServiceFactory == null)
             {
-                throw new ArgumentNullException("userService");
+                throw new ArgumentNullException("userServiceFactory");
             }
 
-            _userService = userService;
+            _userServiceFactory = userServiceFactory;
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            IUserIdentityModel user = await _userService.FindUserByCredentialsAsync(context.UserName, context.Password);
+            // TODO resolve dependency
+            IUserService userService = _userServiceFactory();
+
+            IUserIdentityModel user = await userService.FindUserByCredentialsAsync(context.UserName, context.Password);
             if (user == null)
             {
                 context.SetError("invalid_grant", "The user name or password is incorrect.");
                 return;
             }
 
-            ClaimsIdentity oAuthIdentity = await _userService.CreateUserIdentityClaimsAsync(user, context.Options.AuthenticationType);
+            ClaimsIdentity oAuthIdentity = await userService.CreateUserIdentityClaimsAsync(user, context.Options.AuthenticationType);
             AuthenticationProperties properties = CreateProperties(user.Email);
             var ticket = new AuthenticationTicket(oAuthIdentity, properties);
             context.Validated(ticket);
 
-            ClaimsIdentity cookiesIdentity = await _userService.CreateUserIdentityClaimsAsync(user, CookieAuthenticationDefaults.AuthenticationType);
+            ClaimsIdentity cookiesIdentity = await userService.CreateUserIdentityClaimsAsync(user, CookieAuthenticationDefaults.AuthenticationType);
             context.Request.Context.Authentication.SignIn(cookiesIdentity);
         }
 
@@ -54,13 +57,9 @@ namespace EasyTeach.Web.Providers
 
         public override Task ValidateClientAuthentication(OAuthValidateClientAuthenticationContext context)
         {
-            // Resource owner password credentials does not provide a client ID.
-            if (context.ClientId == null)
-            {
-                context.Validated();
-            }
+            context.Validated();
 
-            return Task.FromResult<object>(null);
+            return Task.FromResult(0);
         }
 
         public override Task ValidateClientRedirectUri(OAuthValidateClientRedirectUriContext context)
@@ -75,7 +74,7 @@ namespace EasyTeach.Web.Providers
                 }
             }
 
-            return Task.FromResult<object>(null);
+            return Task.FromResult(0);
         }
 
         private static AuthenticationProperties CreateProperties(string email)

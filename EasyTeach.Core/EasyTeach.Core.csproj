@@ -84,6 +84,7 @@
     <Compile Include="Services\UserManagement\Impl\UserService.cs" />
     <Compile Include="Services\UserManagement\Impl\UserStore.cs" />
     <Compile Include="Services\UserManagement\Impl\UserTokenProvider.cs" />
+    <Compile Include="Services\UserManagement\Impl\UserValidator.cs" />
     <Compile Include="Services\UserManagement\IUserService.cs" />
     <Compile Include="Validation\EntityValidator.cs" />
     <Compile Include="Validation\IErrorsAddable.cs" />

@@ -8,11 +8,7 @@ define([
         var HomeController = Controller.extend({
             beforeAction: function () {
                 this.reuse('site', SiteView);
-                //this.reuse('login', LoginView);
             },
-            /*renderView: function () {
-                this.view = new SiteView();
-            },*/
             login: function () {
                 this.view = new LoginView({region: 'main'});
             }

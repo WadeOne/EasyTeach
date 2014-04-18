@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using System.Web.Http.Dependencies;
+using Autofac;
+using Autofac.Integration.WebApi;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Services.UserManagement;
 using Microsoft.Owin.Security;
@@ -12,36 +15,38 @@ namespace EasyTeach.Web.Providers
 {
     public sealed class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
-        private readonly Func<IUserService> _userServiceFactory;
+        private readonly IDependencyResolver _dependencyResolver;
 
-        public ApplicationOAuthProvider(Func<IUserService> userServiceFactory)
+        public ApplicationOAuthProvider(IDependencyResolver dependencyResolver)
         {
-            if (userServiceFactory == null)
+            if (dependencyResolver == null)
             {
-                throw new ArgumentNullException("userServiceFactory");
+                throw new ArgumentNullException("dependencyResolver");
             }
 
-            _userServiceFactory = userServiceFactory;
+            _dependencyResolver = dependencyResolver;
         }
 
         public override async Task GrantResourceOwnerCredentials(OAuthGrantResourceOwnerCredentialsContext context)
         {
-            IUserService userService = _userServiceFactory();
-
-            IUserIdentityModel user = await userService.FindUserByCredentialsAsync(context.UserName, context.Password);
-            if (user == null)
+            using (ILifetimeScope scope = _dependencyResolver.GetRootLifetimeScope())
             {
-                context.SetError("invalid_grant", "The user name or password is incorrect.");
-                return;
+                var userService = scope.Resolve<IUserService>();
+                IUserIdentityModel user = await userService.FindUserByCredentialsAsync(context.UserName, context.Password);
+                if (user == null)
+                {
+                    context.SetError("invalid_grant", "The user name or password is incorrect.");
+                    return;
+                }
+
+                ClaimsIdentity oAuthIdentity = await userService.CreateUserIdentityClaimsAsync(user, context.Options.AuthenticationType);
+                AuthenticationProperties properties = CreateProperties(user.Email);
+                var ticket = new AuthenticationTicket(oAuthIdentity, properties);
+                context.Validated(ticket);
+
+                ClaimsIdentity cookiesIdentity = await userService.CreateUserIdentityClaimsAsync(user, CookieAuthenticationDefaults.AuthenticationType);
+                context.Request.Context.Authentication.SignIn(cookiesIdentity);
             }
-
-            ClaimsIdentity oAuthIdentity = await userService.CreateUserIdentityClaimsAsync(user, context.Options.AuthenticationType);
-            AuthenticationProperties properties = CreateProperties(user.Email);
-            var ticket = new AuthenticationTicket(oAuthIdentity, properties);
-            context.Validated(ticket);
-
-            ClaimsIdentity cookiesIdentity = await userService.CreateUserIdentityClaimsAsync(user, CookieAuthenticationDefaults.AuthenticationType);
-            context.Request.Context.Authentication.SignIn(cookiesIdentity);
         }
 
         public override Task TokenEndpoint(OAuthTokenEndpointContext context)

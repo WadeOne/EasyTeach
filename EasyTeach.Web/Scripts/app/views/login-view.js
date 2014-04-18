@@ -5,11 +5,18 @@ define([
   'use strict';
 
   var LoginView = View.extend({
-    // Automatically render after initialize
     container: '#content',
     id: 'site-container',
     template: template,
-    autoRender: true
+    autoRender: true,
+    noWrap: true,
+    events: {
+        "click #login-btn": "userLogin"
+    },
+    userLogin: function () {
+        alert(2);
+        return false;
+    }    
   });
 
   return LoginView;

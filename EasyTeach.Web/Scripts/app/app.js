@@ -64,7 +64,7 @@ $( document ).ready(function() {
 				}
 		  });
 	 });
-	  $('#login-btn').on('click', function(event) {
+	  /*$('#login-btn').on('click', function(event) {
 	 		event.preventDefault();
 			var $form = $('#login-form'),
 				param_value = "password";
@@ -84,7 +84,7 @@ $( document ).ready(function() {
 					$form.removeClass('loader');
 				}
 		  });
-	  });
+	  });*/
 
     //set password
 	  $('#set-password-button').on('click', function (event) {

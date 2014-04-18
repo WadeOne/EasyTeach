@@ -1,11 +1,12 @@
-define(['views/base/view', 'text!templates/site.html'], function(View, template) {
+define(['views/base/view', 'text!templates/shared/site.html'], function(View, template) {
   'use strict';
 
   var SiteView = View.extend({
     container: 'body',
     //id: 'site-container',
     regions: {
-        main: '#content'
+        main: '#content',
+        menu: '#menu'
     },
     template: template
   });

@@ -203,6 +203,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -301,8 +302,8 @@
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\application.js" />
     <Content Include="Scripts\app\controllers\base\controller.js" />
-    <Content Include="Scripts\app\controllers\hello-controller.js" />
     <Content Include="Scripts\app\controllers\home-controller.js" />
+    <Content Include="Scripts\app\controllers\students-controller.js" />
     <Content Include="Scripts\app\fileUpload.js" />
     <Content Include="Scripts\app\index.html" />
     <Content Include="Scripts\app\lib\utils.js" />
@@ -310,16 +311,21 @@
     <Content Include="Scripts\app\models\base\collection.js" />
     <Content Include="Scripts\app\models\base\model.js" />
     <Content Include="Scripts\app\models\hello-world.js" />
+    <Content Include="Scripts\app\models\user-login.js" />
     <Content Include="Scripts\app\models\user.js" />
     <Content Include="Scripts\app\routes.js" />
     <Content Include="Scripts\app\templates\login.html" />
-    <Content Include="Scripts\app\templates\site.html" />
+    <Content Include="Scripts\app\templates\shared\menu.html" />
+    <Content Include="Scripts\app\templates\shared\site.html" />
+    <Content Include="Scripts\app\templates\students\grades.html" />
     <Content Include="Scripts\app\views\base\collection-view.js" />
     <Content Include="Scripts\app\views\base\view.js" />
     <Content Include="Scripts\app\views\hello-world-view.js" />
     <Content Include="Scripts\app\views\login-view.js" />
     <Content Include="Scripts\app\views\register-view.js" />
+    <Content Include="Scripts\app\views\shared\menu.js" />
     <Content Include="Scripts\app\views\site-view.js" />
+    <Content Include="Scripts\app\views\students\grades-view.js" />
     <Content Include="Scripts\jquery-ui-1.9.2.js" />
     <Content Include="Scripts\jquery-ui-1.9.2.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
@@ -651,7 +657,6 @@
     <Content Include="Scripts\vendor\robots.txt" />
     <Content Include="Scripts\WebApiTestClient.js" />
     <Content Include="Views\add_homework.html" />
-    <Content Include="Views\grid.html" />
     <Content Include="Content\image\download.png" />
     <Content Include="Content\image\email.png" />
     <Content Include="Content\image\logout.png" />

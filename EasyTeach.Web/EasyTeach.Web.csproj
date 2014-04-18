@@ -657,7 +657,6 @@
     <Content Include="Scripts\vendor\robots.txt" />
     <Content Include="Scripts\WebApiTestClient.js" />
     <Content Include="Views\add_homework.html" />
-    <Content Include="Views\grid.html" />
     <Content Include="Content\image\download.png" />
     <Content Include="Content\image\email.png" />
     <Content Include="Content\image\logout.png" />

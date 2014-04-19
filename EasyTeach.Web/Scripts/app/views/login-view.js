@@ -22,11 +22,7 @@ define([
               grant_type: 'password'
           },
         user = new UserLogin();
-        user.save(
-            {
-                data: userLoginData,
-                contentType: 'application/xxx-form-urlencoded'
-            },
+        user.save( userLoginData,
             {
             success: function () {
                 console.log(success);

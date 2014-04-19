@@ -324,6 +324,7 @@
     <Content Include="Scripts\app\templates\shared\menu.html" />
     <Content Include="Scripts\app\templates\shared\site.html" />
     <Content Include="Scripts\app\templates\students\grades.html" />
+    <Content Include="Scripts\app\utils\serialize.js" />
     <Content Include="Scripts\app\views\base\collection-view.js" />
     <Content Include="Scripts\app\views\base\view.js" />
     <Content Include="Scripts\app\views\hello-world-view.js" />

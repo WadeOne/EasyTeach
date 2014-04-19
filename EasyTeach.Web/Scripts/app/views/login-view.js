@@ -1,39 +1,35 @@
 define([
-  'views/base/view',
-  'models/user-login',
-  'text!../templates/login.html'
-], function (View, UserLogin, template) {
-  'use strict';
+    'views/base/view',
+    'models/user-login',
+    'text!templates/login.html',
+    'utils/serialize'
+], function (View, UserLogin, template, serialize) {
+    'use strict';
 
-  var LoginView = View.extend({
-    container: '#content',
-    id: 'site-container',
-    template: template,
-    autoRender: true,
-    noWrap: true,
-    events: {
-        "click #login-btn": "userLogin"
-    },
-    userLogin: function (event) {
-        var form = $('#login-form'),
-          userLoginData = {
-              username: form.find('input[name=username]').val(),
-              password: form.find('input[name=password]').val(),
-              grant_type: 'password'
-          },
-        user = new UserLogin();
-        user.save( userLoginData,
-            {
-            success: function () {
-                console.log(success);
-            },
-            error: function (e) {
-                console.log(e);
-            }
-        });
-        return false;
-    }    
-  });
+    return View.extend({
+        container: '#content',
+        id: 'site-container',
+        template: template,
+        autoRender: true,
+        noWrap: true,
+        events: {
+            "click #login-btn": "userLogin"
+        },
+        userLogin: function() {
+            var data = serialize.form(this.$('#login-form'));
 
-  return LoginView;
+            new UserLogin(data)
+                .on('success', this.loginSuccess)
+                .on('error', this.loginFail)
+                .save();
+
+            return false;
+        },
+        loginSuccess: function(data) {
+            window.alert("success: " + data);
+        },
+        loginFail: function(errorData) {
+            window.alert(errorData.statusText);
+        }
+    });
 });

@@ -236,7 +236,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\image\download_icon.png" />
     <Content Include="Content\image\loader.GIF" />
     <Content Include="Content\image\single_download_icon.png" />
     <Content Include="Content\image\single_download_icon_blue.png" />
@@ -318,6 +317,7 @@
     <Content Include="Scripts\app\models\user.js" />
     <Content Include="Scripts\app\routes.js" />
     <Content Include="Scripts\app\templates\login.html" />
+    <Content Include="Scripts\app\templates\register.html" />
     <Content Include="Scripts\app\templates\shared\menu.html" />
     <Content Include="Scripts\app\templates\shared\site.html" />
     <Content Include="Scripts\app\templates\students\grades.html" />
@@ -660,8 +660,6 @@
     <Content Include="Scripts\vendor\robots.txt" />
     <Content Include="Scripts\WebApiTestClient.js" />
     <Content Include="Views\add_homework.html" />
-    <Content Include="Content\image\download.png" />
-    <Content Include="Content\image\email.png" />
     <Content Include="Content\image\logout.png" />
     <Content Include="Content\image\single_download.png" />
     <Content Include="Views\homeworks.html" />

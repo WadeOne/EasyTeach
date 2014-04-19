@@ -1,10 +1,5 @@
-<li class="active"><a href="/register">Студенты</a></li>
-<li class="divider"></li>
-<li><a href="/students/grades">Таблица с баллами</a></li>
-<li class="divider"></li>
-<li><a href="./add_homework.html">Список заданий</a></li>
-<li class="divider"></li>
-<li><a href="./homeworks.html">Выполненные задания</a></li>
-<li class="divider"></li>
-<li><a href="#">Тесты</a></li>
-<li class="divider"></li>
+<ul class="left">
+    <% items.each(function(item) { %>
+        <%= itemTemplate(item.attributes) %>
+    <% }); %>
+</ul>

@@ -1,36 +1,30 @@
 define([
     'views/base/view',
-    'text!templates/shared/menu.html'
-], function(View, template) {
+    'text!templates/shared/menu.html',
+    'text!templates/shared/menu-item.html',
+    'models/shared/menu',
+    'underscore'
+], function(View, template, itemTemplate, menu, _) {
     'use strict';
 
-    var MenuView = View.extend({
+    return View.extend({
         container: '#menu',
-        tagName: 'ul',
-        className: 'left',
-        template: template,
+        template: _.template(template),
+        itemTemplate: itemTemplate,
+        noWrap: true,
         autoRender: true,
+        initialize: function() {
+            this.listenTo(menu, "change", this.render);
+        },
         render: function() {
-            this.$el.html(this.template);
-            var activeClass = "active";
+            var html = this.template({
+                items: menu,
+                itemTemplate: _.template(this.itemTemplate)
+            });
 
-            var $el = this.$el;
-
-            var activate = function () {
-                $el.find("li").removeClass(activeClass);
-
-                $(this).addClass(activeClass);
-            };
-
-            $el.find("li").on('click', activate);
-
-            $el.find("li a[href='/" + Backbone.history.fragment + "']")
-                .closest("li")
-                .click();
+            this.$el.html(html);
 
             return this;
         }
     });
-
-    return MenuView;
 });

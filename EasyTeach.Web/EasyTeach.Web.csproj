@@ -94,6 +94,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.identitymodel.services" />
     <Reference Include="System.Net.Http.Formatting, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -203,7 +205,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\SecurityExceptionFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -301,8 +305,8 @@
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\application.js" />
     <Content Include="Scripts\app\controllers\base\controller.js" />
-    <Content Include="Scripts\app\controllers\hello-controller.js" />
     <Content Include="Scripts\app\controllers\home-controller.js" />
+    <Content Include="Scripts\app\controllers\students-controller.js" />
     <Content Include="Scripts\app\fileUpload.js" />
     <Content Include="Scripts\app\index.html" />
     <Content Include="Scripts\app\lib\utils.js" />
@@ -314,13 +318,17 @@
     <Content Include="Scripts\app\models\user.js" />
     <Content Include="Scripts\app\routes.js" />
     <Content Include="Scripts\app\templates\login.html" />
-    <Content Include="Scripts\app\templates\site.html" />
+    <Content Include="Scripts\app\templates\shared\menu.html" />
+    <Content Include="Scripts\app\templates\shared\site.html" />
+    <Content Include="Scripts\app\templates\students\grades.html" />
     <Content Include="Scripts\app\views\base\collection-view.js" />
     <Content Include="Scripts\app\views\base\view.js" />
     <Content Include="Scripts\app\views\hello-world-view.js" />
     <Content Include="Scripts\app\views\login-view.js" />
     <Content Include="Scripts\app\views\register-view.js" />
+    <Content Include="Scripts\app\views\shared\menu.js" />
     <Content Include="Scripts\app\views\site-view.js" />
+    <Content Include="Scripts\app\views\students\grades-view.js" />
     <Content Include="Scripts\jquery-ui-1.9.2.js" />
     <Content Include="Scripts\jquery-ui-1.9.2.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />
@@ -652,7 +660,6 @@
     <Content Include="Scripts\vendor\robots.txt" />
     <Content Include="Scripts\WebApiTestClient.js" />
     <Content Include="Views\add_homework.html" />
-    <Content Include="Views\grid.html" />
     <Content Include="Content\image\download.png" />
     <Content Include="Content\image\email.png" />
     <Content Include="Content\image\logout.png" />

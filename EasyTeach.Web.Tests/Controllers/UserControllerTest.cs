@@ -1,7 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Claims;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http.Results;
 
@@ -44,7 +47,7 @@ namespace EasyTeach.Web.Tests.Controllers
 
             A.CallTo(() => user.ToUser()).Returns(userModel);
 
-            var result = _userController.Register(user).Result as OkResult;
+            OkResult result = ActWithTeacherRoleClaims(() => _userController.Register(user).Result as OkResult);
             A.CallTo(() => _userService.CreateUserAsync(userModel)).MustHaveHappened();
             Assert.NotNull(result);
         }
@@ -65,7 +68,7 @@ namespace EasyTeach.Web.Tests.Controllers
                                                                new ValidationResult("Wrong UserType", new List<string> {"UserType"}),
                                                            }));
 
-            var result = _userController.Register(user).Result as InvalidModelStateResult;
+            var result = ActWithTeacherRoleClaims(() => _userController.Register(user).Result as InvalidModelStateResult);
 
             A.CallTo(() => _userService.CreateUserAsync(userModel)).MustHaveHappened();
             Assert.NotNull(result);
@@ -168,6 +171,21 @@ namespace EasyTeach.Web.Tests.Controllers
         public void Logout_OkResultSent()
         {
             Assert.IsAssignableFrom<OkResult>(_userController.Logout());
+        }
+
+        private static T ActWithTeacherRoleClaims<T>(Func<T> action)
+        {
+            var oldPrincipal = Thread.CurrentPrincipal;
+
+            try
+            {
+                Thread.CurrentPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Role, "Teacher", ClaimValueTypes.String) }));
+                return action();
+            }
+            finally
+            {
+                Thread.CurrentPrincipal = oldPrincipal;
+            }
         }
     }
 }

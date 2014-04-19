@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IdentityModel.Services;
 using System.Linq;
+using System.Security.Permissions;
 using System.Threading.Tasks;
 using System.Web.Http;
 using EasyTeach.Core.Services.UserManagement;
@@ -36,6 +38,7 @@ namespace EasyTeach.Web.Controllers
         // POST api/User/Register
         [AllowAnonymous]
         [Route("Register")]
+        [ClaimsPrincipalPermission(SecurityAction.Demand, Resource = "User", Operation = "Register")]
         public async Task<IHttpActionResult> Register(CreateUserViewModel user)
         {
             if (user == null)

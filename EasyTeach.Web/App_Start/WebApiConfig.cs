@@ -1,6 +1,5 @@
-﻿using System.Linq;
-using System.Web.Http;
-
+﻿using System.Web.Http;
+using EasyTeach.Web.Filters;
 using Newtonsoft.Json.Serialization;
 
 namespace EasyTeach.Web
@@ -21,8 +20,7 @@ namespace EasyTeach.Web
                 defaults: new { id = RouteParameter.Optional }
             );
 
-            config.SuppressDefaultHostAuthentication();
-            config.Filters.Add(new HostAuthenticationFilter("password"));
+            config.Filters.Add(new SecurityExceptionFilterAttribute());
         }
     }
 }

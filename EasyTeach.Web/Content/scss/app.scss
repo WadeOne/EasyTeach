@@ -65,6 +65,9 @@ ul {
 .page-wrapper {
      background: rgba(224, 228, 204, 0.3);
     .page-content {
+      .columns{
+        padding: 0;
+      } 
     	.row {
     		padding-top: 30px;
     	}

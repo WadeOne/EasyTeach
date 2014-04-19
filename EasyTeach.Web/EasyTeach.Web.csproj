@@ -313,11 +313,14 @@
     <Content Include="Scripts\app\models\base\collection.js" />
     <Content Include="Scripts\app\models\base\model.js" />
     <Content Include="Scripts\app\models\hello-world.js" />
+    <Content Include="Scripts\app\models\shared\menu-item.js" />
+    <Content Include="Scripts\app\models\shared\menu.js" />
     <Content Include="Scripts\app\models\user-login.js" />
     <Content Include="Scripts\app\models\user.js" />
     <Content Include="Scripts\app\routes.js" />
     <Content Include="Scripts\app\templates\login.html" />
     <Content Include="Scripts\app\templates\register.html" />
+    <Content Include="Scripts\app\templates\shared\menu-item.html" />
     <Content Include="Scripts\app\templates\shared\menu.html" />
     <Content Include="Scripts\app\templates\shared\site.html" />
     <Content Include="Scripts\app\templates\students\grades.html" />

@@ -4,7 +4,7 @@
     'use strict';
 
     var UserLogin = Model.extend({
-       
+        url: '../Token'
     });
 
     return UserLogin;

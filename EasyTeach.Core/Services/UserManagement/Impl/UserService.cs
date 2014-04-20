@@ -18,9 +18,12 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
     {
         private readonly IUserDtoMapper _userDtoMapper;
         private readonly IEmailService _emailService;
+
+        private readonly Func<object, ValidationContext> _validationContextFactory;
+
         private readonly UserManager<IUserDto, int> _userManager;
 
-        public UserService(UserManager<IUserDto, int> userManager, IUserDtoMapper userDtoMapper, IEmailService emailService)
+        public UserService(UserManager<IUserDto, int> userManager, IUserDtoMapper userDtoMapper, IEmailService emailService, Func<object, ValidationContext> validationContextFactory)
         {
             if (userManager == null)
             {
@@ -39,6 +42,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
             _userDtoMapper = userDtoMapper;
             _emailService = emailService;
+            _validationContextFactory = validationContextFactory;
             _userManager = userManager;
         }
 
@@ -51,18 +55,18 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
             var validationResults = new List<ValidationResult>();
             bool userIsValid = Validator.TryValidateObject(newUser,
-                                                        new ValidationContext(newUser, null, null),
+                                                        _validationContextFactory(newUser),
                                                         validationResults, true);
 
-            if (!String.IsNullOrWhiteSpace(newUser.Email))
-            {
-                IUserDto user = await _userManager.FindByEmailAsync(newUser.Email);
-                if (user != null)
-                {
-                    validationResults.Add(new ValidationResult(String.Format("This email '{0}' has taken by another user", newUser.Email), new[] { "Email" }));
-                    userIsValid = false;
-                }
-            }
+            //if (!String.IsNullOrWhiteSpace(newUser.Email))
+            //{
+            //    IUserDto user = await _userManager.FindByEmailAsync(newUser.Email);
+            //    if (user != null)
+            //    {
+            //        validationResults.Add(new ValidationResult(String.Format("This email '{0}' has taken by another user", newUser.Email), new[] { "Email" }));
+            //        userIsValid = false;
+            //    }
+            //}
 
             if (userIsValid == false)
             {

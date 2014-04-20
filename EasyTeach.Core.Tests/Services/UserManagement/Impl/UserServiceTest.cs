@@ -52,7 +52,7 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
             _userManager = A.Fake<UserManager<IUserDto, int>>();
             _userDtoMapper = A.Fake<IUserDtoMapper>();
             _emailService = A.Fake<IEmailService>();
-            _userService = new UserService(_userManager, _userDtoMapper, _emailService);
+            _userService = new UserService(_userManager, _userDtoMapper, _emailService, o => new ValidationContext(o, null, null));
 
             _validUser = new User
             {

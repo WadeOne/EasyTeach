@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 
 using EasyTeach.Core.Entities.Services;
+using EasyTeach.Core.Validation.Attributes;
 
 namespace EasyTeach.Core.Entities
 {
@@ -13,6 +14,7 @@ namespace EasyTeach.Core.Entities
         public string Description { get; set; }
 
         [Required]
+        [NotEmptyCollection]
         public IEnumerable<IQuestionModel> Questions { get; set; }
     }
 }

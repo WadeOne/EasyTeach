@@ -95,6 +95,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
+    <Reference Include="System.identitymodel.services" />
     <Reference Include="System.Net.Http.Formatting, Version=5.1.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.1.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
@@ -206,6 +208,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Filters\SecurityExceptionFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -234,7 +237,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\image\download_icon.png" />
     <Content Include="Content\image\loader.GIF" />
     <Content Include="Content\image\single_download_icon.png" />
     <Content Include="Content\image\single_download_icon_blue.png" />
@@ -312,13 +314,19 @@
     <Content Include="Scripts\app\models\base\collection.js" />
     <Content Include="Scripts\app\models\base\model.js" />
     <Content Include="Scripts\app\models\hello-world.js" />
+    <Content Include="Scripts\app\models\shared\menu-item.js" />
+    <Content Include="Scripts\app\models\shared\menu.js" />
     <Content Include="Scripts\app\models\user-login.js" />
     <Content Include="Scripts\app\models\user.js" />
     <Content Include="Scripts\app\routes.js" />
+    <Content Include="Scripts\app\settings.js" />
     <Content Include="Scripts\app\templates\login.html" />
+    <Content Include="Scripts\app\templates\register.html" />
+    <Content Include="Scripts\app\templates\shared\menu-item.html" />
     <Content Include="Scripts\app\templates\shared\menu.html" />
     <Content Include="Scripts\app\templates\shared\site.html" />
     <Content Include="Scripts\app\templates\students\grades.html" />
+    <Content Include="Scripts\app\utils\serialize.js" />
     <Content Include="Scripts\app\views\base\collection-view.js" />
     <Content Include="Scripts\app\views\base\view.js" />
     <Content Include="Scripts\app\views\hello-world-view.js" />
@@ -658,8 +666,6 @@
     <Content Include="Scripts\vendor\robots.txt" />
     <Content Include="Scripts\WebApiTestClient.js" />
     <Content Include="Views\add_homework.html" />
-    <Content Include="Content\image\download.png" />
-    <Content Include="Content\image\email.png" />
     <Content Include="Content\image\logout.png" />
     <Content Include="Content\image\single_download.png" />
     <Content Include="Views\homeworks.html" />

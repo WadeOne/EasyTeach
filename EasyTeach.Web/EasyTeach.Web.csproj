@@ -303,6 +303,7 @@
     <Content Include="index.html" />
     <Content Include="Scripts\app\app.js" />
     <Content Include="Scripts\app\application.js" />
+    <Content Include="Scripts\app\config\menu.js" />
     <Content Include="Scripts\app\controllers\base\controller.js" />
     <Content Include="Scripts\app\controllers\home-controller.js" />
     <Content Include="Scripts\app\controllers\students-controller.js" />

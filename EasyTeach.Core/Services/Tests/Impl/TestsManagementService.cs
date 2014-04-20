@@ -49,11 +49,7 @@ namespace EasyTeach.Core.Services.Tests.Impl
                 throw new ArgumentNullException("newTest");
             }
 
-            var additionalValidation = new Dictionary<Func<ITestModel, bool>, ValidationResult>
-            {
-                {x => x.Questions != null && x.Questions.Any() == false, new ValidationResult("Test can't contain no questions", new[] { "Questions" })}
-            };
-            var exception = _entityValidator.ValidateEntity<ITestModel, InvalidTestException>(newTest, additionalValidation);
+            var exception = _entityValidator.ValidateEntity<ITestModel, InvalidTestException>(newTest);
             if (exception != null)
             {
                 throw exception;
@@ -71,11 +67,7 @@ namespace EasyTeach.Core.Services.Tests.Impl
                 throw new ArgumentNullException("assignedTest");
             }
 
-            var additionalValidation = new Dictionary<Func<IAssignedTestModel, bool>, ValidationResult>
-            {
-                {x => x.EndDate <= x.StartDate, new ValidationResult("EndDate must be larger than StartDate", new[] {"StartDate", "EndDate"})}
-            };
-            var exception = _entityValidator.ValidateEntity<IAssignedTestModel, InvalidAssignedTestException>(assignedTest, additionalValidation);
+            var exception = _entityValidator.ValidateEntity<IAssignedTestModel, InvalidAssignedTestException>(assignedTest);
             if (exception != null)
             {
                 throw exception;

@@ -63,6 +63,8 @@
     <Compile Include="Services\UserManagement\Impl\UserServiceTest.cs" />
     <Compile Include="Services\UserManagement\Impl\UserStoreTest.cs" />
     <Compile Include="Services\UserManagement\Impl\UserTokenProviderTest.cs" />
+    <Compile Include="Validation\Attributes\ComparisonAttributeTest.cs" />
+    <Compile Include="Validation\Attributes\NotEmptyCollectionAttributeTest.cs" />
     <Compile Include="Validation\EntityValidatorTest.cs" />
   </ItemGroup>
   <ItemGroup>

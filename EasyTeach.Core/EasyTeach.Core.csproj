@@ -88,6 +88,8 @@
     <Compile Include="Services\UserManagement\Impl\UserTokenProvider.cs" />
     <Compile Include="Services\UserManagement\Impl\UserValidator.cs" />
     <Compile Include="Services\UserManagement\IUserService.cs" />
+    <Compile Include="Validation\Attributes\ComparisonAttribute.cs" />
+    <Compile Include="Validation\Attributes\NotEmptyCollectionAttribute.cs" />
     <Compile Include="Validation\EntityValidator.cs" />
     <Compile Include="Validation\IErrorsAddable.cs" />
   </ItemGroup>

@@ -318,6 +318,7 @@
     <Content Include="Scripts\app\models\user-login.js" />
     <Content Include="Scripts\app\models\user.js" />
     <Content Include="Scripts\app\routes.js" />
+    <Content Include="Scripts\app\settings.js" />
     <Content Include="Scripts\app\templates\login.html" />
     <Content Include="Scripts\app\templates\register.html" />
     <Content Include="Scripts\app\templates\shared\menu-item.html" />

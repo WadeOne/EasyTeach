@@ -7151,7 +7151,7 @@ meta.foundation-mq-topbar {
   width: 100%;
   height: auto;
   display: block;
-  background: #333333;
+  background: #69d2e7;
   font-size: 16px;
   margin: 0;
 }
@@ -7174,7 +7174,7 @@ meta.foundation-mq-topbar {
   font-size: 1rem;
   font-weight: normal;
   text-transform: none;
-  background: #333333;
+  background: #69d2e7;
 }
 /* line 321, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_top-bar.scss */
 .top-bar-section ul li > a.button {

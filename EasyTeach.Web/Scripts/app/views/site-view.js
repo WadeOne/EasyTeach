@@ -1,9 +1,11 @@
-define(['views/base/view', 'text!templates/shared/site.html'], function(View, template) {
+define([
+    'views/base/view',
+    'text!templates/shared/site.html'
+], function(View, template) {
   'use strict';
 
-  var SiteView = View.extend({
+  return View.extend({
     container: 'body',
-      //id: 'site-container',    
     regions: {
         main: '#content',
         menu: '#menu'
@@ -12,10 +14,8 @@ define(['views/base/view', 'text!templates/shared/site.html'], function(View, te
     events: {
         "click .top-bar .menu-icon": "openMobileMenu"
     },
-    openMobileMenu: function () {
-        $('.top-bar').toggleClass('expanded');
+    openMobileMenu: function() {
+        this.$('.top-bar').toggleClass('expanded');
     }
   });
-
-  return SiteView;
 });

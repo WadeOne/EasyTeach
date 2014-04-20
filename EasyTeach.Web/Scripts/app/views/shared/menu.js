@@ -1,10 +1,9 @@
 define([
+    'underscore',
     'views/base/view',
     'text!templates/shared/menu.html',
-    'text!templates/shared/menu-item.html',
-    'models/shared/menu',
-    'underscore'
-], function(View, template, itemTemplate, menu, _) {
+    'text!templates/shared/menu-item.html'
+], function(_, View, template, itemTemplate) {
     'use strict';
 
     return View.extend({
@@ -14,11 +13,11 @@ define([
         noWrap: true,
         autoRender: true,
         initialize: function() {
-            this.listenTo(menu, "change", this.render);
+            this.listenTo(this.model, "change", this.render);
         },
         render: function() {
             var html = this.template({
-                items: menu,
+                items: this.model,
                 itemTemplate: _.template(this.itemTemplate)
             });
 

@@ -26,12 +26,11 @@ namespace EasyTeach.Web
                 Assembly.Load("EasyTeach.Core"))
                 .AsImplementedInterfaces()
                 .AsSelf()
-                .Except<EasyTeachContext>(x => x.AsSelf().InstancePerApiRequest())
+                .Except<EasyTeachContext>(x => x.AsSelf().InstancePerLifetimeScope())
                 .Except<XmlDocumentationProvider>();
 
             builder.Register<Func<IAuthenticationManager>>(c => () => c.Resolve<HttpRequestMessage>().GetOwinContext().Authentication).InstancePerApiRequest();
             builder.RegisterType<UserManager<IUserDto, int>>().AsSelf().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues);
-            builder.Register(c => new UrlHelper(c.Resolve<HttpRequestMessage>())).InstancePerApiRequest();
 
             if (beforeBuild != null)
             {

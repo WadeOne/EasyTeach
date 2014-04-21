@@ -11,6 +11,8 @@ using EasyTeach.Core.Repositories.Mappers;
 using EasyTeach.Core.Services.Tests.Exceptions;
 using EasyTeach.Core.Services.Tests.Impl;
 using EasyTeach.Core.Validation;
+using EasyTeach.Core.Validation.EntityValidator;
+
 using FakeItEasy;
 
 using Xunit;
@@ -63,7 +65,7 @@ namespace EasyTeach.Core.Tests.Services.Tests.Impl
             var testDto = A.Fake<ITestDto>();
 
             A.CallTo(() => _testDtoMapper.Map(_validTest)).Returns(testDto);
-            A.CallTo(() => _entityValidator.ValidateEntity<ITestModel, InvalidTestException>(_validTest, A<Dictionary<Func<ITestModel,bool>, ValidationResult>>.Ignored)).Returns(null);
+            A.CallTo(() => _entityValidator.ValidateEntity(_validTest)).Returns(new EntityValidationResult(true));
 
             Assert.DoesNotThrow(() => _testsManagementService.CreateTestAsync(_validTest).Wait());
             A.CallTo(() => _testDtoMapper.Map(_validTest)).MustHaveHappened();
@@ -74,15 +76,15 @@ namespace EasyTeach.Core.Tests.Services.Tests.Impl
         public void CreateTestAsync_InvalidTest_ExceptionThrown()
         {
             var invalidTest = new TestModel();
-            A.CallTo(
-                () =>
-                    _entityValidator.ValidateEntity<ITestModel, InvalidTestException>(invalidTest,
-                        A<Dictionary<Func<ITestModel, bool>, ValidationResult>>.Ignored))
-                .Returns(new InvalidTestException(new[]
-                {
-                    new ValidationResult("Name required", new[] {"Name"}),
-                    new ValidationResult("Questions must be not empty", new[] {"Questions"})
-                }));
+            A.CallTo(() => _entityValidator.ValidateEntity<ITestModel>(invalidTest))
+                .Returns(
+                    new EntityValidationResult(
+                        false,
+                        new[]
+                        {
+                            new ValidationResult("Name required", new[] { "Name" }),
+                            new ValidationResult("Questions must be not empty", new[] { "Questions" })
+                        }));
 
 
             var aggregateException = Assert.Throws<AggregateException>(() => _testsManagementService.CreateTestAsync(invalidTest).Wait());
@@ -101,7 +103,7 @@ namespace EasyTeach.Core.Tests.Services.Tests.Impl
             Assert.NotNull(exception);
             Assert.True(exception.ParamName == "newTest");
             A.CallTo(() => _testsRepository.CreateTestAsync(A<ITestDto>.Ignored)).MustNotHaveHappened();
-            A.CallTo(() => _entityValidator.ValidateEntity<ITestModel,InvalidTestException>(A<ITestModel>.Ignored, A<Dictionary<Func<ITestModel, bool>, ValidationResult>>.Ignored)).MustNotHaveHappened();
+            A.CallTo(() => _entityValidator.ValidateEntity(A<ITestModel>.Ignored)).MustNotHaveHappened();
         }
 
         [Fact]
@@ -122,8 +124,7 @@ namespace EasyTeach.Core.Tests.Services.Tests.Impl
             A.CallTo(() => _testDtoMapper.Map(_validAssignment)).Returns(assignmentDto);
             A.CallTo(
                 () =>
-                    _entityValidator.ValidateEntity<IAssignedTestModel, InvalidAssignedTestException>(_validAssignment,
-                        A<Dictionary<Func<IAssignedTestModel, bool>, ValidationResult>>.Ignored)).Returns(null);
+                    _entityValidator.ValidateEntity<IAssignedTestModel>(_validAssignment)).Returns(null);
 
             Assert.DoesNotThrow(() => _testsManagementService.AssignTestToGroupAsync(_validAssignment));
 
@@ -153,10 +154,9 @@ namespace EasyTeach.Core.Tests.Services.Tests.Impl
 
             A.CallTo(
                 () =>
-                    _entityValidator.ValidateEntity<IAssignedTestModel, InvalidAssignedTestException>(
-                        invalidAssignment, A<Dictionary<Func<IAssignedTestModel, bool>, ValidationResult>>.Ignored))
+                    _entityValidator.ValidateEntity<IAssignedTestModel>(invalidAssignment))
                 .Returns(
-                    new InvalidAssignedTestException(new[]
+                    new EntityValidationResult(false, new[]
                     {
                         new ValidationResult("Test required", new[] {"Test"}),
                         new ValidationResult("Group required", new[] {"Group"}),

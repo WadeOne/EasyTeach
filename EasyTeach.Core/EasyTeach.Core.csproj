@@ -57,6 +57,7 @@
     <Compile Include="Entities\TestModel.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\UserType.cs" />
+    <Compile Include="Helpers\AsyncHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\Data\ITestDto.cs" />
     <Compile Include="Repositories\ITestsRepository.cs" />
@@ -91,8 +92,8 @@
     <Compile Include="Validation\Attributes\UniqueEmailAttribute.cs" />
     <Compile Include="Validation\Attributes\ComparisonAttribute.cs" />
     <Compile Include="Validation\Attributes\NotEmptyCollectionAttribute.cs" />
-    <Compile Include="Validation\EntityValidator.cs" />
-    <Compile Include="Validation\IErrorsAddable.cs" />
+    <Compile Include="Validation\EntityValidator\EntityValidationResult.cs" />
+    <Compile Include="Validation\EntityValidator\EntityValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

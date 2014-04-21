@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers;
-using EasyTeach.Core.Services.Base.Exceptions;
 using EasyTeach.Core.Services.Tests.Exceptions;
-using EasyTeach.Core.Validation;
+using EasyTeach.Core.Validation.EntityValidator;
 
 namespace EasyTeach.Core.Services.Tests.Impl
 {
@@ -49,10 +47,10 @@ namespace EasyTeach.Core.Services.Tests.Impl
                 throw new ArgumentNullException("newTest");
             }
 
-            var exception = _entityValidator.ValidateEntity<ITestModel, InvalidTestException>(newTest);
-            if (exception != null)
+            var result = _entityValidator.ValidateEntity(newTest);
+            if (result.IsValid == false)
             {
-                throw exception;
+                throw new InvalidTestException(result.ValidationResults);
             }
 
             var newTestDto = _testDtoMapper.Map(newTest);
@@ -67,10 +65,10 @@ namespace EasyTeach.Core.Services.Tests.Impl
                 throw new ArgumentNullException("assignedTest");
             }
 
-            var exception = _entityValidator.ValidateEntity<IAssignedTestModel, InvalidAssignedTestException>(assignedTest);
-            if (exception != null)
+            var result = _entityValidator.ValidateEntity(assignedTest);
+            if (result != null)
             {
-                throw exception;
+                throw new InvalidAssignedTestException(result.ValidationResults);
             }
 
             var assignmentDto = _testDtoMapper.Map(assignedTest);

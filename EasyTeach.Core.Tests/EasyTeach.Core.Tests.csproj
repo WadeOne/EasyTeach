@@ -65,6 +65,7 @@
     <Compile Include="Services\UserManagement\Impl\UserTokenProviderTest.cs" />
     <Compile Include="Validation\Attributes\ComparisonAttributeTest.cs" />
     <Compile Include="Validation\Attributes\NotEmptyCollectionAttributeTest.cs" />
+    <Compile Include="Validation\Attributes\UniqueEmailAttributeTest.cs" />
     <Compile Include="Validation\EntityValidatorTest.cs" />
   </ItemGroup>
   <ItemGroup>

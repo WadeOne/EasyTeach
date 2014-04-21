@@ -3,7 +3,9 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.Design;
 using System.Net.Http;
 using System.Reflection;
+using System.Web;
 using System.Web.Http;
+using System.Web.Http.Dependencies;
 using System.Web.Mvc;
 
 using Autofac;
@@ -18,6 +20,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
 
 using UrlHelper = System.Web.Http.Routing.UrlHelper;
+using HttpDependencyResolver = System.Web.Http.Dependencies.IDependencyResolver;
+
 
 namespace EasyTeach.Web
 {
@@ -27,9 +31,6 @@ namespace EasyTeach.Web
         {
             var builder = new ContainerBuilder();
 
-            
-            IServiceProvider serviceProvider = new ServiceContainer();
-
             builder.RegisterHttpRequestMessage(GlobalConfiguration.Configuration);
 
             builder.RegisterAssemblyTypes(
@@ -38,14 +39,18 @@ namespace EasyTeach.Web
                 Assembly.Load("EasyTeach.Core"))
                 .AsImplementedInterfaces()
                 .AsSelf()
-                .Except<EasyTeachContext>(x => x.AsSelf())
+                .Except<EasyTeachContext>(x => x.AsSelf().InstancePerApiRequest())
                 .Except<XmlDocumentationProvider>();
 
             builder.RegisterType<UniqueEmailAttribute>().AsSelf().PropertiesAutowired();
             builder.Register<Func<IAuthenticationManager>>(c => () => c.Resolve<HttpRequestMessage>().GetOwinContext().Authentication).InstancePerApiRequest();
-            builder.Register<Func<object, ValidationContext>>(c => o => new ValidationContext(o, serviceProvider, null));
+            
+            builder.Register<Func<object, ValidationContext>>(c => o => new ValidationContext(o, new Adapter(), null));
+            
             builder.RegisterType<UserManager<IUserDto, int>>().AsSelf().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues);
             builder.Register(c => new UrlHelper(c.Resolve<HttpRequestMessage>())).InstancePerApiRequest();
+
+            builder.RegisterHttpRequestMessage(GlobalConfiguration.Configuration);
 
             if (beforeBuild != null)
             {
@@ -53,11 +58,20 @@ namespace EasyTeach.Web
             }
 
             IContainer container = builder.Build();
-            serviceProvider = (IServiceProvider)container;
             var resolver = new AutofacWebApiDependencyResolver(container);
             GlobalConfiguration.Configuration.DependencyResolver = resolver;
-
             //serviceProvider.AddService(typeof(IUserRepository), (serviceContainer, type) => container.Resolve<IUserRepository>());
+        }
+    }
+
+    public class Adapter : IServiceProvider
+    {
+        public object GetService(Type serviceType)
+        {
+            var message = HttpContext.Current.Items["MS_HttpRequestMessage"] as HttpRequestMessage;
+            //var message = GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(HttpRequestMessage)) as HttpRequestMessage;
+
+            return message.GetDependencyScope().GetService(serviceType);
         }
     }
 }

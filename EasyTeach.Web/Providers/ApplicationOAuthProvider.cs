@@ -10,6 +10,7 @@ using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Services.Messaging.Impl;
 using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Core.Services.UserManagement.Impl;
+using EasyTeach.Core.Validation.EntityValidator;
 using EasyTeach.Data.Context;
 using EasyTeach.Data.Repostitories;
 using EasyTeach.Data.Repostitories.Mappers;
@@ -39,7 +40,7 @@ namespace EasyTeach.Web.Providers
         {
             using (ILifetimeScope scope = _dependencyResolver.GetRootLifetimeScope())
             {
-                var userService = new UserService(new UserManager<IUserDto, int>(new UserStore(new UserRepository(new EasyTeachContext()))), new UserDtoMapper(), new EmailService(new UserManager<IUserDto, int>(new UserStore(new UserRepository(new EasyTeachContext()))), new EmailBuilder(new TemplateProvider())));
+                var userService = new UserService(new UserManager<IUserDto, int>(new UserStore(new UserRepository(new EasyTeachContext()))), new UserDtoMapper(), new EmailService(new UserManager<IUserDto, int>(new UserStore(new UserRepository(new EasyTeachContext()))), new EmailBuilder(new TemplateProvider())), new EntityValidator());
                 IUserIdentityModel user = await userService.FindUserByCredentialsAsync(context.UserName, context.Password);
                 if (user == null)
                 {

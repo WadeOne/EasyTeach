@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using EasyTeach.Core.Services.Base.Exceptions;
-using EasyTeach.Core.Validation;
+using EasyTeach.Core.Validation.EntityValidator;
+
 using Xunit;
 
 namespace EasyTeach.Core.Tests.Validation
@@ -41,61 +42,24 @@ namespace EasyTeach.Core.Tests.Validation
         }
 
         [Fact]
-        public void ValidateEntity_ValidEntityWithoutAdditionalValidation_ReturnedNull()
+        public void ValidateEntity_ValidEntityWithoutAdditionalValidation_ResultIsValid()
         {
-            var resultException =
-                _entityValidator.ValidateEntity<TestEntityWithDataAnnotations, ModelValidationException>(_validEntity);
+            var result =
+                _entityValidator.ValidateEntity(_validEntity);
 
-            Assert.Null(resultException);
+            Assert.True(result.IsValid);
         }
 
         [Fact]
-        public void ValidateEntity_ValidEntityWithAdditionalValidation_ReturnedNull()
+        public void ValidateEntity_InvalidEntityWithoutAdditionalValidation_ResultIsNotValid()
         {
-            var additionalValidation = new Dictionary<Func<TestEntityWithDataAnnotations, bool>, ValidationResult>
-            {
-                {
-                    x => x.PositiveIntegerProperty <= 0,
-                    new ValidationResult("Should be positive", new[] {"PositiveIntegerProperty"})
-                }
-            };
-            var resultException =
-                _entityValidator.ValidateEntity<TestEntityWithDataAnnotations, ModelValidationException>(_validEntity, additionalValidation);
+            var result =
+                _entityValidator.ValidateEntity(_invalidEntity);
 
-            Assert.Null(resultException);
-        }
-
-        [Fact]
-        public void ValidateEntity_InvalidEntityWithoutAdditionalValidation_ReturnedModelValidationException()
-        {
-            var resultException =
-                _entityValidator.ValidateEntity<TestEntityWithDataAnnotations, ModelValidationException>(_invalidEntity);
-
-            Assert.NotNull(resultException);
-            Assert.IsAssignableFrom<ModelValidationException>(resultException);
-            Assert.True(((ModelValidationException)resultException).ValidationResults.Any(x => x.MemberNames.First() == "RequiredStringProperty"));
-            Assert.True(((ModelValidationException)resultException).ValidationResults.All(x => x.MemberNames.First() != "NotRequiredStringProperty"));
-            Assert.True(((ModelValidationException)resultException).ValidationResults.All(x => x.MemberNames.First() != "PositiveIntegerProperty"));
-        }
-
-        [Fact]
-        public void ValidateEntity_InvalidEntityWithAdditionalValidation_ReturnedModelValidationException()
-        {
-            var additionalValidation = new Dictionary<Func<TestEntityWithDataAnnotations, bool>, ValidationResult>
-            {
-                {
-                    x => x.PositiveIntegerProperty <= 0,
-                    new ValidationResult("Should be positive", new[] {"PositiveIntegerProperty"})
-                }
-            };
-
-            var resultException =
-                _entityValidator.ValidateEntity<TestEntityWithDataAnnotations, ModelValidationException>(_invalidEntity, additionalValidation);
-            Assert.NotNull(resultException);
-            Assert.IsAssignableFrom<ModelValidationException>(resultException);
-            Assert.True(((ModelValidationException)resultException).ValidationResults.Any(x => x.MemberNames.First() == "RequiredStringProperty"));
-            Assert.True(((ModelValidationException)resultException).ValidationResults.Any(x => x.MemberNames.First() == "PositiveIntegerProperty"));
-            Assert.True(((ModelValidationException)resultException).ValidationResults.All(x => x.MemberNames.First() != "NotRequiredStringProperty"));
+            Assert.False(result.IsValid);
+            Assert.True(result.ValidationResults.Any(x => x.MemberNames.First() == "RequiredStringProperty"));
+            Assert.True(result.ValidationResults.All(x => x.MemberNames.First() != "NotRequiredStringProperty"));
+            Assert.True(result.ValidationResults.All(x => x.MemberNames.First() != "PositiveIntegerProperty"));
         }
     }
 }

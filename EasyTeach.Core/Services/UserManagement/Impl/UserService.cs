@@ -10,6 +10,8 @@ using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories.Mappers;
 using EasyTeach.Core.Services.Messaging;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
+using EasyTeach.Core.Validation.EntityValidator;
+
 using Microsoft.AspNet.Identity;
 
 namespace EasyTeach.Core.Services.UserManagement.Impl
@@ -23,7 +25,9 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
         private readonly UserManager<IUserDto, int> _userManager;
 
-        public UserService(UserManager<IUserDto, int> userManager, IUserDtoMapper userDtoMapper, IEmailService emailService, Func<object, ValidationContext> validationContextFactory = null)
+        private readonly EntityValidator _entityValidator;
+
+        public UserService(UserManager<IUserDto, int> userManager, IUserDtoMapper userDtoMapper, IEmailService emailService, EntityValidator entityValidator, Func<object, ValidationContext> validationContextFactory = null)
         {
             if (userManager == null)
             {
@@ -42,6 +46,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
             _userDtoMapper = userDtoMapper;
             _emailService = emailService;
+            _entityValidator = entityValidator;
             _validationContextFactory = validationContextFactory ?? (o => new ValidationContext(o, null, null));
             _userManager = userManager;
         }
@@ -53,27 +58,17 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
                 throw new ArgumentNullException("newUser");
             }
 
-            var validationResults = new List<ValidationResult>();
-            bool userIsValid = Validator.TryValidateObject(newUser, _validationContextFactory(newUser), validationResults, true);
-
-            //if (!String.IsNullOrWhiteSpace(newUser.Email))
-            //{
-            //    IUserDto user = await _userManager.FindByEmailAsync(newUser.Email);
-            //    if (user != null)
-            //    {
-            //        validationResults.Add(new ValidationResult(String.Format("This email '{0}' has taken by another user", newUser.Email), new[] { "Email" }));
-            //        userIsValid = false;
-            //    }
-            //}
-
-            if (userIsValid == false)
+            EntityValidationResult result = _entityValidator.ValidateEntity(newUser, _validationContextFactory(newUser));
+            
+            if (result.IsValid == false)
             {
-                throw new InvalidUserDataException(validationResults);
+                throw new InvalidUserDataException(result.ValidationResults);
             }
 
             IdentityResult identityResult = await _userManager.CreateAsync(_userDtoMapper.Map(newUser));
             if (!identityResult.Succeeded)
             {
+                var validationResults = new List<ValidationResult>(result.ValidationResults);
                 validationResults.AddRange(identityResult.Errors.Select(e => new ValidationResult(e)));
                 throw new InvalidUserDataException(validationResults);
             }

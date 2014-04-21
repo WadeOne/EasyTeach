@@ -38,7 +38,7 @@ namespace EasyTeach.Web.Controllers
         // POST api/User/Register
         [AllowAnonymous]
         [Route("Register")]
-        [ClaimsPrincipalPermission(SecurityAction.Demand, Resource = "User", Operation = "Register")]
+        //[ClaimsPrincipalPermission(SecurityAction.Demand, Resource = "User", Operation = "Register")]
         public async Task<IHttpActionResult> Register(CreateUserViewModel user)
         {
             if (user == null)
@@ -54,7 +54,7 @@ namespace EasyTeach.Web.Controllers
             {
                 foreach (var validationResult in exception.ValidationResults)
                 {
-                    ModelState.AddModelError(validationResult.MemberNames.First(), validationResult.ErrorMessage);
+                    ModelState.AddModelError(validationResult.MemberNames.FirstOrDefault(), validationResult.ErrorMessage);
                 }
 
                 return BadRequest(ModelState);

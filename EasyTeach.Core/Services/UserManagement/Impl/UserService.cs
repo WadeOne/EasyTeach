@@ -23,7 +23,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
         private readonly UserManager<IUserDto, int> _userManager;
 
-        public UserService(UserManager<IUserDto, int> userManager, IUserDtoMapper userDtoMapper, IEmailService emailService, Func<object, ValidationContext> validationContextFactory)
+        public UserService(UserManager<IUserDto, int> userManager, IUserDtoMapper userDtoMapper, IEmailService emailService, Func<object, ValidationContext> validationContextFactory = null)
         {
             if (userManager == null)
             {
@@ -42,7 +42,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
             _userDtoMapper = userDtoMapper;
             _emailService = emailService;
-            _validationContextFactory = validationContextFactory;
+            _validationContextFactory = validationContextFactory ?? (o => new ValidationContext(o, null, null));
             _userManager = userManager;
         }
 
@@ -54,9 +54,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             }
 
             var validationResults = new List<ValidationResult>();
-            bool userIsValid = Validator.TryValidateObject(newUser,
-                                                        _validationContextFactory(newUser),
-                                                        validationResults, true);
+            bool userIsValid = Validator.TryValidateObject(newUser, _validationContextFactory(newUser), validationResults, true);
 
             //if (!String.IsNullOrWhiteSpace(newUser.Email))
             //{

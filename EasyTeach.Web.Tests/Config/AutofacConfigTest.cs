@@ -23,15 +23,7 @@ namespace EasyTeach.Web.Tests.Config
         public AutofacConfigTest()
         {
             AutofacConfig.RegisterDependencies(builder => builder.RegisterType<EasyTeachContext>().AsSelf());
-            
             _resolver = GlobalConfiguration.Configuration.DependencyResolver;
-        }
-
-        [Fact]
-        public void ClassesRegistered_RequestedInstanceRegisteredAsPerApiRequest_ExceptionThrown()
-        {
-            AutofacConfig.RegisterDependencies();
-            Assert.Throws<DependencyResolutionException>(() => GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(EasyTeachContext)));
         }
 
         [Theory]
@@ -39,6 +31,7 @@ namespace EasyTeach.Web.Tests.Config
         [InlineData(typeof(UserStore))]
         [InlineData(typeof(IUserDtoMapper))]
         [InlineData(typeof(UserTokenProvider))]
+        [InlineData(typeof(EasyTeachContext))]
         public void RegisterDependencies_ResolvedTypeCorrectly(Type typeToResolve)
         {
             object instance = _resolver.GetService(typeToResolve);

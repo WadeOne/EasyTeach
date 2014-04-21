@@ -1,23 +1,41 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Repositories;
+using EasyTeach.Core.Repositories.Mappers;
 using Microsoft.AspNet.Identity;
 
 namespace EasyTeach.Core.Services.UserManagement.Impl
 {
-    public sealed class UserStore : IUserPasswordStore<IUserDto, int>, IUserEmailStore<IUserDto, int>
+    public sealed class UserStore : IUserPasswordStore<IUserDto, int>, IUserEmailStore<IUserDto, int>, IUserClaimStore<IUserDto, int>
     {
         private readonly IUserRepository _userRepository;
+        private readonly IUserClaimRepository _userClaimRepository;
+        private readonly IUserClaimDtoMapper _userClaimDtoMapper;
 
-        public UserStore(IUserRepository userRepository)
+        public UserStore(IUserRepository userRepository, IUserClaimRepository userClaimRepository, IUserClaimDtoMapper userClaimDtoMapper)
         {
             if (userRepository == null)
             {
                 throw new ArgumentNullException("userRepository");
             }
 
+            if (userClaimRepository == null)
+            {
+                throw new ArgumentNullException("userClaimRepository");
+            }
+
+            if (userClaimDtoMapper == null)
+            {
+                throw new ArgumentNullException("userClaimDtoMapper");
+            }
+
             _userRepository = userRepository;
+            _userClaimRepository = userClaimRepository;
+            _userClaimDtoMapper = userClaimDtoMapper;
         }
 
         public void Dispose()
@@ -148,6 +166,51 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             }
 
             return _userRepository.GetUserByEmail(email);
+        }
+
+        public Task<IList<Claim>> GetClaimsAsync(IUserDto user)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            var claims = _userClaimRepository.GetUserClaims(user.UserId)
+                .AsEnumerable()
+                .Select(c => new Claim(c.Type, c.Value, c.ValueType))
+                .ToList();
+
+            return Task.FromResult((IList<Claim>)claims);
+        }
+
+        public Task AddClaimAsync(IUserDto user, Claim claim)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            if (claim == null)
+            {
+                throw new ArgumentNullException("claim");
+            }
+
+            return _userClaimRepository.AddClaimAsync(_userClaimDtoMapper.Map(user, claim));
+        }
+
+        public Task RemoveClaimAsync(IUserDto user, Claim claim)
+        {
+            if (user == null)
+            {
+                throw new ArgumentNullException("user");
+            }
+
+            if (claim == null)
+            {
+                throw new ArgumentNullException("claim");
+            }
+
+            return _userClaimRepository.RemoveClaimAsync(_userClaimDtoMapper.Map(user, claim));
         }
     }
 }

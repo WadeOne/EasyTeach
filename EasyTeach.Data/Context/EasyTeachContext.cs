@@ -11,5 +11,7 @@ namespace EasyTeach.Data.Context
         public virtual IDbSet<Group> Groups { get; set; }
 
         public virtual IDbSet<UserTokenDto> UserTokens { get; set; }
+
+        public virtual IDbSet<UserClaimDto> UserClaims { get; set; }
     }
 }

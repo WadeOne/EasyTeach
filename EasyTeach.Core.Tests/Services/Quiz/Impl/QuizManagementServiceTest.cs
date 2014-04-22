@@ -87,7 +87,7 @@ namespace EasyTeach.Core.Tests.Services.Quiz.Impl
 
 
             var aggregateException = Assert.Throws<AggregateException>(() => quizManagementService.CreateQuizAsync(invalidTest).Wait());
-            var exception = (InvalidTestException)aggregateException.GetBaseException();
+            var exception = (InvalidQuizException)aggregateException.GetBaseException();
 
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "Name"));
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "Questions"));

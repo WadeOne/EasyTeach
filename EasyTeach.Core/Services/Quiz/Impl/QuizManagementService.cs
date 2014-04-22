@@ -49,7 +49,7 @@ namespace EasyTeach.Core.Services.Quiz.Impl
             var result = _entityValidator.ValidateEntity(newQuiz);
             if (result.IsValid == false)
             {
-                throw new InvalidTestException(result.ValidationResults);
+                throw new InvalidQuizException(result.ValidationResults);
             }
 
             var newQuizDto = _quizDtoMapper.Map(newQuiz);

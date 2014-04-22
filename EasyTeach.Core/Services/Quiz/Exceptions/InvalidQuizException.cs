@@ -5,13 +5,13 @@ using EasyTeach.Core.Services.Base.Exceptions;
 
 namespace EasyTeach.Core.Services.Quiz.Exceptions
 {
-    public class InvalidTestException : ModelValidationException
+    public class InvalidQuizException : ModelValidationException
     {
-        public InvalidTestException(IEnumerable<ValidationResult> validationResults) : base(validationResults)
+        public InvalidQuizException(IEnumerable<ValidationResult> validationResults) : base(validationResults)
         {
         }
 
-        public InvalidTestException()
+        public InvalidQuizException()
         {
         }
     }

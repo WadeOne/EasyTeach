@@ -79,7 +79,7 @@
     <Compile Include="Entities\Services\IAssignedTestModel.cs" />
     <Compile Include="Services\Quiz\Exceptions\InvalidAssignedTestException.cs" />
     <Compile Include="Services\Quiz\Impl\QuizManagementService.cs" />
-    <Compile Include="Services\Quiz\Exceptions\InvalidTestException.cs" />
+    <Compile Include="Services\Quiz\Exceptions\InvalidQuizException.cs" />
     <Compile Include="Services\Quiz\IQuizManagementService.cs" />
     <Compile Include="Entities\Services\IQuizModel.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidSetPasswordOperationException.cs" />

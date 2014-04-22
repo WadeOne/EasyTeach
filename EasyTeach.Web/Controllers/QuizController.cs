@@ -1,10 +1,13 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 
 using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Services.Quiz;
+using EasyTeach.Core.Services.Quiz.Exceptions;
+using EasyTeach.Core.Validation.EntityValidator;
 
 namespace EasyTeach.Web.Controllers
 {
@@ -14,13 +17,35 @@ namespace EasyTeach.Web.Controllers
 
         public QuizController(IQuizManagementService quizManagementService)
         {
+            if (quizManagementService == null)
+            {
+                throw new ArgumentNullException("quizManagementService");
+            }
+
             _quizManagementService = quizManagementService;
         }
 
-        public async Task<IHttpActionResult> CreateTest(CreateQuizViewModel newQuizViewModel)
+        public async Task<IHttpActionResult> CreateQuiz(CreateQuizViewModel newQuizViewModel)
         {
+            if (newQuizViewModel == null)
+            {
+                throw new ArgumentNullException("newQuizViewModel");
+            }
+
             IQuizModel quizModel = newQuizViewModel.ToQuizModel();
-            var createdQuiz = await _quizManagementService.CreateQuizAsync(quizModel);
+            IQuizModel createdQuiz;
+            try
+            {
+                createdQuiz = await _quizManagementService.CreateQuizAsync(quizModel);
+            }
+            catch (InvalidQuizException exception)
+            {
+                foreach (var validationResult in exception.ValidationResults)
+                {
+                    ModelState.AddModelError(validationResult.MemberNames.FirstOrDefault(), validationResult.ErrorMessage);
+                }
+                return BadRequest(ModelState);
+            }
             return Ok(createdQuiz);
         }
     }
@@ -31,7 +56,7 @@ namespace EasyTeach.Web.Controllers
 
         public string Description { get; set; }
 
-        public QuizModel ToQuizModel()
+        public virtual QuizModel ToQuizModel()
         {
             return new QuizModel { Description = Description, Name = Name };
         }

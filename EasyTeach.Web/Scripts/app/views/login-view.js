@@ -13,7 +13,7 @@ define([
         autoRender: true,
         noWrap: true,
         events: {
-            "click #login-btn": "userLogin"
+            "submit #login-form": "userLogin"
         },
         initialize: function() {
             this.model = new UserLogin();

@@ -11,9 +11,10 @@ using System.Net.Http.Formatting;
 using System.Net.Http.Headers;
 using System.Web.Http.Description;
 using System.Xml.Linq;
+
 using Newtonsoft.Json;
 
-namespace EasyTeach.Web.Areas.HelpPage
+namespace EasyTeach.Web.Areas.HelpPage.SampleGeneration
 {
     /// <summary>
     /// This class will generate the samples for the help page.

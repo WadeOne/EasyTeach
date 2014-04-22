@@ -1,6 +1,6 @@
 ﻿namespace EasyTeach.Core.Entities.Data
 {
-    public interface ITestDto
+    public interface IQuizDto
     {
     }
 }

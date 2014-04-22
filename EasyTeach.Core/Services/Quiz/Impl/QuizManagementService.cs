@@ -1,14 +1,13 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Threading.Tasks;
+
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers;
-using EasyTeach.Core.Services.Tests.Exceptions;
+using EasyTeach.Core.Services.Quiz.Exceptions;
 using EasyTeach.Core.Validation.EntityValidator;
 
-namespace EasyTeach.Core.Services.Tests.Impl
+namespace EasyTeach.Core.Services.Quiz.Impl
 {
     public class QuizManagementService : IQuizManagementService
     {
@@ -40,7 +39,7 @@ namespace EasyTeach.Core.Services.Tests.Impl
             _entityValidator = entityValidator;
         }
 
-        public async Task CreateTestAsync(IQuizModel newQuiz)
+        public async Task<IQuizModel> CreateQuizAsync(IQuizModel newQuiz)
         {
             if (newQuiz == null)
             {
@@ -53,12 +52,14 @@ namespace EasyTeach.Core.Services.Tests.Impl
                 throw new InvalidTestException(result.ValidationResults);
             }
 
-            var newTestDto = _quizDtoMapper.Map(newQuiz);
+            var newQuizDto = _quizDtoMapper.Map(newQuiz);
 
-            await _quizRepository.CreateTestAsync(newTestDto);
+            await _quizRepository.CreateQuizAsync(newQuizDto);
+
+            return _quizDtoMapper.Map(newQuizDto);
         }
 
-        public async Task AssignTestToGroupAsync(IAssignedTestModel assignedTest)
+        public async Task AssignQuizToGroupAsync(IAssignedTestModel assignedTest)
         {
             if (assignedTest == null)
             {

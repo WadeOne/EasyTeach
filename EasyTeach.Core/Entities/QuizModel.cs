@@ -8,6 +8,8 @@ namespace EasyTeach.Core.Entities
 {
     public class QuizModel : IQuizModel
     {
+        public int Id { get; private set; }
+
         [Required]
         public string Name { get; set; }
 

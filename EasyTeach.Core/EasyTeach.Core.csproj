@@ -60,7 +60,7 @@
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Helpers\AsyncHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entities\Data\ITestDto.cs" />
+    <Compile Include="Entities\Data\IQuizDto.cs" />
     <Compile Include="Repositories\IQuizRepository.cs" />
     <Compile Include="Repositories\IUserClaimRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
@@ -77,10 +77,10 @@
     <Compile Include="Services\Messaging\Impl\IdentityMessageService.cs" />
     <Compile Include="Repositories\Mappers\IQuizDtoMapper.cs" />
     <Compile Include="Entities\Services\IAssignedTestModel.cs" />
-    <Compile Include="Services\Tests\Exceptions\InvalidAssignedTestException.cs" />
-    <Compile Include="Services\Tests\Impl\QuizManagementService.cs" />
-    <Compile Include="Services\Tests\Exceptions\InvalidTestException.cs" />
-    <Compile Include="Services\Tests\IQuizManagementService.cs" />
+    <Compile Include="Services\Quiz\Exceptions\InvalidAssignedTestException.cs" />
+    <Compile Include="Services\Quiz\Impl\QuizManagementService.cs" />
+    <Compile Include="Services\Quiz\Exceptions\InvalidTestException.cs" />
+    <Compile Include="Services\Quiz\IQuizManagementService.cs" />
     <Compile Include="Entities\Services\IQuizModel.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidSetPasswordOperationException.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidEmailConfirmationOperationException.cs" />

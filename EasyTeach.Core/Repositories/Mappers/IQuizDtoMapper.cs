@@ -5,7 +5,9 @@ namespace EasyTeach.Core.Repositories.Mappers
 {
     public interface IQuizDtoMapper
     {
-        ITestDto Map(IQuizModel quiz);
+        IQuizDto Map(IQuizModel quiz);
+
+        IQuizModel Map(IQuizDto quizDto);
 
         IAssignedTestDto Map(IAssignedTestModel assignedTest);
     }

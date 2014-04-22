@@ -84,6 +84,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repostitories\Mappers\QuizDtoMapper.cs" />
     <Compile Include="Repostitories\Mappers\UserClaimDtoMapper.cs" />
     <Compile Include="Repostitories\Mappers\UserDtoMapper.cs" />
     <Compile Include="Repostitories\QuizRepository.cs" />

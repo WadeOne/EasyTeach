@@ -26,7 +26,7 @@
         resetPasswordSuccess: function (data) {
             window.alert("success: " + data);
         },
-        resetPasswordFail: function (errorData) {
+        resetPasswordFail: function (model, errorData) {
             window.alert(errorData.statusText);
         }
     });

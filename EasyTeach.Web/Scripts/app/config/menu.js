@@ -4,7 +4,7 @@ define(function() {
     return [
         {route: "/register", name: "Студенты"},
         {route: "/students/grades", name: "Таблица с баллами"},
-        {route: "./add_homework.html", name: "Список заданий"},
+        { route: "/addhomeworks", name: "Список заданий" },
         {route: "./homeworks.html", name: "Выполненные задания"}
     ];
 });

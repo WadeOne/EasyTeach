@@ -302,7 +302,14 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="index.html" />
     <Content Include="Scripts\app\**\*.js" />
-    <Content Include="Scripts\app\**\*.html" />
+    <Content Include="Scripts\app\index.html" />
+    <Content Include="Scripts\app\templates\add-homeworks.html" />
+    <Content Include="Scripts\app\templates\login.html" />
+    <Content Include="Scripts\app\templates\register.html" />
+    <Content Include="Scripts\app\templates\shared\menu-item.html" />
+    <Content Include="Scripts\app\templates\shared\menu.html" />
+    <Content Include="Scripts\app\templates\shared\site.html" />
+    <Content Include="Scripts\app\templates\students\grades.html" />
     <Content Include="Scripts\jquery-ui-1.9.2.js" />
     <Content Include="Scripts\jquery-ui-1.9.2.min.js" />
     <Content Include="Scripts\knockout-2.2.0.debug.js" />

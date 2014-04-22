@@ -7,5 +7,6 @@ define(function() {
     match('', 'home#login');
     match('register', 'home#register');
     match('students/grades', 'students#grades');
+    match('addhomeworks', 'home#addHomeworks');
   };
 });

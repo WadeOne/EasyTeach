@@ -1,0 +1,72 @@
+﻿<form class="row">
+    <div class="large-6 medium-6 columns">
+        <h3>Добавить задание</h3>
+        <div class="row">
+            <div class="large-10 columns">
+                <input type="File" placeholder="Add file" />
+                <!-- if description is empty use the name of the file -->
+                <textarea type="password" placeholder="Description"></textarea>
+            </div>
+            <div class="large-2 columns">
+                <a href="" class="easy-teach-button add-homework-button">Добавить задание</a>
+            </div>
+        </div>
+    </div>
+</form>
+<div class="row">
+    <h3>Список заданий</h3>
+    <dl class="tabs" data-tab>
+        <dd class="active"><a href="#first-term">1 семестр</a></dd>
+        <dd><a href="#second-term">2 семестр</a></dd>
+    </dl>
+    <div class="tabs-content">
+        <div class="content active" id="first-term">
+            <dl class="accordion" data-accordion>
+                <dd class="active">
+                    <a href="#panel1"><span>04.04.2014</span>
+                        <img class="download-all-homeworks-button" src="../../../Content/image/download_icon.png" /></a>
+                    <div id="panel1" class="content active">
+                        <ul class="no-bullet">
+                            <li><span>List item with a much longer description or more content.</span>
+                                <img class="download-single-homework-button" src="../../../Content/image/single_download_icon_blue.png" /></li>
+                            <li><span>List item</span>
+                                <img class="download-single-homework-button" src="../../../Content/image/single_download_icon_blue.png" /></li>
+                            <li><span>List item</span>
+                                <img class="download-single-homework-button" src="../../../Content/image/single_download_icon_blue.png" /></li>
+                            <li><span>List item</span>
+                                <img class="download-single-homework-button" src="../../../Content/image/single_download_icon_blue.png" /></li>
+                            <li><span>List item</span>
+                                <img class="download-single-homework-button" src="../../../Content/image/single_download_icon_blue.png" /></li>
+                        </ul>
+                    </div>
+                </dd>
+                <dd>
+                    <a href="#panel2"><span>11.04.2014</span>
+                        <img class="download-all-homeworks-button" src="../../../Content/image/download_icon.png" /></a>
+                    <div id="panel2" class="content">
+                        <ul class="no-bullet">
+                            <li>List item with a much longer description or more content.
+                                <img class="download-single-homework-button" src="../../../Content/image/single_download_icon_blue.png" /></li>
+                            <li>List item</li>
+                            <li>List item</li>
+                        </ul>
+                    </div>
+                </dd>
+                <dd>
+                    <a href="#panel3"><span>18.04.2014</span>
+                        <img class="download-all-homeworks-button" src="../../../Content/image/download_icon.png" /></a>
+                    <div id="panel3" class="content">
+                        <ul class="no-bullet">
+                            <li>List item
+                                <img class="download-single-homework-button" src="../../../Content/image/single_download_icon_blue.png" /></li>
+                            <li>List item</li>
+                            <li>List item</li>
+                        </ul>
+                    </div>
+                </dd>
+            </dl>
+        </div>
+        <div class="content" id="second-term">
+        </div>
+    </div>
+</div>

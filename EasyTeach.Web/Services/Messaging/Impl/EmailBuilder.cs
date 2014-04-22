@@ -83,13 +83,20 @@ namespace EasyTeach.Web.Services.Messaging.Impl
 
         private string ReplaceMetaTagsWithUserData(string line, IUserDto userDto, string token)
         {
-            return line.Replace("{{FirstName}}", userDto.FirstName)
+            line = line.Replace("{{FirstName}}", userDto.FirstName)
                        .Replace("{{LastName}}", userDto.LastName)
-                       .Replace("{{GroupNumber}}", userDto.Group.GroupNumber.ToString(CultureInfo.InvariantCulture))
-                       .Replace("{{GroupYear}}", userDto.Group.Year.ToString(CultureInfo.InvariantCulture))
                        .Replace("{{Email}}", userDto.Email)
                        .Replace("{{Token}}", token)
                        .Replace("{{UserId}}", userDto.UserId.ToString(CultureInfo.InvariantCulture));
+
+            if (userDto.Group != null)
+            {
+                line = line
+                    .Replace("{{GroupNumber}}", userDto.Group.GroupNumber.ToString(CultureInfo.InvariantCulture))
+                    .Replace("{{GroupYear}}", userDto.Group.Year.ToString(CultureInfo.InvariantCulture));
+            }
+
+            return line;
         }
     }
 }

@@ -53,7 +53,7 @@ namespace EasyTeach.Web.Controllers
             {
                 foreach (var validationResult in exception.ValidationResults)
                 {
-                    ModelState.AddModelError(validationResult.MemberNames.First(), validationResult.ErrorMessage);
+                    ModelState.AddModelError(validationResult.MemberNames.FirstOrDefault(), validationResult.ErrorMessage);
                 }
 
                 return BadRequest(ModelState);

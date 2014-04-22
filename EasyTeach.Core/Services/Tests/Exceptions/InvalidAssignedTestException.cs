@@ -7,7 +7,7 @@ namespace EasyTeach.Core.Services.Tests.Exceptions
 {
     public class InvalidAssignedTestException : ModelValidationException
     {
-        public InvalidAssignedTestException(IList<ValidationResult> validationResults) : base(validationResults)
+        public InvalidAssignedTestException(IEnumerable<ValidationResult> validationResults) : base(validationResults)
         {
         }
 

@@ -7,7 +7,7 @@ namespace EasyTeach.Core.Repositories
 {
     public interface IQuizRepository
     {
-        Task CreateQuizAsync(IQuizDto quizDto);
-        Task AssignTestAsync(IAssignedTestDto assignedTest);
+        Task CreateQuizAsync(IQuizDto quiz);
+        Task AssignQuizAsync(IAssignedTestDto assignedTest);
     }
 }

@@ -74,7 +74,7 @@ namespace EasyTeach.Core.Services.Quiz.Impl
 
             var assignmentDto = _quizDtoMapper.Map(assignedTest);
 
-            await _quizRepository.AssignTestAsync(assignmentDto);
+            await _quizRepository.AssignQuizAsync(assignmentDto);
         }
 
         

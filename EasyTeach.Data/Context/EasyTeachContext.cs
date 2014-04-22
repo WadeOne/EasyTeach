@@ -13,5 +13,8 @@ namespace EasyTeach.Data.Context
         public virtual IDbSet<UserTokenDto> UserTokens { get; set; }
 
         public virtual IDbSet<UserClaimDto> UserClaims { get; set; }
+
+        //TODO Add migration after implementing Dto
+        public virtual IDbSet<QuizDto> Quizes { get; set; }
     }
 }

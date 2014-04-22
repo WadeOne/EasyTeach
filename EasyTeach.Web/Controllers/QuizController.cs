@@ -2,12 +2,11 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
-
-using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Services.Quiz;
 using EasyTeach.Core.Services.Quiz.Exceptions;
 using EasyTeach.Core.Validation.EntityValidator;
+using EasyTeach.Web.Models.ViewModels;
 
 namespace EasyTeach.Web.Controllers
 {
@@ -47,18 +46,6 @@ namespace EasyTeach.Web.Controllers
                 return BadRequest(ModelState);
             }
             return Ok(createdQuiz);
-        }
-    }
-
-    public class CreateQuizViewModel
-    {
-        public string Name { get; set; }
-
-        public string Description { get; set; }
-
-        public virtual QuizModel ToQuizModel()
-        {
-            return new QuizModel { Description = Description, Name = Name };
         }
     }
 }

@@ -38,6 +38,7 @@
     <Compile Include="Context\FakeDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repostitories\Mappers\UserDtoMapperTest.cs" />
+    <Compile Include="Repostitories\QuizRepositoryTest.cs" />
     <Compile Include="Repostitories\UserClaimRepositoryTest.cs" />
     <Compile Include="Repostitories\UserRepositoryTest.cs" />
     <Compile Include="Repostitories\UserTokenRepositoryTests.cs" />

@@ -128,7 +128,7 @@ namespace EasyTeach.Core.Tests.Services.Quiz.Impl
             Assert.DoesNotThrow(() => quizManagementService.AssignQuizToGroupAsync(_validAssignment));
 
             A.CallTo(() => _quizDtoMapper.Map(_validAssignment)).MustHaveHappened();
-            A.CallTo(() => quizRepository.AssignTestAsync(assignmentDto)).MustHaveHappened();
+            A.CallTo(() => quizRepository.AssignQuizAsync(assignmentDto)).MustHaveHappened();
         }
 
         [Fact]

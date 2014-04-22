@@ -10,7 +10,7 @@ using EasyTeach.Core.Services.Quiz.Exceptions;
 using EasyTeach.Core.Services.Quiz.Impl;
 using EasyTeach.Core.Validation.EntityValidator;
 using EasyTeach.Web.Controllers;
-
+using EasyTeach.Web.Models.ViewModels;
 using FakeItEasy;
 
 using Xunit;
@@ -46,7 +46,7 @@ namespace EasyTeach.Web.Tests.Controllers
             A.CallTo(() => _quizManagementService.CreateQuizAsync(_quizModelWithoutId)).Returns(_quizModelWithId);
             A.CallTo(() => _quizModelWithId.Id).Returns(1);
 
-            var result = _controller.CreateTest(_createQuizViewModel).Result as OkNegotiatedContentResult<IQuizModel>;
+            var result = _controller.CreateQuiz(_createQuizViewModel).Result as OkNegotiatedContentResult<IQuizModel>;
             Assert.NotNull(result);
             A.CallTo(() => _quizManagementService.CreateQuizAsync(_quizModelWithoutId)).MustHaveHappened();
             Assert.Equal(_quizModelWithId.Id, result.Content.Id);
@@ -63,7 +63,7 @@ namespace EasyTeach.Web.Tests.Controllers
                         new ValidationResult("Name is required", new[] {"Name"})
                     }));
 
-            var result = _controller.CreateTest(_createQuizViewModel).Result as InvalidModelStateResult;
+            var result = _controller.CreateQuiz(_createQuizViewModel).Result as InvalidModelStateResult;
 
             Assert.NotNull(result);
             Assert.True(result.ModelState.Any(ei => ei.Key == "Name"));
@@ -72,7 +72,7 @@ namespace EasyTeach.Web.Tests.Controllers
         [Fact]
         public void CreateQuiz_NullQuiz_ArgumentNullExceptionThrown()
         {
-            var aggregateException = Assert.Throws<AggregateException>(() => _controller.CreateTest(null).Wait());
+            var aggregateException = Assert.Throws<AggregateException>(() => _controller.CreateQuiz(null).Wait());
             var baseException = aggregateException.GetBaseException() as ArgumentNullException;
 
             Assert.NotNull(baseException);

@@ -132,21 +132,6 @@ namespace EasyTeach.Core.Tests.Services.Tests.Impl
             A.CallTo(() => _testsRepository.AssignTestAsync(assignmentDto)).MustHaveHappened();
         }
 
-        //[Fact]
-        //public void AssignTestToGroupAsync_AssignmentWithTimeSpan_Assigned()
-        //{
-        //    _validAssignment.StartDate = DateTime.Now;
-        //    _validAssignment.EndDate = DateTime.Now.AddHours(1);
-        //    var assignmentDto = A.Fake<IAssignedTestDto>();
-
-        //    A.CallTo(() => _testDtoMapper.Map(_validAssignment)).Returns(assignmentDto);
-
-        //    Assert.DoesNotThrow(() => _testsManagementService.AssignTestToGroupAsync(_validAssignment));
-
-        //    A.CallTo(() => _testDtoMapper.Map(_validAssignment)).MustHaveHappened();
-        //    A.CallTo(() => _testsRepository.AssignTestAsync(assignmentDto)).MustHaveHappened();
-        //}
-
         [Fact]
         public void AssignTestToGroupAsync_InvalidAssignment_ExceptionThrown()
         {
@@ -168,19 +153,6 @@ namespace EasyTeach.Core.Tests.Services.Tests.Impl
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "Test"));
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "Group"));
         }
-
-        //[Fact]
-        //public void AssignTestToGroupAsync_InvalidDateSpan_ExceptionThrown()
-        //{
-        //    _validAssignment.StartDate = DateTime.Now;
-        //    _validAssignment.EndDate = _validAssignment.StartDate.Value.Subtract(new TimeSpan(1, 0, 0));
-
-        //    var aggregateException = Assert.Throws<AggregateException>(() => _testsManagementService.AssignTestToGroupAsync(_validAssignment).Wait());
-        //    var exception = (InvalidAssignedTestException)aggregateException.GetBaseException(); 
-
-        //    Assert.True(exception.ValidationResults.Any(x => x.MemberNames.Any(mn => mn == "StartDate")));
-        //    Assert.True(exception.ValidationResults.Any(x => x.MemberNames.Any(mn => mn == "EndDate")));
-        //}
 
         private class AssignedTestModel : IAssignedTestModel
         {

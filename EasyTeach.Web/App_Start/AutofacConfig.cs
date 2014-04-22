@@ -60,18 +60,16 @@ namespace EasyTeach.Web
             IContainer container = builder.Build();
             var resolver = new AutofacWebApiDependencyResolver(container);
             GlobalConfiguration.Configuration.DependencyResolver = resolver;
-            //serviceProvider.AddService(typeof(IUserRepository), (serviceContainer, type) => container.Resolve<IUserRepository>());
         }
-    }
 
-    public class Adapter : IServiceProvider
-    {
-        public object GetService(Type serviceType)
+        private class Adapter : IServiceProvider
         {
-            var message = HttpContext.Current.Items["MS_HttpRequestMessage"] as HttpRequestMessage;
-            //var message = GlobalConfiguration.Configuration.DependencyResolver.GetService(typeof(HttpRequestMessage)) as HttpRequestMessage;
+            public object GetService(Type serviceType)
+            {
+                var message = HttpContext.Current.Items["MS_HttpRequestMessage"] as HttpRequestMessage;
 
-            return message.GetDependencyScope().GetService(serviceType);
+                return message.GetDependencyScope().GetService(serviceType);
+            }
         }
     }
 }

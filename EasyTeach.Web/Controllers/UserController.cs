@@ -36,9 +36,8 @@ namespace EasyTeach.Web.Controllers
         }
 
         // POST api/User/Register
-        [AllowAnonymous]
         [Route("Register")]
-        [ClaimsPrincipalPermission(SecurityAction.Demand, Resource = "User", Operation = "Register")]
+        [ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "Register", Resource = "User")]
         public async Task<IHttpActionResult> Register(CreateUserViewModel user)
         {
             if (user == null)

@@ -29,9 +29,9 @@ namespace EasyTeach.Web
                 .Except<EasyTeachContext>(x => x.AsSelf().InstancePerApiRequest())
                 .Except<XmlDocumentationProvider>();
 
+            builder.RegisterHttpRequestMessage(GlobalConfiguration.Configuration);
             builder.Register<Func<IAuthenticationManager>>(c => () => c.Resolve<HttpRequestMessage>().GetOwinContext().Authentication).InstancePerApiRequest();
             builder.RegisterType<UserManager<IUserDto, int>>().AsSelf().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues);
-            builder.Register(c => new UrlHelper(c.Resolve<HttpRequestMessage>())).InstancePerApiRequest();
 
             if (beforeBuild != null)
             {

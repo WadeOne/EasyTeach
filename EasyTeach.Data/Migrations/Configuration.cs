@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Security.Claims;
 using EasyTeach.Core.Entities;
 using EasyTeach.Core.Enums;
 using EasyTeach.Data.Context;
@@ -27,6 +28,8 @@ namespace EasyTeach.Data.Migrations
                 Year = 1953
             });
 
+            context.SaveChanges();
+
             context.Users.AddOrUpdate(
             // password: testMoBiLe13
             new UserDto
@@ -38,7 +41,7 @@ namespace EasyTeach.Data.Migrations
                 LastName = "Броневой",
                 PasswordHash = "ALTARCbT6yTe7DSX5LSHgKhBB0t2cR+OPUabn0vmCEmxPBIVT/jb9r64jRVfvpwD5A==",
                 UserType = UserType.Student,
-                Group = context.Groups.FirstOrDefault(g => g.GroupId == 1)
+                Group = context.Groups.Single(g => g.GroupId == 1)
             },
 
             // password: testMoBiLe13
@@ -53,6 +56,18 @@ namespace EasyTeach.Data.Migrations
                 UserType = UserType.Teacher,
                 Group = null
             });
+
+            context.SaveChanges();
+
+            context.UserClaims.AddOrUpdate(new UserClaimDto
+            {
+                Value = "Teacher",
+                Type = ClaimTypes.Role,
+                ValueType = ClaimValueTypes.String,
+                User = context.Users.Single(u => u.UserId == 1)
+            });
+
+            context.SaveChanges();
         }
     }
 }

@@ -15,13 +15,16 @@ define([
         events: {
             "click #login-btn": "userLogin"
         },
+        initialize: function() {
+            this.model = new UserLogin();
+
+            this.listenTo(this.model, "sync", this.loginSuccess);
+            this.listenTo(this.model, "error", this.loginFail);
+        },
         userLogin: function() {
             var data = serialize.form(this.$('#login-form'));
 
-            new UserLogin(data)
-                .on('sync', this.loginSuccess)
-                .on('error', this.loginFail)
-                .save();
+            this.model.save(data);
 
             return false;
         },

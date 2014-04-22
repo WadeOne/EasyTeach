@@ -3,9 +3,9 @@ using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Core.Repositories.Mappers
 {
-    public interface ITestDtoMapper
+    public interface IQuizDtoMapper
     {
-        ITestDto Map(ITestModel test);
+        ITestDto Map(IQuizModel quiz);
 
         IAssignedTestDto Map(IAssignedTestModel assignedTest);
     }

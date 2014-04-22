@@ -5,7 +5,7 @@ using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Core.Repositories
 {
-    public interface ITestsRepository
+    public interface IQuizRepository
     {
         Task CreateTestAsync(ITestDto testDto);
         Task AssignTestAsync(IAssignedTestDto assignedTest);

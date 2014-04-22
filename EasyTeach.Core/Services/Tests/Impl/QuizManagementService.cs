@@ -10,24 +10,24 @@ using EasyTeach.Core.Validation.EntityValidator;
 
 namespace EasyTeach.Core.Services.Tests.Impl
 {
-    public class TestsManagementService : ITestsManagementService
+    public class QuizManagementService : IQuizManagementService
     {
-        private readonly ITestsRepository _testsRepository;
+        private readonly IQuizRepository _quizRepository;
 
-        private readonly ITestDtoMapper _testDtoMapper;
+        private readonly IQuizDtoMapper _quizDtoMapper;
 
         private readonly EntityValidator _entityValidator;
 
-        public TestsManagementService(ITestsRepository testsRepository, ITestDtoMapper testDtoMapper, EntityValidator entityValidator)
+        public QuizManagementService(IQuizRepository quizRepository, IQuizDtoMapper quizDtoMapper, EntityValidator entityValidator)
         {
-            if (testsRepository == null)
+            if (quizRepository == null)
             {
-                throw new ArgumentNullException("testsRepository");
+                throw new ArgumentNullException("quizRepository");
             }
 
-            if (testDtoMapper == null)
+            if (quizDtoMapper == null)
             {
-                throw new ArgumentNullException("testDtoMapper");
+                throw new ArgumentNullException("quizDtoMapper");
             }
 
             if (entityValidator == null)
@@ -35,27 +35,27 @@ namespace EasyTeach.Core.Services.Tests.Impl
                 throw new ArgumentNullException("entityValidator");
             }
 
-            _testsRepository = testsRepository;
-            _testDtoMapper = testDtoMapper;
+            _quizRepository = quizRepository;
+            _quizDtoMapper = quizDtoMapper;
             _entityValidator = entityValidator;
         }
 
-        public async Task CreateTestAsync(ITestModel newTest)
+        public async Task CreateTestAsync(IQuizModel newQuiz)
         {
-            if (newTest == null)
+            if (newQuiz == null)
             {
-                throw new ArgumentNullException("newTest");
+                throw new ArgumentNullException("newQuiz");
             }
 
-            var result = _entityValidator.ValidateEntity(newTest);
+            var result = _entityValidator.ValidateEntity(newQuiz);
             if (result.IsValid == false)
             {
                 throw new InvalidTestException(result.ValidationResults);
             }
 
-            var newTestDto = _testDtoMapper.Map(newTest);
+            var newTestDto = _quizDtoMapper.Map(newQuiz);
 
-            await _testsRepository.CreateTestAsync(newTestDto);
+            await _quizRepository.CreateTestAsync(newTestDto);
         }
 
         public async Task AssignTestToGroupAsync(IAssignedTestModel assignedTest)
@@ -71,9 +71,9 @@ namespace EasyTeach.Core.Services.Tests.Impl
                 throw new InvalidAssignedTestException(result.ValidationResults);
             }
 
-            var assignmentDto = _testDtoMapper.Map(assignedTest);
+            var assignmentDto = _quizDtoMapper.Map(assignedTest);
 
-            await _testsRepository.AssignTestAsync(assignmentDto);
+            await _quizRepository.AssignTestAsync(assignmentDto);
         }
 
         

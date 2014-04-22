@@ -5,9 +5,9 @@ using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Core.Services.Tests
 {
-    public interface ITestsManagementService
+    public interface IQuizManagementService
     {
-        Task CreateTestAsync(ITestModel newTest);
+        Task CreateTestAsync(IQuizModel newQuiz);
 
         Task AssignTestToGroupAsync(IAssignedTestModel assignedTest);
     }

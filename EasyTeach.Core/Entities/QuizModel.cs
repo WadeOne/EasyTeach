@@ -6,7 +6,7 @@ using EasyTeach.Core.Validation.Attributes;
 
 namespace EasyTeach.Core.Entities
 {
-    public class TestModel : ITestModel
+    public class QuizModel : IQuizModel
     {
         [Required]
         public string Name { get; set; }

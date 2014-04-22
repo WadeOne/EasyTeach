@@ -4,7 +4,7 @@ namespace EasyTeach.Core.Entities.Services
 {
     public interface IAssignedTestModel
     {
-        ITestModel Test { get; }
+        IQuizModel Quiz { get; }
 
         Group Group { get; }
 

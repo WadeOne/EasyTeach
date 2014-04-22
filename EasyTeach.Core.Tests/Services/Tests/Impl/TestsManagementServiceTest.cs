@@ -21,26 +21,26 @@ namespace EasyTeach.Core.Tests.Services.Tests.Impl
 {
     public class TestsManagementServiceTest
     {
-        private readonly TestsManagementService _testsManagementService;
+        private readonly QuizManagementService quizManagementService;
 
 
-        private readonly ITestsRepository _testsRepository;
-        private readonly ITestDtoMapper _testDtoMapper;
+        private readonly IQuizRepository quizRepository;
+        private readonly IQuizDtoMapper _quizDtoMapper;
         private readonly EntityValidator _entityValidator;
 
-        private readonly ITestModel _validTest;
+        private readonly IQuizModel _validQuiz;
         private readonly AssignedTestModel _validAssignment;
 
 
         public TestsManagementServiceTest()
         {
             _entityValidator = A.Fake<EntityValidator>();
-            _testsRepository = A.Fake<ITestsRepository>();
-            _testDtoMapper = A.Fake<ITestDtoMapper>();
+            quizRepository = A.Fake<IQuizRepository>();
+            _quizDtoMapper = A.Fake<IQuizDtoMapper>();
             
-            _testsManagementService = new TestsManagementService(_testsRepository, _testDtoMapper, _entityValidator);
+            quizManagementService = new QuizManagementService(quizRepository, _quizDtoMapper, _entityValidator);
 
-            _validTest = new TestModel
+            _validQuiz = new QuizModel
                          {
                              Name = "Test",
                              Description = "Description",
@@ -54,7 +54,7 @@ namespace EasyTeach.Core.Tests.Services.Tests.Impl
 
             _validAssignment = new AssignedTestModel
                          {
-                            Test = new TestModel(),
+                            Quiz = new QuizModel(),
                             Group = new Group()
                          };
         }
@@ -64,19 +64,19 @@ namespace EasyTeach.Core.Tests.Services.Tests.Impl
         {
             var testDto = A.Fake<ITestDto>();
 
-            A.CallTo(() => _testDtoMapper.Map(_validTest)).Returns(testDto);
-            A.CallTo(() => _entityValidator.ValidateEntity(_validTest)).Returns(new EntityValidationResult(true));
+            A.CallTo(() => _quizDtoMapper.Map(_validQuiz)).Returns(testDto);
+            A.CallTo(() => _entityValidator.ValidateEntity(_validQuiz)).Returns(new EntityValidationResult(true));
 
-            Assert.DoesNotThrow(() => _testsManagementService.CreateTestAsync(_validTest).Wait());
-            A.CallTo(() => _testDtoMapper.Map(_validTest)).MustHaveHappened();
-            A.CallTo(() => _testsRepository.CreateTestAsync(testDto)).MustHaveHappened();
+            Assert.DoesNotThrow(() => quizManagementService.CreateTestAsync(_validQuiz).Wait());
+            A.CallTo(() => _quizDtoMapper.Map(_validQuiz)).MustHaveHappened();
+            A.CallTo(() => quizRepository.CreateTestAsync(testDto)).MustHaveHappened();
         }
 
         [Fact]
         public void CreateTestAsync_InvalidTest_ExceptionThrown()
         {
-            var invalidTest = new TestModel();
-            A.CallTo(() => _entityValidator.ValidateEntity<ITestModel>(invalidTest))
+            var invalidTest = new QuizModel();
+            A.CallTo(() => _entityValidator.ValidateEntity<IQuizModel>(invalidTest))
                 .Returns(
                     new EntityValidationResult(
                         false,
@@ -87,7 +87,7 @@ namespace EasyTeach.Core.Tests.Services.Tests.Impl
                         }));
 
 
-            var aggregateException = Assert.Throws<AggregateException>(() => _testsManagementService.CreateTestAsync(invalidTest).Wait());
+            var aggregateException = Assert.Throws<AggregateException>(() => quizManagementService.CreateTestAsync(invalidTest).Wait());
             var exception = (InvalidTestException)aggregateException.GetBaseException();
 
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "Name"));
@@ -97,19 +97,19 @@ namespace EasyTeach.Core.Tests.Services.Tests.Impl
         [Fact]
         public void CreateTestAsync_NullModel_ArgumentNullExceptionThrown()
         {
-            var aggregateException = Assert.Throws<AggregateException>(() => _testsManagementService.CreateTestAsync(null).Wait());
+            var aggregateException = Assert.Throws<AggregateException>(() => quizManagementService.CreateTestAsync(null).Wait());
             var exception = aggregateException.GetBaseException() as ArgumentNullException;
             
             Assert.NotNull(exception);
-            Assert.True(exception.ParamName == "newTest");
-            A.CallTo(() => _testsRepository.CreateTestAsync(A<ITestDto>.Ignored)).MustNotHaveHappened();
-            A.CallTo(() => _entityValidator.ValidateEntity(A<ITestModel>.Ignored)).MustNotHaveHappened();
+            Assert.True(exception.ParamName == "newQuiz");
+            A.CallTo(() => quizRepository.CreateTestAsync(A<ITestDto>.Ignored)).MustNotHaveHappened();
+            A.CallTo(() => _entityValidator.ValidateEntity(A<IQuizModel>.Ignored)).MustNotHaveHappened();
         }
 
         [Fact]
         public void AssignTestToGroupAsync_NullModel_ArgumentNullExceptionThrown()
         {
-            var aggregateException = Assert.Throws<AggregateException>(() => _testsManagementService.AssignTestToGroupAsync(null).Wait());
+            var aggregateException = Assert.Throws<AggregateException>(() => quizManagementService.AssignTestToGroupAsync(null).Wait());
 
             var exception = aggregateException.GetBaseException() as ArgumentNullException;
 
@@ -121,15 +121,15 @@ namespace EasyTeach.Core.Tests.Services.Tests.Impl
         public void AssignTestToGroupAsync_ValidAssignment_Assigned()
         {
             var assignmentDto = A.Fake<IAssignedTestDto>();
-            A.CallTo(() => _testDtoMapper.Map(_validAssignment)).Returns(assignmentDto);
+            A.CallTo(() => _quizDtoMapper.Map(_validAssignment)).Returns(assignmentDto);
             A.CallTo(
                 () =>
                     _entityValidator.ValidateEntity<IAssignedTestModel>(_validAssignment)).Returns(null);
 
-            Assert.DoesNotThrow(() => _testsManagementService.AssignTestToGroupAsync(_validAssignment));
+            Assert.DoesNotThrow(() => quizManagementService.AssignTestToGroupAsync(_validAssignment));
 
-            A.CallTo(() => _testDtoMapper.Map(_validAssignment)).MustHaveHappened();
-            A.CallTo(() => _testsRepository.AssignTestAsync(assignmentDto)).MustHaveHappened();
+            A.CallTo(() => _quizDtoMapper.Map(_validAssignment)).MustHaveHappened();
+            A.CallTo(() => quizRepository.AssignTestAsync(assignmentDto)).MustHaveHappened();
         }
 
         [Fact]
@@ -147,7 +147,7 @@ namespace EasyTeach.Core.Tests.Services.Tests.Impl
                         new ValidationResult("Group required", new[] {"Group"}),
                     }));
 
-            var aggregateException = Assert.Throws<AggregateException>(() => _testsManagementService.AssignTestToGroupAsync(invalidAssignment).Wait());
+            var aggregateException = Assert.Throws<AggregateException>(() => quizManagementService.AssignTestToGroupAsync(invalidAssignment).Wait());
             var exception = (InvalidAssignedTestException) aggregateException.GetBaseException();
 
             Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "Test"));
@@ -157,7 +157,7 @@ namespace EasyTeach.Core.Tests.Services.Tests.Impl
         private class AssignedTestModel : IAssignedTestModel
         {
             [Required]
-            public ITestModel Test { get; set; }
+            public IQuizModel Quiz { get; set; }
 
             [Required]
             public Group Group { get; set; }

@@ -2,7 +2,7 @@
 
 namespace EasyTeach.Core.Entities.Services
 {
-    public interface ITestModel
+    public interface IQuizModel
     {
         string Name { get; }
 

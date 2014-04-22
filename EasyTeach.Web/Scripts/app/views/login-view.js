@@ -1,9 +1,10 @@
 define([
+    'chaplin',
     'views/base/view',
     'models/user-login',
     'text!templates/login.html',
     'utils/serialize'
-], function (View, UserLogin, template, serialize) {
+], function (Chaplin, View, UserLogin, template, serialize) {
     'use strict';
 
     return View.extend({
@@ -28,8 +29,8 @@ define([
 
             return false;
         },
-        loginSuccess: function(data) {
-            window.alert("success: " + data);
+        loginSuccess: function() {
+            Chaplin.utils.redirectTo("students#grades");
         },
         loginFail: function(model, errorData) {
             window.alert(errorData.statusText);

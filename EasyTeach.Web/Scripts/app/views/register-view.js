@@ -25,13 +25,15 @@ define([
             },
             email: form.find('input[name=email]').val()
           },
-          user = new User();
+          user = new User(),
+          that = this;
       user.save(userInfo, {
         success: function (user) {
           console.log(success);
         },
-        error: function (e) {
-          console.log(e);
+        //TODO: move to the template, add styles
+        error: function (model, response) {
+          that.$el.before('<div class="error-message">'+ $.parseJSON(response.responseText).message +'</div>')
         }
       });
       return false;

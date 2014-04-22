@@ -19,7 +19,7 @@ define([
             var data = serialize.form(this.$('#login-form'));
 
             new UserLogin(data)
-                .on('success', this.loginSuccess)
+                .on('sync', this.loginSuccess)
                 .on('error', this.loginFail)
                 .save();
 
@@ -28,7 +28,7 @@ define([
         loginSuccess: function(data) {
             window.alert("success: " + data);
         },
-        loginFail: function(errorData) {
+        loginFail: function(model, errorData) {
             window.alert(errorData.statusText);
         }
     });

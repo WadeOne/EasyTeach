@@ -82,6 +82,10 @@
     <Compile Include="Migrations\201404212242567_AddTeacherRoleClaims.Designer.cs">
       <DependentUpon>201404212242567_AddTeacherRoleClaims.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201404230714166_QuizDto.cs" />
+    <Compile Include="Migrations\201404230714166_QuizDto.Designer.cs">
+      <DependentUpon>201404230714166_QuizDto.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repostitories\Mappers\QuizDtoMapper.cs" />
@@ -120,6 +124,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201404212242567_AddTeacherRoleClaims.resx">
       <DependentUpon>201404212242567_AddTeacherRoleClaims.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201404230714166_QuizDto.resx">
+      <DependentUpon>201404230714166_QuizDto.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

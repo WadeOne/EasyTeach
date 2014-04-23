@@ -11,11 +11,11 @@ define([
         menu: '#menu'
     },
     template: template,
-    events: {
+    /*events: {
         "click .top-bar .menu-icon": "openMobileMenu"
     },
     openMobileMenu: function() {
         this.$('.top-bar').toggleClass('expanded');
-    }
+    }*/
   });
 });

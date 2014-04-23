@@ -2,7 +2,9 @@
     baseUrl: '/Scripts/app',
     paths: {
         jquery: '../vendor/bower_components/jquery/dist/jquery',
+        fastClick: '../vendor/bower_components/fastclick/lib/fastclick',
         'foundation.core': '../vendor/bower_components/foundation/js/foundation',
+        'foundation.topbar': '../vendor/bower_components/foundation/js/foundation/foundation.topbar',
         underscore: '../vendor/bower_components/lodash/dist/lodash',
         backbone: '../vendor/bower_components/backbone/backbone',
         handlebars: '../vendor/bower_components/handlebars/handlebars',
@@ -11,12 +13,24 @@
         modernizr: '../vendor/bower_components/modernizr/modernizr'
     },
     shim: {
+        'modernizr': {
+            exports: 'Modernizr'
+        },
         'foundation.core': {
             deps: [
                 'jquery',
-                'modernizr'
+                'modernizr',
+                'fastClick'
             ],
             exports: 'Foundation'
+        },
+        'foundation.topbar': {
+            deps: [
+                'jquery',
+                'modernizr',
+                'foundation.core'
+            ],
+            exports: 'FoundationTopBar'
         },
         underscore: {
             exports: '_'
@@ -27,9 +41,6 @@
         },
         handlebars: {
             exports: 'Handlebars'
-        },
-        'modernizr': {
-            exports: 'Modernizr'
         }
     }
 });
@@ -39,7 +50,7 @@ require(['application', 'routes'], function (Application, routes) {
     new Application({ routes: routes, controllerSuffix: '-controller' });
 });
 
-require(['jquery', 'foundation.core'], function ($) {
+require(['jquery', 'foundation.core', 'foundation.topbar'], function ($) {
     $(document).foundation({
     });
 });

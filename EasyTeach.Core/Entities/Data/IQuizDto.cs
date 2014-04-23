@@ -2,5 +2,6 @@
 {
     public interface IQuizDto
     {
+        int QuizId { get; set; }
     }
 }

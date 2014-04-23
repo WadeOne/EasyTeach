@@ -4,7 +4,6 @@ define([
   'use strict';
 
   var User = Model.extend({
-    // This model is intentionally left blank
     url: '../api/User/Register'
   });
 

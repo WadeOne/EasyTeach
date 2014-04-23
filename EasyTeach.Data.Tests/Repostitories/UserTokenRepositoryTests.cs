@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Entity;
 using EasyTeach.Core.Entities.Data;
+using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Data.Context;
 using EasyTeach.Data.Entities;
 using EasyTeach.Data.Repostitories;

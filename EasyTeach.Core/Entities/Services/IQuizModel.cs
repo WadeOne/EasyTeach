@@ -4,12 +4,14 @@ namespace EasyTeach.Core.Entities.Services
 {
     public interface IQuizModel
     {
-        int Id { get;  }
+        int QuizId { get;  }
 
         string Name { get; }
 
         string Description { get; }
 
-        IEnumerable<IQuestionModel> Questions { get; }
+        IEnumerable<Question> Questions { get; }
+
+        int Version { get; }
     }
 }

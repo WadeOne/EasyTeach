@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 
-using EasyTeach.Core.Entities.Data;
+using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories.Mappers;
 using EasyTeach.Data.Entities;

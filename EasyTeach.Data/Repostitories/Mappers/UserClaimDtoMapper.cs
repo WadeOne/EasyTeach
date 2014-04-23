@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using EasyTeach.Core.Entities.Data;
+using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Repositories.Mappers;
 using EasyTeach.Data.Entities;
 

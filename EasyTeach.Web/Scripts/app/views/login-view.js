@@ -33,7 +33,7 @@ define([
             Chaplin.utils.redirectTo("students#grades");
         },
         loginFail: function(model, errorData) {
-            window.alert(errorData.statusText);
+            window.alert($.parseJSON(errorData.responseText).error_description);
         }
     });
 });

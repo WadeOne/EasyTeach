@@ -33,7 +33,7 @@ define([
         },
         //TODO: move to the template, add styles
         error: function (model, response) {
-          that.$el.before('<div class="error-message">'+ $.parseJSON(response.responseText).message +'</div>')
+            that.$el.before('<div class="error-message">' + $.parseJSON(response.responseText).message + '</div>');
         }
       });
       return false;

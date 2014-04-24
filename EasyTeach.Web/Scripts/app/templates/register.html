@@ -1,26 +1,23 @@
 <div class="row">
 	<form id="user-registration-form" method="post">
+		<div class="error-message"><%= errorModel.errorMessage %></div>
 		<div class="large-6 medium-6 columns">
-			<div class="large-8 medium-8">
-				<div class="login-wrapper">
-					<label>Год</label>
-					<input type="number" placeholder="Год" name="year" required />
-					<label>Группа</label>
-					<input type="number" min="1" placeholder="Группа" name="groupNumber" required />
-					<label>Почта</label>
-					<input type="email" placeholder="Почта" name="email" required />
-				</div>
-				<button id="create-user-button" class="easy-teach-button">Создать</button>
+			<div class="large-8 medium-8">				
+				<label>Год</label>
+				<input type="number" placeholder="Год" name="year" required />
+				<label>Группа</label>
+				<input type="number" min="1" placeholder="Группа" name="groupNumber" required />
+				<label>Почта</label>
+				<input type="email" placeholder="Почта" name="email" required />
 			</div>
+			<button id="create-user-button" class="easy-teach-button">Создать</button>			
 		</div>
 		<div class="large-6 medium-6 columns">
 			<div class="large-8 medium-8">
-				<div class="login-wrapper">
-					<label>Имя</label>
-					<input type="text" placeholder="Имя" name="firstName" required />
-					<label>Фамилия</label>
-					<input type="text" placeholder="Фамилия" name="lastName" required />					
-				</div>
+				<label>Имя</label>
+				<input type="text" placeholder="Имя" name="firstName" required />
+				<label>Фамилия</label>
+				<input type="text" placeholder="Фамилия" name="lastName" required />					
 			</div>
 		</div>
 	</form>

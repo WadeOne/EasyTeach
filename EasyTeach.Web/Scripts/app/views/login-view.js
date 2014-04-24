@@ -1,9 +1,10 @@
 define([
+    'chaplin',
     'views/base/view',
     'models/user-login',
     'text!templates/login.html',
     'utils/serialize'
-], function (View, UserLogin, template, serialize) {
+], function (Chaplin, View, UserLogin, template, serialize) {
     'use strict';
 
     return View.extend({
@@ -13,23 +14,26 @@ define([
         autoRender: true,
         noWrap: true,
         events: {
-            "click #login-btn": "userLogin"
+            "submit #login-form": "userLogin"
+        },
+        initialize: function() {
+            this.model = new UserLogin();
+
+            this.listenTo(this.model, "sync", this.loginSuccess);
+            this.listenTo(this.model, "error", this.loginFail);
         },
         userLogin: function() {
             var data = serialize.form(this.$('#login-form'));
 
-            new UserLogin(data)
-                .on('success', this.loginSuccess)
-                .on('error', this.loginFail)
-                .save();
+            this.model.save(data);
 
             return false;
         },
-        loginSuccess: function(data) {
-            window.alert("success: " + data);
+        loginSuccess: function() {
+            Chaplin.utils.redirectTo("students#grades");
         },
-        loginFail: function(errorData) {
-            window.alert(errorData.statusText);
+        loginFail: function(model, errorData) {
+            window.alert($.parseJSON(errorData.responseText).error_description);
         }
     });
 });

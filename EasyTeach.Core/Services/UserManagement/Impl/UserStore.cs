@@ -67,14 +67,14 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             throw new NotImplementedException();
         }
 
-        public Task<IUserDto> FindByIdAsync(int userId)
+        public async Task<IUserDto> FindByIdAsync(int userId)
         {
-            return _userRepository.GetUserById(userId);
+            return await _userRepository.GetUserById(userId);
         }
 
-        public Task<IUserDto> FindByNameAsync(string userName)
+        public async Task<IUserDto> FindByNameAsync(string userName)
         {
-            return FindByEmailAsync(userName);
+            return await FindByEmailAsync(userName);
         }
 
         public Task SetPasswordHashAsync(IUserDto user, string passwordHash)
@@ -158,14 +158,14 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             return Task.FromResult(0);
         }
 
-        public Task<IUserDto> FindByEmailAsync(string email)
+        public async Task<IUserDto> FindByEmailAsync(string email)
         {
             if (email == null)
             {
                 throw new ArgumentNullException("email");
             }
 
-            return _userRepository.GetUserByEmail(email);
+            return await _userRepository.GetUserByEmail(email);
         }
 
         public Task<IList<Claim>> GetClaimsAsync(IUserDto user)

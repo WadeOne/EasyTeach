@@ -171,7 +171,9 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Scripts\app\templates\errors\" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -206,7 +208,9 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Models\ViewModels\CreateQuizViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuizController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\SecurityExceptionFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">

@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Runtime.InteropServices;
 
 using EasyTeach.Core.Entities.Data;
+using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Validation.Attributes;
 

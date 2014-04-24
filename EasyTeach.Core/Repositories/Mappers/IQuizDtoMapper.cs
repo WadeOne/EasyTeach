@@ -1,4 +1,5 @@
 ﻿using EasyTeach.Core.Entities.Data;
+using EasyTeach.Core.Entities.Data.Quiz;
 using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Core.Repositories.Mappers

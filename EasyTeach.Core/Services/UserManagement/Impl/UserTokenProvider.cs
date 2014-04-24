@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data;
+using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Repositories;
 using Microsoft.AspNet.Identity;
 

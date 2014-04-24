@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 
 using EasyTeach.Core.Entities;
-using EasyTeach.Core.Entities.Data;
+using EasyTeach.Core.Entities.Data.Quiz;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers;
@@ -44,10 +44,10 @@ namespace EasyTeach.Core.Tests.Services.Quiz.Impl
                              Name = "Test",
                              Description = "Description",
                              Questions =
-                                 new List<IQuestionModel>
+                                 new List<Question>
                                  {
-                                     A.Fake<IQuestionModel>(),
-                                     A.Fake<IQuestionModel>()
+                                     A.Fake<Question>(),
+                                     A.Fake<Question>()
                                  }
                          };
 

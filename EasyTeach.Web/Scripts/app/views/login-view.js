@@ -10,7 +10,7 @@ define([
     return View.extend({
         container: '#content',
         id: 'site-container',
-        template: template,
+        template: _.template(template),
         autoRender: true,
         noWrap: true,
         events: {
@@ -32,8 +32,20 @@ define([
         loginSuccess: function() {
             Chaplin.utils.redirectTo("students#grades");
         },
-        loginFail: function(model, errorData) {
-            window.alert($.parseJSON(errorData.responseText).error_description);
+        loginFail: function (model, errorData) {
+            _.extend(model, {
+                errorMessage: $.parseJSON(errorData.responseText).error_description
+            });
+            this.render();
+        },
+        render: function() {
+            var html = this.template({
+                errorModel: this.model,
+            });
+
+            this.$el.html(html);
+
+            return this;
         }
     });
 });

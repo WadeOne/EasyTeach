@@ -9581,3 +9581,9 @@ ul {
   background: #fa6900;
   color: #ffffff;
 }
+
+/* line 211, ../scss/app.scss */
+.error-message {
+  color: red;
+  margin-bottom: 20px;
+}

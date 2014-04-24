@@ -14,8 +14,8 @@ namespace EasyTeach.Data.Migrations
     {
         public Configuration()
         {
-            Database.SetInitializer(new CreateDatabaseIfNotExists<EasyTeachContext>());
-            AutomaticMigrationsEnabled = false;
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EasyTeachContext, Configuration>());
+            AutomaticMigrationsEnabled = true;
             ContextKey = "EasyTeach.Data.Context.EasyTeachContext";
         }
 

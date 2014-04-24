@@ -14,7 +14,7 @@ namespace EasyTeach.Web.Controllers
 {
     [Authorize]
     [RoutePrefix("api/User")]
-    public sealed class UserController : ApiController
+    public sealed class UserController : ApiControllerBase
     {
         private readonly IUserService _userService;
         private readonly Func<IAuthenticationManager> _authenticationManagerFactory;

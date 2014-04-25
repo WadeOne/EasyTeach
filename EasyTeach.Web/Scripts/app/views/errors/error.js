@@ -9,7 +9,7 @@
 
     return View.extend({
         container: '#content',
-        id: 'site-container',
+        id: 'site-container', 
         template: template,
         autoRender: true,
         noWrap: true

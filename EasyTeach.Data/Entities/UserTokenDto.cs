@@ -1,6 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using EasyTeach.Core.Entities.Data;
+using EasyTeach.Core.Entities.Data.User;
 
 namespace EasyTeach.Data.Entities
 {

@@ -1,6 +1,9 @@
 ﻿using System.Data.Entity;
 using EasyTeach.Core.Entities;
 using EasyTeach.Data.Entities;
+using EasyTeach.Data.Migrations;
+
+using QuizDto = EasyTeach.Data.Entities.QuizDto;
 
 namespace EasyTeach.Data.Context
 {
@@ -14,7 +17,13 @@ namespace EasyTeach.Data.Context
 
         public virtual IDbSet<UserClaimDto> UserClaims { get; set; }
 
-        //TODO Add migration after implementing Dto
         public virtual IDbSet<QuizDto> Quizes { get; set; }
+
+        public virtual IDbSet<Question> Questions { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EasyTeachContext, Configuration>());
+        }
     }
 }

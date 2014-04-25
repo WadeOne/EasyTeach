@@ -14,8 +14,8 @@ namespace EasyTeach.Data.Migrations
     {
         public Configuration()
         {
-            Database.SetInitializer(new CreateDatabaseIfNotExists<EasyTeachContext>());
-            AutomaticMigrationsEnabled = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = false;
             ContextKey = "EasyTeach.Data.Context.EasyTeachContext";
         }
 
@@ -61,8 +61,8 @@ namespace EasyTeach.Data.Migrations
 
             context.UserClaims.AddOrUpdate(new UserClaimDto
             {
-                Value = "Teacher",
-                Type = ClaimTypes.Role,
+                Value = "Register",
+                Type = "User",
                 ValueType = ClaimValueTypes.String,
                 User = context.Users.Single(u => u.UserId == 1)
             });

@@ -44,12 +44,12 @@ namespace EasyTeach.Web.Tests.Controllers
         {
             A.CallTo(() => _createQuizViewModel.ToQuizModel()).Returns(_quizModelWithoutId);
             A.CallTo(() => _quizManagementService.CreateQuizAsync(_quizModelWithoutId)).Returns(_quizModelWithId);
-            A.CallTo(() => _quizModelWithId.Id).Returns(1);
+            A.CallTo(() => _quizModelWithId.QuizId).Returns(1);
 
             var result = _controller.CreateQuiz(_createQuizViewModel).Result as OkNegotiatedContentResult<IQuizModel>;
             Assert.NotNull(result);
             A.CallTo(() => _quizManagementService.CreateQuizAsync(_quizModelWithoutId)).MustHaveHappened();
-            Assert.Equal(_quizModelWithId.Id, result.Content.Id);
+            Assert.Equal(_quizModelWithId.QuizId, result.Content.QuizId);
         }
 
         [Fact]

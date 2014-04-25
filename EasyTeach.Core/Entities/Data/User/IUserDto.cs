@@ -1,7 +1,8 @@
 ﻿using EasyTeach.Core.Enums;
+
 using Microsoft.AspNet.Identity;
 
-namespace EasyTeach.Core.Entities.Data
+namespace EasyTeach.Core.Entities.Data.User
 {
     public interface IUserDto : IUser<int>
     {

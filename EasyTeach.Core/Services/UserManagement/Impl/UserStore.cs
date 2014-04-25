@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using EasyTeach.Core.Entities.Data;
+using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers;
 using Microsoft.AspNet.Identity;
 
 namespace EasyTeach.Core.Services.UserManagement.Impl
 {
+    using System.Security.Claims;
+
     public sealed class UserStore : IUserPasswordStore<IUserDto, int>, IUserEmailStore<IUserDto, int>, IUserClaimStore<IUserDto, int>
     {
         private readonly IUserRepository _userRepository;

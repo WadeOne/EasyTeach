@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasyTeach.Core.Entities.Data
+namespace EasyTeach.Core.Entities.Data.User
 {
     public interface IUserTokenDto
     {

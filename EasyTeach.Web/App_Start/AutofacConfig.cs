@@ -7,6 +7,7 @@ using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
 using EasyTeach.Core.Entities.Data;
+using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Data.Context;
 using EasyTeach.Web.Areas.HelpPage;
 using Microsoft.AspNet.Identity;

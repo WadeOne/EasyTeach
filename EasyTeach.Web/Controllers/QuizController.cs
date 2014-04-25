@@ -2,15 +2,15 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Results;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Services.Quiz;
 using EasyTeach.Core.Services.Quiz.Exceptions;
-using EasyTeach.Core.Validation.EntityValidator;
 using EasyTeach.Web.Models.ViewModels;
 
 namespace EasyTeach.Web.Controllers
 {
-    public class QuizController : ApiController
+    public class QuizController : ApiControllerBase
     {
         private readonly IQuizManagementService _quizManagementService;
 

@@ -12,7 +12,6 @@ using Microsoft.Owin.Security.Cookies;
 
 namespace EasyTeach.Web.Controllers
 {
-    [Authorize]
     [RoutePrefix("api/User")]
     public sealed class UserController : ApiControllerBase
     {
@@ -53,7 +52,7 @@ namespace EasyTeach.Web.Controllers
             {
                 foreach (var validationResult in exception.ValidationResults)
                 {
-                    ModelState.AddModelError(validationResult.MemberNames.FirstOrDefault(), validationResult.ErrorMessage);
+                    ModelState.AddModelError(validationResult.MemberNames.FirstOrDefault() ?? String.Empty, validationResult.ErrorMessage);
                 }
 
                 return BadRequest(ModelState);

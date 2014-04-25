@@ -209,6 +209,8 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\ApiControllerBase.cs" />
+    <Compile Include="Controllers\ClaimController.cs" />
+    <Compile Include="Models\ViewModels\Claims\ClaimViewModel.cs" />
     <Compile Include="Models\ViewModels\CreateQuizViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\QuizController.cs" />

@@ -18,7 +18,7 @@ define([
         },
         initialize: function() {
             this.listenTo(this.model, "sync", this.loginSuccess);
-            this.listenTo(this.model, "error", this.loginFail);
+            this.listenTo(this.model, "error", this.render);
         },
         userLogin: function() {
             var data = serialize.form(this.$('#login-form'));
@@ -29,21 +29,6 @@ define([
         },
         loginSuccess: function() {
             utils.redirectTo("students#grades");
-        },
-        loginFail: function (model, errorData) {
-            _.extend(model, {
-                errorMessage: errorData.responseJSON.error_description
-            });
-            this.render();
-        },
-        render: function() {
-            var html = this.template({
-                errorModel: this.model
-            });
-
-            this.$el.html(html);
-
-            return this;
         }
     });
 });

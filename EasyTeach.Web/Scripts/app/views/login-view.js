@@ -1,10 +1,12 @@
 define([
-    'chaplin',
+    'underscore',
+    'jquery',
     'views/base/view',
     'models/user-login',
     'text!templates/login.html',
-    'utils/serialize'
-], function (Chaplin, View, UserLogin, template, serialize) {
+    'utils/serialize',
+    'lib/utils'
+], function (_, $, View, UserLogin, template, serialize, utils) {
     'use strict';
 
     return View.extend({
@@ -30,7 +32,7 @@ define([
             return false;
         },
         loginSuccess: function() {
-            Chaplin.utils.redirectTo("students#grades");
+            utils.redirectTo("students#grades");
         },
         loginFail: function (model, errorData) {
             _.extend(model, {
@@ -40,7 +42,7 @@ define([
         },
         render: function() {
             var html = this.template({
-                errorModel: this.model,
+                errorModel: this.model
             });
 
             this.$el.html(html);

@@ -1,15 +1,13 @@
-<div class="row">
-    <div class="large-4 medium-4 columns">
-        <form id="login-form" action="/Token">
-            <div class="error-message"><%= errorModel.errorMessage %></div>
-            <label>Логин</label>
-            <input type="email" name="username" placeholder="Логин" required />
-            <label>Пароль</label>
-            <input type="password" name="password" placeholder="Пароль" required />
-            <button id="login-btn" class="easy-teach-button">Войти</button>
-            <div>
-                <a href="/reset" >Восстановить пароль</a>
-            </div>                        
-        </form>
-    </div>
+<div class="large-4 medium-4 columns">
+    <form id="login-form" action="/Token">
+        <div class="error-message"><%= errorModel.errorMessage %></div>
+        <label>Логин</label>
+        <input type="email" name="username" placeholder="Логин" required />
+        <label>Пароль</label>
+        <input type="password" name="password" placeholder="Пароль" required />
+        <button id="login-btn" class="easy-teach-button">Войти</button>
+        <div>
+            <a href="/reset" >Восстановить пароль</a>
+        </div>
+    </form>
 </div>

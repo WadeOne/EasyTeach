@@ -4,12 +4,10 @@ define([
 ], function(View, template) {
     'use strict';
 
-    var GradesView = View.extend({
+    return View.extend({
         container: '#content',
         id: 'site-container',
         template: template,
         autoRender: true
     });
-
-    return GradesView;
 });

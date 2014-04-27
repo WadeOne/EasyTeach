@@ -2,9 +2,10 @@ define([
     'chaplin',
     'views/site-view',
     'views/shared/menu',
+    'views/logout-view',
     'models/shared/menu',
-    'views/logout-view'
-], function(Chaplin, SiteView, MenuView, Menu, LogoutView) {
+    'models/user-logout'
+], function(Chaplin, SiteView, MenuView, LogoutView, Menu, UserLogout) {
     'use strict';
 
     var menu = new Menu();
@@ -13,7 +14,7 @@ define([
       beforeAction: function () {
           this.reuse('site', SiteView);
           this.reuse('menu', MenuView, { model: menu });
-          this.reuse('logout', LogoutView);
+          this.reuse('logout', LogoutView, {model: new UserLogout()});
       }
   });
 });

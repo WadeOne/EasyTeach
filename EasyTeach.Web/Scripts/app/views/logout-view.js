@@ -1,9 +1,9 @@
 ﻿define([
-    'chaplin',
+    'underscore',
     'views/base/view',
-    'models/user-logout',
-    'text!templates/logout.html'
-], function (Chaplin, View, UserLogout, template) {
+    'text!templates/logout.html',
+    'lib/utils'
+], function (_, View, template, utils) {
     'use strict';
 
     return View.extend({
@@ -15,20 +15,19 @@
             "click #logout-btn": "userLogout"
         },
         initialize: function () {
-            this.model = new UserLogout();
-
             this.listenTo(this.model, "sync", this.logoutSuccess);
             this.listenTo(this.model, "error", this.logoutFail);
         },
         logoutSuccess: function () {
-            alert("logout success")
-            Chaplin.utils.redirectTo("home#login");
+            window.alert("logout success");
+            utils.redirectTo("home#login");
         },
         logoutFail: function (model, errorData) {
-            alert("logout fail");
+            window.alert("logout fail");
         },
         userLogout: function () {
-            this.model.save();
+            this.model.logout();
+
             return false;
         }
     });

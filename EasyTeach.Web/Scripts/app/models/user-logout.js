@@ -3,9 +3,10 @@
 ], function (Model) {
     'use strict';
 
-    var Logout = Model.extend({
-        url: '../api/User/Logout'
+    return Model.extend({
+        url: '../api/User/Logout',
+        logout: function() {
+            this.save();
+        }
     });
-
-    return Logout;
 });

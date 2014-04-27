@@ -14,6 +14,7 @@
             grant_type: 'password'
         },
         initialize: function() {
+            this.on("sync", this.successHandler);
             this.on("error", this.errorHandler);
         },
         sync: function(method, model, options) {
@@ -23,6 +24,9 @@
             });
 
             return Backbone.sync.apply(this, arguments);
+        },
+        successHandler: function() {
+            this.publishEvent("!user:login");
         },
         errorHandler: function (model, errorData) {
             this.set("errorMessage", errorData.responseJSON.error_description);

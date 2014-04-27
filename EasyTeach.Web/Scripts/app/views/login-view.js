@@ -4,8 +4,9 @@ define([
     'models/user-login',
     'text!templates/login.html',
     'utils/serialize',
-    'lib/utils'
-], function (_, View, UserLogin, template, serialize, utils) {
+    'lib/utils',
+    'config/public-routes'
+], function (_, View, UserLogin, template, serialize, utils, routes) {
     'use strict';
 
     return View.extend({
@@ -28,7 +29,7 @@ define([
             return false;
         },
         loginSuccess: function() {
-            utils.redirectTo("students#grades");
+            utils.redirectTo(routes.loginRedirect);
         }
     });
 });

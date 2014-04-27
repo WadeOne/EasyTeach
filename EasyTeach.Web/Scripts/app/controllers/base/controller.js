@@ -26,6 +26,10 @@ define([
             if (isAuthenticated) {
                 this.reuse('menu', MenuView, { model: menu });
                 this.reuse('logout', LogoutView, {model: new UserLogout()});
+
+                if (route.name === routes.login) {
+                    this.redirectTo(routes.loginRedirect);
+                }
             } else if (routes.isPublic(route.name) === false) {
                 this.redirectTo(routes.login);
             }

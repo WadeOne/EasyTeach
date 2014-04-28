@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 
+using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers;
@@ -77,6 +78,9 @@ namespace EasyTeach.Core.Services.Quiz.Impl
             await _quizRepository.AssignQuizAsync(assignmentDto);
         }
 
-        
+        public Task AddQuestionToQuiz(int quizId, Question question)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -4,6 +4,8 @@ using System.Linq;
 using System.Security.Permissions;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Results;
+
 using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
 using EasyTeach.Web.Models.ViewModels;
@@ -36,6 +38,11 @@ namespace EasyTeach.Web.Controllers
         }
 
         // POST api/User/Register
+        /// <summary>
+        /// Register new User. Available only for teachers
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
         [Route("Register")]
         [ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "Register", Resource = "User")]
         public async Task<IHttpActionResult> Register(CreateUserViewModel user)

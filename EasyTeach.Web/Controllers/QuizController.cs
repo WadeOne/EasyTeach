@@ -2,6 +2,8 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+
+using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Services.Quiz;
 using EasyTeach.Core.Services.Quiz.Exceptions;
@@ -24,7 +26,7 @@ namespace EasyTeach.Web.Controllers
             _quizManagementService = quizManagementService;
         }
 
-        public async Task<IHttpActionResult> CreateQuiz(CreateQuizViewModel newQuizViewModel)
+        public async Task<IHttpActionResult> Create(CreateQuizViewModel newQuizViewModel)
         {
             if (newQuizViewModel == null)
             {
@@ -46,6 +48,26 @@ namespace EasyTeach.Web.Controllers
                 return BadRequest(ModelState);
             }
             return Ok(createdQuiz);
+        }
+
+        public Task<IHttpActionResult> AddQuestion(AddQuestionToQuizViewModel questionToQuizViewModel)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
+    public class AddQuestionToQuizViewModel
+    {
+        public int QuizId { get; set; }
+
+        public QuestionViewModel Question { get; set; }
+    }
+
+    public class QuestionViewModel
+    {
+        public virtual Question ToQuestion()
+        {
+            throw new NotImplementedException();
         }
     }
 }

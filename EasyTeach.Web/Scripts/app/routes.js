@@ -9,5 +9,6 @@ define(function() {
     match('reset', 'home#resetPassword');
     match('students/grades', 'students#grades');
     match('addhomeworks', 'home#addHomeworks');
+    match('quiz', 'quizzes/quiz#showQuiz');
   };
 });

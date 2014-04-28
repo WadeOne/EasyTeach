@@ -172,6 +172,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Scripts\app\models\quizzes\" />
     <Folder Include="Scripts\app\templates\errors\" />
   </ItemGroup>
   <ItemGroup>
@@ -723,6 +724,7 @@
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\Site.css" />

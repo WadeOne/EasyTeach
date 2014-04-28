@@ -24,7 +24,11 @@ define([
         userLogin: function() {
             var data = serialize.form(this.$('#login-form'));
 
-            this.model.save(data);
+            this.model.save(data, {
+                error: function (model, response) {
+
+                }
+            });
 
             return false;
         },

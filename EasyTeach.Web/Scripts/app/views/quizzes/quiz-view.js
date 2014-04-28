@@ -1,12 +1,12 @@
 define([
     'views/base/view',
-    'text!templates/students/grades.html'
+    'text!templates/quizzes/quiz.html'
 ], function(View, template) {
     'use strict';
 
     return View.extend({
         container: '#content',
-        id: 'site-container',
+        className: 'row',
         template: template,
         autoRender: true
     });

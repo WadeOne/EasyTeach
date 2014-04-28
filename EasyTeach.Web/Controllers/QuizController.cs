@@ -12,7 +12,7 @@ using EasyTeach.Web.Models.ViewModels;
 
 namespace EasyTeach.Web.Controllers
 {
-    public class QuizController : ApiController
+    public class QuizController : ApiControllerBase
     {
         private readonly IQuizManagementService _quizManagementService;
 

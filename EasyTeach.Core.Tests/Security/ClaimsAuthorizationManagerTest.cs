@@ -9,28 +9,32 @@ namespace EasyTeach.Core.Tests.Security
     {
         private readonly ClaimsAuthorizationManager _claimsAuthorizationManager = new ClaimsAuthorizationManager();
 
-        [Theory]
-        [InlineData("Teacher", "User", "Register")]
-        public void CheckAccess_ValidOperationResourceRoleClaim_True(string role, string resource, string operation)
+        private readonly static Claim[] Claims = new Claim[]
         {
-            var context = new AuthorizationContext(new ClaimsPrincipal(new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.Role, role, ClaimValueTypes.String)
-            })), resource, operation);
+            new Claim("User", "Register"),
+            new Claim("User", "Confirm"),
+            new Claim("Quiz", "Create"),
+            new Claim("Quiz", "Update"),
+            new Claim("Quiz", "Delete"),
+        };
+
+        [Theory]
+        [InlineData("User", "Register")]
+        [InlineData("Quiz", "Update")]
+        public void CheckAccess_ValidOperationResourceClaim_True(string resource, string operation)
+        {
+            var context = new AuthorizationContext(new ClaimsPrincipal(new ClaimsIdentity(Claims)), resource, operation);
             Assert.True(_claimsAuthorizationManager.CheckAccess(context));
         }
 
         [Theory]
-        [InlineData("", "User", "Register")]
-        [InlineData("Teacher", "User", "ConfirmEmail")]
-        [InlineData("Teacher", "User", "SetPassword")]
-        [InlineData("Teacher", " ", "Register")]
-        public void CheckAccess_InvalidOperationResourceRoleClaim_False(string role, string resource, string operation)
+        [InlineData("User", "Quiz")]
+        [InlineData("User", "ConfirmEmail")]
+        [InlineData("Quiz", "SetPassword")]
+        [InlineData(" ", "Register")]
+        public void CheckAccess_InvalidOperationResourceClaim_False(string resource, string operation)
         {
-            var context = new AuthorizationContext(new ClaimsPrincipal(new ClaimsIdentity(new[]
-            {
-                new Claim(ClaimTypes.Role, role, ClaimValueTypes.String)
-            })), resource, operation);
+            var context = new AuthorizationContext(new ClaimsPrincipal(new ClaimsIdentity(Claims)), resource, operation);
             Assert.False(_claimsAuthorizationManager.CheckAccess(context));
         }
     }

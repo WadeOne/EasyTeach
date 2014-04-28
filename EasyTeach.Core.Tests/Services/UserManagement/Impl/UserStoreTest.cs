@@ -1,7 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
-using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers;
@@ -11,6 +9,8 @@ using Xunit;
 
 namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
 {
+    using System.Security.Claims;
+
     public sealed class UserStoreTest
     {
         private readonly UserStore _userStore;

@@ -9453,8 +9453,18 @@ ul {
   margin: 30px 0;
 }
 
-/*grid */
+/*logout button*/
 /* line 87, ../scss/app.scss */
+#logout-btn {
+  display: inline-block;
+  margin-top: 25px;
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/*grid */
+/* line 96, ../scss/app.scss */
 .custom-button {
   width: 180px;
   background: #67cac7;
@@ -9463,36 +9473,36 @@ ul {
   margin-bottom: 20px;
 }
 
-/* line 94, ../scss/app.scss */
+/* line 103, ../scss/app.scss */
 .logout-button {
   float: right;
   margin-top: 10px;
 }
 
 /*homeworks page*/
-/* line 104, ../scss/app.scss */
+/* line 113, ../scss/app.scss */
 .tabs-content .accordion .content ul li {
   margin-bottom: 5px;
 }
 
-/* line 111, ../scss/app.scss */
+/* line 120, ../scss/app.scss */
 .download-all-homeworks-button {
   float: right;
   margin-right: 10px;
 }
 
-/* line 115, ../scss/app.scss */
+/* line 124, ../scss/app.scss */
 .download-single-homework-button {
   float: right;
   margin-right: 30px;
 }
 
-/* line 120, ../scss/app.scss */
+/* line 129, ../scss/app.scss */
 .loader {
   position: relative;
   min-height: 200px;
 }
-/* line 123, ../scss/app.scss */
+/* line 132, ../scss/app.scss */
 .loader:after {
   content: '';
   position: absolute;
@@ -9505,12 +9515,12 @@ ul {
   opacity: .1;
 }
 
-/* line 136, ../scss/app.scss */
+/* line 145, ../scss/app.scss */
 .top-bar .row {
   max-width: 62.5rem;
 }
 
-/* line 142, ../scss/app.scss */
+/* line 151, ../scss/app.scss */
 .file-upload {
   display: block;
   position: relative;
@@ -9524,13 +9534,13 @@ ul {
   transition: box-shadow 0.1s linear;
   margin-bottom: 30px;
 }
-/* line 154, ../scss/app.scss */
+/* line 163, ../scss/app.scss */
 .file-upload input[type=file] {
   position: absolute;
   top: 0;
   opacity: 0;
 }
-/* line 159, ../scss/app.scss */
+/* line 168, ../scss/app.scss */
 .file-upload .choose-file-button {
   display: block;
   float: right;
@@ -9543,7 +9553,7 @@ ul {
   color: #ffffff;
   font-size: 1rem;
 }
-/* line 171, ../scss/app.scss */
+/* line 180, ../scss/app.scss */
 .file-upload mark {
   display: block;
   cursor: pointer;
@@ -9553,21 +9563,21 @@ ul {
   font-size: 1rem;
 }
 
-/* line 181, ../scss/app.scss */
+/* line 190, ../scss/app.scss */
 .add-homework-wrapper textarea {
   display: inline-block;
 }
-/* line 184, ../scss/app.scss */
+/* line 193, ../scss/app.scss */
 .add-homework-wrapper #add-homework-button {
   vertical-align: top;
 }
 
-/* line 191, ../scss/app.scss */
+/* line 200, ../scss/app.scss */
 .registration-page .columns {
   padding: 0;
 }
 
-/* line 197, ../scss/app.scss */
+/* line 206, ../scss/app.scss */
 .easy-teach-button {
   display: inline-block;
   padding: 15px 20px;
@@ -9576,13 +9586,13 @@ ul {
   text-align: center;
   white-space: nowrap;
 }
-/* line 204, ../scss/app.scss */
+/* line 213, ../scss/app.scss */
 .easy-teach-button:hover {
   background: #fa6900;
   color: #ffffff;
 }
 
-/* line 211, ../scss/app.scss */
+/* line 220, ../scss/app.scss */
 .error-message {
   color: red;
   margin-bottom: 20px;

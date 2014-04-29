@@ -2,7 +2,7 @@ define(['underscore'], function (_) {
     "use strict";
 
     return {
-        public: ["home#login"],
+        public: ["home#login", "home#resetPassword"],
         login: "home#login",
         loginRedirect: "students#grades",
         isPublic: function (route) {

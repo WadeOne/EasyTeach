@@ -7,10 +7,9 @@ define([
 
     var RegisterView = View.extend({
       container: '#content',
-      id: 'site-container',
+      className: 'row',
       template: _.template(template),
       autoRender: true,
-      noWrap: true,
       events: {
         "submit #user-registration-form": "createUser"
       },

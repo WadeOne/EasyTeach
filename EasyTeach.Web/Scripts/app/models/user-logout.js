@@ -6,7 +6,12 @@
     return Model.extend({
         url: '../api/User/Logout',
         logout: function() {
-            this.save();
+        	var data = {}
+            this.save(data, {
+            	error: function (model, response) {
+            		
+            	}
+            });
         }
     });
 });

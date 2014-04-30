@@ -5,18 +5,16 @@ define([
 	], function(View, User, template) {
 		'use strict';
 
-		var RegisterView = View.extend({
-			container: '#content',
-			id: 'site-container',
-			template: _.template(template),
-			autoRender: true,
-			noWrap: true,
-			events: {
-				"submit #user-registration-form": "createUser"
-			},
-			initialize: function() {
-				this.model = new User();
-
+    var RegisterView = View.extend({
+      container: '#content',
+      className: 'row',
+      template: _.template(template),
+      autoRender: true,
+      events: {
+        "submit #user-registration-form": "createUser"
+      },
+      initialize: function() {
+        this.model = new User();
 				this.listenTo(this.model, "sync", this.registerSuccess);
 				this.listenTo(this.model, "error", this.registerFail);
 			},

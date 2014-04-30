@@ -16,7 +16,7 @@ define([
       initialize: function() {
         this.model = new User();
 				this.listenTo(this.model, "sync", this.registerSuccess);
-				this.listenTo(this.model, "error", this.registerFail);
+				this.listenTo(this.model, "error", this.render);
 			},
 			createUser: function (ev) {
 				var form = $(ev.currentTarget),
@@ -35,21 +35,6 @@ define([
 			},
 			registerSuccess: function(){
 				alert("success");        
-			},
-			registerFail: function(model, errorData){
-				_.extend(model, {
-					errorMessage: $.parseJSON(errorData.responseText).modelState.email
-				});
-				this.render();
-			},
-			render: function() {
-				var html = this.template({
-					errorModel: this.model,
-				});
-
-				this.$el.html(html);
-
-				return this;
 			}
 		});
 

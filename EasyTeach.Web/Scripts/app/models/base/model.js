@@ -12,33 +12,39 @@ define([
 		//   this.on('sync', this.finishSync);
 		//   this.on('error', this.unsync);
 		// }
+		initialize: function () {
+			this.on("error", this.errorHandler);
+		},
 
-		// TODo: change to sync
-		save: function (attributes, options) {
-			options.error = function (model, response) {
-				switch (response.status) {
-					case 401:
-						console.log('401!!!!!!!!!!')
-						Chaplin.mediator.publish('access-error', response);
-						break;
-					case 403:
-						console.log('403!!!!!!!!!!!', response);
-						Chaplin.mediator.publish('auth-error', response);
-						break;
-					case 404:
-						Chaplin.mediator.publish('notfound-error', response);
-						break;
-					case 405:
-						Chaplin.mediator.publish('notallowed-error', response);
-						break;
-					case 500:
-						//TODO: add options to determine behavior (popup or page)
-						console.log('500!!!!!!!!!!!', response);
-						Chaplin.mediator.publish('server-error', response);
-						break;
-				}
+		errorHandler: function (model, response) {
+			switch (response.status) {
+				case 401:
+					this.accessErrorHandler(response);
+					break;
+				case 403:
+					this.authErrorHandler(response);
+					break;
+				case 404:
+					this.errorPageRedirect(response);
+					break;
+				case 405:
+					console.log('not allowed');
+					break;
+				case 500:
+					//TODO: add options to determine behavior (popup or page)
+					this.errorPageRedirect(response);
+					break;
 			}
-			return Backbone.Model.prototype.save.call(this, attributes, options);
+		},
+		errorPageRedirect: function (response) {
+			window.localStorage.setItem('errorInfo', JSON.stringify(response));
+			Chaplin.utils.redirectTo('home#error');
+		},
+		accessErrorHandler: function (response) {
+			Chaplin.utils.redirectTo('home#login');
+		},
+		authErrorHandler: function (response) {
+			Chaplin.utils.redirectTo('home#login');
 		}
 
 	});

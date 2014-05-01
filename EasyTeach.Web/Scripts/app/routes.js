@@ -6,7 +6,7 @@ define(function() {
 	return function (match) {
 		match('', 'home#login');
 		match('register', 'home#register');
-		match('error', 'home#error');
+		match('error', 'error#error');
 		match('reset', 'home#resetPassword');
 		match('students/grades', 'students#grades');
 		match('addhomeworks', 'home#addHomeworks');

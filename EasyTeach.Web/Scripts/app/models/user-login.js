@@ -15,7 +15,6 @@
         },
         initialize: function() {
             this.on("sync", this.successHandler);
-            this.on("error", this.errorHandler);
         },
         sync: function(method, model, options) {
             _.extend(options, {
@@ -28,8 +27,11 @@
         successHandler: function() {
             this.publishEvent("!user:login");
         },
-        errorHandler: function (model, errorData) {
-            this.set("errorMessage", errorData.responseJSON.error_description);
+        modelErrors: {
+            400: function (model, errorData) {
+                var parsed = errorData.responseJSON;
+                this.set("errorMessage", parsed.error_description || parsed.error);
+            }
         }
 	});
 });

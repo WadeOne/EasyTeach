@@ -16,7 +16,7 @@ define([
 
     return Chaplin.Controller.extend({
         userSession: function () {
-            return session.getAttributes();
+            return session.toJSON();
         },
         beforeAction: function (params, route) {
             var isAuthenticated = this.userSession().isAuthenticated === true;

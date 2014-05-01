@@ -4,9 +4,8 @@ define([
 	'views/register-view',
 	'views/reset-password-view',
 	'views/add-homeworks-view',
-	'views/errors/error',
 	'models/user-login'
-], function(Controller, LoginView, RegisterView, ResetPasswordView, AddHomeworksView, ErrorView, UserLogin) {
+], function(Controller, LoginView, RegisterView, ResetPasswordView, AddHomeworksView, UserLogin) {
 	"use strict";
 
 	return Controller.extend({
@@ -21,9 +20,6 @@ define([
 		},
 		addHomeworks: function () {
 			this.view = new AddHomeworksView({ region: 'main' });
-		},
-		error: function () {
-			this.view = new ErrorView({ region: 'main' });
 		}
 	});
 });

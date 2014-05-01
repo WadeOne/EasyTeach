@@ -5,20 +5,20 @@ meta.foundation-version {
 
 /* line 305, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_global.scss */
 meta.foundation-mq-small {
-  font-family: "/only screen and (max-width: 40em)/";
-  width: 0em;
+  font-family: "/only screen and (max-width: 640px)/";
+  width: 0px;
 }
 
 /* line 310, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_global.scss */
 meta.foundation-mq-medium {
-  font-family: "/only screen and (min-width:40.063em)/";
-  width: 40.063em;
+  font-family: "/only screen and (min-width:641px)/";
+  width: 641px;
 }
 
 /* line 315, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_global.scss */
 meta.foundation-mq-large {
-  font-family: "/only screen and (min-width:64.063em)/";
-  width: 64.063em;
+  font-family: "/only screen and (min-width:769px)/";
+  width: 769px;
 }
 
 /* line 320, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_global.scss */
@@ -541,7 +541,7 @@ select {
     float: left;
   }
 }
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 157, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_grid.scss */
   .column.medium-centered,
   .columns.medium-centered {
@@ -1001,7 +1001,7 @@ select {
     left: auto;
   }
 }
-@media only screen and (min-width: 64.063em) {
+@media only screen and (min-width: 769px) {
   /* line 157, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_grid.scss */
   .column.large-centered,
   .columns.large-centered {
@@ -2162,7 +2162,7 @@ select {
     padding-right: 0rem;
   }
 }
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 60, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_block-grid.scss */
   .medium-block-grid-1 > li {
     width: 100%;
@@ -2721,7 +2721,7 @@ select {
     padding-right: 0rem;
   }
 }
-@media only screen and (min-width: 64.063em) {
+@media only screen and (min-width: 769px) {
   /* line 60, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_block-grid.scss */
   .large-block-grid-1 > li {
     width: 100%;
@@ -3578,7 +3578,7 @@ button.disabled.alert:hover, button.disabled.alert:focus, button[disabled].alert
   background-color: #f04124;
 }
 
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 232, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_buttons.scss */
   button, .button {
     display: inline-block;
@@ -3938,7 +3938,7 @@ button.disabled.alert:hover, button.disabled.alert:focus, button[disabled].alert
   display: block;
 }
 
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 144, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_clearing.scss */
   .clearing-main-prev,
   .clearing-main-next {
@@ -5135,7 +5135,7 @@ label.error {
 }
 
 /* Styles for screens that are at least 768px; */
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 194, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_joyride.scss */
   .joyride-tip-guide {
     width: 300px;
@@ -5667,7 +5667,7 @@ kbd {
   display: none;
 }
 
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 418, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_orbit.scss */
   .touch .orbit-container .orbit-prev,
   .touch .orbit-container .orbit-next {
@@ -5678,7 +5678,7 @@ kbd {
     display: block;
   }
 }
-@media only screen and (max-width: 40em) {
+@media only screen and (max-width: 640px) {
   /* line 428, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_orbit.scss */
   .orbit-stack-on-small .orbit-slides-container {
     height: auto !important;
@@ -6069,14 +6069,14 @@ dialog, .reveal-modal {
   -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
 }
-@media only screen and (max-width: 40em) {
+@media only screen and (max-width: 640px) {
   /* line 158, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_reveal.scss */
   dialog, .reveal-modal {
     height: 100vh;
     min-height: 100vh;
   }
 }
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 158, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_reveal.scss */
   dialog, .reveal-modal {
     left: 50%;
@@ -6096,14 +6096,14 @@ dialog > :first-child, .reveal-modal > :first-child {
 dialog > :last-child, .reveal-modal > :last-child {
   margin-bottom: 0;
 }
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 158, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_reveal.scss */
   dialog, .reveal-modal {
     margin-left: -40%;
     width: 80%;
   }
 }
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 158, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_reveal.scss */
   dialog, .reveal-modal {
     top: 6.25rem;
@@ -6127,7 +6127,7 @@ dialog[open] {
   visibility: visible;
 }
 
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 172, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_reveal.scss */
   dialog, .reveal-modal {
     padding: 1.875rem;
@@ -6141,41 +6141,41 @@ dialog[open] {
     margin-left: 0 !important;
   }
 }
-@media only screen and (min-width: 40.063em) and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) and (min-width: 641px) {
   /* line 172, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_reveal.scss */
   dialog, .reveal-modal {
     top: 6.25rem;
   }
 }
-@media only screen and (min-width: 40.063em) and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) and (min-width: 641px) {
   /* line 175, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_reveal.scss */
   dialog.tiny, .reveal-modal.tiny {
     margin-left: -15%;
     width: 30%;
   }
 }
-@media only screen and (min-width: 40.063em) and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) and (min-width: 641px) {
   /* line 176, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_reveal.scss */
   dialog.small, .reveal-modal.small {
     margin-left: -20%;
     width: 40%;
   }
 }
-@media only screen and (min-width: 40.063em) and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) and (min-width: 641px) {
   /* line 177, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_reveal.scss */
   dialog.medium, .reveal-modal.medium {
     margin-left: -30%;
     width: 60%;
   }
 }
-@media only screen and (min-width: 40.063em) and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) and (min-width: 641px) {
   /* line 178, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_reveal.scss */
   dialog.large, .reveal-modal.large {
     margin-left: -35%;
     width: 70%;
   }
 }
-@media only screen and (min-width: 40.063em) and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) and (min-width: 641px) {
   /* line 179, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_reveal.scss */
   dialog.xlarge, .reveal-modal.xlarge {
     margin-left: -47.5%;
@@ -6183,7 +6183,7 @@ dialog[open] {
   }
 }
 
-@media only screen and (min-width: 40.063em) and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) and (min-width: 641px) {
   /* line 183, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_reveal.scss */
   dialog.full, .reveal-modal.full {
     margin-left: -50vw;
@@ -6811,7 +6811,7 @@ table tfoot tr td {
   padding: 0 0.9375rem;
 }
 
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 84, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_tabs.scss */
   .tabs.vertical {
     width: 20%;
@@ -6933,7 +6933,7 @@ table tfoot tr td {
   font-weight: normal;
 }
 
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 108, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_tooltips.scss */
   .tooltip > .nub {
     border-color: transparent transparent #333333 transparent;
@@ -6968,8 +6968,8 @@ table tfoot tr td {
 }
 /* line 102, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_top-bar.scss */
 meta.foundation-mq-topbar {
-  font-family: "/only screen and (min-width:40.063em)/";
-  width: 40.063em;
+  font-family: "/only screen and (min-width:641px)/";
+  width: 641px;
 }
 
 /* Wrapped around .top-bar to contain to grid width */
@@ -7328,7 +7328,7 @@ meta.foundation-mq-topbar {
   display: block;
 }
 
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 447, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_top-bar.scss */
   .top-bar {
     background: #69d2e7;
@@ -7570,7 +7570,7 @@ meta.foundation-mq-topbar {
   text-align: justify !important;
 }
 
-@media only screen and (max-width: 40em) {
+@media only screen and (max-width: 640px) {
   /* line 149, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_type.scss */
   .small-only-text-left {
     text-align: left !important;
@@ -7612,7 +7612,7 @@ meta.foundation-mq-topbar {
     text-align: justify !important;
   }
 }
-@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+@media only screen and (min-width: 641px) and (max-width: 768px) {
   /* line 149, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_type.scss */
   .medium-only-text-left {
     text-align: left !important;
@@ -7633,7 +7633,7 @@ meta.foundation-mq-topbar {
     text-align: justify !important;
   }
 }
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 156, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_type.scss */
   .medium-text-left {
     text-align: left !important;
@@ -7654,7 +7654,7 @@ meta.foundation-mq-topbar {
     text-align: justify !important;
   }
 }
-@media only screen and (min-width: 64.063em) and (max-width: 90em) {
+@media only screen and (min-width: 769px) and (max-width: 1440px) {
   /* line 149, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_type.scss */
   .large-only-text-left {
     text-align: left !important;
@@ -7675,7 +7675,7 @@ meta.foundation-mq-topbar {
     text-align: justify !important;
   }
 }
-@media only screen and (min-width: 64.063em) {
+@media only screen and (min-width: 769px) {
   /* line 156, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_type.scss */
   .large-text-left {
     text-align: left !important;
@@ -7800,7 +7800,7 @@ meta.foundation-mq-topbar {
   text-align: justify !important;
 }
 
-@media only screen and (max-width: 40em) {
+@media only screen and (max-width: 640px) {
   /* line 193, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_type.scss */
   .small-only-text-left {
     text-align: left !important;
@@ -7842,7 +7842,7 @@ meta.foundation-mq-topbar {
     text-align: justify !important;
   }
 }
-@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+@media only screen and (min-width: 641px) and (max-width: 768px) {
   /* line 207, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_type.scss */
   .medium-only-text-left {
     text-align: left !important;
@@ -7863,7 +7863,7 @@ meta.foundation-mq-topbar {
     text-align: justify !important;
   }
 }
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 214, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_type.scss */
   .medium-text-left {
     text-align: left !important;
@@ -7884,7 +7884,7 @@ meta.foundation-mq-topbar {
     text-align: justify !important;
   }
 }
-@media only screen and (min-width: 64.063em) and (max-width: 90em) {
+@media only screen and (min-width: 769px) and (max-width: 1440px) {
   /* line 221, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_type.scss */
   .large-only-text-left {
     text-align: left !important;
@@ -7905,7 +7905,7 @@ meta.foundation-mq-topbar {
     text-align: justify !important;
   }
 }
-@media only screen and (min-width: 64.063em) {
+@media only screen and (min-width: 769px) {
   /* line 228, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_type.scss */
   .large-text-left {
     text-align: left !important;
@@ -8328,7 +8328,7 @@ blockquote p {
   padding: 0 0.0625rem;
 }
 
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 513, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_type.scss */
   h1, h2, h3, h4, h5, h6 {
     line-height: 1.4;
@@ -8480,7 +8480,7 @@ blockquote p {
   text-align: justify !important;
 }
 
-@media only screen and (max-width: 40em) {
+@media only screen and (max-width: 640px) {
   /* line 149, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_type.scss */
   .small-only-text-left {
     text-align: left !important;
@@ -8522,7 +8522,7 @@ blockquote p {
     text-align: justify !important;
   }
 }
-@media only screen and (min-width: 40.063em) and (max-width: 64em) {
+@media only screen and (min-width: 641px) and (max-width: 768px) {
   /* line 149, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_type.scss */
   .medium-only-text-left {
     text-align: left !important;
@@ -8543,7 +8543,7 @@ blockquote p {
     text-align: justify !important;
   }
 }
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 156, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_type.scss */
   .medium-text-left {
     text-align: left !important;
@@ -8564,7 +8564,7 @@ blockquote p {
     text-align: justify !important;
   }
 }
-@media only screen and (min-width: 64.063em) and (max-width: 90em) {
+@media only screen and (min-width: 769px) and (max-width: 1440px) {
   /* line 149, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_type.scss */
   .large-only-text-left {
     text-align: left !important;
@@ -8585,7 +8585,7 @@ blockquote p {
     text-align: justify !important;
   }
 }
-@media only screen and (min-width: 64.063em) {
+@media only screen and (min-width: 769px) {
   /* line 156, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_type.scss */
   .large-text-left {
     text-align: left !important;
@@ -8773,7 +8773,7 @@ blockquote p {
   height: 2.8125rem;
   top: 0;
 }
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 277, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_offcanvas.scss */
   .tab-bar-section {
     text-align: left;
@@ -8925,7 +8925,7 @@ ul.off-canvas-list li a:hover {
   z-index: 1002;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 257, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_offcanvas.scss */
   .move-right .exit-off-canvas:hover {
     background: rgba(255, 255, 255, 0.05);
@@ -8956,7 +8956,7 @@ ul.off-canvas-list li a:hover {
   z-index: 1002;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 257, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_offcanvas.scss */
   .move-left .exit-off-canvas:hover {
     background: rgba(255, 255, 255, 0.05);
@@ -9051,7 +9051,7 @@ ul.off-canvas-list li a:hover {
   }
 }
 /* medium displays */
-@media only screen and (min-width: 40.063em) {
+@media only screen and (min-width: 641px) {
   /* line 195, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_visibility.scss */
   .hide-for-small-only, .show-for-small-up, .hide-for-small, .hide-for-small-down, .show-for-medium-only, .show-for-medium-up, .show-for-medium, .show-for-medium-down, .hide-for-large-only, .hide-for-large-up, .hide-for-large, .show-for-large-down, .hide-for-xlarge-only, .hide-for-xlarge-up, .hide-for-xlarge, .show-for-xlarge-down, .hide-for-xxlarge-only, .hide-for-xxlarge-up, .hide-for-xxlarge, .show-for-xxlarge-down {
     display: inherit !important;
@@ -9088,7 +9088,7 @@ ul.off-canvas-list li a:hover {
   }
 }
 /* large displays */
-@media only screen and (min-width: 64.063em) {
+@media only screen and (min-width: 769px) {
   /* line 195, ../../Scripts/vendor/bower_components/foundation/scss/foundation/components/_visibility.scss */
   .hide-for-small-only, .show-for-small-up, .hide-for-small, .hide-for-small-down, .hide-for-medium-only, .show-for-medium-up, .hide-for-medium, .hide-for-medium-down, .show-for-large-only, .show-for-large-up, .show-for-large, .show-for-large-down, .hide-for-xlarge-only, .hide-for-xlarge-up, .hide-for-xlarge, .show-for-xlarge-down, .hide-for-xxlarge-only, .hide-for-xxlarge-up, .hide-for-xxlarge, .show-for-xxlarge-down {
     display: inherit !important;
@@ -9403,7 +9403,7 @@ th.hide-for-touch {
   display: table-cell !important;
 }
 
-/* line 46, ../scss/app.scss */
+/* line 42, ../scss/app.scss */
 html, body {
   height: 100%;
   width: 100%;
@@ -9411,60 +9411,54 @@ html, body {
   padding: 0px;
 }
 
-/* line 52, ../scss/app.scss */
+/* line 48, ../scss/app.scss */
 header {
   background: #5bb5d7;
 }
-/* line 54, ../scss/app.scss */
+/* line 50, ../scss/app.scss */
 header .logo {
   color: #ffffff;
-  padding: 20px 0.9375rem;
-  font-size: 28px;
   font-weight: bold;
 }
 
-/* line 61, ../scss/app.scss */
+/* line 55, ../scss/app.scss */
 ul {
   margin-bottom: 0;
 }
 
-/* line 65, ../scss/app.scss */
+/* line 59, ../scss/app.scss */
 .page-wrapper {
   background: rgba(224, 228, 204, 0.3);
 }
-/* line 68, ../scss/app.scss */
-.page-wrapper .page-content .columns {
-  padding: 0;
-}
-/* line 71, ../scss/app.scss */
+/* line 62, ../scss/app.scss */
 .page-wrapper .page-content .row {
   padding-top: 30px;
 }
-/* line 74, ../scss/app.scss */
+/* line 65, ../scss/app.scss */
 .page-wrapper .page-content label {
   font-size: 20px;
 }
-/* line 77, ../scss/app.scss */
+/* line 68, ../scss/app.scss */
 .page-wrapper .page-content .login-wrapper {
   margin: 30px 0;
 }
-/* line 80, ../scss/app.scss */
+/* line 71, ../scss/app.scss */
 .page-wrapper .page-content .image-container {
   margin: 30px 0;
 }
 
 /*logout button*/
-/* line 87, ../scss/app.scss */
+/* line 78, ../scss/app.scss */
 #logout-btn {
   display: inline-block;
-  margin-top: 25px;
+  float: right;
   color: white;
   font-weight: bold;
   font-size: 1rem;
 }
 
 /*grid */
-/* line 96, ../scss/app.scss */
+/* line 87, ../scss/app.scss */
 .custom-button {
   width: 180px;
   background: #67cac7;
@@ -9473,36 +9467,36 @@ ul {
   margin-bottom: 20px;
 }
 
-/* line 103, ../scss/app.scss */
+/* line 94, ../scss/app.scss */
 .logout-button {
   float: right;
   margin-top: 10px;
 }
 
 /*homeworks page*/
-/* line 113, ../scss/app.scss */
+/* line 104, ../scss/app.scss */
 .tabs-content .accordion .content ul li {
   margin-bottom: 5px;
 }
 
-/* line 120, ../scss/app.scss */
+/* line 111, ../scss/app.scss */
 .download-all-homeworks-button {
   float: right;
   margin-right: 10px;
 }
 
-/* line 124, ../scss/app.scss */
+/* line 115, ../scss/app.scss */
 .download-single-homework-button {
   float: right;
   margin-right: 30px;
 }
 
-/* line 129, ../scss/app.scss */
+/* line 120, ../scss/app.scss */
 .loader {
   position: relative;
   min-height: 200px;
 }
-/* line 132, ../scss/app.scss */
+/* line 123, ../scss/app.scss */
 .loader:after {
   content: '';
   position: absolute;
@@ -9515,12 +9509,12 @@ ul {
   opacity: .1;
 }
 
-/* line 145, ../scss/app.scss */
+/* line 136, ../scss/app.scss */
 .top-bar .row {
   max-width: 62.5rem;
 }
 
-/* line 151, ../scss/app.scss */
+/* line 142, ../scss/app.scss */
 .file-upload {
   display: block;
   position: relative;
@@ -9534,13 +9528,13 @@ ul {
   transition: box-shadow 0.1s linear;
   margin-bottom: 30px;
 }
-/* line 163, ../scss/app.scss */
+/* line 154, ../scss/app.scss */
 .file-upload input[type=file] {
   position: absolute;
   top: 0;
   opacity: 0;
 }
-/* line 168, ../scss/app.scss */
+/* line 159, ../scss/app.scss */
 .file-upload .choose-file-button {
   display: block;
   float: right;
@@ -9553,7 +9547,7 @@ ul {
   color: #ffffff;
   font-size: 1rem;
 }
-/* line 180, ../scss/app.scss */
+/* line 171, ../scss/app.scss */
 .file-upload mark {
   display: block;
   cursor: pointer;
@@ -9563,21 +9557,21 @@ ul {
   font-size: 1rem;
 }
 
-/* line 190, ../scss/app.scss */
+/* line 181, ../scss/app.scss */
 .add-homework-wrapper textarea {
   display: inline-block;
 }
-/* line 193, ../scss/app.scss */
+/* line 184, ../scss/app.scss */
 .add-homework-wrapper #add-homework-button {
   vertical-align: top;
 }
 
-/* line 200, ../scss/app.scss */
+/* line 191, ../scss/app.scss */
 .registration-page .columns {
   padding: 0;
 }
 
-/* line 206, ../scss/app.scss */
+/* line 197, ../scss/app.scss */
 .easy-teach-button {
   display: inline-block;
   padding: 15px 20px;
@@ -9586,43 +9580,76 @@ ul {
   text-align: center;
   white-space: nowrap;
 }
-/* line 213, ../scss/app.scss */
+/* line 204, ../scss/app.scss */
 .easy-teach-button:hover {
   background: #fa6900;
   color: #ffffff;
 }
 
-/* line 220, ../scss/app.scss */
+/* line 211, ../scss/app.scss */
 .error-message {
   color: red;
   margin-bottom: 20px;
 }
 
-/* line 227, ../scss/app.scss */
+/* line 218, ../scss/app.scss */
 .quizz-page h1 {
   font-size: 26px;
   color: #4d4d4d;
 }
-/* line 231, ../scss/app.scss */
+/* line 222, ../scss/app.scss */
 .quizz-page ul {
   list-style: none;
   margin-left: 0rem;
   color: #4d4d4d;
 }
-/* line 236, ../scss/app.scss */
+/* line 227, ../scss/app.scss */
 .quizz-page #add-description-quiz-btn, .quizz-page .test-name-wrap {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 240, ../scss/app.scss */
+/* line 231, ../scss/app.scss */
 .quizz-page #add-description-quiz-btn {
   margin: 0 0 0 15px;
 }
-/* line 243, ../scss/app.scss */
+/* line 234, ../scss/app.scss */
 .quizz-page .test-name-wrap {
   float: none;
 }
-/* line 245, ../scss/app.scss */
+/* line 236, ../scss/app.scss */
 .quizz-page .test-name-wrap input {
   margin: 0;
+}
+
+@media only screen and (max-width: 640px) {
+  /* line 244, ../scss/app.scss */
+  header .logo {
+    padding: 1rem 0.5rem;
+    font-size: 20px;
+  }
+
+  /*logout button*/
+  /* line 251, ../scss/app.scss */
+  #logout-btn {
+    margin-top: 20px;
+  }
+}
+@media only screen and (min-width: 641px) {
+  /* line 257, ../scss/app.scss */
+  header .logo {
+    padding: 1rem 0rem;
+    font-size: 28px;
+  }
+
+  /*logout button*/
+  /* line 264, ../scss/app.scss */
+  #logout-btn {
+    margin-top: 25px;
+  }
+}
+@media only screen and (min-width: 769px) and (max-width: 1440px) {
+  /* line 272, ../scss/app.scss */
+  .page-wrapper .page-content .columns {
+    padding: 0;
+  }
 }

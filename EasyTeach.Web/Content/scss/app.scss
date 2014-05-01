@@ -39,10 +39,6 @@
 //   "foundation/components/offcanvas",
 //   "foundation/components/visibility";
 
-html {
-
-}
-
 html, body {
 		height: 100%;
 		width: 100%;
@@ -53,8 +49,6 @@ header {
 	background: #5bb5d7;
 	.logo {
 		color: #ffffff;
-		padding: 20px 0.9375rem;
-		font-size: 28px;
 		font-weight: bold;
 	}
 }
@@ -65,28 +59,25 @@ ul {
 .page-wrapper {
 		 background: rgba(224, 228, 204, 0.3);
 		.page-content {
-			.columns{
-				padding: 0;
-			} 
 			.row {
 				padding-top: 30px;
 			}
 			label {
 				font-size: 20px;
-				}
-				.login-wrapper {
-					margin: 30px 0;
-				}
-				.image-container {
-					margin: 30px 0;
-				}
+			}
+			.login-wrapper {
+				margin: 30px 0;
+			}
+			.image-container {
+				margin: 30px 0;
+			}
 		}
 }
 
 /*logout button*/
 #logout-btn {
 	display: inline-block;
-	margin-top: 25px;  
+	float: right;
 	color: white;
 	font-weight: bold;
 	font-size: 1rem;
@@ -245,5 +236,42 @@ ul {
 		input {
 			margin: 0;
 		}
+	}
+}
+
+@media #{$small-only} { 
+	header {
+		.logo {
+			padding: 1rem 0.5rem;
+			font-size: 20px;
+		}
+	}
+
+	/*logout button*/
+	#logout-btn {
+		margin-top: 20px; 
+	}
+}
+@media #{$medium-up} {
+	header {
+		.logo {
+			padding: 1rem 0rem;
+			font-size: 28px;
+		}
+	}
+
+	/*logout button*/
+	#logout-btn {
+		margin-top: 25px;  
+	}
+}
+
+@media #{$large-only} { 
+	.page-wrapper {
+		.page-content {
+			.columns{
+				padding: 0;
+			} 
+		}			
 	}
 }

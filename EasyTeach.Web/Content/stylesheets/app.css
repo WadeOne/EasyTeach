@@ -9597,3 +9597,32 @@ ul {
   color: red;
   margin-bottom: 20px;
 }
+
+/* line 227, ../scss/app.scss */
+.quizz-page h1 {
+  font-size: 26px;
+  color: #4d4d4d;
+}
+/* line 231, ../scss/app.scss */
+.quizz-page ul {
+  list-style: none;
+  margin-left: 0rem;
+  color: #4d4d4d;
+}
+/* line 236, ../scss/app.scss */
+.quizz-page #add-description-quiz-btn, .quizz-page .test-name-wrap {
+  display: inline-block;
+  vertical-align: middle;
+}
+/* line 240, ../scss/app.scss */
+.quizz-page #add-description-quiz-btn {
+  margin: 0 0 0 15px;
+}
+/* line 243, ../scss/app.scss */
+.quizz-page .test-name-wrap {
+  float: none;
+}
+/* line 245, ../scss/app.scss */
+.quizz-page .test-name-wrap input {
+  margin: 0;
+}

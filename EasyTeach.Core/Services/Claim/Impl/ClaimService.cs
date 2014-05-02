@@ -36,6 +36,11 @@ namespace EasyTeach.Core.Services.Claim.Impl
                 throw new ArgumentNullException("user");
             }
 
+            if (!user.IsAuthenticated)
+            {
+                throw new InvalidOperationException("Cannot get claims of non authenticated user");
+            }
+
             IUserDto userDto = _userStore.FindByNameAsync(user.Name).Result;
             if (userDto == null)
             {

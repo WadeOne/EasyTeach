@@ -10,7 +10,7 @@ define([
     };
 
     return Model.extend({
-        url: "/api/Claim/Get",
+        url: "/api/Claim",
         defaults: {
             isAuthenticated: false,
             claims: []

@@ -155,7 +155,8 @@ namespace EasyTeach.Web.Controllers
         [Route("Logout")]
         public IHttpActionResult Logout()
         {
-            _authenticationManagerFactory().SignOut(CookieAuthenticationDefaults.AuthenticationType);
+            IAuthenticationManager authenticationManager = _authenticationManagerFactory();
+            authenticationManager.SignOut(CookieAuthenticationDefaults.AuthenticationType);
             return Ok();
         }
     }

@@ -9497,24 +9497,35 @@ ul {
   min-height: 200px;
 }
 /* line 123, ../scss/app.scss */
+.loader:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.9);
+  z-index: 1000;
+}
+/* line 133, ../scss/app.scss */
 .loader:after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 2;
+  z-index: 1500;
   width: 100%;
   height: 100%;
   background: #8a8a8a url("../image/loader.gif") no-repeat 50%;
   opacity: .1;
 }
 
-/* line 136, ../scss/app.scss */
+/* line 146, ../scss/app.scss */
 .top-bar .row {
   max-width: 62.5rem;
 }
 
-/* line 142, ../scss/app.scss */
+/* line 152, ../scss/app.scss */
 .file-upload {
   display: block;
   position: relative;
@@ -9528,13 +9539,13 @@ ul {
   transition: box-shadow 0.1s linear;
   margin-bottom: 30px;
 }
-/* line 154, ../scss/app.scss */
+/* line 164, ../scss/app.scss */
 .file-upload input[type=file] {
   position: absolute;
   top: 0;
   opacity: 0;
 }
-/* line 159, ../scss/app.scss */
+/* line 169, ../scss/app.scss */
 .file-upload .choose-file-button {
   display: block;
   float: right;
@@ -9547,7 +9558,7 @@ ul {
   color: #ffffff;
   font-size: 1rem;
 }
-/* line 171, ../scss/app.scss */
+/* line 181, ../scss/app.scss */
 .file-upload mark {
   display: block;
   cursor: pointer;
@@ -9557,21 +9568,21 @@ ul {
   font-size: 1rem;
 }
 
-/* line 181, ../scss/app.scss */
+/* line 191, ../scss/app.scss */
 .add-homework-wrapper textarea {
   display: inline-block;
 }
-/* line 184, ../scss/app.scss */
+/* line 194, ../scss/app.scss */
 .add-homework-wrapper #add-homework-button {
   vertical-align: top;
 }
 
-/* line 191, ../scss/app.scss */
+/* line 201, ../scss/app.scss */
 .registration-page .columns {
   padding: 0;
 }
 
-/* line 197, ../scss/app.scss */
+/* line 207, ../scss/app.scss */
 .easy-teach-button {
   display: inline-block;
   padding: 15px 20px;
@@ -9580,86 +9591,86 @@ ul {
   text-align: center;
   white-space: nowrap;
 }
-/* line 204, ../scss/app.scss */
+/* line 214, ../scss/app.scss */
 .easy-teach-button:hover {
   background: #fa6900;
   color: #ffffff;
 }
 
-/* line 211, ../scss/app.scss */
+/* line 221, ../scss/app.scss */
 .error-message {
   color: red;
   margin-bottom: 20px;
 }
 
-/* line 218, ../scss/app.scss */
+/* line 228, ../scss/app.scss */
 .quizz-page h1 {
   font-size: 26px;
   color: #4d4d4d;
 }
-/* line 222, ../scss/app.scss */
+/* line 232, ../scss/app.scss */
 .quizz-page ul {
   list-style: none;
   margin-left: 0rem;
   color: #4d4d4d;
 }
-/* line 227, ../scss/app.scss */
+/* line 237, ../scss/app.scss */
 .quizz-page #add-description-quiz-btn, .quizz-page .test-name-wrap {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 231, ../scss/app.scss */
+/* line 241, ../scss/app.scss */
 .quizz-page #add-description-quiz-btn {
   margin: 0 0 0 15px;
 }
-/* line 234, ../scss/app.scss */
+/* line 244, ../scss/app.scss */
 .quizz-page .test-name-wrap {
   float: none;
 }
-/* line 236, ../scss/app.scss */
+/* line 246, ../scss/app.scss */
 .quizz-page .test-name-wrap input {
   margin: 0;
 }
 
-/* line 243, ../scss/app.scss */
+/* line 253, ../scss/app.scss */
 .error-page h1 {
   font-size: 54px;
   text-align: center;
 }
-/* line 246, ../scss/app.scss */
+/* line 256, ../scss/app.scss */
 .error-page h1 .status {
   color: #f38630;
   font-size: 250px;
 }
 
 @media only screen and (max-width: 640px) {
-  /* line 254, ../scss/app.scss */
+  /* line 264, ../scss/app.scss */
   header .logo {
     padding: 1rem 0.5rem;
     font-size: 20px;
   }
 
   /*logout button*/
-  /* line 261, ../scss/app.scss */
+  /* line 271, ../scss/app.scss */
   #logout-btn {
     margin-top: 20px;
   }
 }
 @media only screen and (min-width: 641px) {
-  /* line 267, ../scss/app.scss */
+  /* line 277, ../scss/app.scss */
   header .logo {
     padding: 1rem 0rem;
     font-size: 28px;
   }
 
   /*logout button*/
-  /* line 274, ../scss/app.scss */
+  /* line 284, ../scss/app.scss */
   #logout-btn {
     margin-top: 25px;
   }
 }
 @media only screen and (min-width: 769px) and (max-width: 1440px) {
-  /* line 282, ../scss/app.scss */
+  /* line 292, ../scss/app.scss */
   .page-wrapper .page-content .columns {
     padding: 0;
   }

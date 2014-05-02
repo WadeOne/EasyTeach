@@ -4,9 +4,16 @@ define([
 ], function(_, Chaplin) {
 	'use strict';
 
+		$(document).ajaxStart(function() {
+			$('body').addClass('loader');
+		});
+		$(document).ajaxComplete(function() {
+			$('body').removeClass('loader');
+		});
+
     var defaultErrorHandler = function (model, response) {
         var status = response.status;
-
+        
         switch (status) {
             case 401:
                 Chaplin.utils.redirectTo('home#login');

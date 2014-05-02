@@ -9621,34 +9621,45 @@ ul {
   margin: 0;
 }
 
+/* line 243, ../scss/app.scss */
+.error-page h1 {
+  font-size: 54px;
+  text-align: center;
+}
+/* line 246, ../scss/app.scss */
+.error-page h1 .status {
+  color: #f38630;
+  font-size: 250px;
+}
+
 @media only screen and (max-width: 640px) {
-  /* line 244, ../scss/app.scss */
+  /* line 254, ../scss/app.scss */
   header .logo {
     padding: 1rem 0.5rem;
     font-size: 20px;
   }
 
   /*logout button*/
-  /* line 251, ../scss/app.scss */
+  /* line 261, ../scss/app.scss */
   #logout-btn {
     margin-top: 20px;
   }
 }
 @media only screen and (min-width: 641px) {
-  /* line 257, ../scss/app.scss */
+  /* line 267, ../scss/app.scss */
   header .logo {
     padding: 1rem 0rem;
     font-size: 28px;
   }
 
   /*logout button*/
-  /* line 264, ../scss/app.scss */
+  /* line 274, ../scss/app.scss */
   #logout-btn {
     margin-top: 25px;
   }
 }
 @media only screen and (min-width: 769px) and (max-width: 1440px) {
-  /* line 272, ../scss/app.scss */
+  /* line 282, ../scss/app.scss */
   .page-wrapper .page-content .columns {
     padding: 0;
   }

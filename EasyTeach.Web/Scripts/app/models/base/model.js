@@ -12,20 +12,20 @@ define([
                 Chaplin.utils.redirectTo('home#login');
                 break;
             case 403:
-                Chaplin.utils.redirectTo('error#error', {model:model, errorMessage: "Oops, access violation"});
+                Chaplin.utils.redirectTo('error#error', {model:model, status:status, errorMessage: "Oops, access violation"});
                 break;
             case 400:
-                Chaplin.utils.redirectTo('error#error', {model:model, errorMessage: "Oops, bad request"});
+                Chaplin.utils.redirectTo('error#error', {model:model, status:status, errorMessage: "Oops, bad request"});
                 break;
             case 404:
-                Chaplin.utils.redirectTo('error#error', {model:model, errorMessage: "Oops, resource not found"});
+                Chaplin.utils.redirectTo('error#error', {model:model, status:status, errorMessage: "Oops, resource not found"});
                 break;
             case 405:
             case 500:
-                Chaplin.utils.redirectTo('error#error', {model:model, errorMessage: "Oops, server error"});
+                Chaplin.utils.redirectTo('error#error', {model:model, status:status, errorMessage: "Oops, server error"});
                 break;
             default:
-                Chaplin.utils.redirectTo('error#error', {model:model, errorMessage: "Oops, unknown error '" + status + "'"});
+                Chaplin.utils.redirectTo('error#error', {model:model, status:status, errorMessage: "Oops, unknown error '" + status + "'"});
                 break;
         }
     };

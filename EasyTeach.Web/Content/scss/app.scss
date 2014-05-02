@@ -239,6 +239,16 @@ ul {
 	}
 }
 
+//error page
+.error-page h1 {
+	font-size: 54px;
+	text-align: center;
+	.status {
+		color: #f38630;
+		font-size: 250px;
+	}
+}
+
 @media #{$small-only} { 
 	header {
 		.logo {

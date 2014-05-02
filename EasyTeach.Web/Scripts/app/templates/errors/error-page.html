@@ -1,4 +1,6 @@
-<div class="row">
-	<h1><%= obj.errorMessage %></h1>
-	<p>Error</p>
+<div class="error-page row">
+	<h1 class="small-6 small-centered columns">
+		<span class="status"><%= obj.status %></span>
+		<%= obj.errorMessage %>
+	</h1>
 </div>

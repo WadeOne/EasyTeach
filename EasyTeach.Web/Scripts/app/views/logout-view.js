@@ -16,18 +16,13 @@
 		},
 		initialize: function () {
 			this.listenTo(this.model, "sync", this.logoutSuccess);
-			this.listenTo(this.model, "error", this.logoutFail);
 		},
 		logoutSuccess: function () {
 			window.alert("logout success");
 			utils.redirectTo("home#login");
 		},
-		logoutFail: function (model, errorData) {
-			window.alert("logout fail");
-		},
 		userLogout: function () {
 			this.model.logout();
-
 			return false;
 		}
 	});

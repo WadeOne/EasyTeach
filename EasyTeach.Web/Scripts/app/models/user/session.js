@@ -5,6 +5,10 @@ define([
 ], function(_, Backbone, Model) {
     "use strict";
 
+    var authenticationFails = function() {
+        this.set(this.defaults);
+    };
+
     return Model.extend({
         url: "/api/Claim/Get",
         defaults: {
@@ -13,15 +17,15 @@ define([
         },
         initialize: function() {
             this.subscribeEvent('!user:login', this.fetch);
-            this.on("error", this.errorHandler);
         },
         sync: function(method, model, options) {
             _.extend(options, {async: false});
 
             return Backbone.sync.apply(this, arguments);
         },
-        errorHandler: function() {
-            this.set(this.defaults);
+        modelErrors: {
+            401: authenticationFails,
+            500: authenticationFails
         },
         parse: function(claims) {
             this.set({

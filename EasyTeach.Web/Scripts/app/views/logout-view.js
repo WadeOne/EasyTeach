@@ -2,8 +2,9 @@
 	'underscore',
 	'views/base/view',
 	'text!templates/logout.html',
-	'lib/utils'
-], function (_, View, template, utils) {
+	'lib/utils',
+    'config/public-routes'
+], function (_, View, template, utils, routes) {
 	'use strict';
 
 	return View.extend({
@@ -18,8 +19,7 @@
 			this.listenTo(this.model, "sync", this.logoutSuccess);
 		},
 		logoutSuccess: function () {
-			window.alert("logout success");
-			utils.redirectTo("home#login");
+		    utils.redirectTo(routes.login);
 		},
 		userLogout: function () {
 			this.model.logout();

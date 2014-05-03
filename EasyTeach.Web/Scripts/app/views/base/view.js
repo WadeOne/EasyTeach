@@ -1,11 +1,28 @@
 define([
+  'underscore',
   'handlebars',
   'chaplin',
   'lib/view-helper' // Just load the view helpers, no return value
-], function(Handlebars, Chaplin) {
+], function(_, Handlebars, Chaplin) {
   'use strict';
 
   var View = Chaplin.View.extend({
+
+    // Fix for updating foundation for newly rendered item from http://www.sagarganatra.com/2013/01/adding-beforerender-and-afterrender-functions-to-backbone-view.html
+    initialize: function () {
+      this.render = _.wrap(this.render, function(render) {
+        this.beforeRender();
+        render();           
+        this.afterRender();
+      });
+    },
+
+    afterRender: function () {
+      $(document).foundation('reflow');
+    },
+
+    beforeRender: function () {
+    },
 
     getTemplateFunction: function(){
 

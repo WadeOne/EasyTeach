@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
-using EasyTeach.Core.Entities.Data;
+using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers;
 using Microsoft.AspNet.Identity;
 
 namespace EasyTeach.Core.Services.UserManagement.Impl
 {
+    using System.Security.Claims;
+
     public sealed class UserStore : IUserPasswordStore<IUserDto, int>, IUserEmailStore<IUserDto, int>, IUserClaimStore<IUserDto, int>
     {
         private readonly IUserRepository _userRepository;
@@ -67,14 +68,14 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             throw new NotImplementedException();
         }
 
-        public Task<IUserDto> FindByIdAsync(int userId)
+        public async Task<IUserDto> FindByIdAsync(int userId)
         {
-            return _userRepository.GetUserById(userId);
+            return await _userRepository.GetUserById(userId);
         }
 
-        public Task<IUserDto> FindByNameAsync(string userName)
+        public async Task<IUserDto> FindByNameAsync(string userName)
         {
-            return FindByEmailAsync(userName);
+            return await FindByEmailAsync(userName);
         }
 
         public Task SetPasswordHashAsync(IUserDto user, string passwordHash)
@@ -158,14 +159,14 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             return Task.FromResult(0);
         }
 
-        public Task<IUserDto> FindByEmailAsync(string email)
+        public async Task<IUserDto> FindByEmailAsync(string email)
         {
             if (email == null)
             {
                 throw new ArgumentNullException("email");
             }
 
-            return _userRepository.GetUserByEmail(email);
+            return await _userRepository.GetUserByEmail(email);
         }
 
         public Task<IList<Claim>> GetClaimsAsync(IUserDto user)

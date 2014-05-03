@@ -1,35 +1,22 @@
-<div class="row">
-	<form id="user-registration-form" method="post">
-		<div class="large-6 medium-6 columns">
-			<div class="large-8 medium-8">
-				<div class="login-wrapper">
-					<label>Год</label>
-					<input type="number" placeholder="Год" name="year" required />
-					<label>Курс</label>
-					<select>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-					</select>
-					<label>Группа</label>
-					<input type="number" min="1" placeholder="Группа" name="groupNumber" required />
-				</div>
-			</div>
+<form id="user-registration-form" method="post">
+	<div class="error-message"><%= obj.errorMessage %></div>
+	<div class="large-6 medium-6 columns">
+		<div class="large-8 medium-8">				
+			<label>Год</label>
+			<input type="number" placeholder="Год" name="year" required />
+			<label>Группа</label>
+			<input type="number" min="1" placeholder="Группа" name="groupNumber" required />
+			<label>Почта</label>
+			<input type="email" placeholder="Почта" name="email" required />
 		</div>
-		<div class="large-6 medium-6 columns">
-			<div class="large-8 medium-8">
-				<div class="login-wrapper">
-					<label>Имя</label>
-					<input type="text" placeholder="Имя" name="firstName" required />
-					<label>Фамилия</label>
-					<input type="text" placeholder="Фамилия" name="lastName" required />
-					<label>Почта</label>
-					<input type="email" placeholder="Почта" name="email" required />
-				</div>
-			</div>
+		<button id="create-user-button" class="easy-teach-button">Создать</button>			
+	</div>
+	<div class="large-6 medium-6 columns">
+		<div class="large-8 medium-8">
+			<label>Имя</label>
+			<input type="text" placeholder="Имя" name="firstName" required />
+			<label>Фамилия</label>
+			<input type="text" placeholder="Фамилия" name="lastName" required />					
 		</div>
-		<button id="create-user-button" class="easy-teach-button">Создать</button>
-	</form>
-</div>
+	</div>
+</form>    

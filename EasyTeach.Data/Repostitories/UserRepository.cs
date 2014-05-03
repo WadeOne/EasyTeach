@@ -1,7 +1,8 @@
 ﻿using System;
-using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data;
+using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Data.Context;
 using EasyTeach.Data.Entities;
@@ -24,12 +25,14 @@ namespace EasyTeach.Data.Repostitories
 
         public async Task<IUserDto> GetUserByEmail(string email)
         {
-            return await _context.Users.SingleOrDefaultAsync(u => u.Email == email);
+            // Fix problem with async/await non thread safe calling
+            return await Task.FromResult((IUserDto) _context.Users.SingleOrDefault(u => u.Email == email));
         }
 
         public async Task<IUserDto> GetUserById(int userId)
         {
-            return await _context.Users.SingleOrDefaultAsync(u => u.UserId == userId);
+            // Fix problem with async/await non thread safe calling
+            return await Task.FromResult((IUserDto)_context.Users.SingleOrDefault(u => u.UserId == userId));
         }
 
         public async Task CreateAsync(IUserDto user)

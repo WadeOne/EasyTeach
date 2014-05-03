@@ -103,6 +103,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Config\AutofacConfigTest.cs" />
+    <Compile Include="Controllers\ClaimControllerTest.cs" />
+    <Compile Include="Controllers\ControllerTest.cs" />
+    <Compile Include="Controllers\QuizControllerTest.cs" />
     <Compile Include="Controllers\UserControllerTest.cs" />
     <Compile Include="Filters\SecurityExceptionFilterAttributeTest.cs" />
     <Compile Include="Models\ViewModels\CreateUserViewModelTest.cs" />

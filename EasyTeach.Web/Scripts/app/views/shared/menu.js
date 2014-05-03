@@ -13,7 +13,7 @@ define([
         noWrap: true,
         autoRender: true,
         initialize: function() {
-            this.listenTo(this.model, "change", this.render);
+            this.listenTo(this.model, "reset", this.render);
         },
         render: function() {
             var html = this.template({

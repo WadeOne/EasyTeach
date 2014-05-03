@@ -47,20 +47,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Data\IAssignedTestDto.cs" />
-    <Compile Include="Entities\Data\IUserClaimDto.cs" />
-    <Compile Include="Entities\Data\IUserDto.cs" />
-    <Compile Include="Entities\Data\IUserTokenDto.cs" />
+    <Compile Include="Entities\Data\Quiz\IAssignedTestDto.cs" />
+    <Compile Include="Entities\Question.cs" />
+    <Compile Include="Entities\QuestionItem.cs" />
+    <Compile Include="Entities\Data\User\IUserClaimDto.cs" />
+    <Compile Include="Entities\Data\User\IUserDto.cs" />
+    <Compile Include="Entities\Data\User\IUserTokenDto.cs" />
     <Compile Include="Entities\Group.cs" />
-    <Compile Include="Entities\Services\IQuestionModel.cs" />
     <Compile Include="Entities\Services\IUserIdentityModel.cs" />
     <Compile Include="Entities\Services\IUserModel.cs" />
     <Compile Include="Entities\QuizModel.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Enums\QuestionType.cs" />
     <Compile Include="Enums\UserType.cs" />
     <Compile Include="Helpers\AsyncHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entities\Data\ITestDto.cs" />
+    <Compile Include="Entities\Data\Quiz\IQuizDto.cs" />
     <Compile Include="Repositories\IQuizRepository.cs" />
     <Compile Include="Repositories\IUserClaimRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
@@ -70,6 +72,8 @@
     <Compile Include="Repositories\Mappers\IUserTokenDtoMapper.cs" />
     <Compile Include="Security\ClaimsAuthorizationManager.cs" />
     <Compile Include="Services\Base\Exceptions\ModelValidationException.cs" />
+    <Compile Include="Services\Claim\IClaimService.cs" />
+    <Compile Include="Services\Claim\Impl\ClaimService.cs" />
     <Compile Include="Services\Messaging\Email.cs" />
     <Compile Include="Services\Messaging\IEmailBuilder.cs" />
     <Compile Include="Services\Messaging\IEmailService.cs" />
@@ -77,10 +81,10 @@
     <Compile Include="Services\Messaging\Impl\IdentityMessageService.cs" />
     <Compile Include="Repositories\Mappers\IQuizDtoMapper.cs" />
     <Compile Include="Entities\Services\IAssignedTestModel.cs" />
-    <Compile Include="Services\Tests\Exceptions\InvalidAssignedTestException.cs" />
-    <Compile Include="Services\Tests\Impl\QuizManagementService.cs" />
-    <Compile Include="Services\Tests\Exceptions\InvalidTestException.cs" />
-    <Compile Include="Services\Tests\IQuizManagementService.cs" />
+    <Compile Include="Services\Quiz\Exceptions\InvalidAssignedTestException.cs" />
+    <Compile Include="Services\Quiz\Impl\QuizManagementService.cs" />
+    <Compile Include="Services\Quiz\Exceptions\InvalidQuizException.cs" />
+    <Compile Include="Services\Quiz\IQuizManagementService.cs" />
     <Compile Include="Entities\Services\IQuizModel.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidSetPasswordOperationException.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidEmailConfirmationOperationException.cs" />

@@ -8,6 +8,8 @@ namespace EasyTeach.Core.Entities
 {
     public class QuizModel : IQuizModel
     {
+        public int QuizId { get; set; }
+
         [Required]
         public string Name { get; set; }
 
@@ -15,6 +17,8 @@ namespace EasyTeach.Core.Entities
 
         [Required]
         [NotEmptyCollection]
-        public IEnumerable<IQuestionModel> Questions { get; set; }
+        public IEnumerable<Question> Questions { get; set; }
+
+        public int Version { get; set; }
     }
 }

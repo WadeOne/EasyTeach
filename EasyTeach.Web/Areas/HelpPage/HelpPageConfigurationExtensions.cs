@@ -12,6 +12,7 @@ using System.Web.Http.Controllers;
 using System.Web.Http.Description;
 using EasyTeach.Web.Areas.HelpPage.ModelDescriptions;
 using EasyTeach.Web.Areas.HelpPage.Models;
+using EasyTeach.Web.Areas.HelpPage.SampleGeneration;
 
 namespace EasyTeach.Web.Areas.HelpPage
 {

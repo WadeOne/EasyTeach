@@ -6,6 +6,7 @@ using System.Web.Http.Routing;
 using Autofac;
 using Autofac.Core;
 using EasyTeach.Core.Entities.Data;
+using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Repositories.Mappers;
 using EasyTeach.Core.Services.UserManagement.Impl;
 using EasyTeach.Data.Context;

@@ -19,7 +19,7 @@
 			this.listenTo(this.model, "sync", this.logoutSuccess);
 		},
 		logoutSuccess: function () {
-		    utils.redirectTo(routes.login);
+            utils.redirectTo(routes.login);
 		},
 		userLogout: function () {
 			this.model.logout();

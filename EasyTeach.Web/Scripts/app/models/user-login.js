@@ -5,18 +5,18 @@
 ], function (_, Backbone, Model) {
     'use strict';
 
-	return Model.extend({
+    return Model.extend({
         url: '/Token',
-		defaults: {
+        defaults: {
             errorMessage: "",
             username: "",
             password: "",
             grant_type: 'password'
         },
-        initialize: function() {
+        initialize: function () {
             this.on("sync", this.successHandler);
         },
-        sync: function(method, model, options) {
+        sync: function (method, model, options) {
             _.extend(options, {
                 emulateJSON: true,
                 data: model.omit('errorMessage')
@@ -24,7 +24,7 @@
 
             return Backbone.sync.apply(this, arguments);
         },
-        successHandler: function() {
+        successHandler: function () {
             this.publishEvent("!user:login");
         },
         modelErrors: {
@@ -33,5 +33,5 @@
                 this.set("errorMessage", parsed.error_description || parsed.error);
             }
         }
-	});
+    });
 });

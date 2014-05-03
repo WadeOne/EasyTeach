@@ -6,7 +6,6 @@ using System.Web;
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
-using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Data.Context;
 using EasyTeach.Web.Areas.HelpPage;
@@ -32,7 +31,11 @@ namespace EasyTeach.Web
                 .Except<EasyTeachContext>(x => x.AsSelf()) //TODO: find a way to create EF context one per API request
                 .Except<XmlDocumentationProvider>();
 
-            builder.Register<Func<IAuthenticationManager>>(c => () => c.Resolve<HttpRequestMessage>().GetOwinContext().Authentication).InstancePerApiRequest();
+            builder.Register<Func<IAuthenticationManager>>(c => () =>
+            {
+                HttpRequestMessage message = ResolveRequestMessage();
+                return message.GetOwinContext().Authentication;
+            }).InstancePerApiRequest();
             
             builder.Register<Func<object, ValidationContext>>(c => o => new ValidationContext(o, new Adapter(), null));
             
@@ -50,12 +53,16 @@ namespace EasyTeach.Web
             GlobalConfiguration.Configuration.DependencyResolver = resolver;
         }
 
+        private static HttpRequestMessage ResolveRequestMessage()
+        {
+            return (HttpRequestMessage)HttpContext.Current.Items["MS_HttpRequestMessage"];
+        }
+
         private sealed class Adapter : IServiceProvider
         {
             public object GetService(Type serviceType)
             {
-                var message = (HttpRequestMessage)HttpContext.Current.Items["MS_HttpRequestMessage"];
-
+                HttpRequestMessage message = ResolveRequestMessage();
                 return message.GetDependencyScope().GetService(serviceType);
             }
         }

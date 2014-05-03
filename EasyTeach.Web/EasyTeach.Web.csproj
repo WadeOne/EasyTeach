@@ -172,6 +172,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Scripts\app\models\quizzes\" />
     <Folder Include="Scripts\app\templates\errors\" />
   </ItemGroup>
   <ItemGroup>
@@ -313,6 +314,8 @@
     <Content Include="Scripts\app\**\*.js" />
     <Content Include="Scripts\app\templates\add-homeworks.html" />
     <Content Include="Scripts\app\templates\login.html" />
+    <Content Include="Scripts\app\templates\logout.html" />
+    <Content Include="Scripts\app\templates\quizzes\quiz.html" />
     <Content Include="Scripts\app\templates\register.html" />
     <Content Include="Scripts\app\templates\reset-password.html" />
     <Content Include="Scripts\app\templates\shared\menu-item.html" />
@@ -722,6 +725,7 @@
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\Site.css" />

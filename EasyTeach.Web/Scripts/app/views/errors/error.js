@@ -1,17 +1,14 @@
 ﻿define([
-    'chaplin',
-    'views/base/view',
-    'models/user-login',
-    'text!templates/login.html',
-    'utils/serialize'
-], function (Chaplin, View, UserLogin, template, serialize) {
-    'use strict';
+    'underscore',
+	'chaplin',
+	'views/base/view',
+	'text!templates/errors/error-page.html'
+], function (_, Chaplin, View, template) {
+	'use strict';
 
-    return View.extend({
-        container: '#content',
-        id: 'site-container', 
-        template: template,
-        autoRender: true,
-        noWrap: true
-    });
+	return View.extend({
+		container: '#content',
+		template: _.template(template),
+		autoRender: true
+	});
 });

@@ -20,6 +20,7 @@ namespace EasyTeach.Web
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            config.Filters.Add(new AuthorizeAttribute());
             config.Filters.Add(new SecurityExceptionFilterAttribute());
         }
     }

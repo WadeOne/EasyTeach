@@ -61,6 +61,13 @@ ul {
 		.page-content {
 			.row {
 				padding-top: 30px;
+				#user-registration-form {
+					.row {
+						padding-top: 0px;
+						margin-left: 0px;
+						margin-right: 0px;
+					}
+				}
 			}
 			label {
 				font-size: 20px;
@@ -91,9 +98,10 @@ ul {
 	font-size: 20px;
 	margin-bottom: 20px;
 }
-.logout-button {
-	float: right;
-	margin-top: 10px;
+
+#create-user-button {
+	margin-left: 0.9375rem;
+	margin-right: 0.9375rem;
 }
 
 /*homeworks page*/
@@ -287,11 +295,4 @@ ul {
 }
 
 @media #{$large-only} { 
-	.page-wrapper {
-		.page-content {
-			.columns{
-				padding: 0;
-			} 
-		}			
-	}
 }

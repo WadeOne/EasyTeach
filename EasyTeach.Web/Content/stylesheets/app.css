@@ -9426,35 +9426,40 @@ ul {
   margin-bottom: 0;
 }
 
-/* line 59, ../scss/app.scss */
+/* line 58, ../scss/app.scss */
+textarea {
+  resize: none;
+}
+
+/* line 62, ../scss/app.scss */
 .page-wrapper {
   background: rgba(224, 228, 204, 0.3);
 }
-/* line 62, ../scss/app.scss */
+/* line 65, ../scss/app.scss */
 .page-wrapper .page-content .row {
   padding-top: 30px;
 }
-/* line 65, ../scss/app.scss */
+/* line 68, ../scss/app.scss */
 .page-wrapper .page-content .row #user-registration-form .row {
   padding-top: 0px;
   margin-left: 0px;
   margin-right: 0px;
 }
-/* line 72, ../scss/app.scss */
+/* line 75, ../scss/app.scss */
 .page-wrapper .page-content label {
   font-size: 20px;
 }
-/* line 75, ../scss/app.scss */
+/* line 78, ../scss/app.scss */
 .page-wrapper .page-content .login-wrapper {
   margin: 30px 0;
 }
-/* line 78, ../scss/app.scss */
+/* line 81, ../scss/app.scss */
 .page-wrapper .page-content .image-container {
   margin: 30px 0;
 }
 
 /*logout button*/
-/* line 85, ../scss/app.scss */
+/* line 88, ../scss/app.scss */
 #logout-btn {
   display: inline-block;
   float: right;
@@ -9464,7 +9469,7 @@ ul {
 }
 
 /*grid */
-/* line 94, ../scss/app.scss */
+/* line 97, ../scss/app.scss */
 .custom-button {
   width: 180px;
   background: #67cac7;
@@ -9473,36 +9478,36 @@ ul {
   margin-bottom: 20px;
 }
 
-/* line 102, ../scss/app.scss */
+/* line 105, ../scss/app.scss */
 #create-user-button {
   margin-left: 0.9375rem;
   margin-right: 0.9375rem;
 }
 
 /*homeworks page*/
-/* line 112, ../scss/app.scss */
+/* line 115, ../scss/app.scss */
 .tabs-content .accordion .content ul li {
   margin-bottom: 5px;
 }
 
-/* line 119, ../scss/app.scss */
+/* line 122, ../scss/app.scss */
 .download-all-homeworks-button {
   float: right;
   margin-right: 10px;
 }
 
-/* line 123, ../scss/app.scss */
+/* line 126, ../scss/app.scss */
 .download-single-homework-button {
   float: right;
   margin-right: 30px;
 }
 
-/* line 128, ../scss/app.scss */
+/* line 131, ../scss/app.scss */
 .loader {
   position: relative;
   min-height: 200px;
 }
-/* line 131, ../scss/app.scss */
+/* line 134, ../scss/app.scss */
 .loader:before {
   content: "";
   position: absolute;
@@ -9513,7 +9518,7 @@ ul {
   background: rgba(0, 0, 0, 0.9);
   z-index: 1000;
 }
-/* line 141, ../scss/app.scss */
+/* line 144, ../scss/app.scss */
 .loader:after {
   content: "";
   position: absolute;
@@ -9526,12 +9531,12 @@ ul {
   opacity: .1;
 }
 
-/* line 154, ../scss/app.scss */
+/* line 157, ../scss/app.scss */
 .top-bar .row {
   max-width: 62.5rem;
 }
 
-/* line 160, ../scss/app.scss */
+/* line 163, ../scss/app.scss */
 .file-upload {
   display: block;
   position: relative;
@@ -9545,13 +9550,13 @@ ul {
   transition: box-shadow 0.1s linear;
   margin-bottom: 30px;
 }
-/* line 172, ../scss/app.scss */
+/* line 175, ../scss/app.scss */
 .file-upload input[type=file] {
   position: absolute;
   top: 0;
   opacity: 0;
 }
-/* line 177, ../scss/app.scss */
+/* line 180, ../scss/app.scss */
 .file-upload .choose-file-button {
   display: block;
   float: right;
@@ -9564,7 +9569,7 @@ ul {
   color: #ffffff;
   font-size: 1rem;
 }
-/* line 189, ../scss/app.scss */
+/* line 192, ../scss/app.scss */
 .file-upload mark {
   display: block;
   cursor: pointer;
@@ -9574,13 +9579,9 @@ ul {
   font-size: 1rem;
 }
 
-/* line 199, ../scss/app.scss */
+/* line 202, ../scss/app.scss */
 .add-homework-wrapper textarea {
   display: inline-block;
-}
-/* line 202, ../scss/app.scss */
-.add-homework-wrapper #add-homework-button {
-  vertical-align: top;
 }
 
 /* line 209, ../scss/app.scss */
@@ -9602,82 +9603,92 @@ ul {
   background: #fa6900;
   color: #ffffff;
 }
+/* line 226, ../scss/app.scss */
+.easy-teach-button:focus {
+  outline: none;
+  background: #fa6900;
+}
 
-/* line 229, ../scss/app.scss */
+/* line 233, ../scss/app.scss */
 .error-message {
   color: red;
   margin-bottom: 20px;
 }
 
-/* line 236, ../scss/app.scss */
+/* line 240, ../scss/app.scss */
 .quizz-page h1 {
   font-size: 26px;
   color: #4d4d4d;
 }
-/* line 240, ../scss/app.scss */
+/* line 244, ../scss/app.scss */
 .quizz-page ul {
   list-style: none;
   margin-left: 0rem;
   color: #4d4d4d;
 }
-/* line 245, ../scss/app.scss */
+/* line 249, ../scss/app.scss */
 .quizz-page #add-description-quiz-btn, .quizz-page .test-name-wrap {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 250, ../scss/app.scss */
+/* line 254, ../scss/app.scss */
 .quizz-page .test-name-wrap {
   float: none;
   margin-left: -0.9375rem;
 }
-/* line 253, ../scss/app.scss */
+/* line 257, ../scss/app.scss */
 .quizz-page .test-name-wrap input {
   margin: 0;
 }
 
-/* line 260, ../scss/app.scss */
+/* line 264, ../scss/app.scss */
 .error-page h1 {
   font-size: 54px;
   text-align: center;
 }
-/* line 263, ../scss/app.scss */
+/* line 267, ../scss/app.scss */
 .error-page h1 .status {
   color: #f38630;
   font-size: 250px;
 }
 
 @media only screen and (max-width: 640px) {
-  /* line 271, ../scss/app.scss */
+  /* line 275, ../scss/app.scss */
   header .logo {
     padding: 1rem 0.5rem;
     font-size: 20px;
   }
 
+  /* line 281, ../scss/app.scss */
+  .add-homework-button {
+    width: 100%;
+  }
+
   /*logout button*/
-  /* line 278, ../scss/app.scss */
+  /* line 286, ../scss/app.scss */
   #logout-btn {
     margin-top: 20px;
   }
 
-  /* line 282, ../scss/app.scss */
+  /* line 290, ../scss/app.scss */
   .quizz-page #add-description-quiz-btn {
     margin: 20px 0 10px 0px;
   }
 }
 @media only screen and (min-width: 641px) {
-  /* line 290, ../scss/app.scss */
+  /* line 298, ../scss/app.scss */
   header .logo {
     padding: 1rem 0rem;
     font-size: 28px;
   }
 
   /*logout button*/
-  /* line 297, ../scss/app.scss */
+  /* line 305, ../scss/app.scss */
   #logout-btn {
     margin-top: 25px;
   }
 
-  /* line 302, ../scss/app.scss */
+  /* line 310, ../scss/app.scss */
   .quizz-page #add-description-quiz-btn {
     margin: 0 0 0 15px;
   }

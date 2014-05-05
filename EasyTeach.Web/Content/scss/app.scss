@@ -55,6 +55,9 @@ header {
 ul {
 	margin-bottom: 0;
 }
+textarea {
+	resize: none;
+}
 
 .page-wrapper {
 		 background: rgba(224, 228, 204, 0.3);
@@ -199,9 +202,6 @@ ul {
 	textarea {
 		display: inline-block;
 	}
-	#add-homework-button {
-		vertical-align: top;
-	}
 }
 
 //registartion page
@@ -222,6 +222,10 @@ ul {
 	&:hover{
 		background: #fa6900;
 		color: #ffffff;
+	}
+	&:focus {
+		outline: none;
+		background: #fa6900;
 	}
 }
 
@@ -272,6 +276,10 @@ ul {
 			padding: 1rem 0.5rem;
 			font-size: 20px;
 		}		
+	}
+
+	.add-homework-button {
+		width: 100%;
 	}
 
 	/*logout button*/

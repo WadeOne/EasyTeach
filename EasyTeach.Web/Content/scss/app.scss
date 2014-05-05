@@ -104,7 +104,7 @@ input {
 }
 
 // grid
-.custom-button {
+.custom-btn {
 	width: 180px;
 	background: #67cac7;
 	color: #ffffff;
@@ -112,7 +112,7 @@ input {
 	margin-bottom: 20px;
 }
 
-#create-user-button {
+#create-user-btn {
 	margin-left: 0.9375rem;
 	margin-right: 0.9375rem;
 }
@@ -129,11 +129,11 @@ input {
 		}
 	}
 }
-.download-all-homeworks-button {
+.download-all-homeworks-btn {
 	float: right;
 	margin-right: 10px;
 }
-.download-single-homework-button {
+.download-single-homework-btn {
 	float: right;
 	margin-right: 30px;
 }
@@ -187,7 +187,7 @@ input {
 		top: 0;
 		opacity: 0;
 	}
-	.choose-file-button {
+	.choose-file-btn {
 		display: block;
 		float: right;
 		box-sizing: border-box;
@@ -222,7 +222,7 @@ input {
 }
 
 // common elements
-.easy-teach-button {
+.easy-teach-btn {
 	display: inline-block;
 	padding: 15px 20px;
 	background: #f38630;
@@ -299,7 +299,7 @@ input {
 		}
 	}
 
-	.add-homework-button, #login-btn, #create-user-button {
+	.add-homework-btn, #login-btn, #create-user-btn {
 		width: 100%;
 	}
 

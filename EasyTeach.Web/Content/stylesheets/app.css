@@ -9480,7 +9480,7 @@ input {
 }
 
 /* line 107, ../scss/app.scss */
-.custom-button {
+.custom-btn {
   width: 180px;
   background: #67cac7;
   color: #ffffff;
@@ -9489,7 +9489,7 @@ input {
 }
 
 /* line 115, ../scss/app.scss */
-#create-user-button {
+#create-user-btn {
   margin-left: 0.9375rem;
   margin-right: 0.9375rem;
 }
@@ -9500,13 +9500,13 @@ input {
 }
 
 /* line 132, ../scss/app.scss */
-.download-all-homeworks-button {
+.download-all-homeworks-btn {
   float: right;
   margin-right: 10px;
 }
 
 /* line 136, ../scss/app.scss */
-.download-single-homework-button {
+.download-single-homework-btn {
   float: right;
   margin-right: 30px;
 }
@@ -9566,7 +9566,7 @@ input {
   opacity: 0;
 }
 /* line 190, ../scss/app.scss */
-.file-upload .choose-file-button {
+.file-upload .choose-file-btn {
   display: block;
   float: right;
   box-sizing: border-box;
@@ -9599,7 +9599,7 @@ input {
 }
 
 /* line 225, ../scss/app.scss */
-.easy-teach-button {
+.easy-teach-btn {
   display: inline-block;
   padding: 15px 20px;
   background: #f38630;
@@ -9608,12 +9608,12 @@ input {
   white-space: nowrap;
 }
 /* line 232, ../scss/app.scss */
-.easy-teach-button:hover {
+.easy-teach-btn:hover {
   background: #fa6900;
   color: #ffffff;
 }
 /* line 236, ../scss/app.scss */
-.easy-teach-button:focus {
+.easy-teach-btn:focus {
   outline: none;
   background: #fa6900;
 }
@@ -9682,7 +9682,7 @@ input {
   }
 
   /* line 302, ../scss/app.scss */
-  .add-homework-button, #login-btn, #create-user-button {
+  .add-homework-btn, #login-btn, #create-user-btn {
     width: 100%;
   }
 

@@ -2,10 +2,10 @@
 
 using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Entities.Services;
-using EasyTeach.Core.Repositories.Mappers;
+using EasyTeach.Core.Repositories.Mappers.UserManagement;
 using EasyTeach.Data.Entities;
 
-namespace EasyTeach.Data.Repostitories.Mappers
+namespace EasyTeach.Data.Repostitories.Mappers.UserManagement
 {
     public sealed class UserDtoMapper : IUserDtoMapper
     {

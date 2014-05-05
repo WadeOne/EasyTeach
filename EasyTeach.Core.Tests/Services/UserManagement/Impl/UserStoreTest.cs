@@ -3,6 +3,7 @@ using System.Linq;
 using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers;
+using EasyTeach.Core.Repositories.Mappers.UserManagement;
 using EasyTeach.Core.Services.UserManagement.Impl;
 using FakeItEasy;
 using Xunit;

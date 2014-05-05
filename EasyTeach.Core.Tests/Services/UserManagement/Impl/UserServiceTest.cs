@@ -9,6 +9,7 @@ using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Enums;
 using EasyTeach.Core.Repositories.Mappers;
+using EasyTeach.Core.Repositories.Mappers.UserManagement;
 using EasyTeach.Core.Services.Messaging;
 using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Core.Services.UserManagement.Exceptions;

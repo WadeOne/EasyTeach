@@ -9,6 +9,7 @@ using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories.Mappers;
+using EasyTeach.Core.Repositories.Mappers.UserManagement;
 using EasyTeach.Core.Services.Messaging;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
 using EasyTeach.Core.Validation.EntityValidator;

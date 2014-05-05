@@ -11,6 +11,6 @@ namespace EasyTeach.Core.Services.Quiz
 
         Task AssignQuizToGroupAsync(IAssignedTestModel assignedTest);
 
-        Task AddQuestionToQuiz(int quizId, Question question);
+        Task AddQuestionToQuiz(int quizId, IQuestionModel question);
     }
 }

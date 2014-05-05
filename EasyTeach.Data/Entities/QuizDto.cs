@@ -15,7 +15,7 @@ namespace EasyTeach.Data.Entities
 
         public string Description { get; set; }
 
-        public ICollection<Question> Questions { get; set; }
+        public ICollection<QuestionModel> Questions { get; set; }
 
         public int Version { get; set; }
     }

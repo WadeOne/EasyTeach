@@ -6,11 +6,9 @@ namespace EasyTeach.Web.Models.ViewModels
     {
         public string Name { get; set; }
 
-        public string Description { get; set; }
-
-        public virtual QuizModel ToQuizModel()
+        public virtual QuizModel ToQuiz()
         {
-            return new QuizModel { Description = Description, Name = Name };
+            return new QuizModel { Name = Name };
         }
     }
 }

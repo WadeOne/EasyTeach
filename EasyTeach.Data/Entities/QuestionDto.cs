@@ -1,11 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
+using EasyTeach.Core.Entities;
+using EasyTeach.Core.Entities.Data.Quiz;
 using EasyTeach.Core.Enums;
 
-namespace EasyTeach.Core.Entities
+namespace EasyTeach.Data.Entities
 {
-    public class Question
+    public class QuestionDto : IQuestionDto
     {
         public int QuestionId { get; set; }
 

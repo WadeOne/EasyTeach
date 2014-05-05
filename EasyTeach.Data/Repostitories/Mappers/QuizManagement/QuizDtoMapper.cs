@@ -3,10 +3,10 @@
 using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data.Quiz;
 using EasyTeach.Core.Entities.Services;
-using EasyTeach.Core.Repositories.Mappers;
+using EasyTeach.Core.Repositories.Mappers.QuizManagement;
 using EasyTeach.Data.Entities;
 
-namespace EasyTeach.Data.Repostitories.Mappers
+namespace EasyTeach.Data.Repostitories.Mappers.QuizManagement
 {
     public class QuizDtoMapper : IQuizDtoMapper
     {
@@ -26,7 +26,7 @@ namespace EasyTeach.Data.Repostitories.Mappers
             return Mapper.Map<QuizModel>(quizDto);
         }
 
-        public IAssignedTestDto Map(IAssignedTestModel assignedTest)
+        public IAssignedQuizDto Map(IAssignedTestModel assignedTest)
         {
             throw new System.NotImplementedException();
         }

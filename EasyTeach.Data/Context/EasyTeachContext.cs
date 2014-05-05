@@ -19,7 +19,7 @@ namespace EasyTeach.Data.Context
 
         public virtual IDbSet<QuizDto> Quizes { get; set; }
 
-        public virtual IDbSet<Question> Questions { get; set; }
+        public virtual IDbSet<QuestionModel> Questions { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

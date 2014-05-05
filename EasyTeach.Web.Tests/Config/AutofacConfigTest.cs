@@ -8,6 +8,7 @@ using Autofac.Core;
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Repositories.Mappers;
+using EasyTeach.Core.Repositories.Mappers.UserManagement;
 using EasyTeach.Core.Services.UserManagement.Impl;
 using EasyTeach.Data.Context;
 using EasyTeach.Web.Controllers;

@@ -47,13 +47,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Data\Quiz\IAssignedTestDto.cs" />
-    <Compile Include="Entities\Question.cs" />
+    <Compile Include="Entities\Data\Quiz\IAssignedQuizDto.cs" />
+    <Compile Include="Entities\Data\Quiz\IQuestionDto.cs" />
+    <Compile Include="Entities\QuestionModel.cs" />
     <Compile Include="Entities\QuestionItem.cs" />
     <Compile Include="Entities\Data\User\IUserClaimDto.cs" />
     <Compile Include="Entities\Data\User\IUserDto.cs" />
     <Compile Include="Entities\Data\User\IUserTokenDto.cs" />
     <Compile Include="Entities\Group.cs" />
+    <Compile Include="Entities\Services\IQuestionModel.cs" />
     <Compile Include="Entities\Services\IUserIdentityModel.cs" />
     <Compile Include="Entities\Services\IUserModel.cs" />
     <Compile Include="Entities\QuizModel.cs" />
@@ -67,9 +69,10 @@
     <Compile Include="Repositories\IUserClaimRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\IUserTokenRepository.cs" />
-    <Compile Include="Repositories\Mappers\IUserClaimDtoMapper.cs" />
-    <Compile Include="Repositories\Mappers\IUserDtoMapper.cs" />
-    <Compile Include="Repositories\Mappers\IUserTokenDtoMapper.cs" />
+    <Compile Include="Repositories\Mappers\QuizManagement\IQuestionDtoMapper.cs" />
+    <Compile Include="Repositories\Mappers\UserManagement\IUserClaimDtoMapper.cs" />
+    <Compile Include="Repositories\Mappers\UserManagement\IUserDtoMapper.cs" />
+    <Compile Include="Repositories\Mappers\UserManagement\IUserTokenDtoMapper.cs" />
     <Compile Include="Security\ClaimsAuthorizationManager.cs" />
     <Compile Include="Services\Base\Exceptions\ModelValidationException.cs" />
     <Compile Include="Services\Claim\IClaimService.cs" />
@@ -79,8 +82,9 @@
     <Compile Include="Services\Messaging\IEmailService.cs" />
     <Compile Include="Services\Messaging\Impl\EmailService.cs" />
     <Compile Include="Services\Messaging\Impl\IdentityMessageService.cs" />
-    <Compile Include="Repositories\Mappers\IQuizDtoMapper.cs" />
+    <Compile Include="Repositories\Mappers\QuizManagement\IQuizDtoMapper.cs" />
     <Compile Include="Entities\Services\IAssignedTestModel.cs" />
+    <Compile Include="Services\Quiz\Exceptions\InvalidAddQuestionException.cs" />
     <Compile Include="Services\Quiz\Exceptions\InvalidAssignedTestException.cs" />
     <Compile Include="Services\Quiz\Impl\QuizManagementService.cs" />
     <Compile Include="Services\Quiz\Exceptions\InvalidQuizException.cs" />

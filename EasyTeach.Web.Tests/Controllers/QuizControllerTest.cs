@@ -10,6 +10,7 @@ using EasyTeach.Core.Services.Quiz.Exceptions;
 using EasyTeach.Core.Services.Quiz.Impl;
 using EasyTeach.Core.Validation.EntityValidator;
 using EasyTeach.Web.Controllers;
+using EasyTeach.Web.Models;
 using EasyTeach.Web.Models.ViewModels;
 using FakeItEasy;
 
@@ -29,7 +30,7 @@ namespace EasyTeach.Web.Tests.Controllers
 
         private readonly CreateQuizViewModel _createQuizViewModel;
         private readonly AddQuestionToQuizViewModel _addQuestionToQuizViewModel;
-        private readonly Question _question;
+        private readonly QuestionModel questionModel;
 
         private readonly QuestionViewModel _questionViewModel;
 
@@ -41,15 +42,19 @@ namespace EasyTeach.Web.Tests.Controllers
             _quizModelWithId = A.Fake<IQuizModel>();
             _quizModelWithoutId = A.Fake<QuizModel>();
             _createQuizViewModel = A.Fake<CreateQuizViewModel>();
-            _addQuestionToQuizViewModel = A.Fake<AddQuestionToQuizViewModel>();
             _questionViewModel = A.Fake<QuestionViewModel>();
-            _question = new Question();
+            _addQuestionToQuizViewModel = new AddQuestionToQuizViewModel
+            {
+                QuizId = 1,
+                Question = _questionViewModel
+            };
+            questionModel = new QuestionModel();
         }
 
         [Fact]
         public void CreateQuiz_ValidQuiz_QuizCreatedAndOkResultSent()
         {
-            A.CallTo(() => _createQuizViewModel.ToQuizModel()).Returns(_quizModelWithoutId);
+            A.CallTo(() => _createQuizViewModel.ToQuiz()).Returns(_quizModelWithoutId);
             A.CallTo(() => _quizManagementService.CreateQuizAsync(_quizModelWithoutId)).Returns(_quizModelWithId);
             A.CallTo(() => _quizModelWithId.QuizId).Returns(1);
 
@@ -62,7 +67,7 @@ namespace EasyTeach.Web.Tests.Controllers
         [Fact]
         public void CreateQuiz_InvalidQuiz_QuizNotCreatedErrorResultSent()
         {
-            A.CallTo(() => _createQuizViewModel.ToQuizModel()).Returns(_quizModelWithoutId);
+            A.CallTo(() => _createQuizViewModel.ToQuiz()).Returns(_quizModelWithoutId);
             A.CallTo(() => _quizManagementService.CreateQuizAsync(_quizModelWithoutId))
                 .Throws(
                     new InvalidQuizException(new List<ValidationResult>
@@ -99,9 +104,27 @@ namespace EasyTeach.Web.Tests.Controllers
         [Fact]
         public void AddQuestion_ValidModel_QuestionAdded()
         {
-            A.CallTo(() => _addQuestionToQuizViewModel.Question).Returns(_questionViewModel);
-            A.CallTo(() => _questionViewModel.ToQuestion()).Returns(_question);
-            A.CallTo(() => _quizManagementService.AddQuestionToQuiz(_addQuestionToQuizViewModel.QuizId, _question).Wait());
+            A.CallTo(() => _questionViewModel.ToQuestion()).Returns(questionModel);
+
+            var result = _controller.AddQuestion(_addQuestionToQuizViewModel).Result as OkResult;
+            Assert.NotNull(result);
+            A.CallTo(() => _quizManagementService.AddQuestionToQuiz(_addQuestionToQuizViewModel.QuizId, questionModel)).MustHaveHappened();
+        }
+
+        [Fact]
+        public void AddQuestion_InvalidModel_QuestionNotAddedResultSent()
+        {
+            A.CallTo(() => _questionViewModel.ToQuestion()).Returns(questionModel);
+            A.CallTo(() => _quizManagementService.AddQuestionToQuiz(_addQuestionToQuizViewModel.QuizId, questionModel))
+                .Throws(new InvalidAddQuestionException(new List<ValidationResult>
+                                                        {
+                                                            new ValidationResult("QuizId is required", new []{"QuizId"})
+                                                        }));
+
+            var result = _controller.AddQuestion(_addQuestionToQuizViewModel).Result as InvalidModelStateResult;
+            Assert.NotNull(result);
+            A.CallTo(() => _quizManagementService.AddQuestionToQuiz(_addQuestionToQuizViewModel.QuizId, questionModel)).MustHaveHappened();
+            Assert.True(result.ModelState.Any(ms => ms.Key == "QuizId"));
         }
     }
 }

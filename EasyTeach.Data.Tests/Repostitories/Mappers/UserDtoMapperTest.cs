@@ -4,6 +4,7 @@ using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Enums;
 using EasyTeach.Data.Repostitories.Mappers;
+using EasyTeach.Data.Repostitories.Mappers.UserManagement;
 
 using FakeItEasy;
 

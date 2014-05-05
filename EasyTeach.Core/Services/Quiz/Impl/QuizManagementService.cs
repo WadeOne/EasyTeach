@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 using EasyTeach.Core.Entities;
+using EasyTeach.Core.Entities.Data.Quiz;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers;
+using EasyTeach.Core.Repositories.Mappers.QuizManagement;
 using EasyTeach.Core.Services.Quiz.Exceptions;
 using EasyTeach.Core.Validation.EntityValidator;
 
@@ -18,7 +22,9 @@ namespace EasyTeach.Core.Services.Quiz.Impl
 
         private readonly EntityValidator _entityValidator;
 
-        public QuizManagementService(IQuizRepository quizRepository, IQuizDtoMapper quizDtoMapper, EntityValidator entityValidator)
+        public readonly IQuestionDtoMapper _questionDtoMapper;
+
+        public QuizManagementService(IQuizRepository quizRepository, IQuizDtoMapper quizDtoMapper, EntityValidator entityValidator, IQuestionDtoMapper questionDtoMapper)
         {
             if (quizRepository == null)
             {
@@ -35,9 +41,15 @@ namespace EasyTeach.Core.Services.Quiz.Impl
                 throw new ArgumentNullException("entityValidator");
             }
 
+            if (questionDtoMapper == null)
+            {
+                throw new ArgumentNullException("questionDtoMapper");
+            }
+
             _quizRepository = quizRepository;
             _quizDtoMapper = quizDtoMapper;
             _entityValidator = entityValidator;
+            _questionDtoMapper = questionDtoMapper;
         }
 
         public async Task<IQuizModel> CreateQuizAsync(IQuizModel newQuiz)
@@ -78,9 +90,34 @@ namespace EasyTeach.Core.Services.Quiz.Impl
             await _quizRepository.AssignQuizAsync(assignmentDto);
         }
 
-        public Task AddQuestionToQuiz(int quizId, Question question)
+        public async Task AddQuestionToQuiz(int quizId, IQuestionModel question)
         {
-            throw new NotImplementedException();
+            if (question == null)
+            {
+                throw new ArgumentNullException("question");
+            }
+            if (quizId <= 0)
+            {
+                throw new ArgumentException("QuizId must be positive", "quizId");
+            }
+
+            IQuizDto quizDto = await _quizRepository.GetQuiz(quizId);
+            if (quizDto == null)
+            {
+                throw new InvalidAddQuestionException(new List<ValidationResult>
+                                                      {
+                                                          new ValidationResult(string.Format("Quiz with Id {0} doesn't exist", quizId), new [] {"QuizId"})
+                                                      });
+            }
+            EntityValidationResult result = _entityValidator.ValidateEntity(question);
+            if (result.IsValid == false)
+            {
+                throw new InvalidAddQuestionException(result.ValidationResults);
+            }
+
+            var questionDto = _questionDtoMapper.Map(question);
+            await _quizRepository.AddQuestionToQuiz(quizId, questionDto);
         }
+
     }
 }

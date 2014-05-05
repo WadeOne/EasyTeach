@@ -3,12 +3,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
 
-using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Services;
+using EasyTeach.Core.Services.Base.Exceptions;
 using EasyTeach.Core.Services.Quiz;
 using EasyTeach.Core.Services.Quiz.Exceptions;
-using EasyTeach.Core.Validation.EntityValidator;
+using EasyTeach.Web.Models;
 using EasyTeach.Web.Models.ViewModels;
+using EasyTeach.Web.Results;
 
 namespace EasyTeach.Web.Controllers
 {
@@ -33,7 +34,7 @@ namespace EasyTeach.Web.Controllers
                 throw new ArgumentNullException("newQuizViewModel");
             }
 
-            IQuizModel quizModel = newQuizViewModel.ToQuizModel();
+            IQuizModel quizModel = newQuizViewModel.ToQuiz();
             IQuizModel createdQuiz;
             try
             {
@@ -41,33 +42,36 @@ namespace EasyTeach.Web.Controllers
             }
             catch (InvalidQuizException exception)
             {
-                foreach (var validationResult in exception.ValidationResults)
-                {
-                    ModelState.AddModelError(validationResult.MemberNames.FirstOrDefault(), validationResult.ErrorMessage);
-                }
-                return BadRequest(ModelState);
+                return BadRequestWithModelState(exception);
             }
             return Ok(createdQuiz);
         }
-
-        public Task<IHttpActionResult> AddQuestion(AddQuestionToQuizViewModel questionToQuizViewModel)
+        
+        public async Task<IHttpActionResult> AddQuestion(AddQuestionToQuizViewModel questionToQuizViewModel)
         {
-            throw new NotImplementedException();
+            if (questionToQuizViewModel == null)
+            {
+                throw new ArgumentNullException("questionToQuizViewModel");
+            }
+            try
+            {
+                var questionModel = questionToQuizViewModel.Question.ToQuestion();
+                await _quizManagementService.AddQuestionToQuiz(questionToQuizViewModel.QuizId, questionModel);
+            }
+            catch (InvalidAddQuestionException exception)
+            {
+                return BadRequestWithModelState(exception);
+            }
+            return Ok();
         }
-    }
 
-    public class AddQuestionToQuizViewModel
-    {
-        public int QuizId { get; set; }
-
-        public QuestionViewModel Question { get; set; }
-    }
-
-    public class QuestionViewModel
-    {
-        public virtual Question ToQuestion()
+        private IHttpActionResult BadRequestWithModelState(ModelValidationException exception)
         {
-            throw new NotImplementedException();
+            foreach (var validationResult in exception.ValidationResults)
+            {
+                ModelState.AddModelError(validationResult.MemberNames.FirstOrDefault(), validationResult.ErrorMessage);
+            }
+            return BadRequest(ModelState);
         }
     }
 }

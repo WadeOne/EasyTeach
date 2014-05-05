@@ -10,7 +10,7 @@ namespace EasyTeach.Core.Entities.Data.Quiz
 
         string Description { get; set; }
 
-        ICollection<Question> Questions { get; set; }
+        ICollection<QuestionModel> Questions { get; set; }
 
         int Version { get; set; }
     }

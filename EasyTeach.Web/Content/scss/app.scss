@@ -278,8 +278,16 @@ textarea {
 		}		
 	}
 
-	.add-homework-button {
+	#login-form label {
+		display: none
+	}
+
+	.add-homework-button, #login-btn {
 		width: 100%;
+	}
+
+	.reset-link {
+		text-align: center;
 	}
 
 	/*logout button*/

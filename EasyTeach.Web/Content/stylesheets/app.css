@@ -9464,8 +9464,13 @@ input {
   margin: 30px 0;
 }
 
-/*logout button*/
 /* line 92, ../scss/app.scss */
+.login-wrap {
+  float: none;
+  margin: 0 auto;
+}
+
+/* line 98, ../scss/app.scss */
 #logout-btn {
   display: inline-block;
   float: right;
@@ -9474,8 +9479,7 @@ input {
   font-size: 1rem;
 }
 
-/*grid */
-/* line 101, ../scss/app.scss */
+/* line 107, ../scss/app.scss */
 .custom-button {
   width: 180px;
   background: #67cac7;
@@ -9484,36 +9488,35 @@ input {
   margin-bottom: 20px;
 }
 
-/* line 109, ../scss/app.scss */
+/* line 115, ../scss/app.scss */
 #create-user-button {
   margin-left: 0.9375rem;
   margin-right: 0.9375rem;
 }
 
-/*homeworks page*/
-/* line 119, ../scss/app.scss */
+/* line 125, ../scss/app.scss */
 .tabs-content .accordion .content ul li {
   margin-bottom: 5px;
 }
 
-/* line 126, ../scss/app.scss */
+/* line 132, ../scss/app.scss */
 .download-all-homeworks-button {
   float: right;
   margin-right: 10px;
 }
 
-/* line 130, ../scss/app.scss */
+/* line 136, ../scss/app.scss */
 .download-single-homework-button {
   float: right;
   margin-right: 30px;
 }
 
-/* line 135, ../scss/app.scss */
+/* line 141, ../scss/app.scss */
 .loader {
   position: relative;
   min-height: 200px;
 }
-/* line 138, ../scss/app.scss */
+/* line 144, ../scss/app.scss */
 .loader:before {
   content: "";
   position: absolute;
@@ -9524,7 +9527,7 @@ input {
   background: rgba(0, 0, 0, 0.9);
   z-index: 1000;
 }
-/* line 148, ../scss/app.scss */
+/* line 154, ../scss/app.scss */
 .loader:after {
   content: "";
   position: absolute;
@@ -9537,12 +9540,12 @@ input {
   opacity: .1;
 }
 
-/* line 161, ../scss/app.scss */
+/* line 167, ../scss/app.scss */
 .top-bar .row {
   max-width: 62.5rem;
 }
 
-/* line 167, ../scss/app.scss */
+/* line 173, ../scss/app.scss */
 .file-upload {
   display: block;
   position: relative;
@@ -9556,13 +9559,13 @@ input {
   transition: box-shadow 0.1s linear;
   margin-bottom: 30px;
 }
-/* line 179, ../scss/app.scss */
+/* line 185, ../scss/app.scss */
 .file-upload input[type=file] {
   position: absolute;
   top: 0;
   opacity: 0;
 }
-/* line 184, ../scss/app.scss */
+/* line 190, ../scss/app.scss */
 .file-upload .choose-file-button {
   display: block;
   float: right;
@@ -9575,7 +9578,7 @@ input {
   color: #ffffff;
   font-size: 1rem;
 }
-/* line 196, ../scss/app.scss */
+/* line 202, ../scss/app.scss */
 .file-upload mark {
   display: block;
   cursor: pointer;
@@ -9585,17 +9588,17 @@ input {
   font-size: 1rem;
 }
 
-/* line 206, ../scss/app.scss */
+/* line 212, ../scss/app.scss */
 .add-homework-wrapper textarea {
   display: inline-block;
 }
 
-/* line 213, ../scss/app.scss */
+/* line 219, ../scss/app.scss */
 .registration-page .columns {
   padding: 0;
 }
 
-/* line 219, ../scss/app.scss */
+/* line 225, ../scss/app.scss */
 .easy-teach-button {
   display: inline-block;
   padding: 15px 20px;
@@ -9604,122 +9607,124 @@ input {
   text-align: center;
   white-space: nowrap;
 }
-/* line 226, ../scss/app.scss */
+/* line 232, ../scss/app.scss */
 .easy-teach-button:hover {
   background: #fa6900;
   color: #ffffff;
 }
-/* line 230, ../scss/app.scss */
+/* line 236, ../scss/app.scss */
 .easy-teach-button:focus {
   outline: none;
   background: #fa6900;
 }
 
-/* line 237, ../scss/app.scss */
+/* line 243, ../scss/app.scss */
 .error-message {
   color: red;
   margin-bottom: 20px;
 }
 
-/* line 244, ../scss/app.scss */
+/* line 250, ../scss/app.scss */
 .quizz-page h1 {
   font-size: 26px;
   color: #4d4d4d;
 }
-/* line 248, ../scss/app.scss */
+/* line 254, ../scss/app.scss */
 .quizz-page ul {
   list-style: none;
   margin-left: 0rem;
   color: #4d4d4d;
 }
-/* line 253, ../scss/app.scss */
+/* line 259, ../scss/app.scss */
 .quizz-page #add-description-quiz-btn, .quizz-page .test-name-wrap {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 258, ../scss/app.scss */
+/* line 264, ../scss/app.scss */
 .quizz-page .test-name-wrap {
   float: none;
   margin-left: -0.9375rem;
 }
-/* line 261, ../scss/app.scss */
+/* line 267, ../scss/app.scss */
 .quizz-page .test-name-wrap input {
   margin: 0;
 }
 
-/* line 268, ../scss/app.scss */
+/* line 274, ../scss/app.scss */
 .error-page h1 {
   font-size: 54px;
   text-align: center;
 }
-/* line 271, ../scss/app.scss */
+/* line 277, ../scss/app.scss */
 .error-page h1 .status {
   display: block;
   color: #f38630;
   font-size: 250px;
   line-height: 1em;
 }
-/* line 277, ../scss/app.scss */
-.error-page h1 .error-msg {
-  white-space: nowrap;
-}
 
 @media only screen and (max-width: 640px) {
-  /* line 284, ../scss/app.scss */
+  /* line 287, ../scss/app.scss */
   header .logo {
     padding: 1rem 0.5rem;
     font-size: 20px;
   }
 
-  /* line 290, ../scss/app.scss */
+  /* line 293, ../scss/app.scss */
   #login-form label {
     display: none;
   }
+  /* line 295, ../scss/app.scss */
+  #login-form label.header {
+    display: block;
+    margin-bottom: 15px;
+    text-align: center;
+  }
 
-  /* line 294, ../scss/app.scss */
-  .add-homework-button, #login-btn {
+  /* line 302, ../scss/app.scss */
+  .add-homework-button, #login-btn, #create-user-button {
     width: 100%;
   }
 
-  /* line 298, ../scss/app.scss */
+  /* line 306, ../scss/app.scss */
   .reset-link {
     text-align: center;
   }
 
-  /* line 303, ../scss/app.scss */
+  /* line 311, ../scss/app.scss */
   .error-page h1 {
     font-size: 35px;
   }
-  /* line 305, ../scss/app.scss */
+  /* line 313, ../scss/app.scss */
   .error-page h1 .status {
     font-size: 175px;
   }
 
   /*logout button*/
-  /* line 311, ../scss/app.scss */
+  /* line 319, ../scss/app.scss */
   #logout-btn {
     margin-top: 20px;
   }
 
-  /* line 315, ../scss/app.scss */
+  /* line 323, ../scss/app.scss */
   .quizz-page #add-description-quiz-btn {
     margin: 20px 0 10px 0px;
   }
 }
 @media only screen and (min-width: 641px) {
-  /* line 323, ../scss/app.scss */
+  /* line 331, ../scss/app.scss */
   header .logo {
     padding: 1rem 0rem;
     font-size: 28px;
   }
 
   /*logout button*/
-  /* line 330, ../scss/app.scss */
+  /* line 338, ../scss/app.scss */
   #logout-btn {
     margin-top: 25px;
   }
 
-  /* line 335, ../scss/app.scss */
+  /* line 343, ../scss/app.scss */
   .quizz-page #add-description-quiz-btn {
     margin: 0 0 0 15px;
   }

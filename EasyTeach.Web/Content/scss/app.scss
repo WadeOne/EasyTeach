@@ -88,7 +88,13 @@ input {
 		}
 }
 
-/*logout button*/
+// login 
+.login-wrap {
+	float: none;
+	margin: 0 auto;
+}
+
+// logout button
 #logout-btn {
 	display: inline-block;
 	float: right;
@@ -97,7 +103,7 @@ input {
 	font-size: 1rem;
 }
 
-/*grid */
+// grid
 .custom-button {
 	width: 180px;
 	background: #67cac7;
@@ -111,7 +117,7 @@ input {
 	margin-right: 0.9375rem;
 }
 
-/*homeworks page*/
+// homeworks page
 .tabs-content {
 	.accordion {
 		.content {
@@ -208,14 +214,14 @@ input {
 	}
 }
 
-//registartion page
+// registartion page
 .registration-page {
 	.columns {
 		padding: 0;
 	}  
 }
 
-//common elements
+// common elements
 .easy-teach-button {
 	display: inline-block;
 	padding: 15px 20px;
@@ -233,13 +239,13 @@ input {
 	}
 }
 
-//error style 
+// error style 
 .error-message {
 	color: red;
 	margin-bottom: 20px;
 }
 
-//test page
+// test page
 .quizz-page {
 	h1 {
 		font-size: 26px;
@@ -264,7 +270,7 @@ input {
 	}
 }
 
-//error page
+// error page
 .error-page h1 {
 	font-size: 54px;
 	text-align: center;
@@ -273,9 +279,6 @@ input {
 		color: #f38630;
 		font-size: 250px;
 		line-height: 1em;
-	}
-	.error-msg {
-		white-space: nowrap;
 	}
 }
 
@@ -288,10 +291,15 @@ input {
 	}
 
 	#login-form label {
-		display: none
+		display: none;
+		&.header {
+			display: block;
+			margin-bottom: 15px;
+			text-align: center;
+		}
 	}
 
-	.add-homework-button, #login-btn {
+	.add-homework-button, #login-btn, #create-user-button {
 		width: 100%;
 	}
 

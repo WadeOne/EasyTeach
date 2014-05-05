@@ -58,6 +58,10 @@ ul {
 textarea {
 	resize: none;
 }
+input {
+	-moz-appearance: none;
+	appearance: none;
+}
 
 .page-wrapper {
 		 background: rgba(224, 228, 204, 0.3);
@@ -265,8 +269,13 @@ textarea {
 	font-size: 54px;
 	text-align: center;
 	.status {
+		display: block;
 		color: #f38630;
 		font-size: 250px;
+		line-height: 1em;
+	}
+	.error-msg {
+		white-space: nowrap;
 	}
 }
 
@@ -275,7 +284,7 @@ textarea {
 		.logo {
 			padding: 1rem 0.5rem;
 			font-size: 20px;
-		}		
+		}
 	}
 
 	#login-form label {
@@ -288,6 +297,14 @@ textarea {
 
 	.reset-link {
 		text-align: center;
+	}
+
+	//error page
+	.error-page h1 {
+		font-size: 35px;
+		.status {
+			font-size: 175px;
+		}
 	}
 
 	/*logout button*/

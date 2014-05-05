@@ -9431,35 +9431,41 @@ textarea {
   resize: none;
 }
 
-/* line 62, ../scss/app.scss */
+/* line 61, ../scss/app.scss */
+input {
+  -moz-appearance: none;
+  appearance: none;
+}
+
+/* line 66, ../scss/app.scss */
 .page-wrapper {
   background: rgba(224, 228, 204, 0.3);
 }
-/* line 65, ../scss/app.scss */
+/* line 69, ../scss/app.scss */
 .page-wrapper .page-content .row {
   padding-top: 30px;
 }
-/* line 68, ../scss/app.scss */
+/* line 72, ../scss/app.scss */
 .page-wrapper .page-content .row #user-registration-form .row {
   padding-top: 0px;
   margin-left: 0px;
   margin-right: 0px;
 }
-/* line 75, ../scss/app.scss */
+/* line 79, ../scss/app.scss */
 .page-wrapper .page-content label {
   font-size: 20px;
 }
-/* line 78, ../scss/app.scss */
+/* line 82, ../scss/app.scss */
 .page-wrapper .page-content .login-wrapper {
   margin: 30px 0;
 }
-/* line 81, ../scss/app.scss */
+/* line 85, ../scss/app.scss */
 .page-wrapper .page-content .image-container {
   margin: 30px 0;
 }
 
 /*logout button*/
-/* line 88, ../scss/app.scss */
+/* line 92, ../scss/app.scss */
 #logout-btn {
   display: inline-block;
   float: right;
@@ -9469,7 +9475,7 @@ textarea {
 }
 
 /*grid */
-/* line 97, ../scss/app.scss */
+/* line 101, ../scss/app.scss */
 .custom-button {
   width: 180px;
   background: #67cac7;
@@ -9478,36 +9484,36 @@ textarea {
   margin-bottom: 20px;
 }
 
-/* line 105, ../scss/app.scss */
+/* line 109, ../scss/app.scss */
 #create-user-button {
   margin-left: 0.9375rem;
   margin-right: 0.9375rem;
 }
 
 /*homeworks page*/
-/* line 115, ../scss/app.scss */
+/* line 119, ../scss/app.scss */
 .tabs-content .accordion .content ul li {
   margin-bottom: 5px;
 }
 
-/* line 122, ../scss/app.scss */
+/* line 126, ../scss/app.scss */
 .download-all-homeworks-button {
   float: right;
   margin-right: 10px;
 }
 
-/* line 126, ../scss/app.scss */
+/* line 130, ../scss/app.scss */
 .download-single-homework-button {
   float: right;
   margin-right: 30px;
 }
 
-/* line 131, ../scss/app.scss */
+/* line 135, ../scss/app.scss */
 .loader {
   position: relative;
   min-height: 200px;
 }
-/* line 134, ../scss/app.scss */
+/* line 138, ../scss/app.scss */
 .loader:before {
   content: "";
   position: absolute;
@@ -9518,7 +9524,7 @@ textarea {
   background: rgba(0, 0, 0, 0.9);
   z-index: 1000;
 }
-/* line 144, ../scss/app.scss */
+/* line 148, ../scss/app.scss */
 .loader:after {
   content: "";
   position: absolute;
@@ -9531,12 +9537,12 @@ textarea {
   opacity: .1;
 }
 
-/* line 157, ../scss/app.scss */
+/* line 161, ../scss/app.scss */
 .top-bar .row {
   max-width: 62.5rem;
 }
 
-/* line 163, ../scss/app.scss */
+/* line 167, ../scss/app.scss */
 .file-upload {
   display: block;
   position: relative;
@@ -9550,13 +9556,13 @@ textarea {
   transition: box-shadow 0.1s linear;
   margin-bottom: 30px;
 }
-/* line 175, ../scss/app.scss */
+/* line 179, ../scss/app.scss */
 .file-upload input[type=file] {
   position: absolute;
   top: 0;
   opacity: 0;
 }
-/* line 180, ../scss/app.scss */
+/* line 184, ../scss/app.scss */
 .file-upload .choose-file-button {
   display: block;
   float: right;
@@ -9569,7 +9575,7 @@ textarea {
   color: #ffffff;
   font-size: 1rem;
 }
-/* line 192, ../scss/app.scss */
+/* line 196, ../scss/app.scss */
 .file-upload mark {
   display: block;
   cursor: pointer;
@@ -9579,17 +9585,17 @@ textarea {
   font-size: 1rem;
 }
 
-/* line 202, ../scss/app.scss */
+/* line 206, ../scss/app.scss */
 .add-homework-wrapper textarea {
   display: inline-block;
 }
 
-/* line 209, ../scss/app.scss */
+/* line 213, ../scss/app.scss */
 .registration-page .columns {
   padding: 0;
 }
 
-/* line 215, ../scss/app.scss */
+/* line 219, ../scss/app.scss */
 .easy-teach-button {
   display: inline-block;
   padding: 15px 20px;
@@ -9598,107 +9604,122 @@ textarea {
   text-align: center;
   white-space: nowrap;
 }
-/* line 222, ../scss/app.scss */
+/* line 226, ../scss/app.scss */
 .easy-teach-button:hover {
   background: #fa6900;
   color: #ffffff;
 }
-/* line 226, ../scss/app.scss */
+/* line 230, ../scss/app.scss */
 .easy-teach-button:focus {
   outline: none;
   background: #fa6900;
 }
 
-/* line 233, ../scss/app.scss */
+/* line 237, ../scss/app.scss */
 .error-message {
   color: red;
   margin-bottom: 20px;
 }
 
-/* line 240, ../scss/app.scss */
+/* line 244, ../scss/app.scss */
 .quizz-page h1 {
   font-size: 26px;
   color: #4d4d4d;
 }
-/* line 244, ../scss/app.scss */
+/* line 248, ../scss/app.scss */
 .quizz-page ul {
   list-style: none;
   margin-left: 0rem;
   color: #4d4d4d;
 }
-/* line 249, ../scss/app.scss */
+/* line 253, ../scss/app.scss */
 .quizz-page #add-description-quiz-btn, .quizz-page .test-name-wrap {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 254, ../scss/app.scss */
+/* line 258, ../scss/app.scss */
 .quizz-page .test-name-wrap {
   float: none;
   margin-left: -0.9375rem;
 }
-/* line 257, ../scss/app.scss */
+/* line 261, ../scss/app.scss */
 .quizz-page .test-name-wrap input {
   margin: 0;
 }
 
-/* line 264, ../scss/app.scss */
+/* line 268, ../scss/app.scss */
 .error-page h1 {
   font-size: 54px;
   text-align: center;
 }
-/* line 267, ../scss/app.scss */
+/* line 271, ../scss/app.scss */
 .error-page h1 .status {
+  display: block;
   color: #f38630;
   font-size: 250px;
+  line-height: 1em;
+}
+/* line 277, ../scss/app.scss */
+.error-page h1 .error-msg {
+  white-space: nowrap;
 }
 
 @media only screen and (max-width: 640px) {
-  /* line 275, ../scss/app.scss */
+  /* line 284, ../scss/app.scss */
   header .logo {
     padding: 1rem 0.5rem;
     font-size: 20px;
   }
 
-  /* line 281, ../scss/app.scss */
+  /* line 290, ../scss/app.scss */
   #login-form label {
     display: none;
   }
 
-  /* line 285, ../scss/app.scss */
+  /* line 294, ../scss/app.scss */
   .add-homework-button, #login-btn {
     width: 100%;
   }
 
-  /* line 289, ../scss/app.scss */
+  /* line 298, ../scss/app.scss */
   .reset-link {
     text-align: center;
   }
 
+  /* line 303, ../scss/app.scss */
+  .error-page h1 {
+    font-size: 35px;
+  }
+  /* line 305, ../scss/app.scss */
+  .error-page h1 .status {
+    font-size: 175px;
+  }
+
   /*logout button*/
-  /* line 294, ../scss/app.scss */
+  /* line 311, ../scss/app.scss */
   #logout-btn {
     margin-top: 20px;
   }
 
-  /* line 298, ../scss/app.scss */
+  /* line 315, ../scss/app.scss */
   .quizz-page #add-description-quiz-btn {
     margin: 20px 0 10px 0px;
   }
 }
 @media only screen and (min-width: 641px) {
-  /* line 306, ../scss/app.scss */
+  /* line 323, ../scss/app.scss */
   header .logo {
     padding: 1rem 0rem;
     font-size: 28px;
   }
 
   /*logout button*/
-  /* line 313, ../scss/app.scss */
+  /* line 330, ../scss/app.scss */
   #logout-btn {
     margin-top: 25px;
   }
 
-  /* line 318, ../scss/app.scss */
+  /* line 335, ../scss/app.scss */
   .quizz-page #add-description-quiz-btn {
     margin: 0 0 0 15px;
   }

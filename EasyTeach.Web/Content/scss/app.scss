@@ -61,6 +61,13 @@ ul {
 		.page-content {
 			.row {
 				padding-top: 30px;
+				#user-registration-form {
+					.row {
+						padding-top: 0px;
+						margin-left: 0px;
+						margin-right: 0px;
+					}
+				}
 			}
 			label {
 				font-size: 20px;
@@ -91,9 +98,10 @@ ul {
 	font-size: 20px;
 	margin-bottom: 20px;
 }
-.logout-button {
-	float: right;
-	margin-top: 10px;
+
+#create-user-button {
+	margin-left: 0.9375rem;
+	margin-right: 0.9375rem;
 }
 
 /*homeworks page*/
@@ -238,11 +246,10 @@ ul {
 		display: inline-block;
 		vertical-align: middle;
 	}
-	#add-description-quiz-btn {
-		margin:0 0 0 15px;
-	}
+	
 	.test-name-wrap {
 		float: none;
+		margin-left: -0.9375rem;
 		input {
 			margin: 0;
 		}
@@ -264,13 +271,19 @@ ul {
 		.logo {
 			padding: 1rem 0.5rem;
 			font-size: 20px;
-		}
+		}		
 	}
 
 	/*logout button*/
 	#logout-btn {
 		margin-top: 20px; 
 	}
+	.quizz-page {
+		#add-description-quiz-btn {
+			margin:20px 0 10px 0px;
+		}
+	}
+
 }
 @media #{$medium-up} {
 	header {
@@ -284,14 +297,13 @@ ul {
 	#logout-btn {
 		margin-top: 25px;  
 	}
+	
+	.quizz-page {
+		#add-description-quiz-btn {
+			margin:0 0 0 15px;
+		}
+	}
 }
 
 @media #{$large-only} { 
-	.page-wrapper {
-		.page-content {
-			.columns{
-				padding: 0;
-			} 
-		}			
-	}
 }

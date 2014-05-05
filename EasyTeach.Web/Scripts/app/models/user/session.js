@@ -10,13 +10,14 @@ define([
     };
 
     return Model.extend({
-        url: "/api/Claim/Get",
+        url: "/api/Claim",
         defaults: {
             isAuthenticated: false,
             claims: []
         },
         initialize: function() {
             this.subscribeEvent('!user:login', this.fetch);
+            this.subscribeEvent('!user:logout', this.fetch);
         },
         sync: function(method, model, options) {
             _.extend(options, {async: false});

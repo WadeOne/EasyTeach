@@ -31,6 +31,7 @@ namespace EasyTeach.Core.Tests.Services.Claim.Impl
         {
             var identity = A.Fake<IIdentity>();
             A.CallTo(() => identity.Name).Returns("John Doe");
+            A.CallTo(() => identity.IsAuthenticated).Returns(true);
 
             var userDto = A.Fake<IUserDto>();
 

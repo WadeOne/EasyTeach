@@ -7,7 +7,6 @@ using EasyTeach.Data.Entities;
 
 namespace EasyTeach.Data.Migrations
 {
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
 
     internal sealed class Configuration : DbMigrationsConfiguration<EasyTeachContext>
@@ -61,6 +60,7 @@ namespace EasyTeach.Data.Migrations
 
             context.UserClaims.AddOrUpdate(new UserClaimDto
             {
+                UserClaimId = 1,
                 Value = "Register",
                 Type = "User",
                 ValueType = ClaimValueTypes.String,

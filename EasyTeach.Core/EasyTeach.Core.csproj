@@ -57,6 +57,7 @@
     <Compile Include="Entities\Group.cs" />
     <Compile Include="Entities\Services\IClassModel.cs" />
     <Compile Include="Entities\Services\IGroupModel.cs" />
+    <Compile Include="Entities\Services\IQuestionModel.cs" />
     <Compile Include="Entities\Services\ITaskModel.cs" />
     <Compile Include="Entities\Services\ITaskVariantModel.cs" />
     <Compile Include="Entities\Services\IUserClassModel.cs" />

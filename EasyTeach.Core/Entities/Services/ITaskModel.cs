@@ -5,12 +5,14 @@ namespace EasyTeach.Core.Entities.Services
 {
     public interface ITaskModel
     {
-        string Name { get; }
+        string Subject { get; }
 
-        DateTime Expired { get; }
+        DateTime Due { get; }
 
         DateTime Announced { get; }
 
         IEnumerable<ITaskVariantModel> Variants { get; }
+
+        IEnumerable<ITaskAssetModel> Assets { get; }
     }
 }

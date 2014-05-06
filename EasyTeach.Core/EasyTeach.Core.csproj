@@ -55,12 +55,13 @@
     <Compile Include="Entities\Data\User\IUserDto.cs" />
     <Compile Include="Entities\Data\User\IUserTokenDto.cs" />
     <Compile Include="Entities\Group.cs" />
-    <Compile Include="Entities\Services\IClassModel.cs" />
+    <Compile Include="Entities\Services\ILessonModel.cs" />
     <Compile Include="Entities\Services\IGroupModel.cs" />
     <Compile Include="Entities\Services\IQuestionModel.cs" />
+    <Compile Include="Entities\Services\ITaskAssetModel.cs" />
     <Compile Include="Entities\Services\ITaskModel.cs" />
     <Compile Include="Entities\Services\ITaskVariantModel.cs" />
-    <Compile Include="Entities\Services\IUserClassModel.cs" />
+    <Compile Include="Entities\Services\IUserLessonModel.cs" />
     <Compile Include="Entities\Services\IUserIdentityModel.cs" />
     <Compile Include="Entities\Services\IUserModel.cs" />
     <Compile Include="Entities\QuizModel.cs" />

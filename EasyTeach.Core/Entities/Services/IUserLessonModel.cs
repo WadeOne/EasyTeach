@@ -2,9 +2,9 @@
 
 namespace EasyTeach.Core.Entities.Services
 {
-    public interface IUserClassModel
+    public interface IUserLessonModel
     {
-        IClassModel Class { get; }
+        ILessonModel Lesson { get; }
 
         IUserModel User { get; }
 

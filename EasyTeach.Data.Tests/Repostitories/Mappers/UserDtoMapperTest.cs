@@ -24,14 +24,12 @@ namespace EasyTeach.Data.Tests.Repostitories.Mappers
             A.CallTo(() => userModel.LastName).Returns("LastName");
             A.CallTo(() => userModel.Email).Returns("test@test.com");
             A.CallTo(() => userModel.Group).Returns(new Group{GroupId = 1, GroupNumber = 2, Year = 2009});
-            A.CallTo(() => userModel.UserType).Returns(UserType.Student);
 
             IUserDto userDto = _mapper.Map(userModel);
 
             Assert.Equal(userDto.FirstName, userModel.FirstName);
             Assert.Equal(userDto.LastName, userModel.LastName);
             Assert.Equal(userDto.Email, userModel.Email);
-            Assert.Equal(userDto.UserType, userModel.UserType);
             Assert.Equal(userDto.Group.GroupId, userModel.Group.GroupId);
             Assert.Equal(userDto.Group.GroupNumber, userModel.Group.GroupNumber);
             Assert.Equal(userDto.Group.Year, userModel.Group.Year);

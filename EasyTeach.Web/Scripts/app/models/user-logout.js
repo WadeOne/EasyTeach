@@ -12,7 +12,7 @@
             this.publishEvent("!user:logout");
         },
         logout: function() {
-        	var data = {}
+        	var data = {};
         	this.save(data);
         }
     });

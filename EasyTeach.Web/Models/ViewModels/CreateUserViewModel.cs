@@ -1,7 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
-
 using EasyTeach.Core.Entities;
-using EasyTeach.Core.Enums;
 
 namespace EasyTeach.Web.Models.ViewModels
 {
@@ -23,8 +21,7 @@ namespace EasyTeach.Web.Models.ViewModels
                        Email = Email,
                        FirstName = FirstName,
                        Group = Group,
-                       LastName = LastName,
-                       UserType = UserType.Student
+                       LastName = LastName
                    };
         }
 

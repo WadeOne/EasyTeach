@@ -1,6 +1,4 @@
-﻿using EasyTeach.Core.Enums;
-
-namespace EasyTeach.Core.Entities.Services
+﻿namespace EasyTeach.Core.Entities.Services
 {
     public interface IUserModel : IUserIdentityModel
     {
@@ -8,8 +6,6 @@ namespace EasyTeach.Core.Entities.Services
 
         string LastName { get; }
 
-        Group Group { get; }
-
-        UserType UserType { get; }
+        IGroupModel Group { get; }
     }
 }

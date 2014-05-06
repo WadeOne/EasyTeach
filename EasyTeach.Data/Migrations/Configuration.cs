@@ -11,6 +11,8 @@ namespace EasyTeach.Data.Migrations
 
     internal sealed class Configuration : DbMigrationsConfiguration<EasyTeachContext>
     {
+        private int _claimId;
+
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
@@ -60,14 +62,33 @@ namespace EasyTeach.Data.Migrations
 
             context.UserClaims.AddOrUpdate(new UserClaimDto
             {
-                UserClaimId = 1,
+                UserClaimId = ++_claimId,
                 Value = "Register",
                 Type = "User",
                 ValueType = ClaimValueTypes.String,
                 User = context.Users.Single(u => u.UserId == 1)
             });
 
+            AddLessonClaims(context);
+
             context.SaveChanges();
+        }
+
+        private void AddLessonClaims(EasyTeachContext context)
+        {
+            var user = context.Users.Single(u => u.UserId == 1);
+            var operations = new[] { "Create", "Update", "Delete" };
+            foreach (string operation in operations)
+            {
+                context.UserClaims.AddOrUpdate(new UserClaimDto
+                {
+                    UserClaimId = ++_claimId,
+                    Value = operation,
+                    Type = "Lesson",
+                    ValueType = ClaimValueTypes.String,
+                    User = user
+                });
+            }
         }
     }
 }

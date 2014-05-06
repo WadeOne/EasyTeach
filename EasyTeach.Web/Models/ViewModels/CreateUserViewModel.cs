@@ -24,6 +24,5 @@ namespace EasyTeach.Web.Models.ViewModels
                        LastName = LastName
                    };
         }
-
     }
 }

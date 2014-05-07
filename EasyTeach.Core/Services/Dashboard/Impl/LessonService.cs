@@ -7,16 +7,23 @@ using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers.Dashboard;
 using EasyTeach.Core.Services.Base.Exceptions;
 using EasyTeach.Core.Services.Dashboard.Exceptions;
+using EasyTeach.Core.Validation.EntityValidator;
 
 namespace EasyTeach.Core.Services.Dashboard.Impl
 {
     public sealed class LessonService : ILessonService
     {
+        private readonly EntityValidator _entityValidator;
         private readonly ILessonRepository _lessonRepository;
         private readonly ILessonDtoMapper _lessonDtoMapper;
 
-        public LessonService(ILessonRepository lessonRepository, ILessonDtoMapper lessonDtoMapper)
+        public LessonService(EntityValidator entityValidator, ILessonRepository lessonRepository, ILessonDtoMapper lessonDtoMapper)
         {
+            if (entityValidator == null)
+            {
+                throw new ArgumentNullException("entityValidator");
+            }
+
             if (lessonRepository == null)
             {
                 throw new ArgumentNullException("lessonRepository");
@@ -27,6 +34,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new ArgumentNullException("lessonDtoMapper");
             }
 
+            _entityValidator = entityValidator;
             _lessonRepository = lessonRepository;
             _lessonDtoMapper = lessonDtoMapper;
         }
@@ -36,6 +44,12 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             if (lesson == null)
             {
                 throw new ArgumentNullException("lesson");
+            }
+
+            EntityValidationResult result = _entityValidator.ValidateEntity(lesson);
+            if (result.IsValid == false)
+            {
+                throw new InvalidLessonException(result.ValidationResults);
             }
 
             if (_lessonRepository.GetLessons().Any(l => l.Date == lesson.Date))
@@ -63,6 +77,12 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new ArgumentNullException("lesson");
             }
 
+            EntityValidationResult result = _entityValidator.ValidateEntity(lesson);
+            if (result.IsValid == false)
+            {
+                throw new InvalidLessonException(result.ValidationResults);
+            }
+
             if (_lessonRepository.GetLessonByIdAsync(lesson.LessonId) == null)
             {
                 throw new EntityNotFoundException("lesson", lesson.LessonId);
@@ -81,8 +101,12 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             return _lessonRepository.GetLessons().Select(l => new Lesson
             {
                 LessonId = l.LessonId,
-                Date = l.Date
-            });
+                Date = l.Date,
+                Group = new Group
+                {
+                    GroupId = l.GroupId
+                }
+            }).AsQueryable();
         }
     }
 }

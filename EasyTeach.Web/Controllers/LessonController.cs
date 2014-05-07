@@ -25,11 +25,13 @@ namespace EasyTeach.Web.Controllers
         }
 
         [Route("")]
-        public IQueryable<CreateLessonViewModel> Get()
+        public IQueryable<LessonViewModel> Get()
         {
-            return _lessonService.GetLessons().Select(l => new CreateLessonViewModel
+            return _lessonService.GetLessons().Select(l => new LessonViewModel
             {
-                Date = l.Date
+                Date = l.Date,
+                GroupId = l.Group.GroupId,
+                LessonId = l.LessonId
             });
         }
 

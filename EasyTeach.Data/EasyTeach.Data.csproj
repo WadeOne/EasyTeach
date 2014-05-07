@@ -62,39 +62,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\EasyTeachContext.cs" />
+    <Compile Include="Entities\GroupDto.cs" />
     <Compile Include="Entities\LessonDto.cs" />
     <Compile Include="Entities\QuestionDto.cs" />
     <Compile Include="Entities\QuizDto.cs" />
     <Compile Include="Entities\UserClaimDto.cs" />
     <Compile Include="Entities\UserDto.cs" />
     <Compile Include="Entities\UserTokenDto.cs" />
-    <Compile Include="Migrations\201404041337202_InitialCreate.cs" />
-    <Compile Include="Migrations\201404041337202_InitialCreate.Designer.cs">
-      <DependentUpon>201404041337202_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201404082233256_AddUserPasswordHash.cs" />
-    <Compile Include="Migrations\201404082233256_AddUserPasswordHash.Designer.cs">
-      <DependentUpon>201404082233256_AddUserPasswordHash.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201404101639467_AddUserTokens.cs" />
-    <Compile Include="Migrations\201404101639467_AddUserTokens.Designer.cs">
-      <DependentUpon>201404101639467_AddUserTokens.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201404212242567_AddTeacherRoleClaims.cs" />
-    <Compile Include="Migrations\201404212242567_AddTeacherRoleClaims.Designer.cs">
-      <DependentUpon>201404212242567_AddTeacherRoleClaims.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201404230714166_QuizDto.cs" />
-    <Compile Include="Migrations\201404230714166_QuizDto.Designer.cs">
-      <DependentUpon>201404230714166_QuizDto.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201404231657098_QuizDtoUpdate.cs" />
-    <Compile Include="Migrations\201404231657098_QuizDtoUpdate.Designer.cs">
-      <DependentUpon>201404231657098_QuizDtoUpdate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201405062325566_AddLessons.cs" />
-    <Compile Include="Migrations\201405062325566_AddLessons.Designer.cs">
-      <DependentUpon>201405062325566_AddLessons.cs</DependentUpon>
+    <Compile Include="Migrations\201405072345059_Initial.cs" />
+    <Compile Include="Migrations\201405072345059_Initial.Designer.cs">
+      <DependentUpon>201405072345059_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -126,26 +103,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201404041337202_InitialCreate.resx">
-      <DependentUpon>201404041337202_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201404082233256_AddUserPasswordHash.resx">
-      <DependentUpon>201404082233256_AddUserPasswordHash.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201404101639467_AddUserTokens.resx">
-      <DependentUpon>201404101639467_AddUserTokens.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201404212242567_AddTeacherRoleClaims.resx">
-      <DependentUpon>201404212242567_AddTeacherRoleClaims.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201404230714166_QuizDto.resx">
-      <DependentUpon>201404230714166_QuizDto.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201404231657098_QuizDtoUpdate.resx">
-      <DependentUpon>201404231657098_QuizDtoUpdate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405062325566_AddLessons.resx">
-      <DependentUpon>201405062325566_AddLessons.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201405072345059_Initial.resx">
+      <DependentUpon>201405072345059_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

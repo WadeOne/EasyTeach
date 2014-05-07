@@ -1,7 +1,5 @@
 using System.Linq;
 using System.Security.Claims;
-using EasyTeach.Core.Entities;
-using EasyTeach.Core.Enums;
 using EasyTeach.Data.Context;
 using EasyTeach.Data.Entities;
 
@@ -22,7 +20,7 @@ namespace EasyTeach.Data.Migrations
 
         protected override void Seed(EasyTeachContext context)
         {
-            context.Groups.AddOrUpdate(new Group
+            context.Groups.AddOrUpdate(new GroupDto
             {
                 GroupId = 1,
                 GroupNumber = 1,
@@ -32,7 +30,7 @@ namespace EasyTeach.Data.Migrations
             context.SaveChanges();
 
             context.Users.AddOrUpdate(
-            // password: testMoBiLe13
+                // password: testMoBiLe13
             new UserDto
             {
                 UserId = 2,
@@ -41,7 +39,6 @@ namespace EasyTeach.Data.Migrations
                 FirstName = "Леонид Сергеевич",
                 LastName = "Броневой",
                 PasswordHash = "ALTARCbT6yTe7DSX5LSHgKhBB0t2cR+OPUabn0vmCEmxPBIVT/jb9r64jRVfvpwD5A==",
-                UserType = UserType.Student,
                 Group = context.Groups.Single(g => g.GroupId == 1)
             },
 
@@ -54,7 +51,7 @@ namespace EasyTeach.Data.Migrations
                 FirstName = "Светлана",
                 LastName = "Панина",
                 PasswordHash = "ALTARCbT6yTe7DSX5LSHgKhBB0t2cR+OPUabn0vmCEmxPBIVT/jb9r64jRVfvpwD5A==",
-                UserType = UserType.Teacher,
+
                 Group = null
             });
 

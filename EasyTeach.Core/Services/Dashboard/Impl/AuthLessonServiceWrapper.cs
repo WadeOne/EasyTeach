@@ -85,7 +85,10 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             IUserDto user = await _userStore.FindByNameAsync(_principal.Identity.Name);
             if (user.GroupId != lesson.Group.GroupId)
             {
-                _authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "Create"));
+                if (!_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "Create")))
+                {
+                    throw new SecurityException("User doesn't have enough permission for creating lesson");
+                }
             }
 
             await _lessonService.CreateLessonAsync(lesson);
@@ -104,7 +107,10 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 IUserDto user = await _userStore.FindByNameAsync(_principal.Identity.Name);
                 if (user.GroupId != lesson.Group.GroupId)
                 {
-                    _authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "Create"));
+                    if (!_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "Delete")))
+                    {
+                        throw new SecurityException("User doesn't have enough permission for removing lesson");
+                    }
                 }
 
                 await _lessonService.RemoveLessonAsync(lessonId);
@@ -127,7 +133,10 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             IUserDto user = await _userStore.FindByNameAsync(_principal.Identity.Name);
             if (user.GroupId != lesson.Group.GroupId)
             {
-                _authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "Update"));
+                if (!_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "Update")))
+                {
+                    throw new SecurityException("User doesn't have enough permission for removing lesson");
+                }
             }
 
             await _lessonService.UpdateLessonAsync(lesson);
@@ -144,7 +153,10 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             IUserDto user = await _userStore.FindByNameAsync(_principal.Identity.Name);
             if (user.GroupId != lesson.Group.GroupId)
             {
-                _authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "GetAll"));
+                if (!_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "GetAll")))
+                {
+                    throw new SecurityException("User doesn't have enough permission for retrieving lesson");
+                }
             }
 
             return lesson;
@@ -152,17 +164,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
 
         public IQueryable<ILessonModel> GetLessons()
         {
-            bool getAll = true;
-            try
-            {
-                _authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "GetAll"));
-            }
-            catch (SecurityException)
-            {
-                getAll = false;
-            }
-
-            if (getAll)
+            if (_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "GetAll")))
             {
                 return _lessonService.GetLessons();
             }

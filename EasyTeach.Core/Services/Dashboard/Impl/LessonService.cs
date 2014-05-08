@@ -53,7 +53,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new InvalidLessonException(result.ValidationResults);
             }
 
-            if (_lessonRepository.GetLessons().Any(l => l.Date == lesson.Date))
+            if (_lessonRepository.GetLessons().Any(l => l.Date == lesson.Date && l.GroupId == lesson.Group.GroupId))
             {
                 throw new LessonDateOverlappingException();
             }
@@ -63,7 +63,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
 
         public async Task RemoveLessonAsync(int lessonId)
         {
-            if (_lessonRepository.GetLessonByIdAsync(lessonId) == null)
+            if (await _lessonRepository.GetLessonByIdAsync(lessonId) == null)
             {
                 throw new EntityNotFoundException("lesson", lessonId);
             }
@@ -84,12 +84,12 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new InvalidLessonException(result.ValidationResults);
             }
 
-            if (_lessonRepository.GetLessonByIdAsync(lesson.LessonId) == null)
+            if (await _lessonRepository.GetLessonByIdAsync(lesson.LessonId) == null)
             {
                 throw new EntityNotFoundException("lesson", lesson.LessonId);
             }
 
-            if (_lessonRepository.GetLessons().Any(l => l.LessonId != lesson.LessonId && l.Date == lesson.Date))
+            if (_lessonRepository.GetLessons().Any(l => l.LessonId != lesson.LessonId && l.Date == lesson.Date && l.GroupId == lesson.Group.GroupId))
             {
                 throw new LessonDateOverlappingException();
             }
@@ -99,7 +99,13 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
 
         public async Task<ILessonModel> GetLessonByIdAsync(int lessonId)
         {
-            return Map(await _lessonRepository.GetLessonByIdAsync(lessonId));
+            ILessonDto lesson = await _lessonRepository.GetLessonByIdAsync(lessonId);
+            if (lesson == null)
+            {
+                return null;
+            }
+
+            return Map(lesson);
         }
 
         public IQueryable<ILessonModel> GetLessons()

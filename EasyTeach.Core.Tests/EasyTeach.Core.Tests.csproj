@@ -58,6 +58,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Security\ClaimsAuthorizationManagerTest.cs" />
     <Compile Include="Services\Claim\Impl\ClaimServiceTest.cs" />
+    <Compile Include="Services\Dashboard\Impl\AuthLessonServiceWrapperTest.cs" />
+    <Compile Include="Services\Dashboard\Impl\LessonServiceTest.cs" />
     <Compile Include="Services\Messaging\Impl\EmailServiceTest.cs" />
     <Compile Include="Services\Quiz\Impl\QuizManagementServiceTest.cs" />
     <Compile Include="Services\UserManagement\Impl\PasswordValidatorTest.cs" />

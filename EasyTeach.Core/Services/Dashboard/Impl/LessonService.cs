@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using EasyTeach.Core.Entities;
+using EasyTeach.Core.Entities.Data.Dashboard;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers.Dashboard;
@@ -96,17 +97,27 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             await _lessonRepository.UpdateLessonAsync(_lessonDtoMapper.Map(lesson));
         }
 
+        public async Task<ILessonModel> GetLessonByIdAsync(int lessonId)
+        {
+            return Map(await _lessonRepository.GetLessonByIdAsync(lessonId));
+        }
+
         public IQueryable<ILessonModel> GetLessons()
         {
-            return _lessonRepository.GetLessons().Select(l => new Lesson
+            return _lessonRepository.GetLessons().Select(Map).AsQueryable();
+        }
+
+        private Lesson Map(ILessonDto lesson)
+        {
+            return new Lesson
             {
-                LessonId = l.LessonId,
-                Date = l.Date,
+                LessonId = lesson.LessonId,
+                Date = lesson.Date,
                 Group = new Group
                 {
-                    GroupId = l.GroupId
+                    GroupId = lesson.GroupId
                 }
-            }).AsQueryable();
+            };
         }
     }
 }

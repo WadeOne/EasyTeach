@@ -39,7 +39,7 @@ namespace EasyTeach.Data.Migrations
                 FirstName = "Леонид Сергеевич",
                 LastName = "Броневой",
                 PasswordHash = "ALTARCbT6yTe7DSX5LSHgKhBB0t2cR+OPUabn0vmCEmxPBIVT/jb9r64jRVfvpwD5A==",
-                Group = context.Groups.Single(g => g.GroupId == 1)
+                GroupId = 1
             },
 
             // password: testMoBiLe13
@@ -50,9 +50,7 @@ namespace EasyTeach.Data.Migrations
                 EmailIsValidated = true,
                 FirstName = "Светлана",
                 LastName = "Панина",
-                PasswordHash = "ALTARCbT6yTe7DSX5LSHgKhBB0t2cR+OPUabn0vmCEmxPBIVT/jb9r64jRVfvpwD5A==",
-
-                Group = null
+                PasswordHash = "ALTARCbT6yTe7DSX5LSHgKhBB0t2cR+OPUabn0vmCEmxPBIVT/jb9r64jRVfvpwD5A=="
             });
 
             context.SaveChanges();
@@ -74,7 +72,7 @@ namespace EasyTeach.Data.Migrations
         private void AddLessonClaims(EasyTeachContext context)
         {
             var user = context.Users.Single(u => u.UserId == 1);
-            var operations = new[] { "Create", "Update", "Delete" };
+            var operations = new[] { "Create", "Update", "Delete", "GetAll" };
             foreach (string operation in operations)
             {
                 context.UserClaims.AddOrUpdate(new UserClaimDto

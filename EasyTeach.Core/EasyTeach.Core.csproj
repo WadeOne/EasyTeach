@@ -95,6 +95,7 @@
     <Compile Include="Services\Dashboard\Exceptions\InvalidLessonException.cs" />
     <Compile Include="Services\Dashboard\Exceptions\LessonDateOverlappingException.cs" />
     <Compile Include="Services\Dashboard\ILessonService.cs" />
+    <Compile Include="Services\Dashboard\Impl\AuthLessonServiceWrapper.cs" />
     <Compile Include="Services\Dashboard\Impl\LessonService.cs" />
     <Compile Include="Services\Messaging\Email.cs" />
     <Compile Include="Services\Messaging\IEmailBuilder.cs" />

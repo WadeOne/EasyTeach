@@ -69,9 +69,9 @@
     <Compile Include="Entities\UserClaimDto.cs" />
     <Compile Include="Entities\UserDto.cs" />
     <Compile Include="Entities\UserTokenDto.cs" />
-    <Compile Include="Migrations\201405072345059_Initial.cs" />
-    <Compile Include="Migrations\201405072345059_Initial.Designer.cs">
-      <DependentUpon>201405072345059_Initial.cs</DependentUpon>
+    <Compile Include="Migrations\201405082157028_Initial.cs" />
+    <Compile Include="Migrations\201405082157028_Initial.Designer.cs">
+      <DependentUpon>201405082157028_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -103,8 +103,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201405072345059_Initial.resx">
-      <DependentUpon>201405072345059_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201405082157028_Initial.resx">
+      <DependentUpon>201405082157028_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using EasyTeach.Core.Entities.Data.Group;
 using EasyTeach.Core.Entities.Data.User;
 using Microsoft.AspNet.Identity;
@@ -13,6 +14,9 @@ namespace EasyTeach.Data.Entities
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
+
+        [ForeignKey("Group")]
+        public int? GroupId { get; set; }
 
         IGroupDto IUserDto.Group
         {

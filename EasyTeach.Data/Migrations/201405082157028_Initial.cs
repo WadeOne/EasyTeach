@@ -91,14 +91,14 @@ namespace EasyTeach.Data.Migrations
                         UserId = c.Int(nullable: false, identity: true),
                         FirstName = c.String(),
                         LastName = c.String(),
+                        GroupId = c.Int(),
                         Email = c.String(),
                         EmailIsValidated = c.Boolean(nullable: false),
                         PasswordHash = c.String(),
-                        Group_GroupId = c.Int(),
                     })
                 .PrimaryKey(t => t.UserId)
-                .ForeignKey("dbo.GroupDtoes", t => t.Group_GroupId)
-                .Index(t => t.Group_GroupId);
+                .ForeignKey("dbo.GroupDtoes", t => t.GroupId)
+                .Index(t => t.GroupId);
             
             CreateTable(
                 "dbo.UserTokenDtoes",
@@ -117,11 +117,11 @@ namespace EasyTeach.Data.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.UserClaimDtoes", "User_UserId", "dbo.UserDtoes");
-            DropForeignKey("dbo.UserDtoes", "Group_GroupId", "dbo.GroupDtoes");
+            DropForeignKey("dbo.UserDtoes", "GroupId", "dbo.GroupDtoes");
             DropForeignKey("dbo.QuestionModels", "QuizDto_QuizId", "dbo.QuizDtoes");
             DropForeignKey("dbo.QuestionItems", "QuestionModel_QuestionId", "dbo.QuestionModels");
             DropForeignKey("dbo.LessonDtoes", "GroupId", "dbo.GroupDtoes");
-            DropIndex("dbo.UserDtoes", new[] { "Group_GroupId" });
+            DropIndex("dbo.UserDtoes", new[] { "GroupId" });
             DropIndex("dbo.UserClaimDtoes", new[] { "User_UserId" });
             DropIndex("dbo.QuestionItems", new[] { "QuestionModel_QuestionId" });
             DropIndex("dbo.QuestionModels", new[] { "QuizDto_QuizId" });

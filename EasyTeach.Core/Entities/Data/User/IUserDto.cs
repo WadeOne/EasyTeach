@@ -1,5 +1,4 @@
 ﻿using EasyTeach.Core.Entities.Data.Group;
-
 using Microsoft.AspNet.Identity;
 
 namespace EasyTeach.Core.Entities.Data.User
@@ -11,6 +10,8 @@ namespace EasyTeach.Core.Entities.Data.User
         string FirstName { get; set; }
 
         string LastName { get; set; }
+
+        int? GroupId { get; set; }
 
         IGroupDto Group { get; }
 

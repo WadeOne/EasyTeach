@@ -12,6 +12,8 @@ namespace EasyTeach.Core.Services.Dashboard
 
         Task UpdateLessonAsync(ILessonModel lesson);
 
+        Task<ILessonModel> GetLessonByIdAsync(int lessonId);
+
         IQueryable<ILessonModel> GetLessons();
     }
 }

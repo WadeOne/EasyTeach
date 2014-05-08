@@ -2,11 +2,15 @@
 using System.ComponentModel.DataAnnotations;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Http;
 using Autofac;
 using Autofac.Integration.WebApi;
 using EasyTeach.Core.Entities.Data.User;
+using EasyTeach.Core.Services.Dashboard;
+using EasyTeach.Core.Services.Dashboard.Impl;
+using EasyTeach.Core.Validation.EntityValidator;
 using EasyTeach.Data.Context;
 using EasyTeach.Web.Areas.HelpPage;
 using Microsoft.AspNet.Identity;
@@ -29,19 +33,34 @@ namespace EasyTeach.Web
                 .AsImplementedInterfaces()
                 .AsSelf()
                 .Except<EasyTeachContext>(x => x.AsSelf()) //TODO: find a way to create EF context one per API request
-                .Except<XmlDocumentationProvider>();
+                .Except<XmlDocumentationProvider>()
+                .Except<LessonService>()
+                .Except<AuthLessonServiceWrapper>();
 
             builder.Register<Func<IAuthenticationManager>>(c => () =>
             {
                 HttpRequestMessage message = ResolveRequestMessage();
                 return message.GetOwinContext().Authentication;
             }).InstancePerApiRequest();
-            
-            builder.Register<Func<object, ValidationContext>>(c => o => new ValidationContext(o, new Adapter(), null));
-            
-            builder.RegisterType<UserManager<IUserDto, int>>().AsSelf().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues);
 
+            builder.Register(c =>
+            {
+                HttpRequestMessage message = ResolveRequestMessage();
+                return (ClaimsPrincipal)message.GetOwinContext().Request.User;
+            });
+            builder.Register<Func<object, ValidationContext>>(c => o => new ValidationContext(o, new Adapter(), null));
+            builder.RegisterType<UserManager<IUserDto, int>>().AsSelf().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues);
             builder.RegisterHttpRequestMessage(GlobalConfiguration.Configuration);
+            builder.RegisterType<LessonService>().Named<ILessonService>("lessonService");
+            builder.RegisterDecorator<ILessonService>(
+                (c, inner) =>
+                    new AuthLessonServiceWrapper(
+                        inner,
+                        c.Resolve<ClaimsPrincipal>(),
+                        c.Resolve<EntityValidator>(),
+                        c.Resolve<IUserStore<IUserDto, int>>(),
+                        c.Resolve<Core.Security.ClaimsAuthorizationManager>()),
+                "lessonService");
 
             if (beforeBuild != null)
             {

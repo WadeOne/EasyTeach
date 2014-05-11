@@ -1,7 +1,8 @@
 define([
-    'underscore',
-	'chaplin'
-], function(_, Chaplin) {
+	'underscore',
+	'chaplin',
+	'lib/utils',
+], function(_, Chaplin, utils) {
 	'use strict';
 
 		$(document).ajaxStart(function() {
@@ -11,59 +12,59 @@ define([
 			$('body').removeClass('loader');
 		});
 
-    var defaultErrorHandler = function (model, response) {
-        var status = response.status;
-        
-        switch (status) {
-            case 401:
-                Chaplin.utils.redirectTo('home#login');
-                break;
-            case 403:
-                Chaplin.utils.redirectTo('error#error', {model:model, status:status, errorMessage: "Oops, access violation"});
-                break;
-            case 400:
-                Chaplin.utils.redirectTo('error#error', {model:model, status:status, errorMessage: "Oops, bad request"});
-                break;
-            case 404:
-                Chaplin.utils.redirectTo('error#error', {model:model, status:status, errorMessage: "Oops, resource not found"});
-                break;
-            case 405:
-            case 500:
-                Chaplin.utils.redirectTo('error#error', {model:model, status:status, errorMessage: "Oops, server error"});
-                break;
-            default:
-                Chaplin.utils.redirectTo('error#error', {model:model, status:status, errorMessage: "Oops, unknown error '" + status + "'"});
-                break;
-        }
-    };
+	var defaultErrorHandler = function (model, response) {
+		var status = response.status;
+		
+		switch (status) {
+			case 401:
+				utils.redirectTo('home#login');
+				break;
+			case 403:
+				utils.redirectTo('error#error', {model:model, status:status, errorMessage: "Oops, access violation"});
+				break;
+			case 400:
+				utils.redirectTo('error#error', {model:model, status:status, errorMessage: "Oops, bad request"});
+				break;
+			case 404:
+				utils.redirectTo('error#error', {model:model, status:status, errorMessage: "Oops, resource not found"});
+				break;
+			case 405:
+			case 500:
+				utils.redirectTo('error#error', {model:model, status:status, errorMessage: "Oops, server error"});
+				break;
+			default:
+				utils.redirectTo('error#error', {model:model, status:status, errorMessage: "Oops, unknown error '" + status + "'"});
+				break;
+		}
+	};
 
-    var resolveErrorHandler = function (statusCode) {
-        var handler = this.modelErrors;
+	var resolveErrorHandler = function (statusCode) {
+		var handler = this.modelErrors;
 
-        if (_.isFunction(handler)) {
-            return handler;
-        } else if (_.isObject(handler) && _.isEmpty(handler) === false) {
-            var codeHandler = handler[statusCode.toString()];
+		if (_.isFunction(handler)) {
+			return handler;
+		} else if (_.isObject(handler) && _.isEmpty(handler) === false) {
+			var codeHandler = handler[statusCode.toString()];
 
-            if (_.isFunction(codeHandler)) {
-                return codeHandler;
-            }
-        }
+			if (_.isFunction(codeHandler)) {
+				return codeHandler;
+			}
+		}
 
-        return defaultErrorHandler;
-    };
+		return defaultErrorHandler;
+	};
 
-    var errorHandler = function (model, response) {
-        resolveErrorHandler
-            .call(this, response.status)
-            .apply(this, arguments);
-    };
+	var errorHandler = function (model, response) {
+		resolveErrorHandler
+			.call(this, response.status)
+			.apply(this, arguments);
+	};
 
 	return Chaplin.Model.extend({
-        constructor: function () {
-            this.on("error", errorHandler, this);
+		constructor: function () {
+			this.on("error", errorHandler, this);
 
-            Chaplin.Model.apply(this, arguments);
-        }
+			Chaplin.Model.apply(this, arguments);
+		}
 	});
 });

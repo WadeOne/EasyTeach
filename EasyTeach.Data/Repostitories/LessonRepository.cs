@@ -50,6 +50,7 @@ namespace EasyTeach.Data.Repostitories
 
             LessonDto oldLesson = await _context.Lessons.SingleAsync(l => l.LessonId == lesson.LessonId);
             oldLesson.Date = lesson.Date;
+            oldLesson.GroupId = lesson.GroupId;
             await _context.SaveChangesAsync();
         }
 

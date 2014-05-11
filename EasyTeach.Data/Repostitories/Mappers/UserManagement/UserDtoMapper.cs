@@ -11,6 +11,7 @@ namespace EasyTeach.Data.Repostitories.Mappers.UserManagement
     {
         public UserDtoMapper()
         {
+            Mapper.CreateMap<IGroupModel, GroupDto>();
             Mapper.CreateMap<IUserModel, UserDto>();
         }
 

@@ -18,7 +18,8 @@ namespace EasyTeach.Data.Repostitories.Mappers.Dashboard
             return new LessonDto
             {
                 Date = lesson.Date,
-                LessonId = lesson.LessonId
+                LessonId = lesson.LessonId,
+                GroupId = lesson.Group.GroupId
             };
         }
     }

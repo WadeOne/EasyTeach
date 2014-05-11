@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Data\Dashboard\ILessonDto.cs" />
+    <Compile Include="Entities\Data\Group\IGroupDto.cs" />
     <Compile Include="Entities\Data\Quiz\IAssignedQuizDto.cs" />
     <Compile Include="Entities\Data\Quiz\IQuestionDto.cs" />
     <Compile Include="Entities\Lesson.cs" />
@@ -91,8 +92,10 @@
     <Compile Include="Services\Base\Exceptions\ModelValidationException.cs" />
     <Compile Include="Services\Claim\IClaimService.cs" />
     <Compile Include="Services\Claim\Impl\ClaimService.cs" />
+    <Compile Include="Services\Dashboard\Exceptions\InvalidLessonException.cs" />
     <Compile Include="Services\Dashboard\Exceptions\LessonDateOverlappingException.cs" />
     <Compile Include="Services\Dashboard\ILessonService.cs" />
+    <Compile Include="Services\Dashboard\Impl\AuthLessonServiceWrapper.cs" />
     <Compile Include="Services\Dashboard\Impl\LessonService.cs" />
     <Compile Include="Services\Messaging\Email.cs" />
     <Compile Include="Services\Messaging\IEmailBuilder.cs" />

@@ -37,6 +37,7 @@
     <Compile Include="Context\AsyncQueryProviderWrapper.cs" />
     <Compile Include="Context\FakeDbSet.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repostitories\LessonRepositoryTest.cs" />
     <Compile Include="Repostitories\Mappers\QuizDtoMapperTest.cs" />
     <Compile Include="Repostitories\Mappers\UserDtoMapperTest.cs" />
     <Compile Include="Repostitories\QuizRepositoryTest.cs" />

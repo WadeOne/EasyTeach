@@ -10,7 +10,7 @@ namespace EasyTeach.Core.Security
             string action = context.Action.Single().Value;
             string resource = context.Resource.Single().Value;
 
-            return context.Principal.HasClaim(c => c.Type == resource && c.Value == action);
+            return context.Principal.HasClaim(resource, action);
         }
     }
 }

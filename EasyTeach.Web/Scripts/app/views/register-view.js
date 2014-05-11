@@ -2,8 +2,8 @@ define([
 	'views/base/view',
 	'models/user',
 	'text!../templates/register.html'
-	], function(View, User, template) {
-		'use strict';
+], function (View, User, template) {
+    'use strict';
 
 	return View.extend({
 		container: '#content',

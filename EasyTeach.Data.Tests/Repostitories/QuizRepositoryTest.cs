@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 
+using EasyTeach.Core.Entities;
 using EasyTeach.Data.Context;
 using EasyTeach.Data.Entities;
 using EasyTeach.Data.Repostitories;
@@ -71,13 +73,40 @@ namespace EasyTeach.Data.Tests.Repostitories
             Assert.Null(quiz);
         }
 
-      
-        //[Fact]
-        //public void AddQuestionToQuiz_ValidParams_QuestionAdded()
-        //{
-        //    QuestionDto question = A.Fake<QuestionDto>();
-        //    A.CallTo(() => _quizRepository.GetQuiz(QuizId)).Returns(_quizDto);
-        //    A.CallTo(() => _quizDto.Questions)
-        //}
+        [Fact]
+        public void AddQuestionToQuiz_NullQuestion_ExceptionThrown()
+        {
+            var aggregateException = Assert.Throws<AggregateException>(() => _quizRepository.AddQuestionToQuiz(QuizId, null).Wait());
+            var baseException = aggregateException.GetBaseException() as ArgumentNullException;
+
+            Assert.NotNull(baseException);
+            Assert.Equal("question", baseException.ParamName);
+        }
+
+        [Fact]
+        public void AddQuestionToQuiz_NotNullQuestionQuizExists_QuestionAdded()
+        {
+            IDbSet<QuizDto> quizes = new FakeDbSet<QuizDto>(new[] { _quizDto });
+            QuestionDto question = new QuestionDto { QuestionId = 1 };
+            List<QuestionDto> questions = new List<QuestionDto>();
+            _quizDto.Questions = questions;
+            A.CallTo(() => _context.Quizes).Returns(quizes);
+
+            _quizRepository.AddQuestionToQuiz(QuizId, question).Wait();
+            
+            Assert.Equal(question.QuestionId, _quizDto.Questions.FirstOrDefault().QuestionId);
+            A.CallTo(() => _context.SaveChangesAsync()).MustHaveHappened();
+        }
+
+        [Fact]
+        public void AddQuestionToQuiz_NotNullQuestionQuizDoesntExist_QuestionNotAdded()
+        {
+            IDbSet<QuizDto> quizes = new FakeDbSet<QuizDto>();
+            A.CallTo(() => _context.Quizes).Returns(quizes);
+
+            _quizRepository.AddQuestionToQuiz(QuizId, A.Fake<QuestionDto>()).Wait();
+
+            A.CallTo(() => _context.SaveChangesAsync()).MustNotHaveHappened();
+        }
     }
 }

@@ -9,6 +9,6 @@ namespace EasyTeach.Core.Repositories
         Task<IQuizDto> GetQuiz(int quizId);
         Task CreateQuizAsync(IQuizDto quiz);
         Task AssignQuizAsync(IAssignedQuizDto assignedQuiz);
-        Task AddQuestionToQuiz(int quizId, IQuestionDto questionDto);
+        Task AddQuestionToQuiz(int quizId, IQuestionDto question);
     }
 }

@@ -17,7 +17,7 @@ namespace EasyTeach.Data.Entities
 
         public string Description { get; set; }
 
-        public IEnumerable<QuestionDto> Questions { get; set; }
+        public ICollection<QuestionDto> Questions { get; set; }
 
         IEnumerable<IQuestionDto> IQuizDto.Questions
         {
@@ -27,7 +27,7 @@ namespace EasyTeach.Data.Entities
             }
             set
             {
-                Questions = value as IEnumerable<QuestionDto>;
+                Questions = (ICollection<QuestionDto>)value;
             }
         }
 

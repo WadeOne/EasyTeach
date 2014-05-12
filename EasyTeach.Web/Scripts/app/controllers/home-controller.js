@@ -6,8 +6,10 @@ define([
 	'views/confirm-email-view',
 	'views/set-password',
 	'views/add-homeworks-view',
-	'models/user-login'
-], function(Controller, LoginView, RegisterView, ResetPasswordView, ConfirmEmailView, SetPasswordView, AddHomeworksView, UserLogin) {
+	'models/user-login',
+    'models/confirm-email',
+    'models/set-password'
+], function(Controller, LoginView, RegisterView, ResetPasswordView, ConfirmEmailView, SetPasswordView, AddHomeworksView, UserLogin, ConfirmEmail, SetPassword) {
 	"use strict";
 
 	return Controller.extend({
@@ -21,11 +23,10 @@ define([
 			this.view = new ResetPasswordView({ region: 'main' });
 		},
 		confirmEmail: function (params) {
-			window.console.log(params.token);
-			this.view = new ConfirmEmailView({ region: 'main' });
+		    this.view = new ConfirmEmailView({ region: 'main', data: params, model: new ConfirmEmail()});
 		},
 		setPassword: function () {
-			this.view = new SetPasswordView({ region: 'main' });
+			this.view = new SetPasswordView({ region: 'main', model: new SetPassword()});
 		},
 		addHomeworks: function () {
 			this.view = new AddHomeworksView({ region: 'main' });

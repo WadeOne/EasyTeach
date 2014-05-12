@@ -209,6 +209,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\LessonController.cs" />
     <Compile Include="Models\AddQuestionToQuizViewModel.cs" />
     <Compile Include="Controllers\ApiControllerBase.cs" />
@@ -228,6 +229,7 @@
     <Compile Include="Models\ViewModels\ConfirmActionViewModel.cs" />
     <Compile Include="Models\ViewModels\CreateUserViewModel.cs" />
     <Compile Include="Models\ViewModels\Dashboard\CreateLessonViewModel.cs" />
+    <Compile Include="Models\ViewModels\Dashboard\LessonViewModel.cs" />
     <Compile Include="Models\ViewModels\Dashboard\UpdateLessonViewModel.cs" />
     <Compile Include="Models\ViewModels\SetPasswordViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

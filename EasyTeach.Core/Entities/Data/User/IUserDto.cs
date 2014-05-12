@@ -1,5 +1,4 @@
-﻿using EasyTeach.Core.Enums;
-
+﻿using EasyTeach.Core.Entities.Data.Group;
 using Microsoft.AspNet.Identity;
 
 namespace EasyTeach.Core.Entities.Data.User
@@ -12,13 +11,13 @@ namespace EasyTeach.Core.Entities.Data.User
 
         string LastName { get; set; }
 
-        Group Group { get; set; }
+        int? GroupId { get; set; }
+
+        IGroupDto Group { get; }
 
         string Email { get; set; }
 
         bool EmailIsValidated { get; set; }
-
-        UserType UserType { get; set; }
 
         string PasswordHash { get; set; }
     }

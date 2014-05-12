@@ -5,6 +5,7 @@ using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Services.Messaging;
+using EasyTeach.Data.Entities;
 using EasyTeach.Web.Services.Messaging.Impl;
 using FakeItEasy;
 using Xunit;
@@ -30,7 +31,7 @@ namespace EasyTeach.Web.Tests.Services.Messaging.Impl
             A.CallTo(() => user.LastName).Returns("Doe");
             A.CallTo(() => user.Email).Returns("doe@example.org");
             A.CallTo(() => user.UserId).Returns(42);
-            A.CallTo(() => user.Group).Returns(new Group
+            A.CallTo(() => user.Group).Returns(new GroupDto
             {
                 GroupNumber = 5,
                 Year = 2010

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EasyTeach.Core.Validation.EntityValidator
@@ -14,6 +13,6 @@ namespace EasyTeach.Core.Validation.EntityValidator
 
         public readonly bool IsValid;
 
-        public readonly IEnumerable<ValidationResult> ValidationResults;
+        public IEnumerable<ValidationResult> ValidationResults { get; private set; }
     }
 }

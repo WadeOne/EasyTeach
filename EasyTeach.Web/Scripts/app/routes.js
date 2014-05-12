@@ -13,6 +13,7 @@ define(function() {
 		match('setPassword', 'home#setPassword');
 		match('students/grades', 'students#grades');
 		match('addhomeworks', 'home#addHomeworks');
-		match('quiz', 'quizzes/quiz#showQuiz');
+		match('quiz', 'quizzes/quiz#showQuizList');
+		match('editQuiz', 'quizzes/quiz#editQuiz');
 	};
 });

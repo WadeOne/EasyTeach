@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Threading.Tasks;
 
 using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data.Quiz;
+using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Data.Context;
 using EasyTeach.Data.Entities;
@@ -24,9 +26,9 @@ namespace EasyTeach.Data.Repostitories
             _context = context;
         }
 
-        public Task<IQuizDto> GetQuiz(int quizId)
+        public async Task<IQuizDto> GetQuiz(int quizId)
         {
-            throw new NotImplementedException();
+            return await _context.Quizes.FirstOrDefaultAsync(x => x.QuizId == quizId);
         }
 
         public async Task CreateQuizAsync(IQuizDto quiz)
@@ -36,7 +38,7 @@ namespace EasyTeach.Data.Repostitories
                 throw new ArgumentNullException("quiz");
             }
 
-            quiz.Questions = new List<QuestionModel>();
+            quiz.Questions = new List<QuestionDto>();
             _context.Quizes.Add((QuizDto) quiz);
             await _context.SaveChangesAsync();
         }

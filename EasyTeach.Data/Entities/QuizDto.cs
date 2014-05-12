@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 using EasyTeach.Core.Entities;
@@ -15,7 +17,19 @@ namespace EasyTeach.Data.Entities
 
         public string Description { get; set; }
 
-        public ICollection<QuestionModel> Questions { get; set; }
+        public IEnumerable<QuestionDto> Questions { get; set; }
+
+        IEnumerable<IQuestionDto> IQuizDto.Questions
+        {
+            get
+            {
+                return Questions;
+            }
+            set
+            {
+                Questions = value as IEnumerable<QuestionDto>;
+            }
+        }
 
         public int Version { get; set; }
     }

@@ -5,6 +5,7 @@ using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data.Quiz;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Enums;
+using EasyTeach.Data.Entities;
 using EasyTeach.Data.Repostitories.Mappers;
 using EasyTeach.Data.Repostitories.Mappers.QuizManagement;
 
@@ -73,9 +74,9 @@ namespace EasyTeach.Data.Tests.Repostitories.Mappers
             A.CallTo(() => quizDto.Version).Returns(0);
             A.CallTo(() => quizDto.Questions)
                 .Returns(
-                    new List<QuestionModel>
+                    new List<IQuestionDto>
                     {
-                        new QuestionModel
+                        new QuestionDto
                         {
                             QuestionId = 1,
                             QuestionType = QuestionType.Select,

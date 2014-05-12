@@ -3,11 +3,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
-using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data.Quiz;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories;
-using EasyTeach.Core.Repositories.Mappers;
 using EasyTeach.Core.Repositories.Mappers.QuizManagement;
 using EasyTeach.Core.Services.Quiz.Exceptions;
 using EasyTeach.Core.Validation.EntityValidator;
@@ -96,11 +94,7 @@ namespace EasyTeach.Core.Services.Quiz.Impl
             {
                 throw new ArgumentNullException("question");
             }
-            if (quizId <= 0)
-            {
-                throw new ArgumentException("QuizId must be positive", "quizId");
-            }
-
+           
             IQuizDto quizDto = await _quizRepository.GetQuiz(quizId);
             if (quizDto == null)
             {

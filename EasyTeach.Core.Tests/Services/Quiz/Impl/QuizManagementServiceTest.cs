@@ -157,23 +157,13 @@ namespace EasyTeach.Core.Tests.Services.Quiz.Impl
         }
 
         [Fact]
-        public void AddQuestionToQuiz_NullQuestionValidId_ExceptionThrown()
+        public void AddQuestionToQuiz_NullQuestion_ExceptionThrown()
         {
             var aggregateException = Assert.Throws<AggregateException>(() => _quizManagementService.AddQuestionToQuiz(1, null).Wait());
             var exception = aggregateException.GetBaseException() as ArgumentNullException;
 
             Assert.NotNull(exception);
             Assert.Equal("question", exception.ParamName);
-        }
-
-        [Fact]
-        public void AddQuestionToQuiz_NotNullQuestionInvalidId_ExceptionThrown()
-        {
-            var aggregateException = Assert.Throws<AggregateException>(() => _quizManagementService.AddQuestionToQuiz(0, A.Fake<IQuestionModel>()).Wait());
-            var exception = aggregateException.GetBaseException() as ArgumentException;
-
-            Assert.NotNull(exception);
-            Assert.Equal("quizId", exception.ParamName);
         }
 
         [Fact]

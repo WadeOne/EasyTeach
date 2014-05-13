@@ -6,10 +6,11 @@ define([
 	'views/confirm-email-view',
 	'views/set-password',
 	'views/add-homeworks-view',
+    'views/student-homeworks-view',
 	'models/user-login',
     'models/confirm-email',
     'models/set-password'
-], function(Controller, LoginView, RegisterView, ResetPasswordView, ConfirmEmailView, SetPasswordView, AddHomeworksView, UserLogin, ConfirmEmail, SetPassword) {
+], function(Controller, LoginView, RegisterView, ResetPasswordView, ConfirmEmailView, SetPasswordView, AddHomeworksView, StudentHomeworksView, UserLogin, ConfirmEmail, SetPassword) {
 	"use strict";
 
 	return Controller.extend({
@@ -30,6 +31,9 @@ define([
 		},
 		addHomeworks: function () {
 			this.view = new AddHomeworksView({ region: 'main' });
+		},
+		showHomeworks: function () {
+		    this.view = new StudentHomeworksView({ region: 'main' });
 		}
 	});
 });

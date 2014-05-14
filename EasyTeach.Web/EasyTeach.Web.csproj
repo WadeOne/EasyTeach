@@ -172,7 +172,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scripts\app\models\quizzes\" />
     <Folder Include="Scripts\app\templates\errors\" />
   </ItemGroup>
   <ItemGroup>
@@ -320,6 +319,7 @@
     <Content Include="index.html" />
     <Content Include="Scripts\app\**\*.js" />
     <Content Include="Scripts\app\templates\add-homeworks.html" />
+    <Content Include="Scripts\app\templates\list-homeworks.html" />
     <Content Include="Scripts\app\templates\login.html" />
     <Content Include="Scripts\app\templates\logout.html" />
     <Content Include="Scripts\app\templates\quizzes\quiz.html" />

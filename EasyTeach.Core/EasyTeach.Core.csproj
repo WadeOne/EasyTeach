@@ -52,6 +52,7 @@
     <Compile Include="Entities\Data\Quiz\IAssignedQuizDto.cs" />
     <Compile Include="Entities\Data\Quiz\IQuestionDto.cs" />
     <Compile Include="Entities\Data\Quiz\IQuestionItemDto.cs" />
+    <Compile Include="Entities\Services\ICourseModel.cs" />
     <Compile Include="Entities\Services\IQuestionItemModel.cs" />
     <Compile Include="Entities\Lesson.cs" />
     <Compile Include="Entities\QuestionModel.cs" />
@@ -63,14 +64,15 @@
     <Compile Include="Entities\Services\ILessonModel.cs" />
     <Compile Include="Entities\Services\IGroupModel.cs" />
     <Compile Include="Entities\Services\IQuestionModel.cs" />
+    <Compile Include="Entities\Services\IScoreModel.cs" />
     <Compile Include="Entities\Services\ITaskAssetModel.cs" />
     <Compile Include="Entities\Services\ITaskModel.cs" />
     <Compile Include="Entities\Services\ITaskVariantModel.cs" />
-    <Compile Include="Entities\Services\IUserLessonModel.cs" />
+    <Compile Include="Entities\Services\IVisitModel.cs" />
     <Compile Include="Entities\Services\IUserIdentityModel.cs" />
     <Compile Include="Entities\Services\IUserModel.cs" />
     <Compile Include="Entities\QuizModel.cs" />
-    <Compile Include="Entities\Services\IUserTaskVariantModel.cs" />
+    <Compile Include="Entities\Services\IVariantProgressModel.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\ProgressStatus.cs" />
     <Compile Include="Enums\QuestionType.cs" />

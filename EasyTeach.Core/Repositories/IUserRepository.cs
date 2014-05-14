@@ -1,5 +1,5 @@
-﻿using System.Threading.Tasks;
-using EasyTeach.Core.Entities.Data;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data.User;
 
 namespace EasyTeach.Core.Repositories
@@ -13,5 +13,7 @@ namespace EasyTeach.Core.Repositories
         Task CreateAsync(IUserDto user);
 
         Task UpdateAsync(IUserDto user);
+
+        IQueryable<IUserDto> GetUsers();
     }
 }

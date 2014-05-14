@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Threading.Tasks;
-using EasyTeach.Core.Entities.Data;
 using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Data.Context;
@@ -54,6 +53,11 @@ namespace EasyTeach.Data.Repostitories
             }
 
             await _context.SaveChangesAsync();
+        }
+
+        public IQueryable<IUserDto> GetUsers()
+        {
+            return _context.Users;
         }
     }
 }

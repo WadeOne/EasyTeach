@@ -112,20 +112,41 @@ namespace EasyTeach.Data.Migrations
                     })
                 .PrimaryKey(t => t.UserTokenId);
             
+            CreateTable(
+                "dbo.VisitDtoes",
+                c => new
+                    {
+                        VisitId = c.Int(nullable: false, identity: true),
+                        LessonId = c.Int(nullable: false),
+                        Status = c.Int(nullable: false),
+                        Note = c.String(),
+                        UserId = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.VisitId)
+                .ForeignKey("dbo.LessonDtoes", t => t.LessonId, cascadeDelete: true)
+                .ForeignKey("dbo.UserDtoes", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.LessonId)
+                .Index(t => t.UserId);
+            
         }
         
         public override void Down()
         {
+            DropForeignKey("dbo.VisitDtoes", "UserId", "dbo.UserDtoes");
+            DropForeignKey("dbo.VisitDtoes", "LessonId", "dbo.LessonDtoes");
             DropForeignKey("dbo.UserClaimDtoes", "User_UserId", "dbo.UserDtoes");
             DropForeignKey("dbo.UserDtoes", "GroupId", "dbo.GroupDtoes");
             DropForeignKey("dbo.QuestionDtoes", "QuizDto_QuizId", "dbo.QuizDtoes");
             DropForeignKey("dbo.QuestionItemDtoes", "Question_QuestionId", "dbo.QuestionDtoes");
             DropForeignKey("dbo.LessonDtoes", "GroupId", "dbo.GroupDtoes");
+            DropIndex("dbo.VisitDtoes", new[] { "UserId" });
+            DropIndex("dbo.VisitDtoes", new[] { "LessonId" });
             DropIndex("dbo.UserDtoes", new[] { "GroupId" });
             DropIndex("dbo.UserClaimDtoes", new[] { "User_UserId" });
             DropIndex("dbo.QuestionDtoes", new[] { "QuizDto_QuizId" });
             DropIndex("dbo.QuestionItemDtoes", new[] { "Question_QuestionId" });
             DropIndex("dbo.LessonDtoes", new[] { "GroupId" });
+            DropTable("dbo.VisitDtoes");
             DropTable("dbo.UserTokenDtoes");
             DropTable("dbo.UserDtoes");
             DropTable("dbo.UserClaimDtoes");

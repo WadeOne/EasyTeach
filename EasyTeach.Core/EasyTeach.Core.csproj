@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Data\Dashboard\ILessonDto.cs" />
+    <Compile Include="Entities\Data\Dashboard\IVisitDto.cs" />
     <Compile Include="Entities\Data\Group\IGroupDto.cs" />
     <Compile Include="Entities\Data\Quiz\IAssignedQuizDto.cs" />
     <Compile Include="Entities\Data\Quiz\IQuestionDto.cs" />
@@ -74,6 +75,7 @@
     <Compile Include="Entities\QuizModel.cs" />
     <Compile Include="Entities\Services\IVariantProgressModel.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\Visit.cs" />
     <Compile Include="Enums\ProgressStatus.cs" />
     <Compile Include="Enums\QuestionType.cs" />
     <Compile Include="Enums\UserType.cs" />
@@ -86,7 +88,9 @@
     <Compile Include="Repositories\IUserClaimRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\IUserTokenRepository.cs" />
+    <Compile Include="Repositories\IVisitRepository.cs" />
     <Compile Include="Repositories\Mappers\Dashboard\ILessonDtoMapper.cs" />
+    <Compile Include="Repositories\Mappers\Dashboard\IVisitDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\QuizManagement\IQuestionDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\UserManagement\IUserClaimDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\UserManagement\IUserDtoMapper.cs" />
@@ -97,10 +101,13 @@
     <Compile Include="Services\Claim\IClaimService.cs" />
     <Compile Include="Services\Claim\Impl\ClaimService.cs" />
     <Compile Include="Services\Dashboard\Exceptions\InvalidLessonException.cs" />
+    <Compile Include="Services\Dashboard\Exceptions\InvalidVisitException.cs" />
     <Compile Include="Services\Dashboard\Exceptions\LessonDateOverlappingException.cs" />
     <Compile Include="Services\Dashboard\ILessonService.cs" />
     <Compile Include="Services\Dashboard\Impl\AuthLessonServiceWrapper.cs" />
     <Compile Include="Services\Dashboard\Impl\LessonService.cs" />
+    <Compile Include="Services\Dashboard\Impl\VisitService.cs" />
+    <Compile Include="Services\Dashboard\IVisitService.cs" />
     <Compile Include="Services\Messaging\Email.cs" />
     <Compile Include="Services\Messaging\IEmailBuilder.cs" />
     <Compile Include="Services\Messaging\IEmailService.cs" />

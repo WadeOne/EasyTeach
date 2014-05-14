@@ -1,21 +1,18 @@
 ﻿using System;
 using EasyTeach.Core.Entities;
 
-namespace EasyTeach.Web.Models.ViewModels.Dashboard
+namespace EasyTeach.Web.Models.ViewModels.Dashboard.Lessons
 {
-    public class UpdateLessonViewModel
+    public class CreateLessonViewModel
     {
-        public int LessonId { get; set; }
+        public DateTime Date { get; set; }
 
         public int GroupId { get; set; }
 
-        public DateTime Date { get; set; }
-
-        public virtual Lesson ToLesson()
+        public virtual Core.Entities.Lesson ToLesson()
         {
-            return new Lesson
+            return new Core.Entities.Lesson
             {
-                LessonId = LessonId,
                 Date = Date,
                 Group = new Group
                 {
@@ -23,6 +20,5 @@ namespace EasyTeach.Web.Models.ViewModels.Dashboard
                 }
             };
         }
-
     }
 }

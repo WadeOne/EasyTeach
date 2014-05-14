@@ -1,64 +1,64 @@
 define([
-  'underscore',
-  'handlebars',
-  'chaplin',
-  'lib/view-helper' // Just load the view helpers, no return value
+	'underscore',
+	'handlebars',
+	'chaplin',
+	'lib/view-helper' // Just load the view helpers, no return value
 ], function(_, Handlebars, Chaplin) {
-  'use strict';
+	'use strict';
 
-  var View = Chaplin.View.extend({
+	var View = Chaplin.View.extend({
 
-    // Fix for updating foundation for newly rendered item from http://www.sagarganatra.com/2013/01/adding-beforerender-and-afterrender-functions-to-backbone-view.html
-    initialize: function () {
-      this.render = _.wrap(this.render, function(render) {
-        this.beforeRender();
-        render();           
-        this.afterRender();
-      });
-    },
+		// Fix for updating foundation for newly rendered item from http://www.sagarganatra.com/2013/01/adding-beforerender-and-afterrender-functions-to-backbone-view.html
+		initialize: function () {
+			this.render = _.wrap(this.render, function(render) {
+				this.beforeRender();
+				render();
+				this.afterRender();
+			});
+		},
 
-    afterRender: function () {
-      $(document).foundation('reflow');
-    },
+		afterRender: function () {
+			$(document).foundation('reflow');
+		},
 
-    beforeRender: function () {
-    },
+		beforeRender: function () {
+		},
 
-    getTemplateFunction: function(){
+		getTemplateFunction: function(){
 
-      // Template compilation
-      // --------------------
+			// Template compilation
+			// --------------------
 
-      // This demo uses Handlebars templates to render views.
-      // The template is loaded with Require.JS and stored as string on
-      // the view prototype. On rendering, it is compiled on the
-      // client-side. The compiled template function replaces the string
-      // on the view prototype.
-      //
-      // In the end you might want to precompile the templates to JavaScript
-      // functions on the server-side and just load the JavaScript code.
-      // Several precompilers create a global JST hash which stores the
-      // template functions. You can get the function by the template name:
-      //
-      // templateFunc = JST[@templateName];
+			// This demo uses Handlebars templates to render views.
+			// The template is loaded with Require.JS and stored as string on
+			// the view prototype. On rendering, it is compiled on the
+			// client-side. The compiled template function replaces the string
+			// on the view prototype.
+			//
+			// In the end you might want to precompile the templates to JavaScript
+			// functions on the server-side and just load the JavaScript code.
+			// Several precompilers create a global JST hash which stores the
+			// template functions. You can get the function by the template name:
+			//
+			// templateFunc = JST[@templateName];
 
-      var template = this.template,
-          templateFunc = null;
+			var template = this.template,
+					templateFunc = null;
 
-      if (typeof template === 'string') {
-        // Compile the template string to a function and save it
-        // on the prototype. This is a workaround since an instance
-        // shouldn’t change its prototype normally.
-        templateFunc = Handlebars.compile(template);
-        this.constructor.prototype.template = templateFunc;
-      }
-      else {
-        templateFunc = template;
-      }
+			if (typeof template === 'string') {
+				// Compile the template string to a function and save it
+				// on the prototype. This is a workaround since an instance
+				// shouldn’t change its prototype normally.
+				templateFunc = Handlebars.compile(template);
+				this.constructor.prototype.template = templateFunc;
+			}
+			else {
+				templateFunc = template;
+			}
 
-      return templateFunc;
-    }
-  });
+			return templateFunc;
+		}
+	});
 
-  return View;
+	return View;
 });

@@ -1,22 +1,36 @@
 define([
+	'underscore',
 	'views/base/view',
-	'models/quizzes/quiz-short',
-	'text!templates/quizzes/quiz-list.html'
-], function(View, QuizzShortModel, template) {
+	'models/quizzes/quiz-list',
+	'text!templates/quizzes/quiz-list.html',
+	'text!templates/quizzes/quiz-list-item.html'
+], function(_, View, QuizListModel, template, itemTemplate) {
 	'use strict';
 
 	return View.extend({
-		container: '#content',
 		className: 'row',
-		template: template,
+		itemTemplate: itemTemplate,
+		template: _.template(template),
 		autoRender: true,
 		events: {
 			'submit #add-quiz-form': "createQuiz"
 		},
-		initialize: function() {
-			this.model = new QuizzShortModel();
-			this.listenTo(this.model, "sync", this.registerSuccess);
-			this.listenTo(this.model, "error", this.render);
+		render: function() {
+			var quizzes = new QuizListModel(),
+				that = this,
+				html;
+			quizzes.fetch({
+				success: function (quizzes) {
+					html = that.template({
+						items: quizzes,
+						itemTemplate: _.template(that.itemTemplate)
+
+					});
+					that.$el.html(html);
+				}
+			});
+
+			return this;
 		},
 		createQuiz: function (ev) {
 			var form = $(ev.currentTarget),
@@ -26,9 +40,6 @@ define([
 
 			this.model.save(userInfo);
 			return false;
-		},
-		registerSuccess: function () {
-			//utils.redirectTo('quizzes/quiz#editQuiz');
 		}
 	});
 });

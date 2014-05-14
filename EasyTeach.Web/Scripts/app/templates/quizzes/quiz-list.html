@@ -1,16 +1,5 @@
-<div class="large-12 medium-12 columns quizz-page">
-	<h1>Список тестов</h1>
-    <form id="add-quiz-form" action="">
-        <div class="large-4 medium-4 columns test-name-wrap">
-    		<input type="text" name="title" placeholder="Название теста" required />
-        </div>
-        <button id="add-quiz-btn" class="easy-teach-btn">Создать</button>
-    </form>
-    <ul>
-    	<li>Test1</li>
-    	<li>Test2</li>
-    	<li>Test3</li>
-    	<li>Test4</li>
-    	<li>Test5</li>
-    </ul>
-</div>
+<ul>
+	<% items.each(function(item) { %>
+		<%= itemTemplate(item.attributes) %>
+	<% }); %>
+</ul>

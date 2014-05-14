@@ -13,7 +13,19 @@ namespace EasyTeach.Core.Entities
 
         public QuestionType QuestionType { get; set; }
 
-        public ICollection<QuestionItem> QuestionItems { get; set; }
+        public ICollection<QuestionItemModel> QuestionItems { get; set; }
+
+        IEnumerable<IQuestionItemModel> IQuestionModel.QuestionItems
+        {
+            get
+            {
+                return QuestionItems;
+            }
+            set
+            {
+                QuestionItems = (ICollection<QuestionItemModel>)value;
+            }
+        }
 
         public string TextAnswer { get; set; }
 

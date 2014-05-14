@@ -10,7 +10,7 @@ namespace EasyTeach.Core.Entities.Data.Quiz
 
         QuestionType QuestionType { get; }
 
-        ICollection<QuestionItem> QuestionItems { get; }
+        IEnumerable<IQuestionItemDto> QuestionItems { get; set; }
 
         string TextAnswer { get; }
 

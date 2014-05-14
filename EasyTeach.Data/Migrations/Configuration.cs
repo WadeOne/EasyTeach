@@ -1,3 +1,4 @@
+using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
 using EasyTeach.Data.Context;

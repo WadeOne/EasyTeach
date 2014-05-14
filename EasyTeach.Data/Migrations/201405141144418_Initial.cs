@@ -33,7 +33,20 @@ namespace EasyTeach.Data.Migrations
                 .Index(t => t.GroupId);
             
             CreateTable(
-                "dbo.QuestionModels",
+                "dbo.QuestionItemDtoes",
+                c => new
+                    {
+                        QuestionItemId = c.Int(nullable: false, identity: true),
+                        Text = c.String(),
+                        IsSolution = c.Boolean(nullable: false),
+                        Question_QuestionId = c.Int(),
+                    })
+                .PrimaryKey(t => t.QuestionItemId)
+                .ForeignKey("dbo.QuestionDtoes", t => t.Question_QuestionId)
+                .Index(t => t.Question_QuestionId);
+            
+            CreateTable(
+                "dbo.QuestionDtoes",
                 c => new
                     {
                         QuestionId = c.Int(nullable: false, identity: true),
@@ -45,19 +58,6 @@ namespace EasyTeach.Data.Migrations
                 .PrimaryKey(t => t.QuestionId)
                 .ForeignKey("dbo.QuizDtoes", t => t.QuizDto_QuizId)
                 .Index(t => t.QuizDto_QuizId);
-            
-            CreateTable(
-                "dbo.QuestionItems",
-                c => new
-                    {
-                        QuestionItemId = c.Int(nullable: false, identity: true),
-                        Text = c.String(),
-                        IsSolution = c.Boolean(nullable: false),
-                        QuestionModel_QuestionId = c.Int(),
-                    })
-                .PrimaryKey(t => t.QuestionItemId)
-                .ForeignKey("dbo.QuestionModels", t => t.QuestionModel_QuestionId)
-                .Index(t => t.QuestionModel_QuestionId);
             
             CreateTable(
                 "dbo.QuizDtoes",
@@ -118,20 +118,20 @@ namespace EasyTeach.Data.Migrations
         {
             DropForeignKey("dbo.UserClaimDtoes", "User_UserId", "dbo.UserDtoes");
             DropForeignKey("dbo.UserDtoes", "GroupId", "dbo.GroupDtoes");
-            DropForeignKey("dbo.QuestionModels", "QuizDto_QuizId", "dbo.QuizDtoes");
-            DropForeignKey("dbo.QuestionItems", "QuestionModel_QuestionId", "dbo.QuestionModels");
+            DropForeignKey("dbo.QuestionDtoes", "QuizDto_QuizId", "dbo.QuizDtoes");
+            DropForeignKey("dbo.QuestionItemDtoes", "Question_QuestionId", "dbo.QuestionDtoes");
             DropForeignKey("dbo.LessonDtoes", "GroupId", "dbo.GroupDtoes");
             DropIndex("dbo.UserDtoes", new[] { "GroupId" });
             DropIndex("dbo.UserClaimDtoes", new[] { "User_UserId" });
-            DropIndex("dbo.QuestionItems", new[] { "QuestionModel_QuestionId" });
-            DropIndex("dbo.QuestionModels", new[] { "QuizDto_QuizId" });
+            DropIndex("dbo.QuestionDtoes", new[] { "QuizDto_QuizId" });
+            DropIndex("dbo.QuestionItemDtoes", new[] { "Question_QuestionId" });
             DropIndex("dbo.LessonDtoes", new[] { "GroupId" });
             DropTable("dbo.UserTokenDtoes");
             DropTable("dbo.UserDtoes");
             DropTable("dbo.UserClaimDtoes");
             DropTable("dbo.QuizDtoes");
-            DropTable("dbo.QuestionItems");
-            DropTable("dbo.QuestionModels");
+            DropTable("dbo.QuestionDtoes");
+            DropTable("dbo.QuestionItemDtoes");
             DropTable("dbo.LessonDtoes");
             DropTable("dbo.GroupDtoes");
         }

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 using EasyTeach.Core.Entities;
 using EasyTeach.Core.Enums;
@@ -29,7 +30,15 @@ namespace EasyTeach.Web.Models
                             new[] { "QuestionType" })
                     });
             }
-            return new QuestionModel { QuestionText = QuestionText, QuestionType = type, };
+            return new QuestionModel
+                   {
+                       QuestionText = QuestionText,
+                       QuestionType = type,
+                       QuestionItems =
+                           QuestionItems.Select(
+                               x => new QuestionItemModel { IsSolution = x.IsSolution, Text = x.Text })
+                           .ToList()
+                   };
         }
     }
 

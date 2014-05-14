@@ -16,6 +16,18 @@ namespace EasyTeach.Core.Entities
 
         public ICollection<QuestionModel> Questions { get; set; }
 
+        IEnumerable<IQuestionModel> IQuizModel.Questions
+        {
+            get
+            {
+                return Questions;
+            }
+            set
+            {
+                Questions = (ICollection<QuestionModel>)value;
+            }
+        }
+
         public int Version { get; set; }
     }
 }

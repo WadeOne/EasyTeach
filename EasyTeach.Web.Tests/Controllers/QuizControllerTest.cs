@@ -52,20 +52,20 @@ namespace EasyTeach.Web.Tests.Controllers
         }
 
         [Fact]
-        public void CreateQuiz_ValidQuiz_QuizCreatedAndOkResultSent()
+        public void PostQuiz_ValidQuiz_QuizCreatedAndOkResultSent()
         {
             A.CallTo(() => _createQuizViewModel.ToQuiz()).Returns(_quizModelWithoutId);
             A.CallTo(() => _quizManagementService.CreateQuizAsync(_quizModelWithoutId)).Returns(_quizModelWithId);
             A.CallTo(() => _quizModelWithId.QuizId).Returns(1);
 
-            var result = _controller.Create(_createQuizViewModel).Result as OkNegotiatedContentResult<IQuizModel>;
+            var result = _controller.Post(_createQuizViewModel).Result as OkNegotiatedContentResult<IQuizModel>;
             Assert.NotNull(result);
             A.CallTo(() => _quizManagementService.CreateQuizAsync(_quizModelWithoutId)).MustHaveHappened();
             Assert.Equal(_quizModelWithId.QuizId, result.Content.QuizId);
         }
 
         [Fact]
-        public void CreateQuiz_InvalidQuiz_QuizNotCreatedErrorResultSent()
+        public void PostQuiz_InvalidQuiz_QuizNotCreatedErrorResultSent()
         {
             A.CallTo(() => _createQuizViewModel.ToQuiz()).Returns(_quizModelWithoutId);
             A.CallTo(() => _quizManagementService.CreateQuizAsync(_quizModelWithoutId))
@@ -75,16 +75,16 @@ namespace EasyTeach.Web.Tests.Controllers
                         new ValidationResult("Name is required", new[] {"Name"})
                     }));
 
-            var result = _controller.Create(_createQuizViewModel).Result as InvalidModelStateResult;
+            var result = _controller.Post(_createQuizViewModel).Result as InvalidModelStateResult;
 
             Assert.NotNull(result);
             Assert.True(result.ModelState.Any(ei => ei.Key == "Name"));
         }
 
         [Fact]
-        public void CreateQuiz_NullQuiz_ArgumentNullExceptionThrown()
+        public void PostQuiz_NullQuiz_ArgumentNullExceptionThrown()
         {
-            var aggregateException = Assert.Throws<AggregateException>(() => _controller.Create(null).Wait());
+            var aggregateException = Assert.Throws<AggregateException>(() => _controller.Post(null).Wait());
             var baseException = aggregateException.GetBaseException() as ArgumentNullException;
 
             Assert.NotNull(baseException);

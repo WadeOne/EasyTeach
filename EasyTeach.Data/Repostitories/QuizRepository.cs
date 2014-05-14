@@ -1,7 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using System.Threading.Tasks;
+
+using AutoMapper;
 
 using EasyTeach.Core.Entities.Data.Quiz;
 using EasyTeach.Core.Repositories;
@@ -53,10 +56,16 @@ namespace EasyTeach.Data.Repostitories
                 throw new ArgumentNullException("question");
             }
 
-            var quiz = await _context.Quizes.FirstOrDefaultAsync(x => x.QuizId == quizId);
+            var quiz = await _context.Quizes.Include(x => x.Questions).FirstOrDefaultAsync(x => x.QuizId == quizId);
             if (quiz != null)
             {
+                if (quiz.Questions == null)
+                {
+                    quiz.Questions = new List<QuestionDto>();
+                }
                 quiz.Questions.Add((QuestionDto)question);
+                question.QuestionItems.Each(x => _context.QuestionItems.Add((QuestionItemDto)x));
+                question.QuestionItems.Each(x => ((QuestionItemDto)x).Question = (QuestionDto)question);
                 await _context.SaveChangesAsync();
             }
         }

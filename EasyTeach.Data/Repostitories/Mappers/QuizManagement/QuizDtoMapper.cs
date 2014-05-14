@@ -15,12 +15,7 @@ namespace EasyTeach.Data.Repostitories.Mappers.QuizManagement
     {
         public QuizDtoMapper()
         {
-            Mapper.CreateMap<IQuizDto, QuizModel>();
-            Mapper.CreateMap<IQuizModel, QuizDto>();
-            Mapper.CreateMap<IQuestionDto, QuestionModel>();
-            Mapper.CreateMap<IQuestionModel, QuestionDto>();
-            Mapper.CreateMap<ICollection<IQuestionModel>, ICollection<QuestionDto>>().ConvertUsing(new DtoToModelCollectionConverter());
-            Mapper.CreateMap<ICollection<IQuestionDto>, ICollection<QuestionModel>>().ConvertUsing(new ModelToDtoCollectionConverter());
+            MappingConfiguration.Configure();
         }
 
         public IQuizDto Map(IQuizModel quiz)
@@ -30,7 +25,8 @@ namespace EasyTeach.Data.Repostitories.Mappers.QuizManagement
 
         public IQuizModel Map(IQuizDto quizDto)
         {
-            return Mapper.Map<QuizModel>(quizDto);
+            var result = Mapper.Map<QuizModel>(quizDto);
+            return result;
         }
 
         public IAssignedQuizDto Map(IAssignedTestModel assignedTest)
@@ -38,20 +34,6 @@ namespace EasyTeach.Data.Repostitories.Mappers.QuizManagement
             throw new System.NotImplementedException();
         }
 
-        private class DtoToModelCollectionConverter : TypeConverter<ICollection<IQuestionModel>, ICollection<QuestionDto>>
-        {
-            protected override ICollection<QuestionDto> ConvertCore(ICollection<IQuestionModel> source)
-            {
-                return source.Select(Mapper.Map<QuestionDto>).ToList();
-            }
-        }
-
-        private class ModelToDtoCollectionConverter : TypeConverter<ICollection<IQuestionDto>, ICollection<QuestionModel>>
-        {
-            protected override ICollection<QuestionModel> ConvertCore(ICollection<IQuestionDto> source)
-            {
-                return source.Select(Mapper.Map<QuestionModel>).ToList();
-            }
-        }
+        
     }
 }

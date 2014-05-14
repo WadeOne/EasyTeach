@@ -10,7 +10,7 @@ namespace EasyTeach.Core.Entities.Services
 
         QuestionType QuestionType { get; }
 
-        ICollection<QuestionItem> QuestionItems { get; }
+        IEnumerable<IQuestionItemModel> QuestionItems { get; set; }
 
         string TextAnswer { get; }
 

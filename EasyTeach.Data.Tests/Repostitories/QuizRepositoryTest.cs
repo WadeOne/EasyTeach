@@ -87,7 +87,7 @@ namespace EasyTeach.Data.Tests.Repostitories
         public void AddQuestionToQuiz_NotNullQuestionQuizExists_QuestionAdded()
         {
             IDbSet<QuizDto> quizes = new FakeDbSet<QuizDto>(new[] { _quizDto });
-            QuestionDto question = new QuestionDto { QuestionId = 1 };
+            QuestionDto question = new QuestionDto { QuestionId = 1, QuestionItems = new List<QuestionItemDto>()};
             List<QuestionDto> questions = new List<QuestionDto>();
             _quizDto.Questions = questions;
             A.CallTo(() => _context.Quizes).Returns(quizes);

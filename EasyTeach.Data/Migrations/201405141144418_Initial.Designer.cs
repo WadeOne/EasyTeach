@@ -13,7 +13,7 @@ namespace EasyTeach.Data.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201405082157028_Initial"; }
+            get { return "201405141144418_Initial"; }
         }
         
         string IMigrationMetadata.Source

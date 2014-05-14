@@ -1,9 +1,7 @@
 ﻿using System.Data.Entity;
-using EasyTeach.Core.Entities;
+
 using EasyTeach.Data.Entities;
 using EasyTeach.Data.Migrations;
-
-using QuizDto = EasyTeach.Data.Entities.QuizDto;
 
 namespace EasyTeach.Data.Context
 {
@@ -19,7 +17,9 @@ namespace EasyTeach.Data.Context
 
         public virtual IDbSet<QuizDto> Quizes { get; set; }
 
-        public virtual IDbSet<QuestionModel> Questions { get; set; }
+        public virtual IDbSet<QuestionDto> Questions { get; set; }
+
+        public virtual IDbSet<QuestionItemDto> QuestionItems { get; set; }
 
         public virtual IDbSet<LessonDto> Lessons { get; set; }
 

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.IdentityModel.Services;
 using System.Linq;
+using System.Security.Permissions;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -13,6 +15,7 @@ using EasyTeach.Web.Results;
 
 namespace EasyTeach.Web.Controllers
 {
+    [RoutePrefix("api/Quiz")]
     public class QuizController : ApiControllerBase
     {
         private readonly IQuizManagementService _quizManagementService;
@@ -27,7 +30,10 @@ namespace EasyTeach.Web.Controllers
             _quizManagementService = quizManagementService;
         }
 
-        public async Task<IHttpActionResult> Create(CreateQuizViewModel newQuizViewModel)
+        [Route("")]
+        [HttpPost]
+        //[ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "Create", Resource = "Quiz")]
+        public async Task<IHttpActionResult> Post(CreateQuizViewModel newQuizViewModel)
         {
             if (newQuizViewModel == null)
             {

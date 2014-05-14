@@ -6,7 +6,6 @@ using EasyTeach.Core.Entities.Data.Quiz;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Enums;
 using EasyTeach.Data.Entities;
-using EasyTeach.Data.Repostitories.Mappers;
 using EasyTeach.Data.Repostitories.Mappers.QuizManagement;
 
 using FakeItEasy;
@@ -34,16 +33,16 @@ namespace EasyTeach.Data.Tests.Repostitories.Mappers
             A.CallTo(() => model.Version).Returns(0);
             A.CallTo(() => model.Questions)
                 .Returns(
-                    new List<QuestionModel>
+                    new List<IQuestionModel>
                     {
                         new QuestionModel
                         {
                             QuestionId = 1,
                             QuestionType = QuestionType.Select,
                             QuestionItems =
-                                new List<QuestionItem>
+                                new List<QuestionItemModel>
                                 {
-                                    new QuestionItem
+                                    new QuestionItemModel
                                     {
                                         Text = "Question",
                                         IsSolution = true,
@@ -81,9 +80,9 @@ namespace EasyTeach.Data.Tests.Repostitories.Mappers
                             QuestionId = 1,
                             QuestionType = QuestionType.Select,
                             QuestionItems =
-                                new List<QuestionItem>
+                                new List<QuestionItemDto>
                                 {
-                                    new QuestionItem
+                                    new QuestionItemDto
                                     {
                                         Text = "Question",
                                         IsSolution = true,

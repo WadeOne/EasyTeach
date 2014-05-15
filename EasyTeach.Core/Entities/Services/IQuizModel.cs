@@ -12,6 +12,6 @@ namespace EasyTeach.Core.Entities.Services
 
         IEnumerable<IQuestionModel> Questions { get; set;  }
 
-        int Version { get; }
+        bool Deprecated { get; set; }
     }
 }

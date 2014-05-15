@@ -1,6 +1,7 @@
 ﻿using EasyTeach.Core.Entities;
 using EasyTeach.Core.Enums;
 using EasyTeach.Web.Models.ViewModels;
+using EasyTeach.Web.Models.ViewModels.UserManagement;
 
 using Xunit;
 

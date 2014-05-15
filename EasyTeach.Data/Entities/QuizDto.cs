@@ -31,6 +31,6 @@ namespace EasyTeach.Data.Entities
             }
         }
 
-        public int Version { get; set; }
+        public bool Deprecated { get; set; }
     }
 }

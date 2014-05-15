@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
 using System.Threading.Tasks;
 
+using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data.Quiz;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories;
@@ -95,6 +97,7 @@ namespace EasyTeach.Core.Services.Quiz.Impl
                 throw new ArgumentNullException("question");
             }
            
+            //TODO add validation for multiple solutions
             IQuizDto quizDto = await _quizRepository.GetQuiz(quizId);
             if (quizDto == null)
             {
@@ -113,5 +116,16 @@ namespace EasyTeach.Core.Services.Quiz.Impl
             await _quizRepository.AddQuestionToQuiz(quizId, questionDto);
         }
 
+        public async Task<IEnumerable<IQuizModel>> GetAllQuizes()
+        {
+            var quizes = await _quizRepository.GetAllQuizes();
+
+            return quizes.Select(_quizDtoMapper.Map);
+        }
+
+        public Task<IQuizModel> GetQuiz(int quizId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

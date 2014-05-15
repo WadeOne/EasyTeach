@@ -7,6 +7,8 @@ using System.Web.Http;
 using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
 using EasyTeach.Web.Models.ViewModels;
+using EasyTeach.Web.Models.ViewModels.UserManagement;
+
 using Microsoft.Owin.Security;
 using Microsoft.Owin.Security.Cookies;
 

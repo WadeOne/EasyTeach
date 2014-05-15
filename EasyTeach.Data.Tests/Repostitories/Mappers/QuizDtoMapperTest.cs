@@ -30,7 +30,6 @@ namespace EasyTeach.Data.Tests.Repostitories.Mappers
             A.CallTo(() => model.Name).Returns("Quiz");
             A.CallTo(() => model.Description).Returns("QuizDescription");
             A.CallTo(() => model.QuizId).Returns(1);
-            A.CallTo(() => model.Version).Returns(0);
             A.CallTo(() => model.Questions)
                 .Returns(
                     new List<IQuestionModel>
@@ -58,7 +57,6 @@ namespace EasyTeach.Data.Tests.Repostitories.Mappers
             Assert.Equal(model.Name, quizDto.Name);
             Assert.Equal(model.Description, quizDto.Description);
             Assert.Equal(model.QuizId, quizDto.QuizId);
-            Assert.Equal(model.Version, quizDto.Version);
             Assert.True(quizDto.Questions.FirstOrDefault().QuestionId == model.Questions.FirstOrDefault().QuestionId);
             Assert.True(quizDto.Questions.FirstOrDefault().QuestionItems.FirstOrDefault().QuestionItemId == model.Questions.FirstOrDefault().QuestionItems.FirstOrDefault().QuestionItemId);
         }
@@ -70,7 +68,6 @@ namespace EasyTeach.Data.Tests.Repostitories.Mappers
             A.CallTo(() => quizDto.Name).Returns("Quiz");
             A.CallTo(() => quizDto.Description).Returns("QuizDescription");
             A.CallTo(() => quizDto.QuizId).Returns(1);
-            A.CallTo(() => quizDto.Version).Returns(0);
             A.CallTo(() => quizDto.Questions)
                 .Returns(
                     new List<IQuestionDto>
@@ -98,7 +95,6 @@ namespace EasyTeach.Data.Tests.Repostitories.Mappers
             Assert.Equal(quizDto.Name, model.Name);
             Assert.Equal(quizDto.Description, model.Description);
             Assert.Equal(quizDto.QuizId, model.QuizId);
-            Assert.Equal(quizDto.Version, model.Version);
             Assert.True(model.Questions.FirstOrDefault().QuestionId == quizDto.Questions.FirstOrDefault().QuestionId);
             Assert.True(model.Questions.FirstOrDefault().QuestionItems.FirstOrDefault().QuestionItemId == quizDto.Questions.FirstOrDefault().QuestionItems.FirstOrDefault().QuestionItemId);
         }

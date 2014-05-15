@@ -1,6 +1,4 @@
-﻿using EasyTeach.Web.Controllers;
-
-namespace EasyTeach.Web.Models
+﻿namespace EasyTeach.Web.Models.ViewModels.Quiz
 {
     public class AddQuestionToQuizViewModel
     {

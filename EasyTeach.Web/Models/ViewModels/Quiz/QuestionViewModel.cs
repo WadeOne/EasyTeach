@@ -7,7 +7,7 @@ using EasyTeach.Core.Entities;
 using EasyTeach.Core.Enums;
 using EasyTeach.Core.Services.Quiz.Exceptions;
 
-namespace EasyTeach.Web.Models
+namespace EasyTeach.Web.Models.ViewModels.Quiz
 {
     public class QuestionViewModel
     {

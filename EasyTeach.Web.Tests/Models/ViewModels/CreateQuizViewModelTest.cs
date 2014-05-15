@@ -1,4 +1,5 @@
 ﻿using EasyTeach.Web.Models.ViewModels;
+using EasyTeach.Web.Models.ViewModels.Quiz;
 
 using Xunit;
 

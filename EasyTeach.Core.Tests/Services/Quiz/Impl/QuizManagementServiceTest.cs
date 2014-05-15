@@ -42,7 +42,7 @@ namespace EasyTeach.Core.Tests.Services.Quiz.Impl
             
             _quizManagementService = new QuizManagementService(_quizRepository, _quizDtoMapper, _entityValidator, _questionDtoMapper);
 
-            _validQuiz = new QuizModel
+            _validQuiz = new Entities.Quiz
                          {
                              Name = "Test",
                              Description = "Description",
@@ -56,7 +56,7 @@ namespace EasyTeach.Core.Tests.Services.Quiz.Impl
 
             _validAssignment = new AssignedTestModel
                          {
-                            Quiz = new QuizModel(),
+                            Quiz = new Entities.Quiz(),
                             Group = new Group()
                          };
         }
@@ -77,7 +77,7 @@ namespace EasyTeach.Core.Tests.Services.Quiz.Impl
         [Fact]
         public void CreateTestAsync_InvalidTest_ExceptionThrown()
         {
-            var invalidTest = new QuizModel();
+            var invalidTest = new Entities.Quiz();
             A.CallTo(() => _entityValidator.ValidateEntity<IQuizModel>(invalidTest))
                 .Returns(
                     new EntityValidationResult(
@@ -205,7 +205,6 @@ namespace EasyTeach.Core.Tests.Services.Quiz.Impl
             int quizId = 1;
             IQuizDto quizDto = A.Fake<IQuizDto>();
             var question = A.Fake<IQuestionModel>();
-            var questionDto = A.Fake<IQuestionDto>();
             A.CallTo(() => _quizRepository.GetQuiz(quizId)).Returns(quizDto);
             A.CallTo(() => _entityValidator.ValidateEntity(question))
                 .Returns( new EntityValidationResult(false, new List<ValidationResult> 
@@ -222,6 +221,27 @@ namespace EasyTeach.Core.Tests.Services.Quiz.Impl
             Assert.True(baseException.ValidationResults.Any(vr => vr.MemberNames.First() == "QuestionItems"));
             A.CallTo(() => _questionDtoMapper.Map(A<IQuestionModel>.Ignored)).MustNotHaveHappened();
             A.CallTo(() => _quizRepository.AddQuestionToQuiz(A<int>.Ignored, A<IQuestionDto>.Ignored)).MustNotHaveHappened();
+        }
+
+        [Fact]
+        public void GetAllQuizes_ReturnedAllQuizes()
+        {
+            var quizDto = A.Fake<IQuizDto>();
+            var quizModel = A.Fake<IQuizModel>();
+            A.CallTo(() => quizDto.QuizId).Returns(1);
+            A.CallTo(() => quizDto.Name).Returns("Name");
+            A.CallTo(() => quizDto.Description).Returns("Description");
+            A.CallTo(() => quizModel.QuizId).Returns(1);
+            A.CallTo(() => quizModel.Name).Returns("Name");
+            A.CallTo(() => quizModel.Description).Returns("Description");
+            A.CallTo(() => _quizRepository.GetAllQuizes()).Returns(new List<IQuizDto> { quizDto });
+            A.CallTo(() => _quizDtoMapper.Map(quizDto)).Returns(quizModel);
+
+            var result = _quizManagementService.GetAllQuizes().Result;
+
+            Assert.NotNull(result);
+            Assert.True(result.Count() == 1);
+            Assert.True(result.Any(x => x.QuizId == quizDto.QuizId && x.Name == quizDto.Name && x.Description == quizDto.Description));
         }
 
         private class AssignedTestModel : IAssignedTestModel

@@ -69,7 +69,7 @@
     <Compile Include="Entities\Services\IUserLessonModel.cs" />
     <Compile Include="Entities\Services\IUserIdentityModel.cs" />
     <Compile Include="Entities\Services\IUserModel.cs" />
-    <Compile Include="Entities\QuizModel.cs" />
+    <Compile Include="Entities\Quiz.cs" />
     <Compile Include="Entities\Services\IUserTaskVariantModel.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enums\ProgressStatus.cs" />

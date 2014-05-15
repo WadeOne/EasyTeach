@@ -1,7 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+
 using EasyTeach.Core.Entities;
 
-namespace EasyTeach.Web.Models.ViewModels
+namespace EasyTeach.Web.Models.ViewModels.UserManagement
 {
     public class CreateUserViewModel
     {

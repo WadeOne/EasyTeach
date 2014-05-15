@@ -17,7 +17,7 @@ namespace EasyTeach.Data.Repostitories.Mappers
         {
             if (IsConfigured == false)
             {
-                Mapper.CreateMap<IQuizDto, QuizModel>();
+                Mapper.CreateMap<IQuizDto, Quiz>();
                 Mapper.CreateMap<IQuizModel, QuizDto>();
                 Mapper.CreateMap<IQuestionDto, QuestionModel>();
                 Mapper.CreateMap<IQuestionModel, QuestionDto>();
@@ -38,7 +38,7 @@ namespace EasyTeach.Data.Repostitories.Mappers
         {
             protected override ICollection<QuestionDto> ConvertCore(ICollection<IQuestionModel> source)
             {
-                return source.Select(Mapper.Map<QuestionDto>).ToList();
+                return source == null ? null : source.Select(Mapper.Map<QuestionDto>).ToList();
             }
         }
 
@@ -46,7 +46,7 @@ namespace EasyTeach.Data.Repostitories.Mappers
         {
             protected override ICollection<QuestionModel> ConvertCore(IEnumerable<IQuestionDto> source)
             {
-                return source.Select(Mapper.Map<QuestionModel>).ToList();
+                return source == null ? null : source.Select(Mapper.Map<QuestionModel>).ToList();
             }
         }
 
@@ -54,7 +54,7 @@ namespace EasyTeach.Data.Repostitories.Mappers
         {
             protected override ICollection<QuestionItemModel> ConvertCore(IEnumerable<IQuestionItemDto> source)
             {
-                return source.Select(Mapper.Map<QuestionItemModel>).ToList();
+                return source == null ? null : source.Select(Mapper.Map<QuestionItemModel>).ToList();
             }
         }
     }

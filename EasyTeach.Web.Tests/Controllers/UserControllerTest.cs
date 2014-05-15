@@ -13,6 +13,7 @@ using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
 using EasyTeach.Web.Controllers;
 using EasyTeach.Web.Models.ViewModels;
+using EasyTeach.Web.Models.ViewModels.UserManagement;
 
 using FakeItEasy;
 using Microsoft.Owin.Security;

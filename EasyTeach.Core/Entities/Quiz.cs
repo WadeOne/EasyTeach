@@ -5,7 +5,7 @@ using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Core.Entities
 {
-    public class QuizModel : IQuizModel
+    public class Quiz : IQuizModel
     {
         public int QuizId { get; set; }
 
@@ -15,6 +15,8 @@ namespace EasyTeach.Core.Entities
         public string Description { get; set; }
 
         public ICollection<QuestionModel> Questions { get; set; }
+
+        public bool Deprecated { get; set; }
 
         IEnumerable<IQuestionModel> IQuizModel.Questions
         {
@@ -27,7 +29,5 @@ namespace EasyTeach.Core.Entities
                 Questions = (ICollection<QuestionModel>)value;
             }
         }
-
-        public int Version { get; set; }
     }
 }

@@ -12,6 +12,6 @@ namespace EasyTeach.Core.Entities.Data.Quiz
 
         IEnumerable<IQuestionDto> Questions { get; set; }
 
-        int Version { get; set; }
+        bool Deprecated { get; set; }
     }
 }

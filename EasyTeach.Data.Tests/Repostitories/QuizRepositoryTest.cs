@@ -108,5 +108,19 @@ namespace EasyTeach.Data.Tests.Repostitories
 
             A.CallTo(() => _context.SaveChangesAsync()).MustNotHaveHappened();
         }
+
+        [Fact]
+        public void GetAllQuizes_ReturnedAllQuizes()
+        {
+            var quiz = new QuizDto { QuizId = 1, Name = "Name", Description = "Description" };
+            IDbSet<QuizDto> quizes = new FakeDbSet<QuizDto> { quiz };
+            A.CallTo(() => _context.Quizes).Returns(quizes);
+
+            var result = _quizRepository.GetAllQuizes().Result;
+
+            Assert.NotNull(result);
+            Assert.True(result.Count() == 1);
+            Assert.True(result.Any(x => x.QuizId == quiz.QuizId && x.Name == quiz.Name && x.Description == quiz.Description));
+        }
     }
 }

@@ -25,7 +25,7 @@ namespace EasyTeach.Data.Repostitories.Mappers.QuizManagement
 
         public IQuizModel Map(IQuizDto quizDto)
         {
-            var result = Mapper.Map<QuizModel>(quizDto);
+            var result = Mapper.Map<Quiz>(quizDto);
             return result;
         }
 

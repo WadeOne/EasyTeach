@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace EasyTeach.Web.Models.ViewModels
+namespace EasyTeach.Web.Models.ViewModels.UserManagement
 {
     public sealed class SetPasswordViewModel
     {

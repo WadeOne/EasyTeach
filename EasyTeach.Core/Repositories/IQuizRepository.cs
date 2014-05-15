@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 using EasyTeach.Core.Entities.Data.Quiz;
 
@@ -10,5 +11,6 @@ namespace EasyTeach.Core.Repositories
         Task CreateQuizAsync(IQuizDto quiz);
         Task AssignQuizAsync(IAssignedQuizDto assignedQuiz);
         Task AddQuestionToQuiz(int quizId, IQuestionDto question);
+        Task<IEnumerable<IQuizDto>> GetAllQuizes();
     }
 }

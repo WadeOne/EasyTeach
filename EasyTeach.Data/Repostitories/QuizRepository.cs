@@ -69,5 +69,12 @@ namespace EasyTeach.Data.Repostitories
                 await _context.SaveChangesAsync();
             }
         }
+
+        public Task<IEnumerable<IQuizDto>> GetAllQuizes()
+        {
+            var result = new List<IQuizDto>();
+            _context.Quizes.Each(result.Add);
+            return Task.FromResult((IEnumerable<IQuizDto>)result);
+        }
     }
 }

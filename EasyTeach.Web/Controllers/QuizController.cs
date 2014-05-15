@@ -1,7 +1,6 @@
 ﻿using System;
-using System.IdentityModel.Services;
+using System.Collections.Generic;
 using System.Linq;
-using System.Security.Permissions;
 using System.Threading.Tasks;
 using System.Web.Http;
 
@@ -9,10 +8,9 @@ using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Services.Base.Exceptions;
 using EasyTeach.Core.Services.Quiz;
 using EasyTeach.Core.Services.Quiz.Exceptions;
-using EasyTeach.Web.Models;
-using EasyTeach.Web.Models.ViewModels;
-using EasyTeach.Web.Results;
+using EasyTeach.Web.Models.ViewModels.Quiz;
 
+//TODO Add claims
 namespace EasyTeach.Web.Controllers
 {
     [RoutePrefix("api/Quiz")]
@@ -69,6 +67,24 @@ namespace EasyTeach.Web.Controllers
                 return BadRequestWithModelState(exception);
             }
             return Ok();
+        }
+
+        [Route("")]
+        [HttpGet]
+        public async Task<IEnumerable<QuizListingViewModel>> Get()
+        {
+            var quizes = await _quizManagementService.GetAllQuizes();
+
+            return
+                quizes.Select(
+                    x => new QuizListingViewModel { QuizId = x.QuizId, Name = x.Name, Description = x.Description });
+        }
+
+        [Route("")]
+        [HttpGet]
+        public Task<IHttpActionResult> Get(int quizId)
+        {
+            throw new NotImplementedException();
         }
 
         private IHttpActionResult BadRequestWithModelState(ModelValidationException exception)

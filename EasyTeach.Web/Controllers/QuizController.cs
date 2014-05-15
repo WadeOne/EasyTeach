@@ -87,7 +87,7 @@ namespace EasyTeach.Web.Controllers
             try
             {
                 IQuizModel quiz = await _quizManagementService.GetQuiz(quizId);
-                return Ok(new EditQuizViewModel {Description = quiz.Description, Name = quiz.Name, QuizId = quiz.QuizId});
+                return Ok(new EditQuizViewModel {Description = quiz.Description, Name = quiz.Name, QuizId = quiz.QuizId, IsReadOnly = quiz.IsDeprecated});
             }
             catch (InvalidQuizException exception)
             {

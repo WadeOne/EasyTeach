@@ -244,6 +244,35 @@ namespace EasyTeach.Core.Tests.Services.Quiz.Impl
             Assert.True(result.Any(x => x.QuizId == quizDto.QuizId && x.Name == quizDto.Name && x.Description == quizDto.Description));
         }
 
+        [Fact]
+        public void GetQuiz_QuizExists_ReturnedQuiz()
+        {
+            int quizId = 1;
+            IQuizModel quiz = A.Fake<IQuizModel>();
+            IQuizDto quizDto = A.Fake<IQuizDto>();
+            A.CallTo(() => _quizRepository.GetQuiz(quizId)).Returns(quizDto);
+            A.CallTo(() => _quizDtoMapper.Map(quizDto)).Returns(quiz);
+
+            var result = _quizManagementService.GetQuiz(quizId).Result;
+
+            Assert.NotNull(result);
+            Assert.Equal(quiz, result);
+        }
+
+        [Fact]
+        public void GetQuiz_QuizDoesntExist_ExceptionThrown()
+        {
+            int quizId = 1;
+            A.CallTo(() => _quizRepository.GetQuiz(quizId)).Returns((IQuizDto) null);
+
+            var aggregateException = Assert.Throws<AggregateException>(() => _quizManagementService.GetQuiz(quizId).Wait());
+            var exception = aggregateException.GetBaseException() as InvalidQuizException;
+
+            Assert.NotNull(exception);
+            Assert.True(exception.ValidationResults.Any(x => x.MemberNames.First() == "QuizId"));
+            Assert.True(exception.ValidationResults.Any(x => x.ErrorMessage == string.Format("Quiz with id {0} doesn't exist", quizId)));
+        }
+
         private class AssignedTestModel : IAssignedTestModel
         {
             [Required]

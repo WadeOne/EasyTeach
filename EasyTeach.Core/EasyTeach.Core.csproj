@@ -58,7 +58,7 @@
     <Compile Include="Entities\Services\IQuestionItemModel.cs" />
     <Compile Include="Entities\Lesson.cs" />
     <Compile Include="Entities\Question.cs" />
-    <Compile Include="Entities\QuestionItemModel.cs" />
+    <Compile Include="Entities\QuestionItem.cs" />
     <Compile Include="Entities\Data\User\IUserClaimDto.cs" />
     <Compile Include="Entities\Data\User\IUserDto.cs" />
     <Compile Include="Entities\Data\User\IUserTokenDto.cs" />

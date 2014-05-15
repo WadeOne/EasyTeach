@@ -123,9 +123,18 @@ namespace EasyTeach.Core.Services.Quiz.Impl
             return quizes.Select(_quizDtoMapper.Map);
         }
 
-        public Task<IQuizModel> GetQuiz(int quizId)
+        public async Task<IQuizModel> GetQuiz(int quizId)
         {
-            throw new NotImplementedException();
+            IQuizDto quizDto = await _quizRepository.GetQuiz(quizId);
+            if (quizDto == null)
+            {
+                throw new InvalidQuizException(new List<ValidationResult>
+                {
+                    new ValidationResult(string.Format("Quiz with id {0} doesn't exist", quizId), new[] {"QuizId"})
+                });
+            }
+            IQuizModel quiz = _quizDtoMapper.Map(quizDto);
+            return quiz;
         }
     }
 }

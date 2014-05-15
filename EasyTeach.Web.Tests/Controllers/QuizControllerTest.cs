@@ -148,6 +148,7 @@ namespace EasyTeach.Web.Tests.Controllers
             A.CallTo(() => _quizModelWithId.QuizId).Returns(quizId);
             A.CallTo(() => _quizModelWithId.Name).Returns("Name");
             A.CallTo(() => _quizModelWithId.Description).Returns("Description");
+            A.CallTo(() => _quizModelWithId.IsDeprecated).Returns(true);
 
             var result = _controller.Get(quizId).Result as OkNegotiatedContentResult<EditQuizViewModel>;
 
@@ -156,6 +157,7 @@ namespace EasyTeach.Web.Tests.Controllers
             Assert.Equal(_quizModelWithId.QuizId, result.Content.QuizId);
             Assert.Equal(_quizModelWithId.Name, result.Content.Name);
             Assert.Equal(_quizModelWithId.Description, result.Content.Description);
+            Assert.Equal(_quizModelWithId.IsDeprecated, result.Content.IsReadOnly);
         }
 
         [Fact]

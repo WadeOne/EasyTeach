@@ -83,15 +83,15 @@ namespace EasyTeach.Web.Tests.Controllers
         public void ConfirmEmail_ValidUserAndToken_OkResultWithResetPasswordToken()
         {
             A.CallTo(() => _userService.ConfirmUserEmailAsync(A<int>.Ignored, A<string>.Ignored))
-                .Returns(Task.FromResult("resetPassToken"));
+                .Returns(Task.FromResult("qwe34556"));
 
-            var result = Assert.IsAssignableFrom<OkNegotiatedContentResult<string>>(_userController.ConfirmEmail(new ConfirmActionViewModel
+            var result = Assert.IsAssignableFrom<OkNegotiatedContentResult<ResetPasswordTokenViewModel>>(_userController.ConfirmEmail(new ConfirmActionViewModel
             {
                 ConfirmEmailToken = "test",
                 UserId = 42
             }).Result);
 
-            Assert.Equal("resetPassToken", result.Content);
+            Assert.Equal("qwe34556", result.Content.ResetPasswordToken);
         }
 
         [Fact]

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Permissions;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Results;
 using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
 using EasyTeach.Web.Models.ViewModels;
@@ -86,7 +87,8 @@ namespace EasyTeach.Web.Controllers
             try
             {
                 string resetPassowrdToken = await _userService.ConfirmUserEmailAsync(model.UserId, model.ConfirmEmailToken);
-                return Ok(resetPassowrdToken);
+
+                return Ok(new ResetPasswordTokenViewModel { ResetPasswordToken = resetPassowrdToken });
             }
             catch (InvalidEmailConfirmationOperationException ex)
             {

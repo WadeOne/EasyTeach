@@ -5,6 +5,7 @@ using System.Security.Permissions;
 using System.Threading.Tasks;
 using System.Web.Http;
 using EasyTeach.Core.Services.Dashboard;
+using EasyTeach.Core.Services.Dashboard.Exceptions;
 using EasyTeach.Web.Models.ViewModels.Dashboard.Visits;
 
 namespace EasyTeach.Web.Controllers
@@ -25,15 +26,35 @@ namespace EasyTeach.Web.Controllers
         }
 
         [Route("")]
+        [ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "GetAll", Resource = "Visit")]
         public IQueryable<VisitViewModel> Get(int groupId)
         {
-            return _visitService.GetVisits(groupId).Select(v => new VisitViewModel
+            return _visitService.GetGroupVisits(groupId).Select(v => new VisitViewModel
             {
                 LessonId = v.Lesson.LessonId,
                 Note = v.Note,
                 Status = v.Status,
                 VisitorId = v.Visitor.UserId
             });
+        }
+
+        [Route("")]
+        public IHttpActionResult Get()
+        {
+            try
+            {
+                return Ok(_visitService.GetGroupVisitsAvailableForStudent(User).Select(v => new VisitViewModel
+                {
+                    LessonId = v.Lesson.LessonId,
+                    Note = v.Note,
+                    Status = v.Status,
+                    VisitorId = v.Visitor.UserId
+                }));
+            }
+            catch (GroupNotFoundException ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
 
         [Route("")]

@@ -9,9 +9,9 @@ namespace EasyTeach.Web.Models.ViewModels.Dashboard.Lessons
 
         public int GroupId { get; set; }
 
-        public virtual Core.Entities.Lesson ToLesson()
+        public virtual Lesson ToLesson()
         {
-            return new Core.Entities.Lesson
+            return new Lesson
             {
                 Date = Date,
                 Group = new Group

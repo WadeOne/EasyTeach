@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Security.Principal;
 using System.Threading.Tasks;
 using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data.Dashboard;
@@ -62,7 +63,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             _visitDtoMapper = visitDtoMapper;
         }
 
-        public IQueryable<IVisitModel> GetVisits(int groupId)
+        public IQueryable<IVisitModel> GetGroupVisits(int groupId)
         {
             int[] groupMateIds = _userRepository.GetUsers().Where(u => u.GroupId == groupId).Select(u => u.UserId).ToArray();
             int[] lessonIds =_lessonRepository.GetLessons().Where(l => l.GroupId == groupId).Select(l => l.LessonId).ToArray();
@@ -109,6 +110,27 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             }
 
             return result.AsQueryable();
+        }
+
+        public IQueryable<IVisitModel> GetGroupVisitsAvailableForStudent(IPrincipal principal)
+        {
+            if (principal == null)
+            {
+                throw new ArgumentNullException("principal");
+            }
+
+            if (!principal.Identity.IsAuthenticated)
+            {
+                throw new ArgumentException("Identity of principal wasn't authenticated");
+            }
+
+            IUserDto user = _userRepository.GetUserByEmail(principal.Identity.Name).Result;
+            if (user.GroupId == null)
+            {
+                throw new GroupNotFoundException(String.Format("User '{0}' doesn't belong to any group", principal.Identity.Name));
+            }
+
+            return GetGroupVisits(user.GroupId.Value);
         }
 
         public async Task UpdateVisitAsync(IVisitModel visit)

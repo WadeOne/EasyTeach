@@ -20,13 +20,13 @@ namespace EasyTeach.Data.Repostitories.Mappers
             {
                 Mapper.CreateMap<IQuizDto, Quiz>();
                 Mapper.CreateMap<IQuizModel, QuizDto>();
-                Mapper.CreateMap<IQuestionDto, QuestionModel>();
+                Mapper.CreateMap<IQuestionDto, Question>();
                 Mapper.CreateMap<IQuestionModel, QuestionDto>();
                 Mapper.CreateMap<QuestionItemModel, QuestionItemDto>();
                 Mapper.CreateMap<QuestionItemDto, QuestionItemModel>();
                 Mapper.CreateMap<ICollection<IQuestionModel>, ICollection<QuestionDto>>()
                     .ConvertUsing(new ModelToDtoQuestionCollectionConverter());
-                Mapper.CreateMap<IEnumerable<IQuestionDto>, ICollection<QuestionModel>>()
+                Mapper.CreateMap<IEnumerable<IQuestionDto>, ICollection<Question>>()
                     .ConvertUsing(new DtoToModelQuestionCollectionConverter());
                 Mapper.CreateMap<IEnumerable<IQuestionItemDto>, ICollection<QuestionItemModel>>()
                     .ConvertUsing(new DtoToModelQuestionItemCollectionConverter());
@@ -43,11 +43,11 @@ namespace EasyTeach.Data.Repostitories.Mappers
             }
         }
 
-        private class DtoToModelQuestionCollectionConverter : TypeConverter<IEnumerable<IQuestionDto>, ICollection<QuestionModel>>
+        private class DtoToModelQuestionCollectionConverter : TypeConverter<IEnumerable<IQuestionDto>, ICollection<Question>>
         {
-            protected override ICollection<QuestionModel> ConvertCore(IEnumerable<IQuestionDto> source)
+            protected override ICollection<Question> ConvertCore(IEnumerable<IQuestionDto> source)
             {
-                return source == null ? null : source.Select(Mapper.Map<QuestionModel>).ToList();
+                return source == null ? null : source.Select(Mapper.Map<Question>).ToList();
             }
         }
 

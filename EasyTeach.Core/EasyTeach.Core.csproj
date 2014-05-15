@@ -57,7 +57,7 @@
     <Compile Include="Entities\Services\ICourseModel.cs" />
     <Compile Include="Entities\Services\IQuestionItemModel.cs" />
     <Compile Include="Entities\Lesson.cs" />
-    <Compile Include="Entities\QuestionModel.cs" />
+    <Compile Include="Entities\Question.cs" />
     <Compile Include="Entities\QuestionItemModel.cs" />
     <Compile Include="Entities\Data\User\IUserClaimDto.cs" />
     <Compile Include="Entities\Data\User\IUserDto.cs" />

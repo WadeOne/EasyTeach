@@ -34,7 +34,7 @@ namespace EasyTeach.Data.Tests.Repostitories.Mappers
                 .Returns(
                     new List<IQuestionModel>
                     {
-                        new QuestionModel
+                        new Question
                         {
                             QuestionId = 1,
                             QuestionType = QuestionType.Select,

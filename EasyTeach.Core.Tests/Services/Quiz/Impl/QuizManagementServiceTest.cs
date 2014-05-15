@@ -47,10 +47,10 @@ namespace EasyTeach.Core.Tests.Services.Quiz.Impl
                              Name = "Test",
                              Description = "Description",
                              Questions =
-                                 new List<QuestionModel>
+                                 new List<Question>
                                  {
-                                     A.Fake<QuestionModel>(),
-                                     A.Fake<QuestionModel>()
+                                     A.Fake<Question>(),
+                                     A.Fake<Question>()
                                  }
                          };
 

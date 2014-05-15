@@ -14,9 +14,9 @@ namespace EasyTeach.Core.Entities
 
         public string Description { get; set; }
 
-        public ICollection<QuestionModel> Questions { get; set; }
+        public ICollection<Question> Questions { get; set; }
 
-        public bool Deprecated { get; set; }
+        public bool IsDeprecated { get; set; }
 
         IEnumerable<IQuestionModel> IQuizModel.Questions
         {
@@ -26,7 +26,7 @@ namespace EasyTeach.Core.Entities
             }
             set
             {
-                Questions = (ICollection<QuestionModel>)value;
+                Questions = (ICollection<Question>)value;
             }
         }
     }

@@ -17,7 +17,7 @@ namespace EasyTeach.Web.Models.ViewModels.Quiz
 
         public IEnumerable<QuestionItemViewModel> QuestionItems { get; set; }
 
-        public virtual QuestionModel ToQuestion()
+        public virtual Question ToQuestion()
         {
             QuestionType type;
             if (Enum.TryParse(QuestionType, true, out type) == false)
@@ -30,7 +30,7 @@ namespace EasyTeach.Web.Models.ViewModels.Quiz
                             new[] { "QuestionType" })
                     });
             }
-            return new QuestionModel
+            return new Question
                    {
                        QuestionText = QuestionText,
                        QuestionType = type,

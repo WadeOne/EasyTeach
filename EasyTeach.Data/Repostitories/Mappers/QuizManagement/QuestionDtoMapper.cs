@@ -22,7 +22,7 @@ namespace EasyTeach.Data.Repostitories.Mappers.QuizManagement
 
         public IQuestionModel Map(IQuestionDto dto)
         {
-            return Mapper.Map<QuestionModel>(dto);
+            return Mapper.Map<Question>(dto);
         }
     }
 }

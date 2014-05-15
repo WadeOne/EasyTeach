@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
-
+using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Services.Base.Exceptions;
 using EasyTeach.Core.Services.Quiz;
@@ -82,9 +82,17 @@ namespace EasyTeach.Web.Controllers
 
         [Route("")]
         [HttpGet]
-        public Task<IHttpActionResult> Get(int quizId)
+        public async Task<IHttpActionResult> Get(int quizId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                IQuizModel quiz = await _quizManagementService.GetQuiz(quizId);
+                return Ok(new EditQuizViewModel {Description = quiz.Description, Name = quiz.Name, QuizId = quiz.QuizId});
+            }
+            catch (InvalidQuizException exception)
+            {
+                return BadRequestWithModelState(exception);
+            }
         }
 
         private IHttpActionResult BadRequestWithModelState(ModelValidationException exception)

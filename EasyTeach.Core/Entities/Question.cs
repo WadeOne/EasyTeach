@@ -6,7 +6,7 @@ using EasyTeach.Core.Enums;
 
 namespace EasyTeach.Core.Entities
 {
-    public class QuestionModel : IQuestionModel
+    public class Question : IQuestionModel
     {
     	[Key]
         public int QuestionId { get; set; }

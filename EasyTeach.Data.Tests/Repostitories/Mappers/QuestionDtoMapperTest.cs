@@ -31,7 +31,7 @@ namespace EasyTeach.Data.Tests.Repostitories.Mappers
             A.CallTo(() => model.QuestionText).Returns("Text");
             A.CallTo(() => model.QuestionType).Returns(QuestionType.Select);
             A.CallTo(() => model.QuestionItems)
-                .Returns(new List<IQuestionItemModel> { new QuestionItemModel { Text = "text" } });
+                .Returns(new List<IQuestionItemModel> { new QuestionItem { Text = "text" } });
 
             var result = _mapper.Map(model);
 

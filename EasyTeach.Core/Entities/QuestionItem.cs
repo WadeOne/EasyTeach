@@ -4,7 +4,7 @@ using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Core.Entities
 {
-    public class QuestionItemModel : IQuestionItemModel
+    public class QuestionItem : IQuestionItemModel
     {
         public int QuestionItemId { get; set; }
 

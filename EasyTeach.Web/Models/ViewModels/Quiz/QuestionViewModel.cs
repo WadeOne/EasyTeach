@@ -36,7 +36,7 @@ namespace EasyTeach.Web.Models.ViewModels.Quiz
                        QuestionType = type,
                        QuestionItems =
                            QuestionItems.Select(
-                               x => new QuestionItemModel { IsSolution = x.IsSolution, Text = x.Text })
+                               x => new QuestionItem { IsSolution = x.IsSolution, Text = x.Text })
                            .ToList()
                    };
         }

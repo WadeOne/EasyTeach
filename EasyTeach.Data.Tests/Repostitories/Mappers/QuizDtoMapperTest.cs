@@ -39,9 +39,9 @@ namespace EasyTeach.Data.Tests.Repostitories.Mappers
                             QuestionId = 1,
                             QuestionType = QuestionType.Select,
                             QuestionItems =
-                                new List<QuestionItemModel>
+                                new List<QuestionItem>
                                 {
-                                    new QuestionItemModel
+                                    new QuestionItem
                                     {
                                         Text = "Question",
                                         IsSolution = true,

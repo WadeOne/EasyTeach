@@ -22,14 +22,11 @@ namespace EasyTeach.Data.Repostitories.Mappers
                 Mapper.CreateMap<IQuizModel, QuizDto>();
                 Mapper.CreateMap<IQuestionDto, Question>();
                 Mapper.CreateMap<IQuestionModel, QuestionDto>();
-                Mapper.CreateMap<QuestionItemModel, QuestionItemDto>();
-                Mapper.CreateMap<QuestionItemDto, QuestionItemModel>();
-                Mapper.CreateMap<ICollection<IQuestionModel>, ICollection<QuestionDto>>()
-                    .ConvertUsing(new ModelToDtoQuestionCollectionConverter());
-                Mapper.CreateMap<IEnumerable<IQuestionDto>, ICollection<Question>>()
-                    .ConvertUsing(new DtoToModelQuestionCollectionConverter());
-                Mapper.CreateMap<IEnumerable<IQuestionItemDto>, ICollection<QuestionItemModel>>()
-                    .ConvertUsing(new DtoToModelQuestionItemCollectionConverter());
+                Mapper.CreateMap<QuestionItem, QuestionItemDto>();
+                Mapper.CreateMap<QuestionItemDto, QuestionItem>();
+                Mapper.CreateMap<ICollection<IQuestionModel>, ICollection<QuestionDto>>().ConvertUsing(new ModelToDtoQuestionCollectionConverter());
+                Mapper.CreateMap<IEnumerable<IQuestionDto>, ICollection<Question>>().ConvertUsing(new DtoToModelQuestionCollectionConverter());
+                Mapper.CreateMap<IEnumerable<IQuestionItemDto>, ICollection<QuestionItem>>().ConvertUsing(new DtoToModelQuestionItemCollectionConverter());
                 
                 _isConfigured = true;
             }
@@ -51,11 +48,11 @@ namespace EasyTeach.Data.Repostitories.Mappers
             }
         }
 
-        private class DtoToModelQuestionItemCollectionConverter : TypeConverter<IEnumerable<IQuestionItemDto>, ICollection<QuestionItemModel>>
+        private class DtoToModelQuestionItemCollectionConverter : TypeConverter<IEnumerable<IQuestionItemDto>, ICollection<QuestionItem>>
         {
-            protected override ICollection<QuestionItemModel> ConvertCore(IEnumerable<IQuestionItemDto> source)
+            protected override ICollection<QuestionItem> ConvertCore(IEnumerable<IQuestionItemDto> source)
             {
-                return source == null ? null : source.Select(Mapper.Map<QuestionItemModel>).ToList();
+                return source == null ? null : source.Select(Mapper.Map<QuestionItem>).ToList();
             }
         }
     }

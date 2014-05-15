@@ -13,7 +13,7 @@ namespace EasyTeach.Core.Entities
 
         public QuestionType QuestionType { get; set; }
 
-        public ICollection<QuestionItemModel> QuestionItems { get; set; }
+        public ICollection<QuestionItem> QuestionItems { get; set; }
 
         IEnumerable<IQuestionItemModel> IQuestionModel.QuestionItems
         {
@@ -23,7 +23,7 @@ namespace EasyTeach.Core.Entities
             }
             set
             {
-                QuestionItems = (ICollection<QuestionItemModel>)value;
+                QuestionItems = (ICollection<QuestionItem>)value;
             }
         }
 

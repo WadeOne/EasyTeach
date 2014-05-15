@@ -10,7 +10,8 @@
         handlebars: '../vendor/bower_components/handlebars/handlebars',
         text: '../vendor/bower_components/requirejs-text/text',
         chaplin: '../vendor/bower_components/chaplin/chaplin',
-        modernizr: '../vendor/bower_components/modernizr/modernizr'
+        modernizr: '../vendor/bower_components/modernizr/modernizr',
+        localStorage: '../vendor/backbone.localStorage'
     },
     shim: {
         'modernizr': {
@@ -31,6 +32,11 @@
                 'foundation.core'
             ],
             exports: 'FoundationTopBar'
+        },
+        localStorage: {
+            deps: [
+                'backbone'
+            ]
         },
         underscore: {
             exports: '_'

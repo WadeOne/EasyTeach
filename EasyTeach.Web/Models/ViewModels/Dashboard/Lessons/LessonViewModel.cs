@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EasyTeach.Web.Models.ViewModels.Dashboard
+namespace EasyTeach.Web.Models.ViewModels.Dashboard.Lessons
 {
     public sealed class LessonViewModel
     {

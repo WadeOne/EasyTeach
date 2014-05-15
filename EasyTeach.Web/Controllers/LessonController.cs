@@ -5,7 +5,7 @@ using System.Security.Permissions;
 using System.Threading.Tasks;
 using System.Web.Http;
 using EasyTeach.Core.Services.Dashboard;
-using EasyTeach.Web.Models.ViewModels.Dashboard;
+using EasyTeach.Web.Models.ViewModels.Dashboard.Lessons;
 
 namespace EasyTeach.Web.Controllers
 {

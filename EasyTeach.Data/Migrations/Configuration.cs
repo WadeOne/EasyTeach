@@ -1,4 +1,3 @@
-using System.Data.Entity;
 using System.Linq;
 using System.Security.Claims;
 using EasyTeach.Data.Context;
@@ -65,22 +64,22 @@ namespace EasyTeach.Data.Migrations
                 User = context.Users.Single(u => u.UserId == 1)
             });
 
-            AddLessonClaims(context);
+            AddClaims(context, 1, "Lesson", new[] { "Create", "Update", "Delete", "GetAll" });
+            AddClaims(context, 1, "Visit", new[] { "Update", "GetAll" });
 
             context.SaveChanges();
         }
 
-        private void AddLessonClaims(EasyTeachContext context)
+        private void AddClaims(EasyTeachContext context, int userId, string resource, string[] operations)
         {
-            var user = context.Users.Single(u => u.UserId == 1);
-            var operations = new[] { "Create", "Update", "Delete", "GetAll" };
+            var user = context.Users.Single(u => u.UserId == userId);
             foreach (string operation in operations)
             {
                 context.UserClaims.AddOrUpdate(new UserClaimDto
                 {
                     UserClaimId = ++_claimId,
                     Value = operation,
-                    Type = "Lesson",
+                    Type = resource,
                     ValueType = ClaimValueTypes.String,
                     User = user
                 });

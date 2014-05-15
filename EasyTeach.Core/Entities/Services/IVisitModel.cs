@@ -2,13 +2,13 @@
 
 namespace EasyTeach.Core.Entities.Services
 {
-    public interface IUserLessonModel
+    public interface IVisitModel
     {
         ILessonModel Lesson { get; }
 
-        IUserModel User { get; }
+        IUserModel Visitor { get; }
 
-        VisitStatus Visit { get; }
+        VisitStatus Status { get; }
 
         string Note { get; }
     }

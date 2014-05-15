@@ -15,6 +15,6 @@ define(function() {
 		match('addhomeworks', 'home#addHomeworks');
 		match('studenthomeworks', 'home#showHomeworks');
 		match('quiz', 'quizzes/quiz#showQuizList');
-		match('editQuiz', 'quizzes/quiz#editQuiz');
+		match('quiz/:id', 'quizzes/quiz#editQuiz');
 	};
 });

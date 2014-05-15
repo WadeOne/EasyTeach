@@ -2,11 +2,11 @@
 
 namespace EasyTeach.Core.Entities.Services
 {
-    public interface IUserTaskVariantModel
+    public interface IVariantProgressModel
     {
         IUserModel User { get; }
 
-        ITaskVariantModel TaskVariant { get; }
+        ITaskVariantModel Variant { get; }
 
         ProgressStatus Progress { get; }
     }

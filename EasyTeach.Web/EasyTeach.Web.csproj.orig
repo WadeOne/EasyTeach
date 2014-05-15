@@ -210,9 +210,14 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\LessonController.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\ViewModels\Quiz\EditQuizViewModel.cs" />
     <Compile Include="Models\ViewModels\Quiz\QuizListingViewModel.cs" />
     <Compile Include="Models\ViewModels\Quiz\AddQuestionToQuizViewModel.cs" />
+=======
+    <Compile Include="Controllers\VisitController.cs" />
+    <Compile Include="Models\AddQuestionToQuizViewModel.cs" />
+>>>>>>> 70211e85b55d67b8ecdc34aee29cac82d992f957
     <Compile Include="Controllers\ApiControllerBase.cs" />
     <Compile Include="Controllers\ClaimController.cs" />
     <Compile Include="Models\ViewModels\Quiz\QuestionViewModel.cs" />
@@ -228,12 +233,20 @@
     <Compile Include="Models\Results\ErrorItem.cs" />
     <Compile Include="Models\Results\UserCreationResult.cs" />
     <Compile Include="Models\ViewModels\ConfirmActionViewModel.cs" />
+<<<<<<< HEAD
+    <Compile Include="Models\ViewModels\UserManagement\CreateUserViewModel.cs" />
+    <Compile Include="Models\ViewModels\Dashboard\CreateLessonViewModel.cs" />
+    <Compile Include="Models\ViewModels\Dashboard\LessonViewModel.cs" />
+    <Compile Include="Models\ViewModels\Dashboard\UpdateLessonViewModel.cs" />
+    <Compile Include="Models\ViewModels\UserManagement\SetPasswordViewModel.cs" />
+=======
+    <Compile Include="Models\ViewModels\CreateUserViewModel.cs" />
     <Compile Include="Models\ViewModels\Dashboard\Lessons\CreateLessonViewModel.cs" />
     <Compile Include="Models\ViewModels\Dashboard\Lessons\LessonViewModel.cs" />
     <Compile Include="Models\ViewModels\Dashboard\Lessons\UpdateLessonViewModel.cs" />
     <Compile Include="Models\ViewModels\Dashboard\Visits\VisitViewModel.cs" />
-    <Compile Include="Models\ViewModels\UserManagement\CreateUserViewModel.cs" />
-    <Compile Include="Models\ViewModels\UserManagement\SetPasswordViewModel.cs" />
+    <Compile Include="Models\ViewModels\SetPasswordViewModel.cs" />
+>>>>>>> 70211e85b55d67b8ecdc34aee29cac82d992f957
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\EmptyObjectOkResult.cs" />

@@ -12,10 +12,11 @@ namespace EasyTeach.Data.Repostitories.Mappers
 {
     internal static class MappingConfiguration
     {
-        private static bool IsConfigured;
+        private static bool _isConfigured;
+
         public static void Configure()
         {
-            if (IsConfigured == false)
+            if (_isConfigured == false)
             {
                 Mapper.CreateMap<IQuizDto, Quiz>();
                 Mapper.CreateMap<IQuizModel, QuizDto>();
@@ -30,7 +31,7 @@ namespace EasyTeach.Data.Repostitories.Mappers
                 Mapper.CreateMap<IEnumerable<IQuestionItemDto>, ICollection<QuestionItemModel>>()
                     .ConvertUsing(new DtoToModelQuestionItemCollectionConverter());
                 
-                IsConfigured = true;
+                _isConfigured = true;
             }
         }
 

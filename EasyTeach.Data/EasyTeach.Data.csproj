@@ -70,9 +70,10 @@
     <Compile Include="Entities\UserClaimDto.cs" />
     <Compile Include="Entities\UserDto.cs" />
     <Compile Include="Entities\UserTokenDto.cs" />
-    <Compile Include="Migrations\201405141144418_Initial.cs" />
-    <Compile Include="Migrations\201405141144418_Initial.Designer.cs">
-      <DependentUpon>201405141144418_Initial.cs</DependentUpon>
+    <Compile Include="Entities\VisitDto.cs" />
+    <Compile Include="Migrations\201405142355084_Initial.cs" />
+    <Compile Include="Migrations\201405142355084_Initial.Designer.cs">
+      <DependentUpon>201405142355084_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\201405151516149_QuizDto_Updated.cs" />
     <Compile Include="Migrations\201405151516149_QuizDto_Updated.Designer.cs">
@@ -82,6 +83,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repostitories\LessonRepository.cs" />
     <Compile Include="Repostitories\Mappers\Dashboard\LessonDtoMapper.cs" />
+    <Compile Include="Repostitories\Mappers\Dashboard\VisitDtoMapper.cs" />
     <Compile Include="Repostitories\Mappers\MappingConfiguration.cs" />
     <Compile Include="Repostitories\Mappers\QuizManagement\QuestionDtoMapper.cs" />
     <Compile Include="Repostitories\Mappers\QuizManagement\QuizDtoMapper.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Repostitories\UserClaimRepository.cs" />
     <Compile Include="Repostitories\UserRepository.cs" />
     <Compile Include="Repostitories\UserTokenRepository.cs" />
+    <Compile Include="Repostitories\VisitRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -109,8 +112,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201405141144418_Initial.resx">
-      <DependentUpon>201405141144418_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201405142355084_Initial.resx">
+      <DependentUpon>201405142355084_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201405151516149_QuizDto_Updated.resx">
       <DependentUpon>201405151516149_QuizDto_Updated.cs</DependentUpon>

@@ -102,6 +102,11 @@ namespace EasyTeach.Web.Controllers
             }
         }
 
+        public Task<IHttpActionResult> AssignToGroup(AssignToGroupModel assignToGroupModel)
+        {
+            throw new NotImplementedException();
+        }
+
         private IHttpActionResult BadRequestWithModelState(ModelValidationException exception)
         {
             foreach (var validationResult in exception.ValidationResults)
@@ -110,5 +115,9 @@ namespace EasyTeach.Web.Controllers
             }
             return BadRequest(ModelState);
         }
+    }
+
+    public class AssignToGroupModel
+    {
     }
 }

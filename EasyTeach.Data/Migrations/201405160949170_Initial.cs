@@ -66,7 +66,7 @@ namespace EasyTeach.Data.Migrations
                         QuizId = c.Int(nullable: false, identity: true),
                         Name = c.String(),
                         Description = c.String(),
-                        Version = c.Int(nullable: false),
+                        Deprecated = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.QuizId);
             

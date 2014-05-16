@@ -71,13 +71,9 @@
     <Compile Include="Entities\UserDto.cs" />
     <Compile Include="Entities\UserTokenDto.cs" />
     <Compile Include="Entities\VisitDto.cs" />
-    <Compile Include="Migrations\201405142355084_Initial.cs" />
-    <Compile Include="Migrations\201405142355084_Initial.Designer.cs">
-      <DependentUpon>201405142355084_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201405151516149_QuizDto_Updated.cs" />
-    <Compile Include="Migrations\201405151516149_QuizDto_Updated.Designer.cs">
-      <DependentUpon>201405151516149_QuizDto_Updated.cs</DependentUpon>
+    <Compile Include="Migrations\201405160949170_Initial.cs" />
+    <Compile Include="Migrations\201405160949170_Initial.Designer.cs">
+      <DependentUpon>201405160949170_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -112,11 +108,8 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201405142355084_Initial.resx">
-      <DependentUpon>201405142355084_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201405151516149_QuizDto_Updated.resx">
-      <DependentUpon>201405151516149_QuizDto_Updated.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201405160949170_Initial.resx">
+      <DependentUpon>201405160949170_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

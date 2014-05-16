@@ -175,5 +175,11 @@ namespace EasyTeach.Web.Tests.Controllers
             Assert.NotNull(result);
             Assert.True(result.ModelState.Any(x => x.Key == "QuizId"));
         }
+
+        //[Fact]
+        //public void Put_ValidDataQuizExistsQuizNotAssigned_QuizUpdated()
+        //{
+            
+        //}
     }
 }

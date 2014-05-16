@@ -50,6 +50,13 @@ namespace EasyTeach.Web.Controllers
             }
             return Ok(createdQuiz);
         }
+
+        [Route("")]
+        [HttpPut]
+        public Task<IHttpActionResult> Put(UpdateQuizViewModel updateQuizViewModel)
+        {
+            throw new NotImplementedException();
+        }
         
         public async Task<IHttpActionResult> AddQuestion(AddQuestionToQuizViewModel questionToQuizViewModel)
         {

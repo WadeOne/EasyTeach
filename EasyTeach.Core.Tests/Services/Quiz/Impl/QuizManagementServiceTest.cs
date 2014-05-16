@@ -7,7 +7,6 @@ using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data.Quiz;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Repositories;
-using EasyTeach.Core.Repositories.Mappers;
 using EasyTeach.Core.Repositories.Mappers.QuizManagement;
 using EasyTeach.Core.Services.Quiz.Exceptions;
 using EasyTeach.Core.Services.Quiz.Impl;

@@ -27,8 +27,7 @@ namespace EasyTeach.Data.Context
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //Database.SetInitializer(new MigrateDatabaseToLatestVersion<EasyTeachContext, Configuration>());
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<EasyTeachContext>());
+            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EasyTeachContext, Configuration>());
         }
     }
 }

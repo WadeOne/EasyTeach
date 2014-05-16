@@ -13,6 +13,7 @@ using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
 using EasyTeach.Web.Controllers;
 using EasyTeach.Web.Models.ViewModels;
+using EasyTeach.Web.Models.ViewModels.UserManagement;
 
 using FakeItEasy;
 using Microsoft.Owin.Security;
@@ -47,7 +48,7 @@ namespace EasyTeach.Web.Tests.Controllers
 
             A.CallTo(() => user.ToUser()).Returns(userModel);
 
-            OkResult result = ActWithTeacherRoleClaims(() => _userController.Register(user).Result as OkResult);
+            OkResult result = ActWithSufficientClaims(() => _userController.Register(user).Result as OkResult);
             A.CallTo(() => _userService.CreateUserAsync(userModel)).MustHaveHappened();
             Assert.NotNull(result);
         }
@@ -68,7 +69,7 @@ namespace EasyTeach.Web.Tests.Controllers
                                                                new ValidationResult("Wrong UserType", new List<string> {"UserType"}),
                                                            }));
 
-            var result = ActWithTeacherRoleClaims(() => _userController.Register(user).Result as InvalidModelStateResult);
+            var result = ActWithSufficientClaims(() => _userController.Register(user).Result as InvalidModelStateResult);
 
             A.CallTo(() => _userService.CreateUserAsync(userModel)).MustHaveHappened();
             Assert.NotNull(result);
@@ -82,15 +83,15 @@ namespace EasyTeach.Web.Tests.Controllers
         public void ConfirmEmail_ValidUserAndToken_OkResultWithResetPasswordToken()
         {
             A.CallTo(() => _userService.ConfirmUserEmailAsync(A<int>.Ignored, A<string>.Ignored))
-                .Returns(Task.FromResult("resetPassToken"));
+                .Returns(Task.FromResult("qwe34556"));
 
-            var result = Assert.IsAssignableFrom<OkNegotiatedContentResult<string>>(_userController.ConfirmEmail(new ConfirmActionViewModel
+            var result = Assert.IsAssignableFrom<OkNegotiatedContentResult<ResetPasswordTokenViewModel>>(_userController.ConfirmEmail(new ConfirmActionViewModel
             {
                 ConfirmEmailToken = "test",
                 UserId = 42
             }).Result);
 
-            Assert.Equal("resetPassToken", result.Content);
+            Assert.Equal("qwe34556", result.Content.ResetPasswordToken);
         }
 
         [Fact]
@@ -173,13 +174,13 @@ namespace EasyTeach.Web.Tests.Controllers
             Assert.IsAssignableFrom<OkResult>(_userController.Logout());
         }
 
-        private static T ActWithTeacherRoleClaims<T>(Func<T> action)
+        private static T ActWithSufficientClaims<T>(Func<T> action)
         {
             var oldPrincipal = Thread.CurrentPrincipal;
 
             try
             {
-                Thread.CurrentPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim(ClaimTypes.Role, "Teacher", ClaimValueTypes.String) }));
+                Thread.CurrentPrincipal = new ClaimsPrincipal(new ClaimsIdentity(new[] { new Claim("User", "Register") }));
                 return action();
             }
             finally

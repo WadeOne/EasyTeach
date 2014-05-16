@@ -1,14 +1,13 @@
-<div class="row">
-    <div class="large-4 medium-4 columns">
-        <form id="login-form" class="login-wrapper" action="/Token">
-            <label>Логин</label>
-            <input type="email" name="username" placeholder="Логин" />
-            <label>Пароль</label>
-            <input type="password" name="password" placeholder="Пароль" />
-            <button id="login-btn" class="easy-teach-button">Войти</button>
-            <div>
-                <a href="/reset" >Восстановить пароль</a>
-            </div>                        
-        </form>
-    </div>
+<div class="login-wrap large-4 medium-4 columns">
+    <form id="login-form" action="/Token">
+        <div class="error-message"><%= obj.errorMessage %></div>
+        <label class="header">Логин</label>
+        <input type="email" name="username" placeholder="Логин (email)" value="<%= obj.username %>" required />
+        <label>Пароль</label>
+        <input type="password" name="password" placeholder="Пароль" value="<%= obj.password %>" required />
+        <button id="login-btn" class="easy-teach-btn">Войти</button>
+        <div class="reset-link">
+            <a href="/reset" >Восстановить пароль</a>
+        </div>
+    </form>
 </div>

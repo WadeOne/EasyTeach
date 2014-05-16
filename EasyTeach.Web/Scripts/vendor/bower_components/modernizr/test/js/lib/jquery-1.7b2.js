@@ -1,4 +1,4 @@
-/*!
+﻿/*!
  * jQuery JavaScript Library v1.7b2
  * http://jquery.com/
  *
@@ -906,7 +906,7 @@ if ( browserMatch.browser ) {
 	jQuery.browser.version = browserMatch.version;
 }
 
-// Deprecated, use jQuery.browser.webkit instead
+// IsDeprecated, use jQuery.browser.webkit instead
 if ( jQuery.browser.webkit ) {
 	jQuery.browser.safari = true;
 }
@@ -1225,7 +1225,7 @@ jQuery.extend({
 					return state;
 				},
 
-				// Deprecated
+				// IsDeprecated
 				isResolved: doneList.fired,
 				isRejected: failList.fired,
 

@@ -13,6 +13,10 @@ $tabs-navigation-font-color: #222;
 $tabs-content-margin-bottom: rem-calc(24);
 //$tabs-content-padding: $column-gutter/2;
 
+$small-range: (0px, 640px);
+$medium-range: (641px, 768px);
+$large-range: (769px, 1440px);
+
 $tabs-vertical-navigation-margin-bottom: 1.25rem;
 
 //Accordion

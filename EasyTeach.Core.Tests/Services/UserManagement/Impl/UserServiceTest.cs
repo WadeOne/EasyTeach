@@ -4,10 +4,11 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyTeach.Core.Entities;
-using EasyTeach.Core.Entities.Data;
+using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Enums;
 using EasyTeach.Core.Repositories.Mappers;
+using EasyTeach.Core.Repositories.Mappers.UserManagement;
 using EasyTeach.Core.Services.Messaging;
 using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
@@ -33,7 +34,7 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
             public string LastName { get; set; }
 
             [Required]
-            public Group Group { get; set; }
+            public IGroupModel Group { get; set; }
 
             [Required]
             [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Not valid Email address")]

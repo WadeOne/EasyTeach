@@ -1,6 +1,8 @@
 using System.Web.Http;
 using System.Web.Mvc;
 
+using EasyTeach.Web.Areas.HelpPage.App_Start;
+
 namespace EasyTeach.Web.Areas.HelpPage
 {
     public class HelpPageAreaRegistration : AreaRegistration

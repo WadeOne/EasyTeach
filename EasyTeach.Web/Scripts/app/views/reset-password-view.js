@@ -10,7 +10,7 @@
         template: template,
         autoRender: true,
         events: {
-            "click #reset-btn": "resetPassword"
+            "submit #reset-password-form": "resetPassword"
         },
         resetPassword: function () {
             var form = this.$('#reset-password-form');
@@ -26,7 +26,7 @@
         resetPasswordSuccess: function (data) {
             window.alert("success: " + data);
         },
-        resetPasswordFail: function (errorData) {
+        resetPasswordFail: function (model, errorData) {
             window.alert(errorData.statusText);
         }
     });

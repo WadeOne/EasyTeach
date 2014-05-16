@@ -1,27 +1,26 @@
 using System.Linq;
 using System.Security.Claims;
-using EasyTeach.Core.Entities;
-using EasyTeach.Core.Enums;
 using EasyTeach.Data.Context;
 using EasyTeach.Data.Entities;
 
 namespace EasyTeach.Data.Migrations
 {
-    using System.Data.Entity;
     using System.Data.Entity.Migrations;
 
     internal sealed class Configuration : DbMigrationsConfiguration<EasyTeachContext>
     {
+        private int _claimId;
+
         public Configuration()
         {
-            Database.SetInitializer(new CreateDatabaseIfNotExists<EasyTeachContext>());
             AutomaticMigrationsEnabled = false;
+            AutomaticMigrationDataLossAllowed = false;
             ContextKey = "EasyTeach.Data.Context.EasyTeachContext";
         }
 
         protected override void Seed(EasyTeachContext context)
         {
-            context.Groups.AddOrUpdate(new Group
+            context.Groups.AddOrUpdate(new GroupDto
             {
                 GroupId = 1,
                 GroupNumber = 1,
@@ -31,7 +30,7 @@ namespace EasyTeach.Data.Migrations
             context.SaveChanges();
 
             context.Users.AddOrUpdate(
-            // password: testMoBiLe13
+                // password: testMoBiLe13
             new UserDto
             {
                 UserId = 2,
@@ -40,8 +39,7 @@ namespace EasyTeach.Data.Migrations
                 FirstName = "Леонид Сергеевич",
                 LastName = "Броневой",
                 PasswordHash = "ALTARCbT6yTe7DSX5LSHgKhBB0t2cR+OPUabn0vmCEmxPBIVT/jb9r64jRVfvpwD5A==",
-                UserType = UserType.Student,
-                Group = context.Groups.Single(g => g.GroupId == 1)
+                GroupId = 1
             },
 
             // password: testMoBiLe13
@@ -52,22 +50,40 @@ namespace EasyTeach.Data.Migrations
                 EmailIsValidated = true,
                 FirstName = "Светлана",
                 LastName = "Панина",
-                PasswordHash = "ALTARCbT6yTe7DSX5LSHgKhBB0t2cR+OPUabn0vmCEmxPBIVT/jb9r64jRVfvpwD5A==",
-                UserType = UserType.Teacher,
-                Group = null
+                PasswordHash = "ALTARCbT6yTe7DSX5LSHgKhBB0t2cR+OPUabn0vmCEmxPBIVT/jb9r64jRVfvpwD5A=="
             });
 
             context.SaveChanges();
 
             context.UserClaims.AddOrUpdate(new UserClaimDto
             {
-                Value = "Teacher",
-                Type = ClaimTypes.Role,
+                UserClaimId = ++_claimId,
+                Value = "Register",
+                Type = "User",
                 ValueType = ClaimValueTypes.String,
                 User = context.Users.Single(u => u.UserId == 1)
             });
 
+            AddClaims(context, 1, "Lesson", new[] { "Create", "Update", "Delete", "GetAll" });
+            AddClaims(context, 1, "Visit", new[] { "Update", "GetAll" });
+
             context.SaveChanges();
+        }
+
+        private void AddClaims(EasyTeachContext context, int userId, string resource, string[] operations)
+        {
+            var user = context.Users.Single(u => u.UserId == userId);
+            foreach (string operation in operations)
+            {
+                context.UserClaims.AddOrUpdate(new UserClaimDto
+                {
+                    UserClaimId = ++_claimId,
+                    Value = operation,
+                    Type = resource,
+                    ValueType = ClaimValueTypes.String,
+                    User = user
+                });
+            }
         }
     }
 }

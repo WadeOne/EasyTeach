@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Security.Claims;
 using System.Threading.Tasks;
-using System.Web;
 using System.Web.Http.Dependencies;
-using Autofac.Integration.WebApi;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Services.UserManagement;
 using Microsoft.Owin.Security;
@@ -16,9 +13,9 @@ namespace EasyTeach.Web.Providers
 {
     public sealed class ApplicationOAuthProvider : OAuthAuthorizationServerProvider
     {
-        private readonly AutofacWebApiDependencyResolver _dependencyResolver;
+        private readonly IDependencyResolver _dependencyResolver;
 
-        public ApplicationOAuthProvider(AutofacWebApiDependencyResolver dependencyResolver)
+        public ApplicationOAuthProvider(IDependencyResolver dependencyResolver)
         {
             if (dependencyResolver == null)
             {

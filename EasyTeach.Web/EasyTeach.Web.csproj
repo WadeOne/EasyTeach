@@ -171,7 +171,9 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Scripts\app\templates\errors\" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -206,7 +208,19 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\GroupController.cs" />
+    <Compile Include="Controllers\LessonController.cs" />
+    <Compile Include="Controllers\VisitController.cs" />
+    <Compile Include="Models\ViewModels\Quiz\EditQuizViewModel.cs" />
+    <Compile Include="Models\ViewModels\Quiz\QuizListingViewModel.cs" />
+    <Compile Include="Models\ViewModels\Quiz\AddQuestionToQuizViewModel.cs" />
+    <Compile Include="Controllers\ApiControllerBase.cs" />
+    <Compile Include="Controllers\ClaimController.cs" />
+    <Compile Include="Models\ViewModels\Quiz\QuestionViewModel.cs" />
+    <Compile Include="Models\ViewModels\Claims\ClaimViewModel.cs" />
+    <Compile Include="Models\ViewModels\Quiz\CreateQuizViewModel.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\QuizController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Filters\SecurityExceptionFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -215,10 +229,17 @@
     <Compile Include="Models\Results\ErrorItem.cs" />
     <Compile Include="Models\Results\UserCreationResult.cs" />
     <Compile Include="Models\ViewModels\ConfirmActionViewModel.cs" />
-    <Compile Include="Models\ViewModels\CreateUserViewModel.cs" />
-    <Compile Include="Models\ViewModels\SetPasswordViewModel.cs" />
+    <Compile Include="Models\ViewModels\Dashboard\Lessons\CreateLessonViewModel.cs" />
+    <Compile Include="Models\ViewModels\Dashboard\Lessons\LessonViewModel.cs" />
+    <Compile Include="Models\ViewModels\Dashboard\Lessons\UpdateLessonViewModel.cs" />
+    <Compile Include="Models\ViewModels\Dashboard\Visits\VisitViewModel.cs" />
+    <Compile Include="Models\ViewModels\Quiz\UpdateQuizViewModel.cs" />
+    <Compile Include="Models\ViewModels\UserManagement\CreateUserViewModel.cs" />
+    <Compile Include="Models\ViewModels\UserManagement\ResetPasswordTokenViewModel.cs" />
+    <Compile Include="Models\ViewModels\UserManagement\SetPasswordViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
+    <Compile Include="Results\EmptyObjectOkResult.cs" />
     <Compile Include="Services\Messaging\Impl\EmailBuilder.cs" />
     <Compile Include="Services\Messaging\Impl\TemplateProvider.cs" />
     <Compile Include="Services\Messaging\Impl\TemplateType.cs" />
@@ -304,7 +325,10 @@
     <Content Include="index.html" />
     <Content Include="Scripts\app\**\*.js" />
     <Content Include="Scripts\app\templates\add-homeworks.html" />
+    <Content Include="Scripts\app\templates\list-homeworks.html" />
     <Content Include="Scripts\app\templates\login.html" />
+    <Content Include="Scripts\app\templates\logout.html" />
+    <Content Include="Scripts\app\templates\quizzes\quiz.html" />
     <Content Include="Scripts\app\templates\register.html" />
     <Content Include="Scripts\app\templates\reset-password.html" />
     <Content Include="Scripts\app\templates\shared\menu-item.html" />
@@ -714,6 +738,7 @@
     </Content>
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
     <Content Include="Content\Site.css" />

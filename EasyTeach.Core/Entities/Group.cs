@@ -3,7 +3,7 @@ using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Core.Entities
 {
-    public class Group
+    public sealed class Group : IGroupModel
     {
         public int GroupId { get; set; }
 
@@ -15,8 +15,8 @@ namespace EasyTeach.Core.Entities
         /// <summary>
         /// University entering year
         /// </summary>
-        public uint Year { get; set; }
+        public int Year { get; set; }
 
-        public virtual ICollection<IUserModel> Students { get; set; }
+        public ICollection<IUserModel> Students { get; set; }
     }
 }

@@ -1,30 +1,37 @@
 ﻿define([
-  'models/base/model',
-  'jquery',
-  'chaplin',
-  'underscore'
-], function (Model, $) {
-	'use strict';
+    'underscore',
+    'backbone',
+    'models/base/model'
+], function (_, Backbone, Model) {
+    'use strict';
 
-	return Model.extend({
-		defaults: {
+    return Model.extend({
+        url: '/Token',
+        defaults: {
+            errorMessage: "",
             username: "",
             password: "",
             grant_type: 'password'
         },
-        sync: function(method, model) {
-            var self = this;
-            return $.ajax({
-                url: '/Token',
-                type: 'POST',
-                contentType: 'application/x-www-form-urlencoded',
-                data: model.attributes,
-                dataType: 'json'
-            }).success(function(data) {
-                self.trigger("success", data);
-            }).fail(function(errorData) {
-                self.trigger("error", errorData);
+        initialize: function () {
+            this.on("sync", this.successHandler);
+        },
+        sync: function (method, model, options) {
+            _.extend(options, {
+                emulateJSON: true,
+                data: model.omit('errorMessage')
             });
+
+            return Backbone.sync.apply(this, arguments);
+        },
+        successHandler: function () {
+            this.publishEvent("!user:login");
+        },
+        modelErrors: {
+            400: function (model, errorData) {
+                var parsed = errorData.responseJSON;
+                this.set("errorMessage", parsed.error_description || parsed.error);
+            }
         }
-	});
+    });
 });

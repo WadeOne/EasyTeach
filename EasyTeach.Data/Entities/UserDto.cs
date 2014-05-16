@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
-using EasyTeach.Core.Entities;
-using EasyTeach.Core.Entities.Data;
-using EasyTeach.Core.Enums;
+using System.ComponentModel.DataAnnotations.Schema;
+using EasyTeach.Core.Entities.Data.Group;
+using EasyTeach.Core.Entities.Data.User;
 using Microsoft.AspNet.Identity;
 
 namespace EasyTeach.Data.Entities
@@ -15,13 +15,19 @@ namespace EasyTeach.Data.Entities
 
         public string LastName { get; set; }
 
-        public Group Group { get; set; }
+        [ForeignKey("Group")]
+        public int? GroupId { get; set; }
+
+        IGroupDto IUserDto.Group
+        {
+            get { return Group; }
+        }
+
+        public GroupDto Group { get; set; }
 
         public string Email { get; set; }
 
         public bool EmailIsValidated { get; set; }
-
-        public UserType UserType { get; set; }
 
         public string PasswordHash { get; set; }
 

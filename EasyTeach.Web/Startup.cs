@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web.Http;
-using Autofac.Integration.WebApi;
 using EasyTeach.Web.Providers;
 using Microsoft.Owin;
 using Microsoft.Owin.Security.Cookies;
@@ -23,7 +22,7 @@ namespace EasyTeach.Web
             var oAuthOptions = new OAuthAuthorizationServerOptions
             {
                 TokenEndpointPath = new PathString("/Token"),
-                Provider = new ApplicationOAuthProvider((AutofacWebApiDependencyResolver)GlobalConfiguration.Configuration.DependencyResolver),
+                Provider = new ApplicationOAuthProvider(GlobalConfiguration.Configuration.DependencyResolver),
                 AccessTokenExpireTimeSpan = TimeSpan.FromDays(14),
                 AllowInsecureHttp = true,
             };

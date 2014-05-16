@@ -13,6 +13,8 @@ namespace EasyTeach.Web
 
             // Use camel case for JSON data.
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            config.Formatters.JsonFormatter.SerializerSettings.DateFormatString = "yyyy-MM-ddTHH:mm:ssZ";
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
 
             config.Routes.MapHttpRoute(
                 name: "DefaultApi",
@@ -20,6 +22,7 @@ namespace EasyTeach.Web
                 defaults: new { id = RouteParameter.Optional }
             );
 
+            config.Filters.Add(new AuthorizeAttribute());
             config.Filters.Add(new SecurityExceptionFilterAttribute());
         }
     }

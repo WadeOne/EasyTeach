@@ -47,37 +47,85 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Data\IAssignedTestDto.cs" />
-    <Compile Include="Entities\Data\IUserDto.cs" />
-    <Compile Include="Entities\Data\IUserTokenDto.cs" />
+    <Compile Include="Entities\Data\Dashboard\ILessonDto.cs" />
+    <Compile Include="Entities\Data\Dashboard\IVisitDto.cs" />
+    <Compile Include="Entities\Data\Group\IGroupDto.cs" />
+    <Compile Include="Entities\Data\Quiz\IAssignedQuizDto.cs" />
+    <Compile Include="Entities\Data\Quiz\IQuestionDto.cs" />
+    <Compile Include="Entities\Data\Quiz\IQuestionItemDto.cs" />
+    <Compile Include="Entities\Services\ICourseModel.cs" />
+    <Compile Include="Entities\Services\IQuestionItemModel.cs" />
+    <Compile Include="Entities\Lesson.cs" />
+    <Compile Include="Entities\QuestionModel.cs" />
+    <Compile Include="Entities\QuestionItemModel.cs" />
+    <Compile Include="Entities\Data\User\IUserClaimDto.cs" />
+    <Compile Include="Entities\Data\User\IUserDto.cs" />
+    <Compile Include="Entities\Data\User\IUserTokenDto.cs" />
     <Compile Include="Entities\Group.cs" />
+    <Compile Include="Entities\Services\ILessonModel.cs" />
+    <Compile Include="Entities\Services\IGroupModel.cs" />
     <Compile Include="Entities\Services\IQuestionModel.cs" />
+    <Compile Include="Entities\Services\IScoreModel.cs" />
+    <Compile Include="Entities\Services\ITaskAssetModel.cs" />
+    <Compile Include="Entities\Services\ITaskModel.cs" />
+    <Compile Include="Entities\Services\ITaskVariantModel.cs" />
+    <Compile Include="Entities\Services\IVisitModel.cs" />
     <Compile Include="Entities\Services\IUserIdentityModel.cs" />
     <Compile Include="Entities\Services\IUserModel.cs" />
-    <Compile Include="Entities\TestModel.cs" />
+<<<<<<< HEAD
+    <Compile Include="Entities\Quiz.cs" />
+    <Compile Include="Entities\Services\IUserTaskVariantModel.cs" />
+=======
+    <Compile Include="Entities\QuizModel.cs" />
+    <Compile Include="Entities\Services\IVariantProgressModel.cs" />
+>>>>>>> 70211e85b55d67b8ecdc34aee29cac82d992f957
     <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\Visit.cs" />
+    <Compile Include="Enums\ProgressStatus.cs" />
+    <Compile Include="Enums\QuestionType.cs" />
     <Compile Include="Enums\UserType.cs" />
+    <Compile Include="Enums\VisitStatus.cs" />
+    <Compile Include="Helpers\AsyncHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Entities\Data\ITestDto.cs" />
-    <Compile Include="Repositories\ITestsRepository.cs" />
+    <Compile Include="Entities\Data\Quiz\IQuizDto.cs" />
+    <Compile Include="Repositories\ILessonRepository.cs" />
+    <Compile Include="Repositories\IQuizRepository.cs" />
+    <Compile Include="Repositories\IUserClaimRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\IUserTokenRepository.cs" />
-    <Compile Include="Repositories\Mappers\IUserDtoMapper.cs" />
-    <Compile Include="Repositories\Mappers\IUserTokenDtoMapper.cs" />
+    <Compile Include="Repositories\IVisitRepository.cs" />
+    <Compile Include="Repositories\Mappers\Dashboard\ILessonDtoMapper.cs" />
+    <Compile Include="Repositories\Mappers\Dashboard\IVisitDtoMapper.cs" />
+    <Compile Include="Repositories\Mappers\QuizManagement\IQuestionDtoMapper.cs" />
+    <Compile Include="Repositories\Mappers\UserManagement\IUserClaimDtoMapper.cs" />
+    <Compile Include="Repositories\Mappers\UserManagement\IUserDtoMapper.cs" />
+    <Compile Include="Repositories\Mappers\UserManagement\IUserTokenDtoMapper.cs" />
     <Compile Include="Security\ClaimsAuthorizationManager.cs" />
+    <Compile Include="Services\Base\Exceptions\EntityNotFoundException.cs" />
     <Compile Include="Services\Base\Exceptions\ModelValidationException.cs" />
+    <Compile Include="Services\Claim\IClaimService.cs" />
+    <Compile Include="Services\Claim\Impl\ClaimService.cs" />
+    <Compile Include="Services\Dashboard\Exceptions\InvalidLessonException.cs" />
+    <Compile Include="Services\Dashboard\Exceptions\InvalidVisitException.cs" />
+    <Compile Include="Services\Dashboard\Exceptions\LessonDateOverlappingException.cs" />
+    <Compile Include="Services\Dashboard\ILessonService.cs" />
+    <Compile Include="Services\Dashboard\Impl\AuthLessonServiceWrapper.cs" />
+    <Compile Include="Services\Dashboard\Impl\LessonService.cs" />
+    <Compile Include="Services\Dashboard\Impl\VisitService.cs" />
+    <Compile Include="Services\Dashboard\IVisitService.cs" />
     <Compile Include="Services\Messaging\Email.cs" />
     <Compile Include="Services\Messaging\IEmailBuilder.cs" />
     <Compile Include="Services\Messaging\IEmailService.cs" />
     <Compile Include="Services\Messaging\Impl\EmailService.cs" />
     <Compile Include="Services\Messaging\Impl\IdentityMessageService.cs" />
-    <Compile Include="Repositories\Mappers\ITestDtoMapper.cs" />
+    <Compile Include="Repositories\Mappers\QuizManagement\IQuizDtoMapper.cs" />
     <Compile Include="Entities\Services\IAssignedTestModel.cs" />
-    <Compile Include="Services\Tests\Exceptions\InvalidAssignedTestException.cs" />
-    <Compile Include="Services\Tests\Impl\TestsManagementService.cs" />
-    <Compile Include="Services\Tests\Exceptions\InvalidTestException.cs" />
-    <Compile Include="Services\Tests\ITestsManagementService.cs" />
-    <Compile Include="Entities\Services\ITestModel.cs" />
+    <Compile Include="Services\Quiz\Exceptions\InvalidAddQuestionException.cs" />
+    <Compile Include="Services\Quiz\Exceptions\InvalidAssignedTestException.cs" />
+    <Compile Include="Services\Quiz\Impl\QuizManagementService.cs" />
+    <Compile Include="Services\Quiz\Exceptions\InvalidQuizException.cs" />
+    <Compile Include="Services\Quiz\IQuizManagementService.cs" />
+    <Compile Include="Entities\Services\IQuizModel.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidSetPasswordOperationException.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidEmailConfirmationOperationException.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidResetPasswordOperationException.cs" />
@@ -88,14 +136,11 @@
     <Compile Include="Services\UserManagement\Impl\UserTokenProvider.cs" />
     <Compile Include="Services\UserManagement\Impl\UserValidator.cs" />
     <Compile Include="Services\UserManagement\IUserService.cs" />
-<<<<<<< HEAD
     <Compile Include="Validation\Attributes\UniqueEmailAttribute.cs" />
-=======
     <Compile Include="Validation\Attributes\ComparisonAttribute.cs" />
     <Compile Include="Validation\Attributes\NotEmptyCollectionAttribute.cs" />
->>>>>>> master
-    <Compile Include="Validation\EntityValidator.cs" />
-    <Compile Include="Validation\IErrorsAddable.cs" />
+    <Compile Include="Validation\EntityValidator\EntityValidationResult.cs" />
+    <Compile Include="Validation\EntityValidator\EntityValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

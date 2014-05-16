@@ -1,27 +1,20 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.Design;
 using System.Net.Http;
 using System.Reflection;
+using System.Security.Claims;
 using System.Web;
 using System.Web.Http;
-using System.Web.Http.Dependencies;
-using System.Web.Mvc;
-
 using Autofac;
-using Autofac.Core;
 using Autofac.Integration.WebApi;
-using EasyTeach.Core.Entities.Data;
-using EasyTeach.Core.Repositories;
-using EasyTeach.Core.Validation.Attributes;
+using EasyTeach.Core.Entities.Data.User;
+using EasyTeach.Core.Services.Dashboard;
+using EasyTeach.Core.Services.Dashboard.Impl;
+using EasyTeach.Core.Validation.EntityValidator;
 using EasyTeach.Data.Context;
 using EasyTeach.Web.Areas.HelpPage;
 using Microsoft.AspNet.Identity;
 using Microsoft.Owin.Security;
-
-using UrlHelper = System.Web.Http.Routing.UrlHelper;
-using HttpDependencyResolver = System.Web.Http.Dependencies.IDependencyResolver;
-
 
 namespace EasyTeach.Web
 {
@@ -39,16 +32,35 @@ namespace EasyTeach.Web
                 Assembly.Load("EasyTeach.Core"))
                 .AsImplementedInterfaces()
                 .AsSelf()
-                .Except<EasyTeachContext>(x => x.AsSelf().InstancePerApiRequest())
-                .Except<XmlDocumentationProvider>();
+                .Except<EasyTeachContext>(x => x.AsSelf()) //TODO: find a way to create EF context one per API request
+                .Except<XmlDocumentationProvider>()
+                .Except<LessonService>()
+                .Except<AuthLessonServiceWrapper>();
 
-            builder.Register<Func<IAuthenticationManager>>(c => () => c.Resolve<HttpRequestMessage>().GetOwinContext().Authentication).InstancePerApiRequest();
-            
+            builder.Register<Func<IAuthenticationManager>>(c => () =>
+            {
+                HttpRequestMessage message = ResolveRequestMessage();
+                return message.GetOwinContext().Authentication;
+            }).InstancePerApiRequest();
+
+            builder.Register(c =>
+            {
+                HttpRequestMessage message = ResolveRequestMessage();
+                return (ClaimsPrincipal)message.GetOwinContext().Request.User;
+            });
             builder.Register<Func<object, ValidationContext>>(c => o => new ValidationContext(o, new Adapter(), null));
-            
             builder.RegisterType<UserManager<IUserDto, int>>().AsSelf().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues);
-
             builder.RegisterHttpRequestMessage(GlobalConfiguration.Configuration);
+            builder.RegisterType<LessonService>().Named<ILessonService>("lessonService");
+            builder.RegisterDecorator<ILessonService>(
+                (c, inner) =>
+                    new AuthLessonServiceWrapper(
+                        inner,
+                        c.Resolve<ClaimsPrincipal>(),
+                        c.Resolve<EntityValidator>(),
+                        c.Resolve<IUserStore<IUserDto, int>>(),
+                        c.Resolve<Core.Security.ClaimsAuthorizationManager>()),
+                "lessonService");
 
             if (beforeBuild != null)
             {
@@ -60,12 +72,16 @@ namespace EasyTeach.Web
             GlobalConfiguration.Configuration.DependencyResolver = resolver;
         }
 
-        private class Adapter : IServiceProvider
+        private static HttpRequestMessage ResolveRequestMessage()
+        {
+            return (HttpRequestMessage)HttpContext.Current.Items["MS_HttpRequestMessage"];
+        }
+
+        private sealed class Adapter : IServiceProvider
         {
             public object GetService(Type serviceType)
             {
-                var message = HttpContext.Current.Items["MS_HttpRequestMessage"] as HttpRequestMessage;
-
+                HttpRequestMessage message = ResolveRequestMessage();
                 return message.GetDependencyScope().GetService(serviceType);
             }
         }

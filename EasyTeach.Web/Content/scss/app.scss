@@ -39,170 +39,308 @@
 //   "foundation/components/offcanvas",
 //   "foundation/components/visibility";
 
-html {
-
-}
-
 html, body {
-    height: 100%;
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
+		height: 100%;
+		width: 100%;
+		margin: 0px;
+		padding: 0px;
 }
 header {
 	background: #5bb5d7;
 	.logo {
 		color: #ffffff;
-		padding: 20px 0.9375rem;
-		font-size: 28px;
 		font-weight: bold;
 	}
 }
 ul {
-  margin-bottom: 0;
+	margin-bottom: 0;
+}
+textarea {
+	resize: none;
+}
+input {
+	-moz-appearance: none;
+	appearance: none;
 }
 
 .page-wrapper {
-     background: rgba(224, 228, 204, 0.3);
-    .page-content {
-      .columns{
-        padding: 0;
-      } 
-    	.row {
-    		padding-top: 30px;
-    	}
-    	label {
-    		font-size: 20px;
-       	}
-       	.login-wrapper {
-       		margin: 30px 0;
-       	}
-       	.image-container {
-       		margin: 30px 0;
-       	}
-    }
+		 background: rgba(224, 228, 204, 0.3);
+		.page-content {
+			.row {
+				padding-top: 30px;
+				#user-registration-form {
+					.row {
+						padding-top: 0px;
+						margin-left: 0px;
+						margin-right: 0px;
+					}
+				}
+			}
+			label {
+				font-size: 20px;
+			}
+			.login-wrapper {
+				margin: 30px 0;
+			}
+			.image-container {
+				margin: 30px 0;
+			}
+		}
 }
 
-/*grid */
-.custom-button {
+// login 
+
+// logout button
+#logout-btn {
+	display: inline-block;
+	float: right;
+	color: white;
+	font-weight: bold;
+	font-size: 1rem;
+}
+
+// grid
+.custom-btn {
 	width: 180px;
 	background: #67cac7;
 	color: #ffffff;
 	font-size: 20px;
 	margin-bottom: 20px;
 }
-.logout-button {
-	float: right;
-	margin-top: 10px;
+
+#create-user-btn {
+	margin-left: 0.9375rem;
+	margin-right: 0.9375rem;
 }
 
-/*homeworks page*/
+// homeworks page
 .tabs-content {
-  .accordion {
-    .content {
-      ul{
-        li{
-          margin-bottom: 5px;
-        }
-      }
-    }
-  }
+	.accordion {
+		.content {
+			ul{
+				li{
+					margin-bottom: 5px;
+				}
+			}
+		}
+	}
 }
-.download-all-homeworks-button {
-  float: right;
-  margin-right: 10px;
+.download-all-homeworks-btn {
+	float: right;
+	margin-right: 10px;
 }
-.download-single-homework-button {
-  float: right;
-  margin-right: 30px;
+.download-single-homework-btn {
+	float: right;
+	margin-right: 30px;
 }
 
 .loader {
-  position: relative;
-  min-height: 200px;
-  &:after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 2;
-    width: 100%;
-    height: 100%;
-    background: rgb(138, 138, 138) url('../image/loader.gif') no-repeat 50%;
-    opacity: .1;
-  }
+	position: relative;
+	min-height: 200px;
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background: rgba(0,0,0,0.9);
+		z-index: 1000;
+	}
+	&:after {
+		content: "";
+		position: absolute;
+		top: 0;
+		left: 0;
+		z-index: 1500;
+		width: 100%;
+		height: 100%;
+		background: rgb(138, 138, 138) url('../image/loader.gif') no-repeat 50%;
+		opacity: .1;
+	}
 }
 
 .top-bar .row {
-  max-width: 62.5rem;
+	max-width: 62.5rem;
 }
 
 
 // add homeworks page
 .file-upload {
-  display: block;
-  position: relative;
-  overflow: hidden;
-  font-size: 1rem;
-  height: 2em;
-  line-height: 2em ;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  box-shadow: 0 0 5px rgba(0,0,0,0.1);
-  transition: box-shadow 0.1s linear;
-  margin-bottom: 30px;
-  input[type=file]{
-    position: absolute;
-    top: 0;
-    opacity: 0;
-  }
-  .choose-file-button {
-    display: block;
-    float: right;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    width: 8em;
-    height: 100%;
-    text-align: center;
-    background: #f38630;
-    color: #ffffff;
-    font-size: 1rem;
-  }
-  mark {
-    display: block;
-    cursor: pointer; 
-    background: transparent;
-    padding-left: 1em;
-    color: #cccccc;
-    font-size: 1rem;
-  }
+	display: block;
+	position: relative;
+	overflow: hidden;
+	font-size: 1rem;
+	height: 2em;
+	line-height: 2em ;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	box-shadow: 0 0 5px rgba(0,0,0,0.1);
+	transition: box-shadow 0.1s linear;
+	margin-bottom: 30px;
+	input[type=file]{
+		position: absolute;
+		top: 0;
+		opacity: 0;
+	}
+	.choose-file-btn {
+		display: block;
+		float: right;
+		box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		width: 8em;
+		height: 100%;
+		text-align: center;
+		background: #f38630;
+		color: #ffffff;
+		font-size: 1rem;
+	}
+	mark {
+		display: block;
+		cursor: pointer; 
+		background: transparent;
+		padding-left: 1em;
+		color: #cccccc;
+		font-size: 1rem;
+	}
 }
 .add-homework-wrapper {
-  textarea {
-    display: inline-block;
-  }
-  #add-homework-button {
-    vertical-align: top;
-  }
+	textarea {
+		display: inline-block;
+	}
 }
 
-//registartion page
+// registartion page
 .registration-page {
-  .columns {
-    padding: 0;
-  }  
+	.columns {
+		padding: 0;
+	}  
 }
 
-//common elements
-.easy-teach-button {
-  display: inline-block;
-  padding: 15px 20px;
-  background: #f38630;
-  color: #ffffff;
-  text-align: center;
-  white-space: nowrap;
-  &:hover{
-    background: #fa6900;
-    color: #ffffff;
-  }
+// common elements
+.easy-teach-btn {
+	display: inline-block;
+	padding: 15px 20px;
+	background: #f38630;
+	color: #ffffff;
+	text-align: center;
+	white-space: nowrap;
+	&:hover{
+		background: #fa6900;
+		color: #ffffff;
+	}
+	&:focus {
+		outline: none;
+		background: #fa6900;
+	}
+}
+
+// error style 
+.error-message {
+	color: red;
+	margin-bottom: 20px;
+}
+
+// test page
+.quizz-page {
+	h1 {
+		font-size: 26px;
+		color: #4d4d4d;
+	}
+	ul {
+		list-style: none;
+		margin-left: 0rem;
+		color: #4d4d4d;
+	}
+	#add-quiz-btn, .test-name-wrap {
+		display: inline-block;
+		vertical-align: middle;
+	}
+	
+	.test-name-wrap {
+		float: none;
+		margin-left: -0.9375rem;
+		input {
+			margin: 0;
+		}
+	}
+}
+
+// error page
+.error-page h1 {
+	font-size: 54px;
+	text-align: center;
+	.status {
+		display: block;
+		color: #f38630;
+		font-size: 250px;
+		line-height: 1em;
+	}
+}
+
+@media #{$small-only} { 
+	header {
+		.logo {
+			padding: 1rem 0.5rem;
+			font-size: 20px;
+		}
+	}
+
+	#login-form label {
+		display: none;
+		&.header {
+			display: block;
+			margin-bottom: 15px;
+			text-align: center;
+		}
+	}
+
+	.add-homework-btn, #login-btn, #create-user-btn {
+		width: 100%;
+	}
+
+	.reset-link {
+		text-align: center;
+	}
+
+	//error page
+	.error-page h1 {
+		font-size: 35px;
+		.status {
+			font-size: 175px;
+		}
+	}
+
+	/*logout button*/
+	#logout-btn {
+		margin-top: 20px; 
+	}
+	.quizz-page {
+		#add-quiz-btn {
+			margin:20px 0 10px 0px;
+		}
+	}
+
+}
+@media #{$medium-up} {
+	header {
+		.logo {
+			padding: 1rem 0rem;
+			font-size: 28px;
+		}
+	}
+
+	/*logout button*/
+	#logout-btn {
+		margin-top: 25px;  
+	}
+	
+	.quizz-page {
+		#add-quiz-btn {
+			margin:0 0 0 15px;
+		}
+	}
+}
+
+@media #{$large-only} { 
 }

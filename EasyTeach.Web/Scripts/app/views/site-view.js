@@ -10,12 +10,6 @@ define([
         main: '#content',
         menu: '#menu'
     },
-    template: template,
-    events: {
-        "click .top-bar .menu-icon": "openMobileMenu"
-    },
-    openMobileMenu: function() {
-        this.$('.top-bar').toggleClass('expanded');
-    }
+    template: template
   });
 });

@@ -1,4 +1,4 @@
-﻿namespace EasyTeach.Web.Controllers
+﻿namespace EasyTeach.Web.Models.ViewModels.Quiz
 {
     public class AssignToGroupModel
     {

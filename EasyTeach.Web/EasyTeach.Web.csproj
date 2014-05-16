@@ -171,9 +171,7 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Scripts\app\templates\errors\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="App_Start\AutofacConfig.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -211,6 +209,7 @@
     <Compile Include="Controllers\GroupController.cs" />
     <Compile Include="Controllers\LessonController.cs" />
     <Compile Include="Controllers\VisitController.cs" />
+    <Compile Include="Models\ViewModels\Quiz\AssignToGroupModel.cs" />
     <Compile Include="Models\ViewModels\Quiz\EditQuizViewModel.cs" />
     <Compile Include="Models\ViewModels\Quiz\QuizListingViewModel.cs" />
     <Compile Include="Models\ViewModels\Quiz\AddQuestionToQuizViewModel.cs" />
@@ -325,12 +324,19 @@
     <Content Include="index.html" />
     <Content Include="Scripts\app\**\*.js" />
     <Content Include="Scripts\app\templates\add-homeworks.html" />
+    <Content Include="Scripts\app\templates\confirm-email.html" />
+    <Content Include="Scripts\app\templates\errors\error-page.html" />
     <Content Include="Scripts\app\templates\list-homeworks.html" />
     <Content Include="Scripts\app\templates\login.html" />
     <Content Include="Scripts\app\templates\logout.html" />
+    <Content Include="Scripts\app\templates\quizzes\add-quiz.html" />
+    <Content Include="Scripts\app\templates\quizzes\edit-quiz.html" />
+    <Content Include="Scripts\app\templates\quizzes\quiz-list-item.html" />
+    <Content Include="Scripts\app\templates\quizzes\quiz-list.html" />
     <Content Include="Scripts\app\templates\quizzes\quiz.html" />
     <Content Include="Scripts\app\templates\register.html" />
     <Content Include="Scripts\app\templates\reset-password.html" />
+    <Content Include="Scripts\app\templates\set-password.html" />
     <Content Include="Scripts\app\templates\shared\menu-item.html" />
     <Content Include="Scripts\app\templates\shared\menu.html" />
     <Content Include="Scripts\app\templates\shared\site.html" />

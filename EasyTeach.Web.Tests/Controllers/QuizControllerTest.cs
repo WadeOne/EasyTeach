@@ -181,5 +181,26 @@ namespace EasyTeach.Web.Tests.Controllers
         //{
             
         //}
+
+        
+        //[Fact]
+        //public void AssignToGroup_ValidAssignment_TestAssignedToGroup()
+        //{
+        //    var assignmentViewModel = new AssignToGroupQuizViewModel
+        //                              {
+        //                                  QuizId = 1,
+        //                                  StartDateTime = DateTime.Now,
+        //                                  EndDateTime = DateTime.Now.AddDays(1),
+        //                                  Group =
+        //                                      new AssignToGoupViewModel
+        //                                      {
+        //                                          Year = 2009,
+        //                                          GroupNumber = 2
+        //                                      }
+        //                              };
+        //    var assignment = A.Fake<IAssignedTestModel>();
+        //    A.CallTo(() => assignment.Quiz).Returns(new Quiz { QuizId = 1 });
+        //    A.CallTo(() => assignment.Group).Returns(assignmentViewModel.Group.ToGroup());
+        //}
     }
 }

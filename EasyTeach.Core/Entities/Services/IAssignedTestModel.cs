@@ -6,7 +6,7 @@ namespace EasyTeach.Core.Entities.Services
     {
         IQuizModel Quiz { get; }
 
-        Group Group { get; }
+        IGroupModel Group { get; }
 
         DateTime? StartDate { get; }
 

@@ -102,7 +102,7 @@ namespace EasyTeach.Web.Controllers
             }
         }
 
-        public Task<IHttpActionResult> AssignToGroup(AssignToGroupModel assignToGroupModel)
+        public Task<IHttpActionResult> AssignToGroup(AssignToGroupQuizViewModel assignToGroupQuizViewModel)
         {
             throw new NotImplementedException();
         }

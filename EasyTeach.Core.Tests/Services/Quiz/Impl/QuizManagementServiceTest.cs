@@ -272,13 +272,14 @@ namespace EasyTeach.Core.Tests.Services.Quiz.Impl
             Assert.True(exception.ValidationResults.Any(x => x.ErrorMessage == string.Format("Quiz with id {0} doesn't exist", quizId)));
         }
 
+
         private class AssignedTestModel : IAssignedTestModel
         {
             [Required]
             public IQuizModel Quiz { get; set; }
 
             [Required]
-            public Group Group { get; set; }
+            public IGroupModel Group { get; set; }
             
             public DateTime? StartDate { get; set; }
             

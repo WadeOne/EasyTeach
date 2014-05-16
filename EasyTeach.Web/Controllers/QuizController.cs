@@ -116,8 +116,4 @@ namespace EasyTeach.Web.Controllers
             return BadRequest(ModelState);
         }
     }
-
-    public class AssignToGroupModel
-    {
-    }
 }

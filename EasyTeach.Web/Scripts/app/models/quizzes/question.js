@@ -9,7 +9,7 @@ define([
 			"quizId": 1,
 			"question": {
 				"questionText": "sample string 1",
-				"questionType": "sample string 2",
+				"questionType": "MultiSelect",
 				"questionItems": [
 			  		{
 						"text": "sample string 1",

@@ -7,7 +7,8 @@ define([
 
 	return Backbone.Model.extend({
 		defaults: {
-			name: ""
+			name: "",
+			description: ""
 		},
 		initialize: function () {
 			this.on('add', this.addHandler);

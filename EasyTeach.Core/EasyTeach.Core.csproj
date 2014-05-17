@@ -83,6 +83,7 @@
     <Compile Include="Helpers\AsyncHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Entities\Data\Quiz\IQuizDto.cs" />
+    <Compile Include="Repositories\IGroupRepository.cs" />
     <Compile Include="Repositories\ILessonRepository.cs" />
     <Compile Include="Repositories\IQuizRepository.cs" />
     <Compile Include="Repositories\IUserClaimRepository.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Repositories\Mappers\Dashboard\ILessonDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\Dashboard\IVisitDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\QuizManagement\IQuestionDtoMapper.cs" />
+    <Compile Include="Repositories\Mappers\UserManagement\IGroupDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\UserManagement\IUserClaimDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\UserManagement\IUserDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\UserManagement\IUserTokenDtoMapper.cs" />
@@ -126,6 +128,8 @@
     <Compile Include="Services\UserManagement\Exceptions\InvalidEmailConfirmationOperationException.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidResetPasswordOperationException.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidUserDataException.cs" />
+    <Compile Include="Services\UserManagement\IGroupService.cs" />
+    <Compile Include="Services\UserManagement\Impl\GroupService.cs" />
     <Compile Include="Services\UserManagement\Impl\PasswordValidator.cs" />
     <Compile Include="Services\UserManagement\Impl\UserService.cs" />
     <Compile Include="Services\UserManagement\Impl\UserStore.cs" />

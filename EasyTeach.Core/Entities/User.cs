@@ -19,7 +19,7 @@ namespace EasyTeach.Core.Entities
         public IGroupModel Group { get; set; }
 
         [Required]  
-        [RegularExpression(@"[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}", ErrorMessage = "Not valid Email address")]
+        [RegularExpression(@"[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,4})", ErrorMessage = "Not valid Email address")]
         [UniqueEmail]
         public string Email { get; set; }
     }

@@ -15,9 +15,10 @@ define([
             "click .easy-teach-btn": "setPassword"
         },
         setPassword: function () {
-            utils.redirectTo("home#setPassword", {
-                resetPasswordToken: this.model.get("resetPasswordToken")
-            });
+            utils.redirectTo(
+                "home#setPassword",
+                _.pick(this.model.toJSON(), ["userId", "resetPasswordToken"])
+            );
 
             return false;
         }

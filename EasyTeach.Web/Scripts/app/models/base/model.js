@@ -39,7 +39,7 @@ define([
 		}
 	};
 
-	var resolveErrorHandler = function (statusCode) {
+	var resolveErrorHandler = function (model, statusCode) {
 		var handler = this.modelErrors;
 
 		if (_.isFunction(handler)) {
@@ -49,7 +49,9 @@ define([
 
 			if (_.isFunction(codeHandler)) {
 				return codeHandler;
-			}
+			} else if (_.isFunction(model[codeHandler.toString()])){
+                return model[codeHandler.toString()];
+            }
 		}
 
 		return defaultErrorHandler;
@@ -57,7 +59,7 @@ define([
 
 	var errorHandler = function (model, response) {
 		resolveErrorHandler
-			.call(this, response.status)
+			.call(this, model, response.status)
 			.call(this, model, utils.api.getError(response));
 	};
 

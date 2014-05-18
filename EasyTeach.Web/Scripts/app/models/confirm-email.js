@@ -22,11 +22,10 @@
         constructor: function() {
             var args = Array.prototype.slice.call(arguments);
             var obj = args[0];
-            var params = ["userId", "confirmEmailToken"];
 
-            this.sync = makeSync(_.pick(obj, params));
+            this.sync = makeSync(_.pick(obj, ["userId", "confirmEmailToken"]));
 
-            args[0] = _.omit(obj, params);
+            args[0] = _.omit(obj, "confirmEmailToken");
             Model.apply(this, args);
         },
         initialize: function() {

@@ -16,6 +16,12 @@ namespace EasyTeach.Core.Entities.Services
         /// </summary>
         int Year { get; }
 
+        string ContactEmail { get; }
+
+        string ContactPhone { get; }
+
+        string ContactName { get; }
+
         ICollection<IUserModel> Students { get; }
     }
 }

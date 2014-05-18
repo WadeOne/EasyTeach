@@ -82,9 +82,11 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repostitories\GroupRespository.cs" />
     <Compile Include="Repostitories\LessonRepository.cs" />
     <Compile Include="Repostitories\Mappers\Dashboard\LessonDtoMapper.cs" />
     <Compile Include="Repostitories\Mappers\Dashboard\VisitDtoMapper.cs" />
+    <Compile Include="Repostitories\Mappers\GroupDtoMapper.cs" />
     <Compile Include="Repostitories\Mappers\MappingConfiguration.cs" />
     <Compile Include="Repostitories\Mappers\QuizManagement\QuestionDtoMapper.cs" />
     <Compile Include="Repostitories\Mappers\QuizManagement\QuizDtoMapper.cs" />

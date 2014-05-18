@@ -16,9 +16,9 @@ define([
 			questionList: '#question-list'
 		},
 		render: function () {
+			this.constructor.__super__.render.apply(this, arguments);
 			this.subview('quizDescription', new QuizDescriptionView({region: 'description', model: this.model}));
 			this.subview('questionList', new QuestionListView({region: 'questionList'}));
-			this.constructor.__super__.render.apply(this, arguments);
 		}
 	});
 });

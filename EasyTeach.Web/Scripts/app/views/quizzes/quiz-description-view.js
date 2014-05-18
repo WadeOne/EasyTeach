@@ -15,14 +15,14 @@ define([
 			'click #update-quiz': 'updateQuiz'
 		},
 		render: function () {
-			debugger;
+			var self = this;
 			this.model.fetch({
 				success: function (response) {
-					console.log(response);
+					var html = _.template(self.template);
+					self.$el.html(html(response.attributes));
 				}
 			})
 
-			//this.constructor.__super__.render.apply(this, arguments);
 		},
 		updateQuiz: function (ev) {
 			ev.preventDefault()
@@ -30,7 +30,8 @@ define([
 				form = this.$('#edit-quiz-form');
 			quiz.save(serialize.form(form),{
 				success: function () {
-					console.log('success')
+					/*var html = _.template(template, {}),
+					console.log('success')*/
 				}
 			})
 		}

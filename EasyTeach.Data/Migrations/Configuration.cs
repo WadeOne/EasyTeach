@@ -13,8 +13,8 @@ namespace EasyTeach.Data.Migrations
 
         public Configuration()
         {
-            AutomaticMigrationsEnabled = false;
-            AutomaticMigrationDataLossAllowed = false;
+            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
             ContextKey = "EasyTeach.Data.Context.EasyTeachContext";
         }
 

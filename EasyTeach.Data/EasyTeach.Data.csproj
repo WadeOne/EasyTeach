@@ -88,6 +88,7 @@
     <Compile Include="Repostitories\Mappers\Dashboard\VisitDtoMapper.cs" />
     <Compile Include="Repostitories\Mappers\GroupDtoMapper.cs" />
     <Compile Include="Repostitories\Mappers\MappingConfiguration.cs" />
+    <Compile Include="Repostitories\Mappers\QuizManagement\AssignedQuizDtoMapper.cs" />
     <Compile Include="Repostitories\Mappers\QuizManagement\QuestionDtoMapper.cs" />
     <Compile Include="Repostitories\Mappers\QuizManagement\QuizDtoMapper.cs" />
     <Compile Include="Repostitories\Mappers\UserManagement\UserClaimDtoMapper.cs" />

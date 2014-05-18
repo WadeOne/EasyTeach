@@ -3,10 +3,10 @@ using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Core.Repositories.Mappers.QuizManagement
 {
-    public interface IQuizDtoMapper
+    public interface IAssignedQuizDtoMapper
     {
-        IQuizDto Map(IQuizModel quiz);
+        IAssignedQuizDto Map(IAssignedQuizModel model);
 
-        IQuizModel Map(IQuizDto quizDto);
+        IAssignedQuizModel Map(IAssignedQuizDto dto);
     }
 }

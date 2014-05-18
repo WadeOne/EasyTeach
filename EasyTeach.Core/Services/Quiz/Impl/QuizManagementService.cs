@@ -24,7 +24,10 @@ namespace EasyTeach.Core.Services.Quiz.Impl
 
         public readonly IQuestionDtoMapper _questionDtoMapper;
 
-        public QuizManagementService(IQuizRepository quizRepository, IQuizDtoMapper quizDtoMapper, EntityValidator entityValidator, IQuestionDtoMapper questionDtoMapper)
+        public readonly IAssignedQuizDtoMapper _assignedQuizDtoMapper;
+
+        public QuizManagementService(IQuizRepository quizRepository, IQuizDtoMapper quizDtoMapper, EntityValidator entityValidator, 
+            IQuestionDtoMapper questionDtoMapper, IAssignedQuizDtoMapper assignedQuizDtoMapper)
         {
             if (quizRepository == null)
             {
@@ -46,10 +49,16 @@ namespace EasyTeach.Core.Services.Quiz.Impl
                 throw new ArgumentNullException("questionDtoMapper");
             }
 
+            if (assignedQuizDtoMapper == null)
+            {
+                throw new ArgumentNullException("assignedQuizDtoMapper");
+            }
+
             _quizRepository = quizRepository;
             _quizDtoMapper = quizDtoMapper;
             _entityValidator = entityValidator;
             _questionDtoMapper = questionDtoMapper;
+            _assignedQuizDtoMapper = assignedQuizDtoMapper;
         }
 
         public async Task<IQuizModel> CreateQuizAsync(IQuizModel newQuiz)
@@ -93,7 +102,7 @@ namespace EasyTeach.Core.Services.Quiz.Impl
                 throw new InvalidAssignedTestException(result.ValidationResults);
             }
 
-            var assignmentDto = _quizDtoMapper.Map(assignedQuiz);
+            var assignmentDto = _assignedQuizDtoMapper.Map(assignedQuiz);
 
             await _quizRepository.AssignQuizAsync(assignmentDto);
         }

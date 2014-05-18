@@ -120,7 +120,7 @@ namespace EasyTeach.Web.Controllers
                         EndDate = assignToGroupQuizViewModel.EndDateTime,
                         StartDate = assignToGroupQuizViewModel.StartDateTime,
                         Quiz = quiz,
-                        Group = group,
+                        Group = (Group)group,
                         NumberOfQuestions = assignToGroupQuizViewModel.NumberOfQuestions
                     });
             }

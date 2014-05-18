@@ -49,6 +49,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             _entityValidator = entityValidator;
             _validationContextFactory = validationContextFactory ?? (o => new ValidationContext(o, null, null));
             _userManager = userManager;
+            _userManager.UserValidator = new UserValidator<IUserDto, int>(_userManager){AllowOnlyAlphanumericUserNames = false};
         }
 
         public async Task CreateUserAsync(IUserModel newUser)

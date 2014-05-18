@@ -11,7 +11,7 @@ define([
 	return Collection.extend({
 		model: QuizListItem,
 		//url: 'api/Quiz'
-		url:  '../api/Quiz'
+		url:  '/api/Quiz'
 		//localStorage: new Backbone.LocalStorage('quizzes')
 	});
 });

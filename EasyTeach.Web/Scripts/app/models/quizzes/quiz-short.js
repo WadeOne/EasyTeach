@@ -13,7 +13,7 @@ define([
 			//]
 		},
 		//url: 'api/Quiz'
-		urlRoot:  '../api/Quiz'
+		urlRoot:  '/api/Quiz'
 		/*initialize: function () {
 			this.on('add', this.addHandler);
 			this.on('change', this.changeHandler);

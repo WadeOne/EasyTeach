@@ -1,6 +1,13 @@
 <form class="question-form" method="post">
 	<input type="text" name="questionText" placeholder="Вопрос">
+	<label>Выберите тип</label>
+	<span><input type="radio" value="Text">Текст</span>
+	<span><input type="radio" value="Select">Radio button</span>
+	<span><input type="radio" value="MultiSelect">Checkbox</span>
 	<input type="hidden" name="questionType" value="Text">
-	<input type="text" class="answer" placeholder="Ответ">
+	<div class="answer-container">
+		<!-- <input type="text" class="answer" placeholder="Ответ"> -->
+		<span class="add-option-btn" style="display:none">Add</span>
+	</div>
 	<button class="update-question-btn easy-teach-btn">Обновить вопрос</button>
 </form>

@@ -25,10 +25,10 @@ define([
 			this.view = new ResetPasswordView({ region: 'main' });
 		},
 		confirmEmail: function (params) {
-            this.view = new ConfirmEmailView({ region: 'main', data: params, model: new ConfirmEmail()});
+            this.view = new ConfirmEmailView({ region: 'main', model: new ConfirmEmail(params)});
 		},
-		setPassword: function () {
-			this.view = new SetPasswordView({ region: 'main', model: new SetPassword()});
+		setPassword: function (params) {
+			this.view = new SetPasswordView({ region: 'main', model: new SetPassword(params)});
 		},
 		addHomeworks: function () {
 			this.view = new AddHomeworksView({ region: 'main' });

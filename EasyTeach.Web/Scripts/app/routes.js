@@ -9,7 +9,7 @@ define(function() {
 		match('error', 'error#error');
 		match('reset', 'home#resetPassword');
 		//match('confirmEmail/:userId', 'home#confirmEmail', {constraints: {id: /^\d+$/}} );
-		match('confirmEmail/:userId/:token', 'home#confirmEmail', {constraints: {userId: /^\d+$/}});
+		match('confirmEmail/:userId/:confirmEmailToken', 'home#confirmEmail', {constraints: {userId: /^\d+$/}});
 		match('setPassword', 'home#setPassword');
 		match('students/grades', 'students#grades');
 		match('addhomeworks', 'home#addHomeworks');

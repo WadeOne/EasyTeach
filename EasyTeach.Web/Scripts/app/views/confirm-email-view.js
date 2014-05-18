@@ -1,8 +1,9 @@
 define([
 	'underscore',
 	'views/base/view',
-	'text!templates/confirm-email.html'
-], function (_, View, template) {
+	'text!templates/confirm-email.html',
+    'lib/utils'
+], function (_, View, template, utils) {
     'use strict';
 
     return View.extend({
@@ -10,13 +11,15 @@ define([
         className: 'row',
         template: _.template(template),
         autoRender: true,
-        initialize: function (params) {
-            var data = params.data;
-            var userData = {
-                userId: data.userId,
-                confirmEmailToken: data.token
-            };
-            this.model.save(userData);
+        events: {
+            "click .easy-teach-btn": "setPassword"
+        },
+        setPassword: function () {
+            utils.redirectTo("home#setPassword", {
+                resetPasswordToken: this.model.get("resetPasswordToken")
+            });
+
+            return false;
         }
     });
 });

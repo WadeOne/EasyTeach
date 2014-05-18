@@ -1,8 +1,8 @@
 define([
+    'underscore',
 	'views/base/view',
-	'models/user',
 	'text!../templates/register.html'
-], function (View, User, template) {
+], function (_, View, template) {
     'use strict';
 
 	return View.extend({
@@ -14,27 +14,27 @@ define([
 			"submit #user-registration-form": "createUser"
 		},
 		initialize: function() {
-			this.model = new User();
 			this.listenTo(this.model, "sync", this.registerSuccess);
 			this.listenTo(this.model, "error", this.render);
 		},
 		createUser: function (ev) {
-			var form = $(ev.currentTarget),
-			userInfo = {
-				firstName: form.find('input[name=firstName]').val(),
-				lastName: form.find('input[name=lastName]').val(),
-				group: {
-					groupNumber: form.find('input[name=groupNumber]').val(),
-					year: form.find('input[name=year]').val()
-				},
-				email: form.find('input[name=email]').val()
-			};
+			var form = this.$(ev.currentTarget),
+                userInfo = {
+                    firstName: form.find('input[name=firstName]').val(),
+                    lastName: form.find('input[name=lastName]').val(),
+                    group: {
+                        groupNumber: form.find('input[name=groupNumber]').val(),
+                        year: form.find('input[name=year]').val()
+                    },
+                    email: form.find('input[name=email]').val()
+                };
 
 			this.model.save(userInfo);
 			return false;
 		},
-		registerSuccess: function(){
-			alert("success");
+		registerSuccess: function() {
+            this.model.set(this.model.defaults);
+			window.alert("success");
 		}
 	});
 });

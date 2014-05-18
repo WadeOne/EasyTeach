@@ -1,16 +1,17 @@
 define([
-	'underscore',
+    'underscore',
+    'jquery',
 	'chaplin',
-	'lib/utils',
-], function(_, Chaplin, utils) {
+	'lib/utils'
+], function(_, $, Chaplin, utils) {
 	'use strict';
 
-		$(document).ajaxStart(function() {
-			$('body').addClass('loader');
-		});
-		$(document).ajaxComplete(function() {
-			$('body').removeClass('loader');
-		});
+    $(document).ajaxStart(function() {
+        $('body').addClass('loader');
+    });
+    $(document).ajaxComplete(function() {
+        $('body').removeClass('loader');
+    });
 
 	var defaultErrorHandler = function (model, response) {
 		var status = response.status;
@@ -57,7 +58,7 @@ define([
 	var errorHandler = function (model, response) {
 		resolveErrorHandler
 			.call(this, response.status)
-			.apply(this, arguments);
+			.call(this, model, utils.api.getError(response));
 	};
 
 	return Chaplin.Model.extend({

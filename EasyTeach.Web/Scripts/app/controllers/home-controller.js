@@ -8,9 +8,10 @@ define([
 	'views/add-homeworks-view',
     'views/student-homeworks-view',
 	'models/user-login',
+    'models/user',
     'models/confirm-email',
     'models/set-password'
-], function(Controller, LoginView, RegisterView, ResetPasswordView, ConfirmEmailView, SetPasswordView, AddHomeworksView, StudentHomeworksView, UserLogin, ConfirmEmail, SetPassword) {
+], function(Controller, LoginView, RegisterView, ResetPasswordView, ConfirmEmailView, SetPasswordView, AddHomeworksView, StudentHomeworksView, UserLogin, User, ConfirmEmail, SetPassword) {
 	"use strict";
 
 	return Controller.extend({
@@ -18,13 +19,13 @@ define([
 			this.view = new LoginView({region: 'main', model: new UserLogin()});
 		},
 		register: function () {
-			this.view = new RegisterView({region: 'main'});
+			this.view = new RegisterView({region: 'main', model: new User()});
 		},
 		resetPassword: function () {
 			this.view = new ResetPasswordView({ region: 'main' });
 		},
 		confirmEmail: function (params) {
-		    this.view = new ConfirmEmailView({ region: 'main', data: params, model: new ConfirmEmail()});
+            this.view = new ConfirmEmailView({ region: 'main', data: params, model: new ConfirmEmail()});
 		},
 		setPassword: function () {
 			this.view = new SetPasswordView({ region: 'main', model: new SetPassword()});
@@ -33,7 +34,7 @@ define([
 			this.view = new AddHomeworksView({ region: 'main' });
 		},
 		showHomeworks: function () {
-		    this.view = new StudentHomeworksView({ region: 'main' });
+            this.view = new StudentHomeworksView({ region: 'main' });
 		}
 	});
 });

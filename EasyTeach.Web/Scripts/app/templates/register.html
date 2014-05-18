@@ -4,19 +4,19 @@
         <div class="large-6 medium-6 columns">
             <div class="large-8 medium-8">
                 <label>Год</label>
-                <input type="number" placeholder="Год" name="year" required />
+                <input type="number" placeholder="Год" name="year" value="<%= obj.group.year %>" required />
                 <label>Группа</label>
-                <input type="number" min="1" placeholder="Группа" name="groupNumber" required />
+                <input type="number" min="1" placeholder="Группа" name="groupNumber" value="<%= obj.group.groupNumber %>" required />
                 <label>Почта</label>
-                <input type="email" placeholder="Почта" name="email" required />
+                <input type="email" placeholder="Почта" name="email" value="<%= obj.email %>" required />
             </div>
         </div>
         <div class="large-6 medium-6 columns">
             <div class="large-8 medium-8">
                 <label>Имя</label>
-                <input type="text" placeholder="Имя" name="firstName" required />
+                <input type="text" placeholder="Имя" name="firstName" value="<%= obj.firstName %>" required />
                 <label>Фамилия</label>
-                <input type="text" placeholder="Фамилия" name="lastName" required />
+                <input type="text" placeholder="Фамилия" name="lastName" value="<%= obj.lastName %>" required />
             </div>
         </div>
     </div>

@@ -1,12 +1,14 @@
 ﻿define([
+    "underscore",
+    "backbone",
     'models/base/model'
-], function (Model) {
+], function (_, Backbone, Model) {
     'use strict';
 
     return Model.extend({
         url: '../api/User/SetPassword',
         defaults: {
-            errorMessage: "",
+            errorMessage: ""
         },
         sync: function (method, model, options) {
             _.extend(options, {
@@ -17,9 +19,8 @@
             return Backbone.sync.apply(this, arguments);
         },
         modelErrors: {
-            400: function (model, errorData) {
-                var parsed = errorData.responseJSON;
-                this.set("errorMessage", parsed.message);
+            400: function (model, error) {
+                this.set("errorMessage", error.message);
             }
         }
     });

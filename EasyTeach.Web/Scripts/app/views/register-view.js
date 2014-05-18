@@ -30,10 +30,12 @@ define([
                 };
 
 			this.model.save(userInfo);
-			return false;
+            return false;
 		},
 		registerSuccess: function() {
             this.model.set(this.model.defaults);
+            this.render();
+
 			window.alert("success");
 		}
 	});

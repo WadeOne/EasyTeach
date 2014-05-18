@@ -14,20 +14,22 @@ namespace EasyTeach.Core.Entities
 
         public string Description { get; set; }
 
+        public bool IsDeprecated { get; set; }
+
         public ICollection<Question> Questions { get; set; }
 
-        public bool IsDeprecated { get; set; }
+        public ICollection<AssignedQuiz> Assignments { get; set; }
+
+        IEnumerable<IAssignedQuizModel> IQuizModel.Assignments
+        {
+            get { return Assignments; }
+            set { Assignments = (ICollection<AssignedQuiz>) value; }
+        }
 
         IEnumerable<IQuestionModel> IQuizModel.Questions
         {
-            get
-            {
-                return Questions;
-            }
-            set
-            {
-                Questions = (ICollection<Question>)value;
-            }
+            get { return Questions; }
+            set { Questions = (ICollection<Question>)value; }
         }
     }
 }

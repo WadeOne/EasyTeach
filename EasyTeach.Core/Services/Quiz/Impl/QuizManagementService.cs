@@ -72,25 +72,33 @@ namespace EasyTeach.Core.Services.Quiz.Impl
             return _quizDtoMapper.Map(newQuizDto);
         }
 
-        public async Task AssignQuizToGroupAsync(IAssignedTestModel assignedTest)
+        public async Task AssignQuizToGroupAsync(IAssignedQuizModel assignedQuiz)
         {
-            if (assignedTest == null)
+            if (assignedQuiz == null)
             {
-                throw new ArgumentNullException("assignedTest");
+                throw new ArgumentNullException("assignedQuiz");
             }
 
-            var result = _entityValidator.ValidateEntity(assignedTest);
-            if (result != null)
+            if (assignedQuiz.EndDate < assignedQuiz.StartDate)
+            {
+                throw new InvalidAssignedTestException(new List<ValidationResult>
+                {
+                    new ValidationResult("Quiz can't be finished before it starts", new[] {"StartDate", "EndDate"})
+                });
+            }
+
+            var result = _entityValidator.ValidateEntity(assignedQuiz);
+            if (result.IsValid == false)
             {
                 throw new InvalidAssignedTestException(result.ValidationResults);
             }
 
-            var assignmentDto = _quizDtoMapper.Map(assignedTest);
+            var assignmentDto = _quizDtoMapper.Map(assignedQuiz);
 
             await _quizRepository.AssignQuizAsync(assignmentDto);
         }
 
-        public async Task AddQuestionToQuiz(int quizId, IQuestionModel question)
+        public async Task AddQuestionToQuizAsync(int quizId, IQuestionModel question)
         {
             if (question == null)
             {

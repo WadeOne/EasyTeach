@@ -14,6 +14,7 @@ using EasyTeach.Web.Models.ViewModels.Quiz;
 namespace EasyTeach.Web.Controllers
 {
     [RoutePrefix("api/Quiz")]
+    [AllowAnonymous]
     public class QuizController : ApiControllerBase
     {
         private readonly IQuizManagementService _quizManagementService;
@@ -57,7 +58,9 @@ namespace EasyTeach.Web.Controllers
         {
             throw new NotImplementedException();
         }
-        
+
+        [Route("AddQuestion")]
+        [HttpPost]
         public async Task<IHttpActionResult> AddQuestion(AddQuestionToQuizViewModel questionToQuizViewModel)
         {
             if (questionToQuizViewModel == null)
@@ -67,7 +70,7 @@ namespace EasyTeach.Web.Controllers
             try
             {
                 var questionModel = questionToQuizViewModel.Question.ToQuestion();
-                await _quizManagementService.AddQuestionToQuiz(questionToQuizViewModel.QuizId, questionModel);
+                await _quizManagementService.AddQuestionToQuizAsync(questionToQuizViewModel.QuizId, questionModel);
             }
             catch (InvalidAddQuestionException exception)
             {
@@ -78,16 +81,16 @@ namespace EasyTeach.Web.Controllers
 
         [Route("")]
         [HttpGet]
-        public async Task<IEnumerable<QuizListingViewModel>> Get()
+        public async Task<IQueryable<QuizListingViewModel>> Get()
         {
             var quizes = await _quizManagementService.GetAllQuizes();
 
             return
                 quizes.Select(
-                    x => new QuizListingViewModel { QuizId = x.QuizId, Name = x.Name, Description = x.Description });
+                    x => new QuizListingViewModel { QuizId = x.QuizId, Name = x.Name, Description = x.Description }).AsQueryable();
         }
 
-        [Route("")]
+        [Route("{quizId}")]
         [HttpGet]
         public async Task<IHttpActionResult> Get(int quizId)
         {
@@ -102,9 +105,30 @@ namespace EasyTeach.Web.Controllers
             }
         }
 
-        public Task<IHttpActionResult> AssignToGroup(AssignToGroupQuizViewModel assignToGroupQuizViewModel)
+        [Route("AssignToGroup")]
+        [HttpPost]
+        public async Task<IHttpActionResult> AssignToGroup(AssignToGroupQuizViewModel assignToGroupQuizViewModel)
         {
-            throw new NotImplementedException();
+            var quiz = new Quiz {QuizId = assignToGroupQuizViewModel.QuizId};
+            var group = assignToGroupQuizViewModel.Group.ToGroup();
+
+            try
+            {
+                await
+                    _quizManagementService.AssignQuizToGroupAsync(new AssignedQuiz
+                    {
+                        EndDate = assignToGroupQuizViewModel.EndDateTime,
+                        StartDate = assignToGroupQuizViewModel.StartDateTime,
+                        Quiz = quiz,
+                        Group = group,
+                        NumberOfQuestions = assignToGroupQuizViewModel.NumberOfQuestions
+                    });
+            }
+            catch (InvalidAssignedTestException exception)
+            {
+                return BadRequestWithModelState(exception);
+            }
+            return Ok();
         }
 
         private IHttpActionResult BadRequestWithModelState(ModelValidationException exception)

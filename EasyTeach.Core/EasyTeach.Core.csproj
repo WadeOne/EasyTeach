@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\AssignedQuiz.cs" />
     <Compile Include="Entities\Data\Dashboard\ILessonDto.cs" />
     <Compile Include="Entities\Data\Dashboard\IVisitDto.cs" />
     <Compile Include="Entities\Data\Group\IGroupDto.cs" />
@@ -115,7 +116,7 @@
     <Compile Include="Services\Messaging\Impl\EmailService.cs" />
     <Compile Include="Services\Messaging\Impl\IdentityMessageService.cs" />
     <Compile Include="Repositories\Mappers\QuizManagement\IQuizDtoMapper.cs" />
-    <Compile Include="Entities\Services\IAssignedTestModel.cs" />
+    <Compile Include="Entities\Services\IAssignedQuizModel.cs" />
     <Compile Include="Services\Quiz\Exceptions\InvalidAddQuestionException.cs" />
     <Compile Include="Services\Quiz\Exceptions\InvalidAssignedTestException.cs" />
     <Compile Include="Services\Quiz\Impl\QuizManagementService.cs" />

@@ -9,6 +9,6 @@ namespace EasyTeach.Core.Repositories.Mappers.QuizManagement
 
         IQuizModel Map(IQuizDto quizDto);
 
-        IAssignedQuizDto Map(IAssignedTestModel assignedTest);
+        IAssignedQuizDto Map(IAssignedQuizModel assignedQuiz);
     }
 }

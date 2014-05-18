@@ -104,14 +104,14 @@ namespace EasyTeach.Web.Tests.Controllers
 
             var result = _controller.AddQuestion(_addQuestionToQuizViewModel).Result as OkResult;
             Assert.NotNull(result);
-            A.CallTo(() => _quizManagementService.AddQuestionToQuiz(_addQuestionToQuizViewModel.QuizId, _question)).MustHaveHappened();
+            A.CallTo(() => _quizManagementService.AddQuestionToQuizAsync(_addQuestionToQuizViewModel.QuizId, _question)).MustHaveHappened();
         }
 
         [Fact]
         public void AddQuestion_InvalidModel_QuestionNotAddedResultSent()
         {
             A.CallTo(() => _questionViewModel.ToQuestion()).Returns(_question);
-            A.CallTo(() => _quizManagementService.AddQuestionToQuiz(_addQuestionToQuizViewModel.QuizId, _question))
+            A.CallTo(() => _quizManagementService.AddQuestionToQuizAsync(_addQuestionToQuizViewModel.QuizId, _question))
                 .Throws(new InvalidAddQuestionException(new List<ValidationResult>
                                                         {
                                                             new ValidationResult("QuizId is required", new []{"QuizId"})
@@ -119,7 +119,7 @@ namespace EasyTeach.Web.Tests.Controllers
 
             var result = _controller.AddQuestion(_addQuestionToQuizViewModel).Result as InvalidModelStateResult;
             Assert.NotNull(result);
-            A.CallTo(() => _quizManagementService.AddQuestionToQuiz(_addQuestionToQuizViewModel.QuizId, _question)).MustHaveHappened();
+            A.CallTo(() => _quizManagementService.AddQuestionToQuizAsync(_addQuestionToQuizViewModel.QuizId, _question)).MustHaveHappened();
             Assert.True(result.ModelState.Any(ms => ms.Key == "QuizId"));
         }
 
@@ -182,25 +182,53 @@ namespace EasyTeach.Web.Tests.Controllers
             
         //}
 
+
+        [Fact]
+        public void AssignToGroup_ValidAssignment_TestAssignedToGroup()
+        {
+            var groupViewModel = A.Fake<AssignToGoupViewModel>();
+            A.CallTo(() => groupViewModel.Year).Returns(2009);
+            A.CallTo(() => groupViewModel.GroupNumber).Returns(2);
+            var startDate = DateTime.Now;
+            var endDate = DateTime.Now.AddDays(1);
+            var assignmentViewModel = new AssignToGroupQuizViewModel
+                                      {
+                                          QuizId = 1,
+                                          StartDateTime = startDate,
+                                          EndDateTime = endDate,
+                                          Group = groupViewModel
+                                      };
+            A.CallTo(() => groupViewModel.ToGroup()).Returns(new Group());
+
+            var result = _controller.AssignToGroup(assignmentViewModel).Result as OkResult;
+
+            Assert.NotNull(result);
+            A.CallTo(() => _quizManagementService.AssignQuizToGroupAsync(A<IAssignedQuizModel>.Ignored)).MustHaveHappened();
+        }
+
+        [Fact]
+        public void AssignToGroup_InvalidAssignment_TestNotAssigned()
+        {
+            var groupViewModel = A.Fake<AssignToGoupViewModel>();
+            var startDate = DateTime.Now;
+            var endDate = DateTime.Now.AddDays(1);
+            var assignmentViewModel = new AssignToGroupQuizViewModel
+            {
+                QuizId = 1,
+                StartDateTime = startDate,
+                EndDateTime = endDate,
+                Group = groupViewModel
+            };
+            A.CallTo(() => groupViewModel.ToGroup()).Returns(new Group());
+            A.CallTo(() => _quizManagementService.AssignQuizToGroupAsync(A<IAssignedQuizModel>.Ignored))
+                .Throws(new InvalidAssignedTestException(new List<ValidationResult>
+                {
+                    new ValidationResult("Quiz is required", new[] {"Quiz"})
+                }));
+
+            var result = _controller.AssignToGroup(assignmentViewModel).Result as InvalidModelStateResult;
         
-        //[Fact]
-        //public void AssignToGroup_ValidAssignment_TestAssignedToGroup()
-        //{
-        //    var assignmentViewModel = new AssignToGroupQuizViewModel
-        //                              {
-        //                                  QuizId = 1,
-        //                                  StartDateTime = DateTime.Now,
-        //                                  EndDateTime = DateTime.Now.AddDays(1),
-        //                                  Group =
-        //                                      new AssignToGoupViewModel
-        //                                      {
-        //                                          Year = 2009,
-        //                                          GroupNumber = 2
-        //                                      }
-        //                              };
-        //    var assignment = A.Fake<IAssignedTestModel>();
-        //    A.CallTo(() => assignment.Quiz).Returns(new Quiz { QuizId = 1 });
-        //    A.CallTo(() => assignment.Group).Returns(assignmentViewModel.Group.ToGroup());
-        //}
+            Assert.NotNull(result);
+        }
     }
 }

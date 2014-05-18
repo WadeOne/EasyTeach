@@ -29,7 +29,7 @@ namespace EasyTeach.Data.Repostitories.Mappers.QuizManagement
             return result;
         }
 
-        public IAssignedQuizDto Map(IAssignedTestModel assignedTest)
+        public IAssignedQuizDto Map(IAssignedQuizModel assignedQuiz)
         {
             throw new System.NotImplementedException();
         }

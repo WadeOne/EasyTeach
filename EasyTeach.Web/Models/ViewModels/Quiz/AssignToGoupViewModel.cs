@@ -1,16 +1,17 @@
-﻿using EasyTeach.Core.Entities.Services;
+﻿using EasyTeach.Core.Entities;
+using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Web.Models.ViewModels.Quiz
 {
     public class AssignToGoupViewModel
     {
-        public int Year { get; set; }
+        public virtual int Year { get; set; }
 
-        public int GroupNumber { get; set; }
+        public virtual int GroupNumber { get; set; }
 
         public virtual IGroupModel ToGroup()
         {
-            throw new System.NotImplementedException();
+            return new Group {GroupNumber = GroupNumber, Year = Year};
         }
     }
 }

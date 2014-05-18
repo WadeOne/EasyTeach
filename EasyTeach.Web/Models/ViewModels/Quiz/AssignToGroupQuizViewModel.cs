@@ -11,5 +11,7 @@ namespace EasyTeach.Web.Models.ViewModels.Quiz
         public DateTime? StartDateTime { get; set; }
         
         public DateTime? EndDateTime { get; set; }
+
+        public int NumberOfQuestions { get; set; }
     }
 }

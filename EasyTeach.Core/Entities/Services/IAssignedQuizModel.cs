@@ -2,7 +2,7 @@
 
 namespace EasyTeach.Core.Entities.Services
 {
-    public interface IAssignedTestModel
+    public interface IAssignedQuizModel
     {
         IQuizModel Quiz { get; }
 
@@ -11,5 +11,7 @@ namespace EasyTeach.Core.Entities.Services
         DateTime? StartDate { get; }
 
         DateTime? EndDate { get; }
+
+        int NumberOfQuestions { get; }
     }
 }

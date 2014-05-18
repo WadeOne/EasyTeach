@@ -62,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Context\EasyTeachContext.cs" />
+    <Compile Include="Entities\AssignedQuizDto.cs" />
     <Compile Include="Entities\GroupDto.cs" />
     <Compile Include="Entities\LessonDto.cs" />
     <Compile Include="Entities\QuestionDto.cs" />
@@ -74,6 +75,10 @@
     <Compile Include="Migrations\201405160949170_Initial.cs" />
     <Compile Include="Migrations\201405160949170_Initial.Designer.cs">
       <DependentUpon>201405160949170_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201405172210435_TestAssignments.cs" />
+    <Compile Include="Migrations\201405172210435_TestAssignments.Designer.cs">
+      <DependentUpon>201405172210435_TestAssignments.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -110,6 +115,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201405160949170_Initial.resx">
       <DependentUpon>201405160949170_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201405172210435_TestAssignments.resx">
+      <DependentUpon>201405172210435_TestAssignments.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

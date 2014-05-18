@@ -10,7 +10,9 @@ namespace EasyTeach.Core.Entities.Services
 
         string Description { get; }
 
-        IEnumerable<IQuestionModel> Questions { get; set;  }
+        IEnumerable<IQuestionModel> Questions { get; set; }
+
+        IEnumerable<IAssignedQuizModel> Assignments { get; set; }
 
         bool IsDeprecated { get; set; }
     }

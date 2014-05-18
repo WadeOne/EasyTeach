@@ -44,9 +44,18 @@ namespace EasyTeach.Data.Repostitories
             await _context.SaveChangesAsync();
         }
 
-        public Task AssignQuizAsync(IAssignedQuizDto assignedQuiz)
+        public async Task AssignQuizAsync(IAssignedQuizDto assignedQuiz)
         {
-            throw new System.NotImplementedException();
+            if (assignedQuiz == null)
+            {
+                throw new ArgumentNullException("assignedQuiz");
+            }
+
+            var group = await _context.Groups.FirstOrDefaultAsync(x => x.GroupNumber == assignedQuiz.Group.GroupNumber && x.Year == assignedQuiz.Group.Year);
+            var assignedQuizDto = (AssignedQuizDto)assignedQuiz;
+            assignedQuizDto.Group = group;
+            _context.AssignedQuizes.Add(assignedQuizDto);
+            await _context.SaveChangesAsync();
         }
 
         public async Task AddQuestionToQuiz(int quizId, IQuestionDto question)

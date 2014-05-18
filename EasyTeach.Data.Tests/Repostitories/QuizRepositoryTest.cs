@@ -122,5 +122,29 @@ namespace EasyTeach.Data.Tests.Repostitories
             Assert.True(result.Count() == 1);
             Assert.True(result.Any(x => x.QuizId == quiz.QuizId && x.Name == quiz.Name && x.Description == quiz.Description));
         }
+
+        [Fact]
+        public void AssignQuizAsync_NullAssignment_ExceptionThrown()
+        {
+            var aggregateException = Assert.Throws<AggregateException>(() => _quizRepository.AssignQuizAsync(null).Wait());
+            var exception = aggregateException.GetBaseException() as ArgumentNullException;
+
+            Assert.NotNull(exception);
+        }
+
+        [Fact]
+        public void AssignQuizAsync_NotNullAssignment_Saved()
+        {
+            var assignments = A.Fake<IDbSet<AssignedQuizDto>>();
+            var groups = new FakeDbSet<GroupDto> {new GroupDto {GroupId = 1, GroupNumber = 1, Year = 2009}};
+            A.CallTo(() => _context.AssignedQuizes).Returns(assignments);
+            A.CallTo(() => _context.Groups).Returns(groups);
+            var assignment = new AssignedQuizDto {Group = new GroupDto {Year = 2014, GroupNumber = 1}};
+
+            _quizRepository.AssignQuizAsync(assignment).Wait();
+
+            A.CallTo(() => assignments.Add(assignment)).MustHaveHappened();
+            A.CallTo(() => _context.SaveChangesAsync()).MustHaveHappened();
+        }
     }
 }

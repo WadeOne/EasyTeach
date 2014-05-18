@@ -10,9 +10,9 @@ namespace EasyTeach.Core.Services.Quiz
     {
         Task<IQuizModel> CreateQuizAsync(IQuizModel newQuiz);
 
-        Task AssignQuizToGroupAsync(IAssignedTestModel assignedTest);
+        Task AssignQuizToGroupAsync(IAssignedQuizModel assignedQuiz);
 
-        Task AddQuestionToQuiz(int quizId, IQuestionModel question);
+        Task AddQuestionToQuizAsync(int quizId, IQuestionModel question);
 
         Task<IEnumerable<IQuizModel>> GetAllQuizes();
 

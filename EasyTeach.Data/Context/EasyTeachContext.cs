@@ -21,6 +21,8 @@ namespace EasyTeach.Data.Context
 
         public virtual IDbSet<QuestionItemDto> QuestionItems { get; set; }
 
+        public virtual IDbSet<AssignedQuizDto> AssignedQuizes { get; set; }
+
         public virtual IDbSet<LessonDto> Lessons { get; set; }
 
         public virtual IDbSet<VisitDto> Visits { get; set; }

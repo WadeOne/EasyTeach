@@ -9,7 +9,10 @@ define([
         url: '../api/User/Register',
         defaults: {
             errorMessage: "",
-            group: {}
+            group: {},
+            email: "",
+            firstName: "",
+            lastName: ""
         },
         sync: function (method, model, options) {
             _.extend(options, {

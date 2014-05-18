@@ -45,6 +45,12 @@ html, body {
 		margin: 0px;
 		padding: 0px;
 }
+.columns {
+	padding: 0;
+}
+.column {
+	padding: 0;
+}
 header {
 	background: #5bb5d7;
 	.logo {
@@ -109,7 +115,7 @@ input {
 }
 
 #create-user-btn {
-	margin-left: 0.9375rem;
+	margin-left: 0rem;
 	margin-right: 0.9375rem;
 }
 
@@ -265,7 +271,6 @@ input {
 	
 	.test-name-wrap {
 		float: none;
-		margin-left: -0.9375rem;
 		input {
 			margin: 0;
 		}

@@ -93,6 +93,7 @@
     <Compile Include="Repositories\IVisitRepository.cs" />
     <Compile Include="Repositories\Mappers\Dashboard\ILessonDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\Dashboard\IVisitDtoMapper.cs" />
+    <Compile Include="Repositories\Mappers\QuizManagement\IAssignedQuizDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\QuizManagement\IQuestionDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\UserManagement\IGroupDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\UserManagement\IUserClaimDtoMapper.cs" />

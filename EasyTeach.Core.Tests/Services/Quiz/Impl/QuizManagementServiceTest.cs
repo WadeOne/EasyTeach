@@ -30,6 +30,7 @@ namespace EasyTeach.Core.Tests.Services.Quiz.Impl
 
         private readonly IQuizModel _validQuiz;
         private readonly AssignedQuizModel _validAssignment;
+        private readonly IAssignedQuizDtoMapper _assignedQuizDtoMapper;
 
 
         public QuizManagementServiceTest()
@@ -38,8 +39,9 @@ namespace EasyTeach.Core.Tests.Services.Quiz.Impl
             _quizRepository = A.Fake<IQuizRepository>();
             _quizDtoMapper = A.Fake<IQuizDtoMapper>();
             _questionDtoMapper = A.Fake<IQuestionDtoMapper>();
+            _assignedQuizDtoMapper = A.Fake<IAssignedQuizDtoMapper>();
             
-            _quizManagementService = new QuizManagementService(_quizRepository, _quizDtoMapper, _entityValidator, _questionDtoMapper);
+            _quizManagementService = new QuizManagementService(_quizRepository, _quizDtoMapper, _entityValidator, _questionDtoMapper, _assignedQuizDtoMapper);
 
             _validQuiz = new Entities.Quiz
                          {
@@ -124,14 +126,14 @@ namespace EasyTeach.Core.Tests.Services.Quiz.Impl
         public void AssignTestToGroupAsync_ValidAssignment_Assigned()
         {
             var assignmentDto = A.Fake<IAssignedQuizDto>();
-            A.CallTo(() => _quizDtoMapper.Map(_validAssignment)).Returns(assignmentDto);
+            A.CallTo(() => _assignedQuizDtoMapper.Map(_validAssignment)).Returns(assignmentDto);
             A.CallTo(
                 () =>
                     _entityValidator.ValidateEntity<IAssignedQuizModel>(_validAssignment)).Returns(new EntityValidationResult(true));
 
             Assert.DoesNotThrow(() => _quizManagementService.AssignQuizToGroupAsync(_validAssignment));
 
-            A.CallTo(() => _quizDtoMapper.Map(_validAssignment)).MustHaveHappened();
+            A.CallTo(() => _assignedQuizDtoMapper.Map(_validAssignment)).MustHaveHappened();
             A.CallTo(() => _quizRepository.AssignQuizAsync(assignmentDto)).MustHaveHappened();
         }
 

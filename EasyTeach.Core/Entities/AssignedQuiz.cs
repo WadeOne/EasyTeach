@@ -6,11 +6,21 @@ namespace EasyTeach.Core.Entities
 {
     public class AssignedQuiz : IAssignedQuizModel
     {
-        [Required]
-        public IQuizModel Quiz { get; set; }
+        public Quiz Quiz { get; set; }
+
+        public Group Group { get; set; }
 
         [Required]
-        public IGroupModel Group { get; set; }
+        IQuizModel IAssignedQuizModel.Quiz
+        {
+            get { return Quiz; }
+        }
+
+        [Required]
+        IGroupModel IAssignedQuizModel.Group
+        {
+            get { return Group; }
+        }
 
         public DateTime? StartDate { get; set; }
 

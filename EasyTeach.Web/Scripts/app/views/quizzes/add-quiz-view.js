@@ -4,12 +4,12 @@ define([
 	'models/quizzes/quiz-short',
 	'models/quizzes/quiz-list',
 	'text!templates/quizzes/add-quiz.html',
-	'localStorage'
-], function(_, View, QuizModel, QuizList, template) {
+	'lib/utils'
+], function(_, View, QuizModel, QuizList, template, utils) {
 	'use strict';
 
 	return View.extend({
-		className: 'row',
+		className: 'column',
 		template: template,
 		autoRender: true,
 		events: {
@@ -26,8 +26,7 @@ define([
 
 			quiz.save(userInfo, {
 				success: function (model, response, options) {
-					debugger;
-					console.log(response);
+					utils.redirectTo({url: '/quiz/' + response.quizId})
 				}
 			});
 			return false;

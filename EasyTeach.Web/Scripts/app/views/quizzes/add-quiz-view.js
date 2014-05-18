@@ -9,7 +9,7 @@ define([
 	'use strict';
 
 	return View.extend({
-		className: 'row',
+		className: 'column',
 		template: template,
 		autoRender: true,
 		events: {

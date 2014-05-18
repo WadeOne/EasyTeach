@@ -9,6 +9,7 @@ define([
 
 	return View.extend({
 		container: '#content',
+		className: 'row',
 		template: template,
 		autoRender: true,
 		regions: {

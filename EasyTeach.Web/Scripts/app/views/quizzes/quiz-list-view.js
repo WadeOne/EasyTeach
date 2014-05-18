@@ -8,7 +8,6 @@ define([
 	'use strict';
 
 	return View.extend({
-		className: 'row',
 		itemTemplate: itemTemplate,
 		template: _.template(template),
 		autoRender: true,

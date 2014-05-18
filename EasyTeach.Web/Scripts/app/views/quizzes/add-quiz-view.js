@@ -15,24 +15,22 @@ define([
 		events: {
 			'submit #add-quiz-form': "createQuiz"
 		},
-		initialize: function() {
-			this.model = new QuizModel();
-			//this.listenTo(this.model, "sync", this.registerSuccess);
-		},
 		createQuiz: function (ev) {
-
-			var quizzes = new QuizList();
+			//var quizzes = new QuizList();
 			var form = $(ev.currentTarget),
-			userInfo = {
-				name: form.find('input[name=title]').val()
-			};
-			quizzes.create(userInfo);
+				userInfo = {
+					name: form.find('input[name=title]').val()
+				},
+				quiz = new QuizModel();
+			//quizzes.create(userInfo);
 
-			//this.model.save(userInfo);
+			quiz.save(userInfo, {
+				success: function (model, response, options) {
+					debugger;
+					console.log(response);
+				}
+			});
 			return false;
-		},
-		registerSuccess: function () {
-			console.log(arguments);
 		}
 	});
 });

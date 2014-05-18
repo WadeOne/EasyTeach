@@ -1,7 +1,9 @@
 define([
-  'underscore',
-  'models/base/model'
-], function (_, Model) {
+	'underscore',
+	'models/base/model',
+	'models/quizzes/quiz-short',
+	'localStorage'
+], function (_, Model, QuizModel) {
 	'use strict';
 
 	var items = [
@@ -11,33 +13,61 @@ define([
 				"questionText": "sample string 1",
 				"questionType": "MultiSelect",
 				"questionItems": [
-			  		{
+					{
 						"text": "sample string 1",
 						"isSolution": true
-			  		},
-			  		{
+					},
+					{
 						"text": "sample string 1",
 						"isSolution": true
-			  		}
+					}
 				]
-		  	}
+			}
 		}
 	];
 
 	return Model.extend({
 		defaults: {
-			name: ""
+			"quizId": 0,
+			"question": {
+				"questionText": "",
+				"questionType": "Text",
+				"questionItems": []
+			}
 		},
-		url: "/api/Quiz/Create",
-		save: function(item) {
-			items.push(item);
-			//success callback
-			this.trigger('sync');
+		url: '../api/Quiz/AddQuestion'
+		
+		/*initialize: function () {
+			this.on('add', this.addHandler);
+			this.on('change', this.changeHandler);
+			this.on('remove', this.removeHandler);
+			this.quizModel = new QuizModel();
 		},
-		fetch: function() {
-			return _.each(_.keys(items), function(key) {
-				return items[key];
-			})
-		}
+		addHandler: function (model) {
+			debugger;
+			var data = model.attributes;
+			this.quizModel.save();
+		},
+		changeHandler: function (model) {
+			var question = model.attributes,
+				formData,
+				self = this;
+				var c = new Backbone.Collection();
+					c.localStorage = new Backbone.LocalStorage("quizzes");
+					c.fetch();
+					console.log(c.pluck('id'));
+					debugger;
+				self.quizModel.set({id: question.quizId}).fetch({
+					success: function (model, data) {
+						debugger;
+						data.questions.push(question);
+						self.quizModel.save(data);
+					}
+				});
+		},
+		removeHandler: function () {
+			this.destroy();
+		},
+		localStorage: new Backbone.LocalStorage('quizzes')*/
 	});
 });

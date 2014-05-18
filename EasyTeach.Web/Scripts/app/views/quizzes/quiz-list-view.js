@@ -12,9 +12,6 @@ define([
 		itemTemplate: itemTemplate,
 		template: _.template(template),
 		autoRender: true,
-		events: {
-			'submit #add-quiz-form': "createQuiz"
-		},
 		render: function() {
 			var quizzes = new QuizListModel(),
 				that = this,
@@ -31,15 +28,6 @@ define([
 			});
 
 			return this;
-		},
-		createQuiz: function (ev) {
-			var form = $(ev.currentTarget),
-			userInfo = {
-				name: form.find('input[name=title]').val()
-			};
-
-			this.model.save(userInfo);
-			return false;
 		}
 	});
 });

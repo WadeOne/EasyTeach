@@ -10,6 +10,8 @@ define([
 
 	return Collection.extend({
 		model: QuizListItem,
-		localStorage: new Backbone.LocalStorage('quizzes')
+		//url: 'api/Quiz'
+		url:  '../api/Quiz'
+		//localStorage: new Backbone.LocalStorage('quizzes')
 	});
 });

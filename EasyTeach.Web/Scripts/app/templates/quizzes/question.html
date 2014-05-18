@@ -1,4 +1,6 @@
-<form class="add-question-form">
-	<input type="text" placeholder="Question">
-	<input type="text" placeholder="Answer">
+<form class="question-form" method="post">
+	<input type="text" name="questionText" placeholder="Question">
+	<input type="hidden" name="questionType" value="Text">
+	<input type="text" class="answer" placeholder="Answer">
+	<button class="update-question-btn">Update Question</button>
 </form>

@@ -14,11 +14,25 @@ define([
 			//'submit #edit-quiz-form': 'updateQuiz'
 			'click #update-quiz': 'updateQuiz'
 		},
+		render: function () {
+			debugger;
+			this.model.fetch({
+				success: function (response) {
+					console.log(response);
+				}
+			})
+
+			//this.constructor.__super__.render.apply(this, arguments);
+		},
 		updateQuiz: function (ev) {
 			ev.preventDefault()
 			var quiz = new QuizModel(),
 				form = this.$('#edit-quiz-form');
-			quiz.save(serialize.form(form))
+			quiz.save(serialize.form(form),{
+				success: function () {
+					console.log('success')
+				}
+			})
 		}
 	});
 });

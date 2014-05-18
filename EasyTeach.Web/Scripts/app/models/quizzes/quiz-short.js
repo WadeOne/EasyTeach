@@ -7,10 +7,14 @@ define([
 
 	return Backbone.Model.extend({
 		defaults: {
-			name: "",
-			description: ""
+			//name: "",
+			//description: "",
+			//questions: [
+			//]
 		},
-		initialize: function () {
+		//url: 'api/Quiz'
+		url:  '../api/Quiz'
+		/*initialize: function () {
 			this.on('add', this.addHandler);
 			this.on('change', this.changeHandler);
 			this.on('remove', this.removeHandler);
@@ -24,7 +28,7 @@ define([
 		removeHandler: function () {
 			this.destroy();
 		},
-		localStorage: new Backbone.LocalStorage('quizzes')/*,
+		localStorage: new Backbone.LocalStorage('quizzes')*//*,
 		url: "/api/Quiz/Create"*/
 		/*save: function(item) {
 			items.push(item);

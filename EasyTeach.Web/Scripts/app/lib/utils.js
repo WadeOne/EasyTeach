@@ -1,21 +1,27 @@
 define([
-  'underscore',
-  'chaplin'
+    'underscore',
+    'chaplin'
 ], function(_, Chaplin) {
-  'use strict'
+    'use strict';
 
-  // Application-specific utilities
-  // ------------------------------
+    var api = {
+        getError: function(errorData) {
+            var parsed = errorData.responseJSON || {};
 
-  // Delegate to Chaplin’s utils module
-  var utils = Chaplin.utils.beget(Chaplin.utils);
+            var message = parsed.error_description ||
+                parsed.error ||
+                parsed.message ||
+                "неизвестная ошибка";
 
-  // Add additional application-specific properties and methods
+            return {message: message};
+        }
+    };
 
-  // _(utils).extend({
-  //   someProperty: 'foo',
-  //   someMethod: function() {}
-  // });
+    var utils = Chaplin.utils.beget(Chaplin.utils);
+
+    _(utils).extend({
+        api: api
+    });
 
   return utils;
 });

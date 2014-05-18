@@ -28,9 +28,8 @@
             this.publishEvent("!user:login");
         },
         modelErrors: {
-            400: function (model, errorData) {
-                var parsed = errorData.responseJSON;
-                this.set("errorMessage", parsed.error_description || parsed.error);
+            400: function (model, error) {
+                this.set("errorMessage", error.message);
             }
         }
     });

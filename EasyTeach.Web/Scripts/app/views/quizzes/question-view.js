@@ -4,7 +4,6 @@ define([
 	'views/quizzes/answer-text-view',
 	'models/quizzes/question',
 	'text!templates/quizzes/question.html',
-
 	'text!templates/quizzes/answer-text.html',
 	'text!templates/quizzes/answer-checkbox.html',
 	'text!templates/quizzes/answer-radio.html',
@@ -15,7 +14,8 @@ define([
 	return View.extend({
 		template: template,
 		autoRender: true,
-		container: '#question-wrap',
+		container: '#questions-container',
+		className: 'question-wrap',
 		events: {
 			'click .update-question-btn': 'updateQuestion',
 			'click input[type=radio]': 'chooseType',
@@ -51,30 +51,32 @@ define([
 			})
 		},
 		chooseType: function (ev) {
-			var type = $(ev.currentTarget).val()
+			var type = $(ev.currentTarget).val();
+			debugger;
 			switch(type) {
 				case 'Text':
 					this.$el.find('.answer-container div').remove('');
-					this.subview('answer', new AnswerText({region: 'answer', template: textTemplate, multiple: false}));
-					this.$el.parent().find('.add-option-btn').hide();
+					this.$el.find('.add-option-btn').hide();
+					new AnswerText({template:  textTemplate, container: this.$el.find('.answer-container')});
 					break;
 				case 'Select':
 					this.$el.find('.answer-container div').remove('');
-					this.subview('answer', new AnswerText({region: 'answer', template: radioTemplate, multiple: true}));
-		     		this.$el.parent().find('.add-option-btn').show();
 		     		this.currentTpl = radioTemplate;
+		     		this.currentContainer = this.$el.find('.answer-container');
+					new AnswerText({template: this.currentTpl, container: this.$el.find('.answer-container')});
+		     		this.$el.find('.add-option-btn').show();
 					break;
 				case 'MultiSelect':
 		     		this.$el.find('.answer-container div').remove();
-					this.subview('answer', new AnswerText({region: 'answer', template: checkTemplate, multiple: true}));
-					this.$el.parent().find('.add-option-btn').show();
 					this.currentTpl = checkTemplate;
+					this.currentContainer = this.$el.find('.answer-container');
+					new AnswerText({template: this.currentTpl, container: this.$el.find('.answer-container')});
+					this.$el.find('.add-option-btn').show();
 					break;
 			}
 		},
 		addOption: function (ev) {
-			var flag = this.currentTpl
-			new AnswerText({region: 'answer', template: this.currentTpl});
+			new AnswerText({template: this.currentTpl, container: this.currentContainer});
 		}
 
 	});

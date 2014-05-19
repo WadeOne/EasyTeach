@@ -6,18 +6,15 @@ define([
 
 	return View.extend({
 		autoRender: true,
-		container: '.answer-container',
-		events: {
-			'click .add-option-btn': 'addOption'
-		},
+		/*container: '.answer-container',*/
 		initialize: function(options) {
-		     this.template = options.template;
-		     
-		     // No need for the next line, as Backbone does it automatically also:
-		     // this.model = options.model;
+			debugger
+			this.constructor.__super__.initialize.apply(this, arguments);
+			this.template = options.template;
 		},
-		addOption: function (ev) {
-			this.$el.append(this.template);
+		render: function() {
+			this.constructor.__super__.render.apply(this, arguments);
+			debugger
 		}
 	});
 });

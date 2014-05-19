@@ -226,7 +226,7 @@ input {
 // common elements
 .easy-teach-btn {
 	display: inline-block;
-	padding: 15px 20px;
+	padding: 12px 20px;
 	background: #f38630;
 	color: #ffffff;
 	text-align: center;
@@ -241,10 +241,10 @@ input {
 	}
 }
 .add-btn {
-	width: 50px;
-	height: 50px;
+	width: 43px;
+	height: 43px;
 	padding: 0;
-	font-size: 42px;
+	font-size: 36px;
 }
 
 // error style 
@@ -273,6 +273,39 @@ input {
 		float: none;
 		input {
 			margin: 0;
+		}
+	}
+}
+
+/* .divider {
+	border-left: 1px solid #5bb5d7;
+}
+ */
+#question-list {
+	padding-left: 2.5rem;
+	.question-wrap {
+		margin-top: 22px;
+		border-bottom: 1px solid #5bb5d7;
+		.answer {
+			padding-left: 20px;
+			.question-type {
+				.question-option {
+					margin-right: 10px;
+				}
+				[type=radio] {
+					margin-right: 5px;
+				}
+			}
+			.answer-container {
+				.answer-wrap {
+					display: block;
+					padding-left: 30px;
+				}
+				[name=answer] {
+					float: left;
+					margin:  13px 0 0;
+				}
+			}
 		}
 	}
 }

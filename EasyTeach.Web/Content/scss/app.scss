@@ -40,15 +40,12 @@
 //   "foundation/components/visibility";
 
 html, body {
-		height: 100%;
-		width: 100%;
-		margin: 0px;
-		padding: 0px;
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
 }
-.columns {
-	padding: 0;
-}
-.column {
+.columns, .column {
 	padding: 0;
 }
 header {
@@ -69,8 +66,14 @@ input {
 	appearance: none;
 }
 
+.row {
+	padding-left: 0.9375rem;
+	padding-right: 0.9375rem;
+}
+
 .page-wrapper {
-		 background: rgba(224, 228, 204, 0.3);
+		background: rgba(224, 228, 204, 0.3);
+		padding-bottom: 70px;
 		.page-content {
 			.row {
 				padding-top: 30px;
@@ -115,6 +118,7 @@ input {
 }
 
 #create-user-btn {
+	display: block;
 	margin-left: 0rem;
 	margin-right: 0.9375rem;
 }
@@ -221,6 +225,9 @@ input {
 	.columns {
 		padding: 0;
 	}  
+}
+.register-form-wrap {
+	overflow: hidden;
 }
 
 // common elements

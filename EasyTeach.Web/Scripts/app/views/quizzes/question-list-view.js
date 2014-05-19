@@ -8,6 +8,7 @@ define([
 
 	return View.extend({
 		template: template,
+		container: '#question-wrap',
 		autoRender: true,
 		events: {
 			"click #add-question": "addQuestionView"

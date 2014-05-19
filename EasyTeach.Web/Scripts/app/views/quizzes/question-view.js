@@ -15,10 +15,11 @@ define([
 	return View.extend({
 		template: template,
 		autoRender: true,
-		container: '#question-list',
+		container: '#question-wrap',
 		events: {
 			'click .update-question-btn': 'updateQuestion',
 			'click input[type=radio]': 'chooseType',
+			'click .add-option-btn': 'addOption'
 		},
 		regions: {
 			'answer': '.answer-container'
@@ -45,25 +46,35 @@ define([
 				}
 			quiz.save(data, {
 				success: function () {
-					debugger;
+					console.log('success');
 				}
 			})
 		},
 		chooseType: function (ev) {
-			debugger;
 			var type = $(ev.currentTarget).val()
 			switch(type) {
 				case 'Text':
+					this.$el.find('.answer-container div').remove('');
 					this.subview('answer', new AnswerText({region: 'answer', template: textTemplate, multiple: false}));
+					this.$el.parent().find('.add-option-btn').hide();
 					break;
 				case 'Select':
+					this.$el.find('.answer-container div').remove('');
 					this.subview('answer', new AnswerText({region: 'answer', template: radioTemplate, multiple: true}));
+		     		this.$el.parent().find('.add-option-btn').show();
+		     		this.currentTpl = radioTemplate;
 					break;
 				case 'MultiSelect':
+		     		this.$el.find('.answer-container div').remove();
 					this.subview('answer', new AnswerText({region: 'answer', template: checkTemplate, multiple: true}));
+					this.$el.parent().find('.add-option-btn').show();
+					this.currentTpl = checkTemplate;
 					break;
 			}
-			console.log($(ev.currentTarget).val())
+		},
+		addOption: function (ev) {
+			var flag = this.currentTpl
+			new AnswerText({region: 'answer', template: this.currentTpl});
 		}
 
 	});

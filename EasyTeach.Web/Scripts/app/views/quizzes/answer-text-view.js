@@ -12,11 +12,7 @@ define([
 		},
 		initialize: function(options) {
 		     this.template = options.template;
-		     if(options.multiple) {
-		     	this.multiple = options.multiple
-			debugger;
-		     	console.log(this.$el.parent().find('.add-option-btn').show());
-		     }
+		     
 		     // No need for the next line, as Backbone does it automatically also:
 		     // this.model = options.model;
 		},

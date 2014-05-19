@@ -333,7 +333,13 @@
     <Content Include="Scripts\app\templates\login.html" />
     <Content Include="Scripts\app\templates\logout.html" />
     <Content Include="Scripts\app\templates\quizzes\add-quiz.html" />
+    <Content Include="Scripts\app\templates\quizzes\answer-checkbox.html" />
+    <Content Include="Scripts\app\templates\quizzes\answer-radio.html" />
+    <Content Include="Scripts\app\templates\quizzes\answer-text.html" />
     <Content Include="Scripts\app\templates\quizzes\edit-quiz.html" />
+    <Content Include="Scripts\app\templates\quizzes\question-list.html" />
+    <Content Include="Scripts\app\templates\quizzes\question.html" />
+    <Content Include="Scripts\app\templates\quizzes\quiz-description.html" />
     <Content Include="Scripts\app\templates\quizzes\quiz-list-item.html" />
     <Content Include="Scripts\app\templates\quizzes\quiz-list.html" />
     <Content Include="Scripts\app\templates\quizzes\quiz.html" />
@@ -737,8 +743,6 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="confirmEmail.html" />
-    <Content Include="setPassword.html" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

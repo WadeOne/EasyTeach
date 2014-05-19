@@ -52,25 +52,24 @@ define([
 		},
 		chooseType: function (ev) {
 			var type = $(ev.currentTarget).val();
-			debugger;
 			switch(type) {
 				case 'Text':
-					this.$el.find('.answer-container div').remove('');
+					this.$el.find('.answer-helper div').remove('');
 					this.$el.find('.add-option-btn').hide();
-					new AnswerText({template:  textTemplate, container: this.$el.find('.answer-container')});
+					new AnswerText({template: textTemplate, container: this.$el.find('.answer-helper')});
 					break;
 				case 'Select':
-					this.$el.find('.answer-container div').remove('');
+					this.$el.find('.answer-helper div').remove('');
 		     		this.currentTpl = radioTemplate;
-		     		this.currentContainer = this.$el.find('.answer-container');
-					new AnswerText({template: this.currentTpl, container: this.$el.find('.answer-container')});
+		     		this.currentContainer = this.$el.find('.answer-helper');
+					new AnswerText({template: this.currentTpl, container: this.$el.find('.answer-helper')});
 		     		this.$el.find('.add-option-btn').show();
 					break;
 				case 'MultiSelect':
-		     		this.$el.find('.answer-container div').remove();
+		     		this.$el.find('.answer-helper div').remove();
 					this.currentTpl = checkTemplate;
-					this.currentContainer = this.$el.find('.answer-container');
-					new AnswerText({template: this.currentTpl, container: this.$el.find('.answer-container')});
+					this.currentContainer = this.$el.find('.answer-helper');
+					new AnswerText({template: this.currentTpl, container: this.$el.find('.answer-helper')});
 					this.$el.find('.add-option-btn').show();
 					break;
 			}

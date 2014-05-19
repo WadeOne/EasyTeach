@@ -9617,46 +9617,72 @@ input {
   color: #ffffff;
 }
 /* line 238, ../scss/app.scss */
-.easy-teach-btn:focus {
+.easy-teach-btn:active {
   outline: none;
   background: #fa6900;
 }
-
-/* line 243, ../scss/app.scss */
-.add-btn {
-  width: 43px;
-  height: 43px;
-  padding: 0;
-  font-size: 36px;
+/* line 242, ../scss/app.scss */
+.easy-teach-btn:focus {
+  outline: none;
+  background: #f38630;
 }
 
+/* line 247, ../scss/app.scss */
+.add-btn {
+  position: relative;
+  padding-left: 43px;
+  background: #5bb5d7;
+}
 /* line 251, ../scss/app.scss */
+.add-btn:before {
+  content: "+";
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 43px;
+  font-size: 36px;
+}
+/* line 260, ../scss/app.scss */
+.add-btn:hover {
+  background: #008cba;
+}
+/* line 263, ../scss/app.scss */
+.add-btn:active {
+  background: #008cba;
+}
+/* line 266, ../scss/app.scss */
+.add-btn:focus {
+  background: #5bb5d7;
+}
+
+/* line 272, ../scss/app.scss */
 .error-message {
   color: red;
   margin-bottom: 20px;
 }
 
-/* line 258, ../scss/app.scss */
+/* line 279, ../scss/app.scss */
 .quizz-page h1 {
   font-size: 26px;
   color: #4d4d4d;
 }
-/* line 262, ../scss/app.scss */
+/* line 283, ../scss/app.scss */
 .quizz-page ul {
   list-style: none;
   margin-left: 0rem;
   color: #4d4d4d;
 }
-/* line 267, ../scss/app.scss */
+/* line 288, ../scss/app.scss */
 .quizz-page #add-quiz-btn, .quizz-page .test-name-wrap {
   display: inline-block;
   vertical-align: middle;
 }
-/* line 272, ../scss/app.scss */
+/* line 293, ../scss/app.scss */
 .quizz-page .test-name-wrap {
   float: none;
 }
-/* line 274, ../scss/app.scss */
+/* line 295, ../scss/app.scss */
 .quizz-page .test-name-wrap input {
   margin: 0;
 }
@@ -9665,44 +9691,85 @@ input {
 	border-left: 1px solid #5bb5d7;
 }
  */
-/* line 284, ../scss/app.scss */
+/* line 305, ../scss/app.scss */
 #question-list {
   padding-left: 2.5rem;
 }
-/* line 286, ../scss/app.scss */
+/* line 307, ../scss/app.scss */
 #question-list .question-wrap {
   margin-top: 22px;
   border-bottom: 1px solid #5bb5d7;
 }
-/* line 289, ../scss/app.scss */
+/* line 310, ../scss/app.scss */
 #question-list .question-wrap .answer {
-  padding-left: 20px;
+  padding-left: 2.5rem;
+  overflow: hidden;
 }
-/* line 292, ../scss/app.scss */
+/* line 314, ../scss/app.scss */
 #question-list .question-wrap .answer .question-type .question-option {
   margin-right: 10px;
 }
-/* line 295, ../scss/app.scss */
+/* line 317, ../scss/app.scss */
 #question-list .question-wrap .answer .question-type [type=radio] {
   margin-right: 5px;
 }
-/* line 300, ../scss/app.scss */
-#question-list .question-wrap .answer .answer-container .answer-wrap {
+/* line 322, ../scss/app.scss */
+#question-list .question-wrap .answer .answer-container .answer-helper {
+  padding-left: 2.5rem;
+}
+/* line 324, ../scss/app.scss */
+#question-list .question-wrap .answer .answer-container .answer-helper .answer-wrap {
   display: block;
   padding-left: 30px;
 }
-/* line 304, ../scss/app.scss */
-#question-list .question-wrap .answer .answer-container [name=answer] {
+/* line 325, ../scss/app.scss */
+#question-list .question-wrap .answer .answer-container .answer-helper .answer-wrap:last-child {
+  padding-bottom: 10px;
+}
+/* line 331, ../scss/app.scss */
+#question-list .question-wrap .answer .answer-container .answer-helper [name=answer] {
   float: left;
   margin: 13px 0 0;
 }
+/* line 338, ../scss/app.scss */
+#question-list .question-wrap:last-child {
+  border: none;
+}
 
-/* line 314, ../scss/app.scss */
+/* line 343, ../scss/app.scss */
+.add-option-btn {
+  display: none;
+  margin-left: 4.4rem;
+  background: #5bb5d7;
+  cursor: pointer;
+  webkit-transition: background-color 300ms ease-out;
+  -moz-transition: background-color 300ms ease-out;
+  transition: background-color 300ms ease-out;
+}
+/* line 351, ../scss/app.scss */
+.add-option-btn:hover {
+  background: #008cba;
+}
+/* line 354, ../scss/app.scss */
+.add-option-btn:active {
+  background: #008cba;
+}
+/* line 357, ../scss/app.scss */
+.add-option-btn:focus {
+  background: #5bb5d7;
+}
+
+/* line 361, ../scss/app.scss */
+.update-question-btn {
+  float: right;
+}
+
+/* line 366, ../scss/app.scss */
 .error-page h1 {
   font-size: 54px;
   text-align: center;
 }
-/* line 317, ../scss/app.scss */
+/* line 369, ../scss/app.scss */
 .error-page h1 .status {
   display: block;
   color: #f38630;
@@ -9711,67 +9778,67 @@ input {
 }
 
 @media only screen and (max-width: 640px) {
-  /* line 327, ../scss/app.scss */
+  /* line 379, ../scss/app.scss */
   header .logo {
     padding: 1rem 0.5rem;
     font-size: 20px;
   }
 
-  /* line 333, ../scss/app.scss */
+  /* line 385, ../scss/app.scss */
   #login-form label {
     display: none;
   }
-  /* line 335, ../scss/app.scss */
+  /* line 387, ../scss/app.scss */
   #login-form label.header {
     display: block;
     margin-bottom: 15px;
     text-align: center;
   }
 
-  /* line 342, ../scss/app.scss */
+  /* line 394, ../scss/app.scss */
   .add-homework-btn, #login-btn, #create-user-btn {
     width: 100%;
   }
 
-  /* line 346, ../scss/app.scss */
+  /* line 398, ../scss/app.scss */
   .reset-link {
     text-align: center;
   }
 
-  /* line 351, ../scss/app.scss */
+  /* line 403, ../scss/app.scss */
   .error-page h1 {
     font-size: 35px;
   }
-  /* line 353, ../scss/app.scss */
+  /* line 405, ../scss/app.scss */
   .error-page h1 .status {
     font-size: 175px;
   }
 
   /*logout button*/
-  /* line 359, ../scss/app.scss */
+  /* line 411, ../scss/app.scss */
   #logout-btn {
     margin-top: 20px;
   }
 
-  /* line 363, ../scss/app.scss */
+  /* line 415, ../scss/app.scss */
   .quizz-page #add-quiz-btn {
     margin: 20px 0 10px 0px;
   }
 }
 @media only screen and (min-width: 641px) {
-  /* line 371, ../scss/app.scss */
+  /* line 423, ../scss/app.scss */
   header .logo {
     padding: 1rem 0rem;
     font-size: 28px;
   }
 
   /*logout button*/
-  /* line 378, ../scss/app.scss */
+  /* line 430, ../scss/app.scss */
   #logout-btn {
     margin-top: 25px;
   }
 
-  /* line 383, ../scss/app.scss */
+  /* line 435, ../scss/app.scss */
   .quizz-page #add-quiz-btn {
     margin: 0 0 0 15px;
   }

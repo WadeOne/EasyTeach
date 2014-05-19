@@ -1,4 +1,5 @@
 <form class="question-form" method="post">
+	<label>Вопрос</label>
 	<input type="text" name="questionText" placeholder="Вопрос">
 	<div class="answer">
 		<label>Выберите тип</label>
@@ -9,8 +10,9 @@
 		</div>
 		<input type="hidden" name="questionType" value="Text">
 		<div class="answer-container">
+			<div class="answer-helper"></div>
 			<!-- <input type="text" class="answer" placeholder="Ответ"> -->
-			<span class="btn easy-teach-btn add-option-btn" style="display:none">Добавить</span>
+			<span class="btn easy-teach-btn add-option-btn">Новый вариант ответа</span>
 		</div>
 		<button class="update-question-btn easy-teach-btn">Сохранить</button>
 	</div>

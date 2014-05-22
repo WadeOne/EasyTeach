@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data.Dashboard;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Data.Context;
@@ -23,7 +21,7 @@ namespace EasyTeach.Data.Repostitories
             _context = context;
         }
 
-        public async Task CreateLessonAsync(ILessonDto lesson)
+        public void CreateLesson(ILessonDto lesson)
         {
             if (lesson == null)
             {
@@ -31,32 +29,32 @@ namespace EasyTeach.Data.Repostitories
             }
 
             _context.Lessons.Add((LessonDto)lesson);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
-        public async Task RemoveLessonAsync(int lessonId)
+        public void RemoveLesson(int lessonId)
         {
-            LessonDto lesson = await _context.Lessons.SingleAsync(l => l.LessonId == lessonId);
+            LessonDto lesson = _context.Lessons.Single(l => l.LessonId == lessonId);
             _context.Lessons.Remove(lesson);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
-        public async Task UpdateLessonAsync(ILessonDto lesson)
+        public void UpdateLesson(ILessonDto lesson)
         {
             if (lesson == null)
             {
                 throw new ArgumentNullException("lesson");
             }
 
-            LessonDto oldLesson = await _context.Lessons.SingleAsync(l => l.LessonId == lesson.LessonId);
+            LessonDto oldLesson = _context.Lessons.Single(l => l.LessonId == lesson.LessonId);
             oldLesson.Date = lesson.Date;
             oldLesson.GroupId = lesson.GroupId;
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
-        public async Task<ILessonDto> GetLessonByIdAsync(int lessonId)
+        public ILessonDto GetLessonById(int lessonId)
         {
-            return await _context.Lessons.SingleOrDefaultAsync(l => l.LessonId == lessonId);
+            return _context.Lessons.SingleOrDefault(l => l.LessonId == lessonId);
         }
 
         public IQueryable<ILessonDto> GetLessons()

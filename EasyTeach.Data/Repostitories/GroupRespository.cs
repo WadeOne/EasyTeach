@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Data.Entity;
 using System.Linq;
-using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data.Group;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Data.Context;
@@ -23,7 +21,7 @@ namespace EasyTeach.Data.Repostitories
             _context = context;
         }
 
-        public async Task CreateGroupAsync(IGroupDto group)
+        public void CreateGroup(IGroupDto group)
         {
             if (group == null)
             {
@@ -31,30 +29,30 @@ namespace EasyTeach.Data.Repostitories
             }
 
             _context.Groups.Add((GroupDto)group);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
-        public async Task RemoveGroupAsync(int groupId)
+        public void RemoveGroup(int groupId)
         {
-            GroupDto group = await _context.Groups.SingleAsync(g => g.GroupId == groupId);
+            GroupDto group = _context.Groups.Single(g => g.GroupId == groupId);
             _context.Groups.Remove(group);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
-        public async Task UpdateGroupAsync(IGroupDto group)
+        public void UpdateGroup(IGroupDto group)
         {
             if (group == null)
             {
                 throw new ArgumentNullException("group");
             }
 
-            GroupDto oldGroup = await _context.Groups.SingleAsync(g => g.GroupId == group.GroupId);
+            GroupDto oldGroup = _context.Groups.Single(g => g.GroupId == group.GroupId);
             oldGroup.ContactEmail = group.ContactEmail;
             oldGroup.ContactName = group.ContactName;
             oldGroup.ContactPhone = group.ContactPhone;
             oldGroup.GroupNumber = group.GroupNumber;
             oldGroup.Year = group.Year;
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public IQueryable<IGroupDto> GetGroups()
@@ -62,9 +60,9 @@ namespace EasyTeach.Data.Repostitories
             return _context.Groups;
         }
 
-        public async Task<IGroupDto> GetGroupByIdAsync(int groupId)
+        public IGroupDto GetGroupById(int groupId)
         {
-            return await _context.Groups.SingleOrDefaultAsync(g => g.GroupId == groupId);
+            return _context.Groups.SingleOrDefault(g => g.GroupId == groupId);
         }
     }
 }

@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Security;
 using System.Security.Claims;
-using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Services.Dashboard.Exceptions;
@@ -69,7 +68,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             _authorizationManager = authorizationManager;
         }
 
-        public async Task CreateLessonAsync(ILessonModel lesson)
+        public void CreateLesson(ILessonModel lesson)
         {
             if (lesson == null)
             {
@@ -82,7 +81,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new InvalidLessonException(result.ValidationResults);
             }
 
-            IUserDto user = await _userStore.FindByNameAsync(_principal.Identity.Name);
+            IUserDto user =_userStore.FindByNameAsync(_principal.Identity.Name).Result;
             if (user.GroupId != lesson.Group.GroupId)
             {
                 if (!_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "Create")))
@@ -91,20 +90,20 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 }
             }
 
-            await _lessonService.CreateLessonAsync(lesson);
+           _lessonService.CreateLesson(lesson);
         }
 
-        public async Task RemoveLessonAsync(int lessonId)
+        public void RemoveLesson(int lessonId)
         {
-             ILessonModel lesson = await _lessonService.GetLessonByIdAsync(lessonId);
+             ILessonModel lesson =_lessonService.GetLessonById(lessonId);
 
             if (lesson == null)
             {
-                await _lessonService.RemoveLessonAsync(lessonId);
+               _lessonService.RemoveLesson(lessonId);
             }
             else
             {
-                IUserDto user = await _userStore.FindByNameAsync(_principal.Identity.Name);
+                IUserDto user =_userStore.FindByNameAsync(_principal.Identity.Name).Result;
                 if (user.GroupId != lesson.Group.GroupId)
                 {
                     if (!_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "Delete")))
@@ -113,11 +112,11 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                     }
                 }
 
-                await _lessonService.RemoveLessonAsync(lessonId);
+               _lessonService.RemoveLesson(lessonId);
             }
         }
 
-        public async Task UpdateLessonAsync(ILessonModel lesson)
+        public void UpdateLesson(ILessonModel lesson)
         {
             if (lesson == null)
             {
@@ -130,7 +129,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new InvalidLessonException(result.ValidationResults);
             }
 
-            IUserDto user = await _userStore.FindByNameAsync(_principal.Identity.Name);
+            IUserDto user =_userStore.FindByNameAsync(_principal.Identity.Name).Result;
             if (user.GroupId != lesson.Group.GroupId)
             {
                 if (!_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "Update")))
@@ -139,18 +138,18 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 }
             }
 
-            await _lessonService.UpdateLessonAsync(lesson);
+           _lessonService.UpdateLesson(lesson);
         }
 
-        public async Task<ILessonModel> GetLessonByIdAsync(int lessonId)
+        public ILessonModel GetLessonById(int lessonId)
         {
-            ILessonModel lesson = await _lessonService.GetLessonByIdAsync(lessonId);
+            ILessonModel lesson =_lessonService.GetLessonById(lessonId);
             if (lesson == null)
             {
                 return null;
             }
 
-            IUserDto user = await _userStore.FindByNameAsync(_principal.Identity.Name);
+            IUserDto user =_userStore.FindByNameAsync(_principal.Identity.Name).Result;
             if (user.GroupId != lesson.Group.GroupId)
             {
                 if (!_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "GetAll")))

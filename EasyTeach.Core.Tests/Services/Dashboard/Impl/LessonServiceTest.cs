@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data.Dashboard;
 using EasyTeach.Core.Entities.Services;
@@ -35,19 +34,19 @@ namespace EasyTeach.Core.Tests.Services.Dashboard.Impl
         }
 
         [Fact]
-        public void CreateLessonAsync_ValidNonOverlappingModel_Created()
+        public void CreateLesson_ValidNonOverlappingModel_Created()
         {
             ILessonModel lesson = new Lesson();
             A.CallTo(() => _entityValidator.ValidateEntity(lesson)).Returns(new EntityValidationResult(true));
             A.CallTo(() => _lessonRepository.GetLessons()).Returns(Enumerable.Empty<ILessonDto>().AsQueryable());
 
-            _lessonService.CreateLessonAsync(lesson).Wait();
+            _lessonService.CreateLesson(lesson);
 
-            A.CallTo(() => _lessonRepository.CreateLessonAsync(A<ILessonDto>.Ignored)).MustHaveHappened();
+            A.CallTo(() => _lessonRepository.CreateLesson(A<ILessonDto>.Ignored)).MustHaveHappened();
         }
 
         [Fact]
-        public void CreateLessonAsync_ValidOverlappingModel_ThrowsOverlappingException()
+        public void CreateLesson_ValidOverlappingModel_ThrowsOverlappingException()
         {
             var group = A.Fake<IGroupModel>();
             A.CallTo(() => group.GroupId).Returns(2);
@@ -65,26 +64,22 @@ namespace EasyTeach.Core.Tests.Services.Dashboard.Impl
             A.CallTo(() => _entityValidator.ValidateEntity(lesson)).Returns(new EntityValidationResult(true));
             A.CallTo(() => _lessonRepository.GetLessons()).Returns(new[] { lessonDto }.AsQueryable());
 
-            var aggregateException = Assert.Throws<AggregateException>(() => _lessonService.CreateLessonAsync(lesson).Wait());
+            Assert.Throws<LessonDateOverlappingException>(() => _lessonService.CreateLesson(lesson));
 
-            Assert.IsAssignableFrom<LessonDateOverlappingException>(aggregateException.GetBaseException());
-            A.CallTo(() => _lessonRepository.CreateLessonAsync(A<ILessonDto>.Ignored)).MustNotHaveHappened();
+            A.CallTo(() => _lessonRepository.CreateLesson(A<ILessonDto>.Ignored)).MustNotHaveHappened();
         }
 
         [Fact]
-        public void CreateLessonAsync_InvalidModel_ThrowsInvalidLessonException()
+        public void CreateLesson_InvalidModel_ThrowsInvalidLessonException()
         {
             ILessonModel lesson = new Lesson();
             A.CallTo(() => _entityValidator.ValidateEntity(lesson)).Returns(new EntityValidationResult(false));
-
-            var aggregateException = Assert.Throws<AggregateException>(() => _lessonService.CreateLessonAsync(lesson).Wait());
-
-            Assert.IsAssignableFrom<InvalidLessonException>(aggregateException.GetBaseException());
-            A.CallTo(() => _lessonRepository.CreateLessonAsync(A<ILessonDto>.Ignored)).MustNotHaveHappened();
+            Assert.Throws<InvalidLessonException>(() => _lessonService.CreateLesson(lesson));
+            A.CallTo(() => _lessonRepository.CreateLesson(A<ILessonDto>.Ignored)).MustNotHaveHappened();
         }
 
         [Fact]
-        public void UpdateLessonAsync_ExistingAndValidNonOverlappingModel_Updated()
+        public void UpdateLesson_ExistingAndValidNonOverlappingModel_Updated()
         {
             ILessonModel lesson = new Lesson
             {
@@ -93,27 +88,26 @@ namespace EasyTeach.Core.Tests.Services.Dashboard.Impl
 
             A.CallTo(() => _entityValidator.ValidateEntity(lesson)).Returns(new EntityValidationResult(true));
             A.CallTo(() => _lessonRepository.GetLessons()).Returns(Enumerable.Empty<ILessonDto>().AsQueryable());
-            A.CallTo(() => _lessonRepository.GetLessonByIdAsync(42)).Returns(A.Dummy<ILessonDto>());
+            A.CallTo(() => _lessonRepository.GetLessonById(42)).Returns(A.Dummy<ILessonDto>());
 
-            _lessonService.UpdateLessonAsync(lesson).Wait();
+            _lessonService.UpdateLesson(lesson);
 
-            A.CallTo(() => _lessonRepository.UpdateLessonAsync(A<ILessonDto>.Ignored)).MustHaveHappened();
+            A.CallTo(() => _lessonRepository.UpdateLesson(A<ILessonDto>.Ignored)).MustHaveHappened();
         }
 
         [Fact]
-        public void UpdateLessonAsync_InvalidModel_ThrowsInvalidLessonException()
+        public void UpdateLesson_InvalidModel_ThrowsInvalidLessonException()
         {
             ILessonModel lesson = new Lesson();
             A.CallTo(() => _entityValidator.ValidateEntity(lesson)).Returns(new EntityValidationResult(false));
 
-            var aggregateException = Assert.Throws<AggregateException>(() => _lessonService.UpdateLessonAsync(lesson).Wait());
+            Assert.Throws<InvalidLessonException>(() => _lessonService.UpdateLesson(lesson));
 
-            Assert.IsAssignableFrom<InvalidLessonException>(aggregateException.GetBaseException());
-            A.CallTo(() => _lessonRepository.UpdateLessonAsync(A<ILessonDto>.Ignored)).MustNotHaveHappened();
+            A.CallTo(() => _lessonRepository.UpdateLesson(A<ILessonDto>.Ignored)).MustNotHaveHappened();
         }
 
         [Fact]
-        public void UpdateLessonAsync_NotExistingModel_ThrowEntityNotFoundException()
+        public void UpdateLesson_NotExistingModel_ThrowEntityNotFoundException()
         {
             ILessonModel lesson = new Lesson
             {
@@ -122,16 +116,15 @@ namespace EasyTeach.Core.Tests.Services.Dashboard.Impl
 
             A.CallTo(() => _entityValidator.ValidateEntity(lesson)).Returns(new EntityValidationResult(true));
             A.CallTo(() => _lessonRepository.GetLessons()).Returns(Enumerable.Empty<ILessonDto>().AsQueryable());
-            A.CallTo(() => _lessonRepository.GetLessonByIdAsync(42)).Returns(Task.FromResult((ILessonDto)null));
+            A.CallTo(() => _lessonRepository.GetLessonById(42)).Returns(null);
 
-            var aggregateException = Assert.Throws<AggregateException>(() => _lessonService.UpdateLessonAsync(lesson).Wait());
+            Assert.Throws<EntityNotFoundException>(() => _lessonService.UpdateLesson(lesson));
 
-            Assert.IsAssignableFrom<EntityNotFoundException>(aggregateException.GetBaseException());
-            A.CallTo(() => _lessonRepository.UpdateLessonAsync(A<ILessonDto>.Ignored)).MustNotHaveHappened();
+            A.CallTo(() => _lessonRepository.UpdateLesson(A<ILessonDto>.Ignored)).MustNotHaveHappened();
         }
 
         [Fact]
-        public void UpdateLessonAsync_ValidOverlappingModel_ThrowsOverlappingException()
+        public void UpdateLesson_ValidOverlappingModel_ThrowsOverlappingException()
         {
             var group = A.Fake<IGroupModel>();
             A.CallTo(() => group.GroupId).Returns(2);
@@ -150,47 +143,45 @@ namespace EasyTeach.Core.Tests.Services.Dashboard.Impl
 
             A.CallTo(() => _entityValidator.ValidateEntity(lesson)).Returns(new EntityValidationResult(true));
             A.CallTo(() => _lessonRepository.GetLessons()).Returns(new[] { lessonDto }.AsQueryable());
-            A.CallTo(() => _lessonRepository.GetLessonByIdAsync(42)).Returns(A.Dummy<ILessonDto>());
+            A.CallTo(() => _lessonRepository.GetLessonById(42)).Returns(A.Dummy<ILessonDto>());
 
-            var aggregateException = Assert.Throws<AggregateException>(() => _lessonService.UpdateLessonAsync(lesson).Wait());
+            Assert.Throws<LessonDateOverlappingException>(() => _lessonService.UpdateLesson(lesson));
 
-            Assert.IsAssignableFrom<LessonDateOverlappingException>(aggregateException.GetBaseException());
-            A.CallTo(() => _lessonRepository.UpdateLessonAsync(A<ILessonDto>.Ignored)).MustNotHaveHappened();
+            A.CallTo(() => _lessonRepository.UpdateLesson(A<ILessonDto>.Ignored)).MustNotHaveHappened();
         }
 
         [Fact]
-        public void RemoveLessonAsync_NotExistingId_ThrowEntityNotFoundException()
+        public void RemoveLesson_NotExistingId_ThrowEntityNotFoundException()
         {
             A.CallTo(() => _lessonRepository.GetLessons()).Returns(Enumerable.Empty<ILessonDto>().AsQueryable());
-            A.CallTo(() => _lessonRepository.GetLessonByIdAsync(42)).Returns(Task.FromResult((ILessonDto)null));
+            A.CallTo(() => _lessonRepository.GetLessonById(42)).Returns(null);
 
-            var aggregateException = Assert.Throws<AggregateException>(() => _lessonService.RemoveLessonAsync(42).Wait());
+            Assert.Throws<EntityNotFoundException>(() => _lessonService.RemoveLesson(42));
 
-            Assert.IsAssignableFrom<EntityNotFoundException>(aggregateException.GetBaseException());
-            A.CallTo(() => _lessonRepository.RemoveLessonAsync(A<int>.Ignored)).MustNotHaveHappened();
+            A.CallTo(() => _lessonRepository.RemoveLesson(A<int>.Ignored)).MustNotHaveHappened();
         }
 
         [Fact]
-        public void RemoveLessonAsync_ExistingId_Removed()
+        public void RemoveLesson_ExistingId_Removed()
         {
             A.CallTo(() => _lessonRepository.GetLessons()).Returns(Enumerable.Empty<ILessonDto>().AsQueryable());
-            A.CallTo(() => _lessonRepository.GetLessonByIdAsync(42)).Returns(Task.FromResult(A.Dummy<ILessonDto>()));
+            A.CallTo(() => _lessonRepository.GetLessonById(42)).Returns(A.Dummy<ILessonDto>());
 
-            _lessonService.RemoveLessonAsync(42).Wait();
+            _lessonService.RemoveLesson(42);
 
-            A.CallTo(() => _lessonRepository.RemoveLessonAsync(42)).MustHaveHappened();
+            A.CallTo(() => _lessonRepository.RemoveLesson(42)).MustHaveHappened();
         }
 
         [Fact]
-        public void GetLessonByIdAsync_ExistingId_Lesson()
+        public void GetLessonById_ExistingId_Lesson()
         {
             var lessonDto = A.Fake<ILessonDto>();
             A.CallTo(() => lessonDto.LessonId).Returns(42);
             A.CallTo(() => lessonDto.GroupId).Returns(11);
             A.CallTo(() => lessonDto.Date).Returns(new DateTime(2014, 5, 5));
-            A.CallTo(() => _lessonRepository.GetLessonByIdAsync(42)).Returns(Task.FromResult(lessonDto));
+            A.CallTo(() => _lessonRepository.GetLessonById(42)).Returns(lessonDto);
 
-            ILessonModel lesson = _lessonService.GetLessonByIdAsync(42).Result;
+            ILessonModel lesson = _lessonService.GetLessonById(42);
 
             Assert.Equal(42, lesson.LessonId);
             Assert.Equal(new DateTime(2014, 5, 5), lesson.Date);
@@ -198,11 +189,11 @@ namespace EasyTeach.Core.Tests.Services.Dashboard.Impl
         }
 
         [Fact]
-        public void GetLessonByIdAsync_NotExistingId_Null()
+        public void GetLessonById_NotExistingId_Null()
         {
-            A.CallTo(() => _lessonRepository.GetLessonByIdAsync(42)).Returns(Task.FromResult<ILessonDto>(null));
+            A.CallTo(() => _lessonRepository.GetLessonById(42)).Returns(null);
 
-            ILessonModel lesson = _lessonService.GetLessonByIdAsync(42).Result;
+            ILessonModel lesson = _lessonService.GetLessonById(42);
 
             Assert.Null(lesson);
         }

@@ -1,19 +1,18 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data.Group;
 
 namespace EasyTeach.Core.Repositories
 {
     public interface IGroupRepository
     {
-        Task CreateGroupAsync(IGroupDto group);
+        void CreateGroup(IGroupDto group);
 
-        Task RemoveGroupAsync(int groupId);
+        void RemoveGroup(int groupId);
 
-        Task UpdateGroupAsync(IGroupDto group);
+        void UpdateGroup(IGroupDto group);
 
         IQueryable<IGroupDto> GetGroups();
 
-        Task<IGroupDto> GetGroupByIdAsync(int groupId);
+        IGroupDto GetGroupById(int groupId);
     }
 }

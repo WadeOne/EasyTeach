@@ -152,7 +152,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new InvalidVisitException(new[] {new ValidationResult("Visitor does not exists") });
             }
 
-            ILessonDto lesson = await _lessonRepository.GetLessonByIdAsync(visit.Lesson.LessonId);
+            ILessonDto lesson = _lessonRepository.GetLessonById(visit.Lesson.LessonId);
             if (lesson == null)
             {
                 throw new InvalidVisitException(new[] { new ValidationResult("Lesson does not exists") });

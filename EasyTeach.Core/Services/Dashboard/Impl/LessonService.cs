@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Threading.Tasks;
 using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data.Dashboard;
 using EasyTeach.Core.Entities.Services;
@@ -40,7 +39,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             _lessonDtoMapper = lessonDtoMapper;
         }
 
-        public async Task CreateLessonAsync(ILessonModel lesson)
+        public void CreateLesson(ILessonModel lesson)
         {
             if (lesson == null)
             {
@@ -58,20 +57,20 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new LessonDateOverlappingException();
             }
 
-            await _lessonRepository.CreateLessonAsync(_lessonDtoMapper.Map(lesson));
+            _lessonRepository.CreateLesson(_lessonDtoMapper.Map(lesson));
         }
 
-        public async Task RemoveLessonAsync(int lessonId)
+        public void RemoveLesson(int lessonId)
         {
-            if (await _lessonRepository.GetLessonByIdAsync(lessonId) == null)
+            if (_lessonRepository.GetLessonById(lessonId) == null)
             {
                 throw new EntityNotFoundException("lesson", lessonId);
             }
 
-            await _lessonRepository.RemoveLessonAsync(lessonId);
+            _lessonRepository.RemoveLesson(lessonId);
         }
 
-        public async Task UpdateLessonAsync(ILessonModel lesson)
+        public void UpdateLesson(ILessonModel lesson)
         {
             if (lesson == null)
             {
@@ -84,7 +83,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new InvalidLessonException(result.ValidationResults);
             }
 
-            if (await _lessonRepository.GetLessonByIdAsync(lesson.LessonId) == null)
+            if (_lessonRepository.GetLessonById(lesson.LessonId) == null)
             {
                 throw new EntityNotFoundException("lesson", lesson.LessonId);
             }
@@ -94,12 +93,12 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new LessonDateOverlappingException();
             }
 
-            await _lessonRepository.UpdateLessonAsync(_lessonDtoMapper.Map(lesson));
+            _lessonRepository.UpdateLesson(_lessonDtoMapper.Map(lesson));
         }
 
-        public async Task<ILessonModel> GetLessonByIdAsync(int lessonId)
+        public ILessonModel GetLessonById(int lessonId)
         {
-            ILessonDto lesson = await _lessonRepository.GetLessonByIdAsync(lessonId);
+            ILessonDto lesson = _lessonRepository.GetLessonById(lessonId);
             if (lesson == null)
             {
                 return null;

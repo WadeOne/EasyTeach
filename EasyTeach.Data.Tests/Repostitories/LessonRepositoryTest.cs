@@ -22,19 +22,19 @@ namespace EasyTeach.Data.Tests.Repostitories
         }
 
         [Fact]
-        public void CreateLessonAsync_LessonDto_LessonAdd()
+        public void CreateLesson_LessonDto_LessonAdd()
         {
             IDbSet<LessonDto> lessons = A.Fake<IDbSet<LessonDto>>();
             A.CallTo(() => _context.Lessons).Returns(lessons);
 
-            _repository.CreateLessonAsync(new LessonDto()).Wait();
+            _repository.CreateLesson(new LessonDto());
 
             A.CallTo(() => lessons.Add(A<LessonDto>.Ignored)).MustHaveHappened();
-            A.CallTo(() => _context.SaveChangesAsync()).MustHaveHappened();
+            A.CallTo(() => _context.SaveChanges()).MustHaveHappened();
         }
 
         [Fact]
-        public void RemoveLessonAsync_ExistingId_LessonRemove()
+        public void RemoveLesson_ExistingId_LessonRemove()
         {
             IDbSet<LessonDto> lessons = new FakeDbSet<LessonDto>(new[]
             {
@@ -46,14 +46,14 @@ namespace EasyTeach.Data.Tests.Repostitories
 
             A.CallTo(() => _context.Lessons).Returns(lessons);
 
-            _repository.RemoveLessonAsync(42).Wait();
+            _repository.RemoveLesson(42);
 
             Assert.Empty(lessons);
-            A.CallTo(() => _context.SaveChangesAsync()).MustHaveHappened();
+            A.CallTo(() => _context.SaveChanges()).MustHaveHappened();
         }
 
         [Fact]
-        public void UpdateLessonAsync_ExistingLesson_LessonUpdate()
+        public void UpdateLesson_ExistingLesson_LessonUpdate()
         {
             IDbSet<LessonDto> lessons = new FakeDbSet<LessonDto>(new[]
             {
@@ -67,16 +67,16 @@ namespace EasyTeach.Data.Tests.Repostitories
 
             A.CallTo(() => _context.Lessons).Returns(lessons);
 
-            _repository.UpdateLessonAsync(new LessonDto
+            _repository.UpdateLesson(new LessonDto
             {
                 LessonId = 42,
                 Date = new DateTime(2013, 10, 10),
                 GroupId = 3
-            }).Wait();
+            });
 
             Assert.Equal(new DateTime(2013, 10, 10), lessons.First().Date);
             Assert.Equal(3, lessons.First().GroupId);
-            A.CallTo(() => _context.SaveChangesAsync()).MustHaveHappened();
+            A.CallTo(() => _context.SaveChanges()).MustHaveHappened();
         }
 
     }

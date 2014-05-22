@@ -1,19 +1,18 @@
 ﻿using System.Linq;
-using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data.Dashboard;
 
 namespace EasyTeach.Core.Repositories
 {
     public interface ILessonRepository
     {
-        Task CreateLessonAsync(ILessonDto lesson);
+        void CreateLesson(ILessonDto lesson);
 
-        Task RemoveLessonAsync(int lessonId);
+        void RemoveLesson(int lessonId);
 
-        Task UpdateLessonAsync(ILessonDto lesson);
+        void UpdateLesson(ILessonDto lesson);
 
         IQueryable<ILessonDto> GetLessons();
 
-        Task<ILessonDto> GetLessonByIdAsync(int lessonId);
+        ILessonDto GetLessonById(int lessonId);
     }
 }

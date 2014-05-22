@@ -2,7 +2,6 @@
 using System.IdentityModel.Services;
 using System.Linq;
 using System.Security.Permissions;
-using System.Threading.Tasks;
 using System.Web.Http;
 using EasyTeach.Core.Services.Dashboard;
 using EasyTeach.Web.Models.ViewModels.Dashboard.Lessons;
@@ -38,14 +37,14 @@ namespace EasyTeach.Web.Controllers
         [Route("")]
         [HttpPost]
         [ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "Create", Resource = "Lesson")]
-        public async Task<IHttpActionResult> Post(CreateLessonViewModel lesson)
+        public IHttpActionResult Post(CreateLessonViewModel lesson)
         {
             if (lesson == null)
             {
                 throw new ArgumentNullException("lesson");
             }
 
-            await _lessonService.CreateLessonAsync(lesson.ToLesson());
+            _lessonService.CreateLesson(lesson.ToLesson());
 
             return Ok();
         }
@@ -53,14 +52,14 @@ namespace EasyTeach.Web.Controllers
         [Route("")]
         [HttpPut]
         [ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "Update", Resource = "Lesson")]
-        public async Task<IHttpActionResult> Put(UpdateLessonViewModel lesson)
+        public IHttpActionResult Put(UpdateLessonViewModel lesson)
         {
             if (lesson == null)
             {
                 throw new ArgumentNullException("lesson");
             }
 
-            await _lessonService.UpdateLessonAsync(lesson.ToLesson());
+            _lessonService.UpdateLesson(lesson.ToLesson());
 
             return Ok();
         }
@@ -68,9 +67,9 @@ namespace EasyTeach.Web.Controllers
         [Route("")]
         [HttpDelete]
         [ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "Delete", Resource = "Lesson")]
-        public async Task<IHttpActionResult> Delete(int lessonId)
+        public IHttpActionResult Delete(int lessonId)
         {
-            await _lessonService.RemoveLessonAsync(lessonId);
+            _lessonService.RemoveLesson(lessonId);
 
             return Ok();
         }

@@ -31,7 +31,7 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
 
             A.CallTo(() => _groupRepository.RemoveGroup(A<int>.Ignored)).MustNotHaveHappened();
         }
-        /*
+        
         [Fact]
         public void RemoveGroup_ExistingId_Removed()
         {
@@ -40,8 +40,7 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
 
             _groupService.DeleteGroupAsync(2);
 
-            A.CallTo(() => _groupService.DeleteGroupAsync(2)).MustHaveHappened();
+            A.CallTo(() => _groupRepository.RemoveGroup(2)).MustHaveHappened();
         }
-         * */
     }
 }

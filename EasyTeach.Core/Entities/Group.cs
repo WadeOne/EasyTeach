@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using EasyTeach.Core.Entities.Services;
+using System.ComponentModel.DataAnnotations;
+using System;
 
 namespace EasyTeach.Core.Entities
 {
@@ -15,6 +17,7 @@ namespace EasyTeach.Core.Entities
         /// <summary>
         /// University entering year
         /// </summary>
+        [Range(1900, Int32.MaxValue)]
         public int Year { get; set; }
 
         public string ContactEmail { get; set; }

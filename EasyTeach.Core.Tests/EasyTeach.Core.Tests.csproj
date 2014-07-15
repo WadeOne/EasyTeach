@@ -62,6 +62,7 @@
     <Compile Include="Services\Dashboard\Impl\LessonServiceTest.cs" />
     <Compile Include="Services\Messaging\Impl\EmailServiceTest.cs" />
     <Compile Include="Services\Quiz\Impl\QuizManagementServiceTest.cs" />
+    <Compile Include="Services\UserManagement\Impl\GroupServiceTest.cs" />
     <Compile Include="Services\UserManagement\Impl\PasswordValidatorTest.cs" />
     <Compile Include="Services\UserManagement\Impl\UserServiceTest.cs" />
     <Compile Include="Services\UserManagement\Impl\UserStoreTest.cs" />

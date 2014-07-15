@@ -2,11 +2,25 @@
 using System.Linq;
 using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Services;
+using EasyTeach.Core.Services.Base.Exceptions;
+using EasyTeach.Core.Services.Dashboard.Exceptions;
+using EasyTeach.Core.Repositories;
 
 namespace EasyTeach.Core.Services.UserManagement.Impl
 {
     public sealed class GroupService : IGroupService
     {
+        private readonly IGroupRepository _groupRepository;
+
+        public GroupService(IGroupRepository groupReository)
+        {
+            if (groupReository == null)
+            {
+                throw new ArgumentNullException("groupReository");
+            }
+            _groupRepository = groupReository;
+        }
+
         public IQueryable<IGroupModel> GetAll()
         {
             throw new NotImplementedException();
@@ -34,7 +48,13 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
         public Task DeleteGroupAsync(int groupId)
         {
-            throw new NotImplementedException();
+            if (_groupRepository.GetGroupById(groupId) == null)
+            {
+                throw new EntityNotFoundException("group", groupId);
+            }
+            _groupRepository.RemoveGroup(groupId);
+
+            return Task.FromResult<int>(0);
         }
     }
 }

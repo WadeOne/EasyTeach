@@ -9,7 +9,7 @@ using EasyTeach.Web.Models.ViewModels.Groups;
 
 namespace EasyTeach.Web.Controllers
 {
-    [RoutePrefix("api/Visit")]
+    [RoutePrefix("api/Group")]
     public sealed class GroupController : ApiControllerBase
     {
         private readonly IGroupService _groupService;
@@ -74,7 +74,7 @@ namespace EasyTeach.Web.Controllers
         }
 
         [Route("")]
-        [HttpPut]
+        [HttpDelete]
         [ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "Delete", Resource = "Group")]
         public async Task<IHttpActionResult> Delete(int groupId)
         {

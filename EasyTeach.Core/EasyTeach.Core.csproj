@@ -105,6 +105,7 @@
     <Compile Include="Services\Claim\IClaimService.cs" />
     <Compile Include="Services\Claim\Impl\ClaimService.cs" />
     <Compile Include="Services\Dashboard\Exceptions\GroupNotFoundException.cs" />
+    <Compile Include="Services\Dashboard\Exceptions\InvalidGroupException.cs" />
     <Compile Include="Services\Dashboard\Exceptions\InvalidLessonException.cs" />
     <Compile Include="Services\Dashboard\Exceptions\InvalidVisitException.cs" />
     <Compile Include="Services\Dashboard\Exceptions\LessonDateOverlappingException.cs" />

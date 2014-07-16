@@ -56,9 +56,8 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             EntityValidationResult result = _entityValidator.ValidateEntity(groupModel);
             if (result.IsValid == false)
             {
-                throw new InvalidLessonException(result.ValidationResults);
+                throw new InvalidGroupException(result.ValidationResults);
             }
-            // ? //
             if (_groupRepository.GetGroups().Any(g => g.GroupNumber == groupModel.GroupNumber && g.GroupId == groupModel.GroupId))
             {
                 throw new GroupNotFoundException();

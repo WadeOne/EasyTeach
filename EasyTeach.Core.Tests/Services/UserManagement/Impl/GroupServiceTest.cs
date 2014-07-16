@@ -46,7 +46,7 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
         {
             IGroupModel group = new Group();
             A.CallTo(() => _entityValidator.ValidateEntity(group)).Returns(new EntityValidationResult(false));
-            Assert.Throws<InvalidLessonException>(() => _groupService.CreateGroupAsync(group));
+            Assert.Throws<InvalidGroupException>(() => _groupService.CreateGroupAsync(group));
             A.CallTo(() => _groupRepository.CreateGroup(A<IGroupDto>.Ignored)).MustNotHaveHappened();
             
         }

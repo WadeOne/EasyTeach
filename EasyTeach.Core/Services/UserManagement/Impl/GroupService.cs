@@ -15,7 +15,6 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 {
     public sealed class GroupService : IGroupService
     {
-        private const int MinRequiredYear = 1900;
         private readonly EntityValidator _entityValidator;
         private readonly IGroupRepository _groupRepository;
         private readonly IGroupDtoMapper _groupnDtoMapper;
@@ -58,7 +57,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             {
                 throw new InvalidGroupException(result.ValidationResults);
             }
-            if (_groupRepository.GetGroups().Any(g => g.GroupNumber == groupModel.GroupNumber && g.GroupId == groupModel.GroupId))
+            if (_groupRepository.GetGroups().Any(g => g.GroupNumber == groupModel.GroupNumber && g.Year == groupModel.Year))
             {
                 throw new GroupNotFoundException();
             }
@@ -74,7 +73,19 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
                 throw new ArgumentNullException("groupModel");
             }
 
-            throw new NotImplementedException();
+            EntityValidationResult result = _entityValidator.ValidateEntity(groupModel);
+            if (result.IsValid == false)
+            {
+                throw new InvalidGroupException(result.ValidationResults);
+            }
+
+            if (_groupRepository.GetGroups().Any(g => g.GroupId == groupModel.GroupId))
+            {
+                throw new GroupNotFoundException();
+            }
+            _groupRepository.UpdateGroup(_groupnDtoMapper.Map(groupModel));
+
+            return Task.FromResult<int>(0);
         }
 
         public Task DeleteGroupAsync(int groupId)

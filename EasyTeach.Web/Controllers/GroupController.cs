@@ -27,10 +27,10 @@ namespace EasyTeach.Web.Controllers
 
         [Route("")]
         [HttpGet]
-        [ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "GetAll", Resource = "Group")]
+        //[ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "GetAll", Resource = "Group")]
         public IQueryable<GroupViewModel> Get()
         {
-            var groups = _groupService.GetAll().Select(g => new GroupViewModel
+            return _groupService.GetAll().Select(g => new GroupViewModel
             {
                 GroupId = g.GroupId,
                 GroupNumber = g.GroupNumber,
@@ -39,8 +39,6 @@ namespace EasyTeach.Web.Controllers
                 ContactName = g.ContactName,
                 ContactPhone = g.ContactPhone
             });
-
-            return groups;
         }
 
 

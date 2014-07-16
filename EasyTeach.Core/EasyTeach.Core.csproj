@@ -132,6 +132,7 @@
     <Compile Include="Services\UserManagement\Exceptions\InvalidResetPasswordOperationException.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidUserDataException.cs" />
     <Compile Include="Services\UserManagement\IGroupService.cs" />
+    <Compile Include="Services\UserManagement\Impl\AuthGroupServiceWrapper.cs" />
     <Compile Include="Services\UserManagement\Impl\GroupService.cs" />
     <Compile Include="Services\UserManagement\Impl\PasswordValidator.cs" />
     <Compile Include="Services\UserManagement\Impl\UserService.cs" />

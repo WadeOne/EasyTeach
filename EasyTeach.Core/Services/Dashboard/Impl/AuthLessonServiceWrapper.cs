@@ -134,7 +134,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             {
                 if (!_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "Update")))
                 {
-                    throw new SecurityException("User doesn't have enough permission for removing lesson");
+                    throw new SecurityException("User doesn't have enough permission for update lesson");
                 }
             }
 

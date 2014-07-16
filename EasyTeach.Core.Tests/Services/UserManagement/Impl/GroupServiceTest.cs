@@ -36,6 +36,7 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
             A.CallTo(() => _entityValidator.ValidateEntity(group)).Returns(new EntityValidationResult(true));
             A.CallTo(() => _groupRepository.GetGroups()).Returns(Enumerable.Empty<IGroupDto>().AsQueryable());
             A.CallTo(() => _groupDtoMapper.Map(group)).Returns(A.Dummy<IGroupDto>());
+
             _groupService.CreateGroupAsync(group);
 
             A.CallTo(() => _groupRepository.CreateGroup(A<IGroupDto>.Ignored)).MustHaveHappened();
@@ -48,7 +49,27 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
             A.CallTo(() => _entityValidator.ValidateEntity(group)).Returns(new EntityValidationResult(false));
             Assert.Throws<InvalidGroupException>(() => _groupService.CreateGroupAsync(group));
             A.CallTo(() => _groupRepository.CreateGroup(A<IGroupDto>.Ignored)).MustNotHaveHappened();
+        }
+
+        [Fact]
+        public void UpdateGroup_ValidModel_UpdateGroupCalled()
+        {
+            IGroupModel group = new Group();
+            A.CallTo(() => _entityValidator.ValidateEntity(group)).Returns(new EntityValidationResult(true));
+            A.CallTo(() => _groupRepository.GetGroups()).Returns(Enumerable.Empty<IGroupDto>().AsQueryable());
+            A.CallTo(() => _groupDtoMapper.Map(group)).Returns(A.Dummy<IGroupDto>());
             
+            _groupService.UpdateGroupAsync(group);
+            A.CallTo(() => _groupRepository.UpdateGroup(A<IGroupDto>.Ignored)).MustHaveHappened();
+        }
+
+        [Fact]
+        public void UpdateGroup_InValidModel_InvalidGroupException()
+        {
+            IGroupModel group = new Group();
+            A.CallTo(() => _entityValidator.ValidateEntity(group)).Returns(new EntityValidationResult(false));
+            Assert.Throws<InvalidGroupException>(() => _groupService.UpdateGroupAsync(group));
+            A.CallTo(() => _groupRepository.UpdateGroup(A<IGroupDto>.Ignored)).MustNotHaveHappened();
         }
 
         [Fact]

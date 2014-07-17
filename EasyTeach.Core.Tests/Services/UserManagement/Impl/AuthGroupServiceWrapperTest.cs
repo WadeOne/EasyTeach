@@ -1,14 +1,11 @@
-﻿using System.Linq;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 using System.Security.Principal;
 using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Entities.Services;
-using EasyTeach.Core.Services.Dashboard.Impl;
 using EasyTeach.Core.Validation.EntityValidator;
 using FakeItEasy;
 using Microsoft.AspNet.Identity;
 using Xunit;
-using System.Threading.Tasks;
 using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Core.Services.UserManagement.Impl;
 using System.Security;
@@ -36,7 +33,7 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
 
             _entityValidator = A.Fake<EntityValidator>();
             _userStore = A.Fake<IUserStore<IUserDto, int>>();
-            _authorizationManager = new ClaimsAuthorizationManager();
+            _authorizationManager = new EasyTeach.Core.Security.ClaimsAuthorizationManager();
 
             _authGroupServiceWrapper = new AuthGroupServiceWrapper(
                 _groupService,
@@ -61,7 +58,7 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
         {
             var group = A.Fake<IGroupModel>();
             A.CallTo(() => _entityValidator.ValidateEntity(group)).Returns(new EntityValidationResult(true));
-            A.CallTo(() => A.Fake<ClaimsAuthorizationManager>().CheckAccess(new AuthorizationContext(_principal, "Group", "Create"))).Returns(false);
+            A.CallTo(() => _principal.HasClaim("Group", "Create")).Returns(false);
             Assert.Throws<SecurityException>(() => _authGroupServiceWrapper.CreateGroupAsync(group));
             A.CallTo(() => _groupService.CreateGroupAsync(group)).MustNotHaveHappened();
         }

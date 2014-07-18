@@ -103,13 +103,16 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             }
             else
             {
+                /*
                 IUserDto user =_userStore.FindByNameAsync(_principal.Identity.Name).Result;
                 if (user.GroupId != lesson.Group.GroupId)
                 {
-                    if (!_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "Delete")))
-                    {
-                        throw new SecurityException("User doesn't have enough permission for removing lesson");
-                    }
+                    
+                }
+                 * */
+                if (!_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "Delete")))
+                {
+                    throw new SecurityException("User doesn't have enough permission for removing lesson");
                 }
 
                _lessonService.RemoveLesson(lessonId);

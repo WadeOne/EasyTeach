@@ -27,6 +27,8 @@ namespace EasyTeach.Data.Context
 
         public virtual IDbSet<VisitDto> Visits { get; set; }
 
+        public virtual IDbSet<ScoreDto> Scores { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             Database.SetInitializer(new MigrateDatabaseToLatestVersion<EasyTeachContext, Configuration>());

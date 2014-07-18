@@ -82,6 +82,10 @@
       <Project>{72DE7CE6-44FA-440B-8EFF-A0655E3FE465}</Project>
       <Name>EasyTeach.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EasyTeach.Data\EasyTeach.Data.csproj">
+      <Project>{F9DC5D23-5FA7-4278-887A-E322917D44F0}</Project>
+      <Name>EasyTeach.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />

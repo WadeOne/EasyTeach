@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Entities\AssignedQuiz.cs" />
     <Compile Include="Entities\Data\Dashboard\ILessonDto.cs" />
+    <Compile Include="Entities\Data\Dashboard\IScoreDto.cs" />
     <Compile Include="Entities\Data\Dashboard\IVisitDto.cs" />
     <Compile Include="Entities\Data\Group\IGroupDto.cs" />
     <Compile Include="Entities\Data\Quiz\IAssignedQuizDto.cs" />
@@ -75,6 +76,7 @@
     <Compile Include="Entities\Services\IUserIdentityModel.cs" />
     <Compile Include="Entities\Services\IUserModel.cs" />
     <Compile Include="Entities\Services\IVariantProgressModel.cs" />
+    <Compile Include="Entities\ScoreModel.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\Visit.cs" />
     <Compile Include="Enums\ProgressStatus.cs" />
@@ -87,11 +89,13 @@
     <Compile Include="Repositories\IGroupRepository.cs" />
     <Compile Include="Repositories\ILessonRepository.cs" />
     <Compile Include="Repositories\IQuizRepository.cs" />
+    <Compile Include="Repositories\IScoreRepository.cs" />
     <Compile Include="Repositories\IUserClaimRepository.cs" />
     <Compile Include="Repositories\IUserRepository.cs" />
     <Compile Include="Repositories\IUserTokenRepository.cs" />
     <Compile Include="Repositories\IVisitRepository.cs" />
     <Compile Include="Repositories\Mappers\Dashboard\ILessonDtoMapper.cs" />
+    <Compile Include="Repositories\Mappers\Dashboard\IScoreDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\Dashboard\IVisitDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\QuizManagement\IAssignedQuizDtoMapper.cs" />
     <Compile Include="Repositories\Mappers\QuizManagement\IQuestionDtoMapper.cs" />
@@ -111,6 +115,7 @@
     <Compile Include="Services\Dashboard\Exceptions\LessonDateOverlappingException.cs" />
     <Compile Include="Services\Dashboard\ILessonService.cs" />
     <Compile Include="Services\Dashboard\Impl\AuthLessonServiceWrapper.cs" />
+    <Compile Include="Services\Dashboard\Impl\AuthVisitServiceWrapper.cs" />
     <Compile Include="Services\Dashboard\Impl\LessonService.cs" />
     <Compile Include="Services\Dashboard\Impl\VisitService.cs" />
     <Compile Include="Services\Dashboard\IVisitService.cs" />
@@ -127,6 +132,8 @@
     <Compile Include="Services\Quiz\Exceptions\InvalidQuizException.cs" />
     <Compile Include="Services\Quiz\IQuizManagementService.cs" />
     <Compile Include="Entities\Services\IQuizModel.cs" />
+    <Compile Include="Services\Score\Impl\ScoreService.cs" />
+    <Compile Include="Services\Score\IScoreService.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidSetPasswordOperationException.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidEmailConfirmationOperationException.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidResetPasswordOperationException.cs" />

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.IdentityModel.Services;
 using System.Linq;
-using System.Security.Permissions;
 using System.Threading.Tasks;
 using System.Web.Http;
 using EasyTeach.Core.Services.Dashboard;
@@ -26,7 +24,6 @@ namespace EasyTeach.Web.Controllers
         }
 
         [Route("")]
-        [ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "GetAll", Resource = "Visit")]
         public IQueryable<VisitViewModel> Get(int groupId)
         {
             return _visitService.GetGroupVisits(groupId).Select(v => new VisitViewModel
@@ -59,7 +56,6 @@ namespace EasyTeach.Web.Controllers
 
         [Route("")]
         [HttpPut]
-        [ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "Update", Resource = "Visit")]
         public async Task<IHttpActionResult> Put(VisitViewModel visit)
         {
             if (visit == null)

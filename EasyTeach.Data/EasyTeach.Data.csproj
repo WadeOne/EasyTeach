@@ -68,6 +68,7 @@
     <Compile Include="Entities\QuestionDto.cs" />
     <Compile Include="Entities\QuestionItemDto.cs" />
     <Compile Include="Entities\QuizDto.cs" />
+    <Compile Include="Entities\ScoreDto.cs" />
     <Compile Include="Entities\UserClaimDto.cs" />
     <Compile Include="Entities\UserDto.cs" />
     <Compile Include="Entities\UserTokenDto.cs" />
@@ -91,9 +92,11 @@
     <Compile Include="Repostitories\Mappers\QuizManagement\AssignedQuizDtoMapper.cs" />
     <Compile Include="Repostitories\Mappers\QuizManagement\QuestionDtoMapper.cs" />
     <Compile Include="Repostitories\Mappers\QuizManagement\QuizDtoMapper.cs" />
+    <Compile Include="Repostitories\Mappers\Dashboard\ScoreDtoMapper.cs" />
     <Compile Include="Repostitories\Mappers\UserManagement\UserClaimDtoMapper.cs" />
     <Compile Include="Repostitories\Mappers\UserManagement\UserDtoMapper.cs" />
     <Compile Include="Repostitories\QuizRepository.cs" />
+    <Compile Include="Repostitories\ScoreRepository.cs" />
     <Compile Include="Repostitories\UserClaimRepository.cs" />
     <Compile Include="Repostitories\UserRepository.cs" />
     <Compile Include="Repostitories\UserTokenRepository.cs" />

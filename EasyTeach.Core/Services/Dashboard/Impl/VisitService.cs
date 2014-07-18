@@ -69,7 +69,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             int[] lessonIds =_lessonRepository.GetLessons().Where(l => l.GroupId == groupId).Select(l => l.LessonId).ToArray();
 
             IVisitDto[] existingVisits = _visitRepository.GetAll()
-                .Where(v => groupMateIds.Contains(v.UserId) || lessonIds.Contains(v.LessonId))
+                .Where(v => groupMateIds.Contains(v.UserId) && lessonIds.Contains(v.LessonId))
                 .ToArray();
 
             var allPossibleVisits = new HashSet<Tuple<int, int>>();
@@ -102,7 +102,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 {
                     Lesson = new Lesson { LessonId = possibleVisit.Item2 },
                     Note = null,
-                    Status = VisitStatus.Skipped,
+                    Status = VisitStatus.Vistited,
                     Visitor = new User { UserId = possibleVisit.Item1 }
                 };
 

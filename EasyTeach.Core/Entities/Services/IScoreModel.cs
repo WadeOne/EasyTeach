@@ -2,6 +2,7 @@
 {
     public interface IScoreModel
     {
+        int ScoreId { get; }
         int Score { get; }
 
         IUserIdentityModel AssignedTo { get; }

@@ -10,6 +10,8 @@ using Autofac.Integration.WebApi;
 using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Services.Dashboard;
 using EasyTeach.Core.Services.Dashboard.Impl;
+using EasyTeach.Core.Services.UserManagement;
+using EasyTeach.Core.Services.UserManagement.Impl;
 using EasyTeach.Core.Validation.EntityValidator;
 using EasyTeach.Data.Context;
 using EasyTeach.Web.Areas.HelpPage;
@@ -35,6 +37,8 @@ namespace EasyTeach.Web
                 .Except<EasyTeachContext>(x => x.AsSelf()) //TODO: find a way to create EF context one per API request
                 .Except<XmlDocumentationProvider>()
                 .Except<LessonService>()
+                .Except<GroupService>()
+                .Except<VisitService>()
                 .Except<AuthLessonServiceWrapper>();
 
             builder.Register<Func<IAuthenticationManager>>(c => () =>
@@ -51,6 +55,7 @@ namespace EasyTeach.Web
             builder.Register<Func<object, ValidationContext>>(c => o => new ValidationContext(o, new Adapter(), null));
             builder.RegisterType<UserManager<IUserDto, int>>().AsSelf().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues);
             builder.RegisterHttpRequestMessage(GlobalConfiguration.Configuration);
+
             builder.RegisterType<LessonService>().Named<ILessonService>("lessonService");
             builder.RegisterDecorator<ILessonService>(
                 (c, inner) =>
@@ -61,6 +66,28 @@ namespace EasyTeach.Web
                         c.Resolve<IUserStore<IUserDto, int>>(),
                         c.Resolve<Core.Security.ClaimsAuthorizationManager>()),
                 "lessonService");
+
+            builder.RegisterType<GroupService>().Named<IGroupService>("groupService");
+            builder.RegisterDecorator<IGroupService>(
+                (c, inner) =>
+                    new AuthGroupServiceWrapper(
+                        inner,
+                        c.Resolve<ClaimsPrincipal>(),
+                        c.Resolve<EntityValidator>(),
+                        c.Resolve<IUserStore<IUserDto, int>>(),
+                        c.Resolve<Core.Security.ClaimsAuthorizationManager>()),
+                "groupService");
+
+            builder.RegisterType<VisitService>().Named<IVisitService>("visitService");
+            builder.RegisterDecorator<IVisitService>(
+                (c, inner) =>
+                    new AuthVisitServiceWrapper(
+                        inner,
+                        c.Resolve<ClaimsPrincipal>(),
+                        c.Resolve<EntityValidator>(),
+                        c.Resolve<IUserStore<IUserDto, int>>(),
+                        c.Resolve<Core.Security.ClaimsAuthorizationManager>()),
+                "visitService");
 
             if (beforeBuild != null)
             {

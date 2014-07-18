@@ -36,7 +36,6 @@ namespace EasyTeach.Web.Controllers
 
         [Route("")]
         [HttpPost]
-        [ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "Create", Resource = "Lesson")]
         public IHttpActionResult Post(CreateLessonViewModel lesson)
         {
             if (lesson == null)
@@ -51,7 +50,6 @@ namespace EasyTeach.Web.Controllers
 
         [Route("")]
         [HttpPut]
-        [ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "Update", Resource = "Lesson")]
         public IHttpActionResult Put(UpdateLessonViewModel lesson)
         {
             if (lesson == null)
@@ -66,7 +64,6 @@ namespace EasyTeach.Web.Controllers
 
         [Route("")]
         [HttpDelete]
-        [ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "Delete", Resource = "Lesson")]
         public IHttpActionResult Delete(int lessonId)
         {
             _lessonService.RemoveLesson(lessonId);

@@ -84,10 +84,21 @@ namespace EasyTeach.Web
                     new AuthVisitServiceWrapper(
                         inner,
                         c.Resolve<ClaimsPrincipal>(),
-                        c.Resolve<EntityValidator>(),
+                        //c.Resolve<EntityValidator>(),
                         c.Resolve<IUserStore<IUserDto, int>>(),
                         c.Resolve<Core.Security.ClaimsAuthorizationManager>()),
                 "visitService");
+
+            builder.RegisterType<ScoreService>().Named<IScoreService>("scoreService");
+            builder.RegisterDecorator<IScoreService>(
+                (c, inner) =>
+                    new AuthScoreServiceWrapper(
+                        inner,
+                        c.Resolve<ClaimsPrincipal>(),
+                        c.Resolve<EntityValidator>(),
+                        c.Resolve<IUserStore<IUserDto, int>>(),
+                        c.Resolve<Core.Security.ClaimsAuthorizationManager>()),
+                "scoreService");
 
             if (beforeBuild != null)
             {

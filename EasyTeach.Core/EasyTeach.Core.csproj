@@ -111,10 +111,13 @@
     <Compile Include="Services\Dashboard\Exceptions\GroupNotFoundException.cs" />
     <Compile Include="Services\Dashboard\Exceptions\InvalidGroupException.cs" />
     <Compile Include="Services\Dashboard\Exceptions\InvalidLessonException.cs" />
+    <Compile Include="Services\Dashboard\Exceptions\InvalidScoreException.cs" />
     <Compile Include="Services\Dashboard\Exceptions\InvalidVisitException.cs" />
     <Compile Include="Services\Dashboard\Exceptions\LessonDateOverlappingException.cs" />
+    <Compile Include="Services\Dashboard\Exceptions\ScoreNotFoundException.cs" />
     <Compile Include="Services\Dashboard\ILessonService.cs" />
     <Compile Include="Services\Dashboard\Impl\AuthLessonServiceWrapper.cs" />
+    <Compile Include="Services\Dashboard\Impl\AuthScoreServiceWrapper.cs" />
     <Compile Include="Services\Dashboard\Impl\AuthVisitServiceWrapper.cs" />
     <Compile Include="Services\Dashboard\Impl\LessonService.cs" />
     <Compile Include="Services\Dashboard\Impl\VisitService.cs" />
@@ -132,8 +135,8 @@
     <Compile Include="Services\Quiz\Exceptions\InvalidQuizException.cs" />
     <Compile Include="Services\Quiz\IQuizManagementService.cs" />
     <Compile Include="Entities\Services\IQuizModel.cs" />
-    <Compile Include="Services\Score\Impl\ScoreService.cs" />
-    <Compile Include="Services\Score\IScoreService.cs" />
+    <Compile Include="Services\Dashboard\Impl\ScoreService.cs" />
+    <Compile Include="Services\Dashboard\IScoreService.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidSetPasswordOperationException.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidEmailConfirmationOperationException.cs" />
     <Compile Include="Services\UserManagement\Exceptions\InvalidResetPasswordOperationException.cs" />

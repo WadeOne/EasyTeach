@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data.Dashboard;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Data.Context;
@@ -27,7 +24,7 @@ namespace EasyTeach.Data.Repostitories
         {
             if (score == null)
             {
-                throw new ArgumentNullException("group");
+                throw new ArgumentNullException("score");
             }
 
             _context.Scores.Add((ScoreDto)score);
@@ -43,18 +40,24 @@ namespace EasyTeach.Data.Repostitories
 
         public void UpdateScore(IScoreDto score)
         {
+            if (score == null)
+            {
+                throw new ArgumentNullException("score");
+            }
+
             ScoreDto oldScore = _context.Scores.Single(s => s.ScoreId == score.ScoreId);
-            /*
+            
             oldScore.Score = score.Score;
-            oldScore.Date = lesson.Date;
-            oldScore.GroupId = lesson.GroupId;
-             * */
+            oldScore.Task = score.Task;
+            oldScore.AssignedToId = score.AssignedTo.Id;
+            oldScore.AssignedById = score.AssignedBy.Id;
+            oldScore.Visit.VisitId = score.Visit.VisitId;
             _context.SaveChanges();
         }
 
-        public IQueryable<IScoreDto> GetGroupScore(int groupId)
+        public IQueryable<IScoreDto> GetScores()
         {
-            throw new NotImplementedException();
+            return _context.Scores;
         }
     }
 }

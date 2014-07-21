@@ -3,8 +3,6 @@ using System.Security.Principal;
 using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Entities.Services;
-using EasyTeach.Core.Services.Dashboard.Exceptions;
-using EasyTeach.Core.Validation.EntityValidator;
 using Microsoft.AspNet.Identity;
 using System;
 using System.Security.Claims;
@@ -16,14 +14,12 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
     {
         private readonly IVisitService _visitService;
         private readonly ClaimsPrincipal _principal;
-        private readonly EntityValidator _entityValidator;
         private readonly IUserStore<IUserDto, int> _userStore;
         private readonly ClaimsAuthorizationManager _authorizationManager;
 
         public AuthVisitServiceWrapper(
             IVisitService visitService, 
             ClaimsPrincipal principal, 
-            EntityValidator entityValidator,
             IUserStore<IUserDto, int> userStore,
             ClaimsAuthorizationManager authorizationManager)
         {
@@ -38,12 +34,6 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new ArgumentNullException("principal");
             }
             _principal = principal;
-
-            if (entityValidator == null)
-            {
-                throw new ArgumentNullException("entityValidator");
-            }
-            _entityValidator = entityValidator;
 
             if (userStore == null)
             {

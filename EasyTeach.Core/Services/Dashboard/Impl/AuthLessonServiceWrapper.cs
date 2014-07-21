@@ -166,9 +166,9 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
 
         public IQueryable<ILessonModel> GetLessons()
         {
-            if (_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "GetAll")))
+            if (!_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "GetAll")))
             {
-                return _lessonService.GetLessons();
+                throw new SecurityException("User doesn't have enough permission for retrieving lesson");
             }
 
             IUserDto user = _userStore.FindByNameAsync(_principal.Identity.Name).Result;

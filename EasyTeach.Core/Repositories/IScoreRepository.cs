@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using EasyTeach.Core.Entities.Data.Dashboard;
 
 namespace EasyTeach.Core.Repositories
@@ -13,8 +9,8 @@ namespace EasyTeach.Core.Repositories
 
         void DeleteScore(int scoreId);
 
-        void UpdateScore(int scoreId);
+        void UpdateScore(IScoreDto score);
 
-        IQueryable<IScoreDto> GetGroupScore(int groupId);
+        IQueryable<IScoreDto> GetScores();
     }
 }

@@ -7,8 +7,10 @@ using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Web.Models.ViewModels.Dashboard.Scores
 {
-    public class CreateScoreViewModel
+    public class UpdateScoreViewModel
     {
+        public int ScoreId { get; set; }
+
         public int Score { get; set; }
 
         public int AssignedToId { get; set; }
@@ -23,6 +25,7 @@ namespace EasyTeach.Web.Models.ViewModels.Dashboard.Scores
         {
             return new ScoreModel
             {
+                ScoreId = ScoreId,
                 Score = Score,
 
                 AssignedTo = new User

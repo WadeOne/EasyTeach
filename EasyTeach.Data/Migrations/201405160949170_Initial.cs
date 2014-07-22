@@ -1,3 +1,5 @@
+using System.Data.Entity.Core.Common.CommandTrees;
+
 namespace EasyTeach.Data.Migrations
 {
     using System;
@@ -127,7 +129,6 @@ namespace EasyTeach.Data.Migrations
                 .ForeignKey("dbo.UserDtoes", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.LessonId)
                 .Index(t => t.UserId);
-            
         }
         
         public override void Down()

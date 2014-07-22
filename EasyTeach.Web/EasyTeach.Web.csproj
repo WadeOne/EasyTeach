@@ -224,6 +224,7 @@
     <Compile Include="Controllers\VisitController.cs" />
     <Compile Include="Models\ViewModels\Dashboard\Scores\CreateScoreViewModel.cs" />
     <Compile Include="Models\ViewModels\Dashboard\Scores\ScoreViewModel.cs" />
+    <Compile Include="Models\ViewModels\Dashboard\Scores\UpdateScoreViewModel.cs" />
     <Compile Include="Models\ViewModels\Groups\CreateGroupViewModel.cs" />
     <Compile Include="Models\ViewModels\Groups\GroupViewModel.cs" />
     <Compile Include="Models\ViewModels\Quiz\AssignToGoupViewModel.cs" />

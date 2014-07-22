@@ -96,9 +96,9 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             return new ScoreModel
             {
                 ScoreId = score.ScoreId,
-                Score = score.ScoreId,
-                AssignedTo = new User{UserId = score.AssignedTo.Id },
-                AssignedBy = new User{UserId = score.AssignedBy.Id },
+                Score = score.Score,
+                AssignedTo = new User { UserId = score.AssignedToId },
+                AssignedBy = new User { UserId = score.AssignedById },
             };
         }
     }

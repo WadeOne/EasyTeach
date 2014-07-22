@@ -67,6 +67,7 @@ namespace EasyTeach.Data.Migrations
             AddClaims(context, 1, "Lesson", new[] { "Create", "Update", "Delete", "GetAll" });
             AddClaims(context, 1, "Visit", new[] { "Update", "GetAll" });
             AddClaims(context, 1, "Group", new[] { "Create", "Update", "Delete", "GetAll" });
+            AddClaims(context, 1, "Score", new[] { "Create", "Update", "Delete", "GetAll" });
 
             context.SaveChanges();
         }

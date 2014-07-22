@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Web.Models.ViewModels.Dashboard.Scores
@@ -18,6 +19,6 @@ namespace EasyTeach.Web.Models.ViewModels.Dashboard.Scores
 
         public IVariantProgressModel Task { get; set; }
 
-        public int VisitId { get; set; }
+        public int? VisitId { get; set; }
     }
 }

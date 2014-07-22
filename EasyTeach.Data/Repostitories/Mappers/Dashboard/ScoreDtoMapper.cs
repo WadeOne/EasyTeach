@@ -32,7 +32,7 @@ namespace EasyTeach.Data.Repostitories.Mappers.Dashboard
                 AssignedTo = (UserDto)_userDtoMapper.Map(score.AssignedTo),
                 AssignedBy = (UserDto)_userDtoMapper.Map(score.AssignedBy),
                 Task = score.Task,
-                Visit = (VisitDto)_visitDtoMapper.Map(score.Visit)
+                Visit = score.Visit == null ? null : (VisitDto)_visitDtoMapper.Map(score.Visit)
             };
         }
     }

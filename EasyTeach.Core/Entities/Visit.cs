@@ -6,6 +6,8 @@ namespace EasyTeach.Core.Entities
 {
     public sealed class Visit : IVisitModel
     {
+        public int VisitId { get; set; }
+
         [Required]
         public ILessonModel Lesson { get; set; }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Http;
+using EasyTeach.Core.Entities;
 using EasyTeach.Core.Services.Dashboard;
 using EasyTeach.Web.Models.ViewModels.Dashboard.Scores;
 
@@ -32,8 +33,7 @@ namespace EasyTeach.Web.Controllers
                 Score = s.Score,
                 AssignedToId = s.AssignedTo.UserId,
                 AssignedById = s.AssignedBy.UserId,
-                Task = s.Task,
-                //VisitId = s.Visit.
+                Task = s.Task
             });
         }
 
@@ -47,6 +47,20 @@ namespace EasyTeach.Web.Controllers
             }
 
             _scoreService.AddScore(score.ToScore());
+
+            return Ok();
+        }
+
+        [Route("")]
+        [HttpPut]
+        public IHttpActionResult Put(UpdateScoreViewModel score)
+        {
+            if (score == null)
+            {
+                throw new ArgumentNullException("score");
+            }
+
+            _scoreService.UpdateScore(score.ToScore());
 
             return Ok();
         }

@@ -4,6 +4,8 @@ namespace EasyTeach.Core.Entities.Services
 {
     public interface IVisitModel
     {
+        int VisitId { get; }
+
         ILessonModel Lesson { get; }
 
         IUserModel Visitor { get; }

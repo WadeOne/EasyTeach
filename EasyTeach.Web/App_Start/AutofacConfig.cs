@@ -39,7 +39,11 @@ namespace EasyTeach.Web
                 .Except<LessonService>()
                 .Except<GroupService>()
                 .Except<VisitService>()
-                .Except<AuthLessonServiceWrapper>();
+                .Except<ScoreService>()
+                .Except<AuthLessonServiceWrapper>()
+                .Except<AuthGroupServiceWrapper>()
+                .Except<AuthVisitServiceWrapper>()
+                .Except<AuthScoreServiceWrapper>();
 
             builder.Register<Func<IAuthenticationManager>>(c => () =>
             {
@@ -84,11 +88,11 @@ namespace EasyTeach.Web
                     new AuthVisitServiceWrapper(
                         inner,
                         c.Resolve<ClaimsPrincipal>(),
-                        //c.Resolve<EntityValidator>(),
+                        c.Resolve<EntityValidator>(),
                         c.Resolve<IUserStore<IUserDto, int>>(),
                         c.Resolve<Core.Security.ClaimsAuthorizationManager>()),
                 "visitService");
-
+            
             builder.RegisterType<ScoreService>().Named<IScoreService>("scoreService");
             builder.RegisterDecorator<IScoreService>(
                 (c, inner) =>
@@ -99,7 +103,7 @@ namespace EasyTeach.Web
                         c.Resolve<IUserStore<IUserDto, int>>(),
                         c.Resolve<Core.Security.ClaimsAuthorizationManager>()),
                 "scoreService");
-
+            
             if (beforeBuild != null)
             {
                 beforeBuild(builder);

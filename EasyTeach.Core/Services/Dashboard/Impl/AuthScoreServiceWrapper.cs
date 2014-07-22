@@ -64,6 +64,12 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new ArgumentNullException("score");
             }
 
+            EntityValidationResult result = _entityValidator.ValidateEntity(score);
+            if (result.IsValid == false)
+            {
+                throw new InvalidLessonException(result.ValidationResults);
+            }
+
             if (!_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Score", "Create")))
             {
                 throw new SecurityException("User doesn't have enough permission for creating score");
@@ -95,7 +101,6 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new InvalidLessonException(result.ValidationResults);
             }
 
-            IUserDto user = _userStore.FindByNameAsync(_principal.Identity.Name).Result;
             if (!_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Score", "Delete")))
             {
                 throw new SecurityException("User doesn't have enough permission for update score");

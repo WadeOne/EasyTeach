@@ -1,10 +1,12 @@
-﻿using EasyTeach.Core.Entities;
+﻿using System.ComponentModel.DataAnnotations;
+using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Web.Models.ViewModels.Groups
 {
     public class GroupViewModel
     {
+        [Key]
         public int GroupId { get; set; }
 
         public int GroupNumber { get; set; }

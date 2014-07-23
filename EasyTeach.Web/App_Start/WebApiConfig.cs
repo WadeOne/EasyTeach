@@ -1,5 +1,9 @@
 ﻿using System.Web.Http;
+using System.Web.OData.Builder;
+using System.Web.OData.Extensions;
 using EasyTeach.Web.Filters;
+using EasyTeach.Web.Models.ViewModels.Dashboard.Lessons;
+using EasyTeach.Web.Models.ViewModels.Groups;
 using Newtonsoft.Json.Serialization;
 
 namespace EasyTeach.Web
@@ -24,6 +28,14 @@ namespace EasyTeach.Web
 
             config.Filters.Add(new AuthorizeAttribute());
             config.Filters.Add(new SecurityExceptionFilterAttribute());
+
+            ODataModelBuilder builder = new ODataConventionModelBuilder();
+            builder.EntitySet<GroupViewModel>("Groups");
+            //builder.EntitySet<LessonViewModel>("Lessons");
+            config.MapODataServiceRoute(
+                routeName: "ODataRoute",
+                routePrefix: "odata",
+                model: builder.GetEdmModel());
         }
     }
 }

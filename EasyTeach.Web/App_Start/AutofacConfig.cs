@@ -49,7 +49,7 @@ namespace EasyTeach.Web
             {
                 HttpRequestMessage message = ResolveRequestMessage();
                 return message.GetOwinContext().Authentication;
-            }).InstancePerApiRequest();
+            }).InstancePerRequest();
 
             builder.Register(c =>
             {

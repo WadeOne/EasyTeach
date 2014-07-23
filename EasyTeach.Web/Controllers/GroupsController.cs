@@ -2,17 +2,17 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.OData;
 using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Web.Models.ViewModels.Groups;
 
 namespace EasyTeach.Web.Controllers
 {
-    [RoutePrefix("api/Group")]
-    public sealed class GroupController : ApiControllerBase
+    public sealed class GroupsController : ODataController
     {
         private readonly IGroupService _groupService;
 
-        public GroupController(IGroupService groupService)
+        public GroupsController(IGroupService groupService)
         {
             if (groupService == null)
             {
@@ -22,8 +22,7 @@ namespace EasyTeach.Web.Controllers
             _groupService = groupService;
         }
 
-
-        [Route("")]
+        [EnableQuery]
         [HttpGet]
         public IQueryable<GroupViewModel> Get()
         {
@@ -38,8 +37,7 @@ namespace EasyTeach.Web.Controllers
             });
         }
 
-
-        [Route("")]
+        [EnableQuery]
         [HttpPost]
         public async Task<IHttpActionResult> Post(CreateGroupViewModel group)
         {
@@ -52,8 +50,7 @@ namespace EasyTeach.Web.Controllers
             return Ok();
         }
 
-
-        [Route("")]
+        [EnableQuery]
         [HttpPut]
         public async Task<IHttpActionResult> Put(GroupViewModel group)
         {
@@ -66,7 +63,7 @@ namespace EasyTeach.Web.Controllers
             return Ok();
         }
 
-        [Route("")]
+        [EnableQuery]
         [HttpDelete]
         public async Task<IHttpActionResult> Delete(int groupId)
         {

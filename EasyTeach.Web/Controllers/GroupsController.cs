@@ -2,7 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.OData;
+using System.Web.Http.OData;
+using System.Web.Http.OData.Query;
+
+using Microsoft.Data.OData;
+using EasyTeach.Core.Entities;
+using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Web.Models.ViewModels.Groups;
 
@@ -22,11 +27,10 @@ namespace EasyTeach.Web.Controllers
             _groupService = groupService;
         }
 
-        [EnableQuery]
         [HttpGet]
         public IQueryable<GroupViewModel> Get()
         {
-            return _groupService.GetAll().Select(g => new GroupViewModel
+            var result = _groupService.GetAll().Select(g => new GroupViewModel
             {
                 GroupId = g.GroupId,
                 GroupNumber = g.GroupNumber,
@@ -35,22 +39,42 @@ namespace EasyTeach.Web.Controllers
                 ContactName = g.ContactName,
                 ContactPhone = g.ContactPhone
             });
+            return result;
         }
-
-        [EnableQuery]
+        /*
         [HttpPost]
-        public async Task<IHttpActionResult> Post(CreateGroupViewModel group)
+        public IHttpActionResult Post(GroupViewModel groupView)
         {
-            if (group == null)
-            {
-                throw new ArgumentNullException("group");
-            }
 
-            await _groupService.CreateGroupAsync(group.ToGroup());
-            return Ok();
+            IGroupModel g = groupView.ToGroup();
+            _groupService.CreateGroupAsync(g);
+
+            GroupViewModel gr = new GroupViewModel
+            {
+                GroupId = g.GroupId,
+                GroupNumber = g.GroupNumber,
+                Year = g.Year,
+                ContactEmail = g.ContactEmail,
+                ContactName = g.ContactName,
+                ContactPhone = g.ContactPhone
+            };
+
+            return (GroupViewModel)gr;
+        }
+        */
+        private static GroupViewModel MapProductToDto(IGroupModel g)
+        {
+            return new GroupViewModel
+            {
+                GroupId = g.GroupId,
+                GroupNumber = g.GroupNumber,
+                Year = g.Year,
+                ContactEmail = g.ContactEmail,
+                ContactName = g.ContactName,
+                ContactPhone = g.ContactPhone
+            };
         }
 
-        [EnableQuery]
         [HttpPut]
         public async Task<IHttpActionResult> Put(GroupViewModel group)
         {
@@ -63,7 +87,6 @@ namespace EasyTeach.Web.Controllers
             return Ok();
         }
 
-        [EnableQuery]
         [HttpDelete]
         public async Task<IHttpActionResult> Delete(int groupId)
         {

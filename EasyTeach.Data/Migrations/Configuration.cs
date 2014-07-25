@@ -21,12 +21,26 @@ namespace EasyTeach.Data.Migrations
 
         protected override void Seed(EasyTeachContext context)
         {
-            context.Groups.AddOrUpdate(new GroupDto
-            {
-                GroupId = 1,
-                GroupNumber = 1,
-                Year = 1953
-            });
+            context.Groups.AddOrUpdate(
+                new GroupDto
+                {
+                    GroupId = 1,
+                    GroupNumber = 1,
+                    Year = 2011
+                },
+                new GroupDto
+                {
+                    GroupId = 2,
+                    GroupNumber = 2,
+                    Year = 2011
+                },
+                new GroupDto
+                {
+                    GroupId = 3,
+                    GroupNumber = 3,
+                    Year = 2011
+                }
+                );
 
             context.SaveChanges();
 

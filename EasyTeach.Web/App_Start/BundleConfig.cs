@@ -22,6 +22,9 @@ namespace EasyTeach.Web
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/kendo").Include(
+                "~/Scripts/kendo/2014.1.318/kendo.web.min.js"));
         }
     }
 }

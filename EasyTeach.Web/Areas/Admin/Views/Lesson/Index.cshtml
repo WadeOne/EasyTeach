@@ -1,0 +1,163 @@
+﻿@{
+    ViewBag.Title = "Lessons";
+}
+
+<div id="body">
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>Lessons</h1>
+            </hgroup>
+            <div id="Grid" style="height: 380px"></div>
+        </div>
+    </section>
+</div>
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#Grid").kendoGrid({
+                columns: [
+                    { field: "Date", title: "Date", width: "100px" },
+                    { field: "GroupNumber", title: "Group Number", width: "100px", editor: groupDropDownEditor, template: "#=GroupNumber#" },
+                    { field: "Year", title: "Group Year", width: "100px", editor: groupDropDownEditor, template: "#=Year#" },
+                    { command: "edit", title: "Edit", width: "110px" },
+                    { command: "destroy", title: "Delete", width: "110px" }
+                ],
+                pageable: true,
+                pageSize: 5,
+                sortable: true,
+                filterable: true,
+                editable: "popup",
+                toolbar: ["create"],
+                dataSource: {
+                    serverPaging: true,
+                    serverFiltering: true,
+                    serverSorting: true,
+                    pageSize: 5,
+                    type: "odata",
+                    schema: {
+                        data: function(response) {
+                            if (response.value !== undefined)
+                                return response.value;
+                            else {
+                                delete response["odata.metadata"];
+                                return response;
+                            }
+                        },
+                        total: function(response) {
+                            return response['odata.count'];
+                        },
+                        model: {
+                            id: "LessonId",
+                            fields: {
+                                LessonId: { editable: false, type: "number" },
+                                Date: { nullable: true, type: "string" },
+                                GroupNumber: { type: "number", validation: { required: true }, editable: true },
+                                Year: { type: "number", validation: { required: true }, editable: true },
+                        }
+                    },
+                },
+                batch: false,
+                error: error,
+                transport: {
+                    create: {
+                        url: "/odata/Lessons",
+                        contentType: "application/json",
+                        type: "POST"
+                    },
+                    read: {
+                        url: "/odata/Lessons",
+                        dataType: "json",
+                        contentType: "application/json",
+
+                    },
+                    update: {
+                        url: function(record) {
+                            return "/odata/Lessons" + "(" + record.GroupId + ")";
+                        },
+                        dataType: "json",
+                        contentType: "application/json",
+                        type: "PUT",
+                        headers: { Prefer: "return-content" }
+                    },
+                    destroy: {
+                        url: function(record) {
+                            return "/odata/Lessons" + "(" + record.GroupId + ")";
+                        },
+                        contentType: "application/json",
+                        type: "DELETE"
+                    },
+                    parametermap: function(data, operation) {
+                        console.log(data);
+                        if (operation === "read") {
+                            var parammap = kendo.data.transports.odata.parametermap(data);
+                            return parammap;
+                        }
+                        return json.stringify(data);
+                    }
+                }
+            }
+        });
+        });
+
+        function groupDropDownEditor(container, options) {
+            $('<input data-bind="value:GroupId"/>')
+                .appendTo(container)
+                .kendoDropDownList({
+                    dataTextField: "GroupNumber",
+                    dataValueField: "GroupId",
+                    optionLabel: "--Select Value--",
+                    dataSource: {
+                        schema: {
+                            data: "value",
+                            total: function(response) {
+                                return response['odata.count'];
+                            },
+                            model: {
+                                id: "GroupId",
+                                fields: {
+                                    GroupId: { editable: false, type: "number" },
+                                    GroupNumber: { type: "number", nullable: false },
+
+                                }
+                            },
+                        },
+                        type: "odata",
+                        serverFiltering: true,
+                        serverPaging: true,
+                        pageSize: 20,
+                        transport: {
+                            read: {
+                                url: "/odata/Lessons",
+                                dataType: "json",
+                                contentType: "application/json"
+                            }
+                        },
+                        parametermap: function(data, operation) {
+                            if (operation === "read") {
+                                var parammap = kendo.data.transports.odata.parametermap(data);
+                                return parammap;
+                            }
+                            return json.stringify(data);
+                        }
+                    },
+
+                });
+        }
+
+        function error(e) {
+            if (e.errorThrown === "Bad Request") {
+                var response = JSON.parse(e.xhr.responseText);
+                console.log(response);
+                if (response['odata.error'] != undefined) {
+                    alert(response['odata.error'].message.value)
+                }
+            } else {
+                alert(e.status + ": " + e.errorThrown)
+            }
+        };
+    </script>
+}
+

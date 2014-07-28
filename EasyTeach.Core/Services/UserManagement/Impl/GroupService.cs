@@ -35,7 +35,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
             if (groupDtoMapper == null)
             {
-                throw new ArgumentNullException("lessonDtoMapper");
+                throw new ArgumentNullException("groupDtoMapper");
             }
             _groupnDtoMapper = groupDtoMapper;
         }
@@ -79,7 +79,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
                 throw new InvalidGroupException(result.ValidationResults);
             }
 
-            if (_groupRepository.GetGroups().Any(g => g.GroupId == groupModel.GroupId))
+            if (!_groupRepository.GetGroups().Any(g => g.GroupId == groupModel.GroupId))
             {
                 throw new GroupNotFoundException();
             }

@@ -1,19 +1,19 @@
 ﻿using System;
-using System.IdentityModel.Services;
 using System.Linq;
-using System.Security.Permissions;
 using System.Web.Http;
+using System.Web.Http.OData;
+using System.Web.Http.OData.Query;
 using EasyTeach.Core.Services.Dashboard;
 using EasyTeach.Web.Models.ViewModels.Dashboard.Lessons;
+using EasyTeach.Web.Models.ViewModels.Groups;
 
 namespace EasyTeach.Web.Controllers
 {
-    [RoutePrefix("api/Lesson")]
-    public sealed class LessonController : ApiControllerBase
+    public sealed class LessonsController : ODataController
     {
         private readonly ILessonService _lessonService;
 
-        public LessonController(ILessonService lessonService)
+        public LessonsController(ILessonService lessonService)
         {
             if (lessonService == null)
             {
@@ -23,15 +23,17 @@ namespace EasyTeach.Web.Controllers
             _lessonService = lessonService;
         }
 
-        [Route("")]
-        public IQueryable<LessonViewModel> Get()
+        public IQueryable<LessonViewModel> Get(ODataQueryOptions<GroupViewModel> queryOptions)
         {
-            return _lessonService.GetLessons().Select(l => new LessonViewModel
+            var result =  _lessonService.GetLessons().Select(l => new LessonViewModel
             {
                 Date = l.Date,
                 GroupId = l.Group.GroupId,
                 LessonId = l.LessonId
             });
+
+            var filteredResult = ((IQueryable<LessonViewModel>)queryOptions.ApplyTo(result));
+            return filteredResult;
         }
 
         [Route("")]

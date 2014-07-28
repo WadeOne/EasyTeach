@@ -4,12 +4,12 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace EasyTeach.Web.Areas.PilotPage.Controllers
+namespace EasyTeach.Web.Areas.Admin.Controllers
 {
-    public class PilotController : Controller
+    public class GroupController : Controller
     {
-        // GET: PilotPage/Pilot
-        public ActionResult Pilot()
+        // GET: Administrator/Group
+        public ActionResult Index()
         {
             return View();
         }

@@ -26,22 +26,24 @@ namespace EasyTeach.Data.Migrations
                 {
                     GroupId = 1,
                     GroupNumber = 1,
-                    Year = 2011
+                    Year = 2010
                 },
                 new GroupDto
                 {
                     GroupId = 2,
                     GroupNumber = 2,
                     Year = 2011
-                },
-                new GroupDto
-                {
-                    GroupId = 3,
-                    GroupNumber = 3,
-                    Year = 2011
                 }
                 );
 
+            context.SaveChanges();
+
+            context.Lessons.AddOrUpdate(
+                new LessonDto
+                {
+                    LessonId = 1,
+                    GroupId = 1,
+                });
             context.SaveChanges();
 
             context.Users.AddOrUpdate(

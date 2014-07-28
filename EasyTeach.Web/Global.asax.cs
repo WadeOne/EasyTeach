@@ -16,5 +16,10 @@ namespace EasyTeach.Web
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             AutofacConfig.RegisterDependencies();
         }
+
+        protected void Application_EndRequest(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

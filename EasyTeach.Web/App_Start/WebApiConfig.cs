@@ -2,6 +2,7 @@
 using System.Web.Http.OData.Builder;
 using System.Web.Http.OData.Extensions;
 using EasyTeach.Web.Filters;
+using EasyTeach.Web.Models.ViewModels.Dashboard.Lessons;
 using EasyTeach.Web.Models.ViewModels.Groups;
 using Newtonsoft.Json.Serialization;
 
@@ -12,7 +13,7 @@ namespace EasyTeach.Web
         public static void Register(HttpConfiguration config)
         {
             // Web API routes
-            config.MapHttpAttributeRoutes();
+            //config.MapHttpAttributeRoutes();
 
             // Use camel case for JSON data.
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
@@ -30,7 +31,7 @@ namespace EasyTeach.Web
 
             ODataModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<GroupViewModel>("Groups");
-            //builder.EntitySet<LessonViewModel>("Lessons");
+            builder.EntitySet<LessonViewModel>("Lessons");
             config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
         }
     }

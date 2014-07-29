@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -22,6 +23,7 @@ namespace EasyTeach.Data.Migrations
         protected override void Seed(EasyTeachContext context)
         {
             context.Groups.AddOrUpdate(
+                g => g.GroupId, 
                 new GroupDto
                 {
                     GroupId = 1,
@@ -39,10 +41,12 @@ namespace EasyTeach.Data.Migrations
             context.SaveChanges();
 
             context.Lessons.AddOrUpdate(
+                l => l.LessonId,
                 new LessonDto
                 {
                     LessonId = 1,
                     GroupId = 1,
+                    Date = new DateTime(2011, 2, 1)
                 });
             context.SaveChanges();
 

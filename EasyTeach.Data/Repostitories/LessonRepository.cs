@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using EasyTeach.Core.Entities.Data.Dashboard;
 using EasyTeach.Core.Repositories;

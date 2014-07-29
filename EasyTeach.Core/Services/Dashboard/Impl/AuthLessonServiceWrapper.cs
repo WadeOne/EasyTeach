@@ -171,9 +171,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new SecurityException("User doesn't have enough permission for retrieving lesson");
             }
 
-            IUserDto user = _userStore.FindByNameAsync(_principal.Identity.Name).Result;
-
-            return _lessonService.GetLessons().Where(l => l.Group.GroupId == user.GroupId);
+            return _lessonService.GetLessons();
         }
     }
 }

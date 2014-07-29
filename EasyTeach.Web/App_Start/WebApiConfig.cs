@@ -13,7 +13,7 @@ namespace EasyTeach.Web
         public static void Register(HttpConfiguration config)
         {
             // Web API routes
-            //config.MapHttpAttributeRoutes();
+            config.MapHttpAttributeRoutes();
 
             // Use camel case for JSON data.
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();

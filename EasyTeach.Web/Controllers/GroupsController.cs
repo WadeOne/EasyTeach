@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Net;
-using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Query;
@@ -53,7 +52,7 @@ namespace EasyTeach.Web.Controllers
             var create = groupView.ToGroup();
             _groupService.CreateGroupAsync(create);
 
-            return Created(MapProductToDto(create));
+            return Created(MapGroupToView(create));
         }
 
         public IHttpActionResult Put([FromODataUri] int key, GroupViewModel groupView)
@@ -71,7 +70,7 @@ namespace EasyTeach.Web.Controllers
             var update = groupView.ToGroup();
             _groupService.UpdateGroupAsync(update);
 
-            return Updated(MapProductToDto(update));
+            return Updated(MapGroupToView(update));
         }
 
         public IHttpActionResult Delete([FromODataUri] int key)
@@ -88,7 +87,7 @@ namespace EasyTeach.Web.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        private static GroupViewModel MapProductToDto(IGroupModel g)
+        private static GroupViewModel MapGroupToView(IGroupModel g)
         {
             return new GroupViewModel
             {

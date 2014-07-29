@@ -1,7 +1,5 @@
 ﻿using System.Data.Entity;
-
 using EasyTeach.Data.Entities;
-using EasyTeach.Data.Migrations;
 
 namespace EasyTeach.Data.Context
 {
@@ -28,11 +26,5 @@ namespace EasyTeach.Data.Context
         public virtual IDbSet<VisitDto> Visits { get; set; }
 
         public virtual IDbSet<ScoreDto> Scores { get; set; }
-
-        /*
-        protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            Database.SetInitializer(new MigrateDatabaseToLatestVersion<EasyTeachContext, Configuration>());
-        }*/
     }
 }

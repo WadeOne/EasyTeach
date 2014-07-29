@@ -3,6 +3,8 @@ using System.Linq;
 using System.Web.Http;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Query;
+using System.Web.Mvc;
+using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Services.Dashboard;
 using EasyTeach.Web.Models.ViewModels.Dashboard.Lessons;
 using EasyTeach.Web.Models.ViewModels.Groups;
@@ -23,7 +25,7 @@ namespace EasyTeach.Web.Controllers
             _lessonService = lessonService;
         }
 
-        public IQueryable<LessonViewModel> Get(ODataQueryOptions<GroupViewModel> queryOptions)
+        public IQueryable<LessonViewModel> Get(ODataQueryOptions<LessonViewModel> queryOptions)
         {
             var result =  _lessonService.GetLessons().Select(l => new LessonViewModel
             {
@@ -35,23 +37,22 @@ namespace EasyTeach.Web.Controllers
             var filteredResult = ((IQueryable<LessonViewModel>)queryOptions.ApplyTo(result));
             return filteredResult;
         }
-
-        [Route("")]
-        [HttpPost]
-        public IHttpActionResult Post(CreateLessonViewModel lesson)
+        public IHttpActionResult Post(LessonViewModel groupView)
         {
-            if (lesson == null)
+            if (!ModelState.IsValid)
             {
-                throw new ArgumentNullException("lesson");
+                return BadRequest(ModelState);
             }
 
-            _lessonService.CreateLesson(lesson.ToLesson());
 
-            return Ok();
+            var create = groupView.ToLesson();
+            _lessonService.CreateLesson(create);
+
+            return Created(MapLessonToView(create));
         }
-
-        [Route("")]
-        [HttpPut]
+        /*
+        [System.Web.Http.Route("")]
+        [System.Web.Http.HttpPut]
         public IHttpActionResult Put(UpdateLessonViewModel lesson)
         {
             if (lesson == null)
@@ -64,13 +65,24 @@ namespace EasyTeach.Web.Controllers
             return Ok();
         }
 
-        [Route("")]
-        [HttpDelete]
+        [System.Web.Http.Route("")]
+        [System.Web.Http.HttpDelete]
         public IHttpActionResult Delete(int lessonId)
         {
             _lessonService.RemoveLesson(lessonId);
 
             return Ok();
+        }
+         * */
+
+        private static LessonViewModel MapLessonToView(ILessonModel l)
+        {
+            return new LessonViewModel()
+            {
+                LessonId = l.LessonId,
+                GroupId = l.Group.GroupId,
+                Date = l.Date
+            };
         }
     }
 }

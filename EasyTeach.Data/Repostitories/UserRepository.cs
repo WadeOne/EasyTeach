@@ -25,7 +25,8 @@ namespace EasyTeach.Data.Repostitories
         public async Task<IUserDto> GetUserByEmail(string email)
         {
             // Fix problem with async/await non thread safe calling
-            return await Task.FromResult((IUserDto) _context.Users.SingleOrDefault(u => u.Email == email));
+            var result = _context.Users.SingleOrDefault(u => u.Email == email);
+            return await Task.FromResult(result);
         }
 
         public async Task<IUserDto> GetUserById(int userId)

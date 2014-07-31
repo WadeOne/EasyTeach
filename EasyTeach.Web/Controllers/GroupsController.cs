@@ -35,7 +35,8 @@ namespace EasyTeach.Web.Controllers
                 Year = g.Year,
                 ContactEmail = g.ContactEmail,
                 ContactName = g.ContactName,
-                ContactPhone = g.ContactPhone
+                ContactPhone = g.ContactPhone,
+                DisplayName = g.GroupNumber + " (" + g.Year + ")"
             });
             var filteredResult = ((IQueryable<GroupViewModel>)queryOptions.ApplyTo(result));
             return filteredResult;
@@ -62,7 +63,7 @@ namespace EasyTeach.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (!_groupService.GetAll().Any(p => p.GroupId == key))
+            if (!_groupService.GetAll().Any(g => g.GroupId == key))
             {
                 return BadRequest();
             }

@@ -29,8 +29,8 @@
         $(document).ready(function() {
             $("#Grid").kendoGrid({
                 columns: [
-                    { field: "Date", title: "Date", width: "100px", editor: datePickerEditor, type: "date", format: "{0:d-MMM-yyyy}" },
-                    { field: "GroupNumber", title: "Group", width: "150px", editor: groupDropDownEditor, template: "#=GroupNumber#" },
+                    { field: "Date", title: "Date", width: "100px", editor: datePickerEditor, type: "date", format: "{0:d MMM, yyyy}" },
+                    { field: "GroupDisplayName", title: "Group", width: "150px", editor: groupDropDownEditor, template: "#=GroupDisplayName#" },
                     { command: "edit", title: "Edit", width: "110px" },
                     { command: "destroy", title: "Delete", width: "110px" }
                 ],
@@ -47,6 +47,21 @@
                     pageSize: 5,
                     type: "odata",
                     schema: {
+                        parse: function (data) {
+                            if (data.value === undefined) {
+                                if (data.Date && typeof data.Date === "string") {
+                                    data.Date = new Date(data.Date);
+                                }
+                            } else {
+                                $.each(data.value, function (idx, lesson) {
+                                    if (lesson.Date && typeof lesson.Date === "string") {
+                                        lesson.Date = new Date(lesson.Date);
+                                    }
+                                });
+                            }
+
+                            return data;
+                        },
                         data: function(response) {
                             if (response.value !== undefined)
                                 return response.value;
@@ -64,7 +79,7 @@
                                 LessonId: { editable: false, type: "number" },
                                 Date: { nullable: true, type: "date" },
                                 GroupId: { type: "number", validation: { required: true }, editable: true },
-                                GroupNumber: { validation: { required: true }, editable: true },
+                                GroupDisplayName: { validation: { required: true }, editable: true },
                             }
                         },
                     },
@@ -79,12 +94,11 @@
                         read: {
                             url: "/odata/Lessons",
                             dataType: "json",
-                            contentType: "application/json",
-
+                            contentType: "application/json"
                         },
                         update: {
                             url: function(record) {
-                                return "/odata/Lessons" + "(" + record.GroupId + ")";
+                                return "/odata/Lessons" + "(" + record.LessonId + ")";
                             },
                             dataType: "json",
                             contentType: "application/json",
@@ -93,7 +107,7 @@
                         },
                         destroy: {
                             url: function(record) {
-                                return "/odata/Lessons" + "(" + record.GroupId + ")";
+                                return "/odata/Lessons" + "(" + record.LessonId + ")";
                             },
                             contentType: "application/json",
                             type: "DELETE"
@@ -115,7 +129,7 @@
             $('<input data-bind="value:GroupId"/>')
                 .appendTo(container)
                 .kendoDropDownList({
-                    dataTextField: "GroupNumber",
+                    dataTextField: "DisplayName",
                     dataValueField: "GroupId",
                     optionLabel: "--Select Group--",
                     dataSource: {
@@ -128,7 +142,7 @@
                                 id: "GroupId",
                                 fields: {
                                     GroupId: { editable: false, type: "number" },
-                                    GroupNumber: { type: "number", nullable: false },
+                                    DisplayName: { type: "string", nullable: false },
                                 }
                             },
                         },

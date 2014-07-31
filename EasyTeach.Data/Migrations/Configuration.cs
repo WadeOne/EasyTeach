@@ -46,7 +46,7 @@ namespace EasyTeach.Data.Migrations
                 {
                     LessonId = 1,
                     GroupId = 1,
-                    Date = new DateTime(2011, 2, 1)
+                    Date = new DateTime(2011, 2, 1, 0, 0, 0, DateTimeKind.Utc)
                 });
             context.SaveChanges();
 

@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Linq;
+using System.Net;
 using System.Web.Http;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Query;
-using System.Web.Mvc;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Services.Dashboard;
 using EasyTeach.Web.Models.ViewModels.Dashboard.Lessons;
-using EasyTeach.Web.Models.ViewModels.Groups;
 
 namespace EasyTeach.Web.Controllers
 {
@@ -31,12 +30,14 @@ namespace EasyTeach.Web.Controllers
             {
                 Date = l.Date,
                 GroupId = l.Group.GroupId,
-                LessonId = l.LessonId
+                LessonId = l.LessonId,
+                GroupDisplayName = l.Group.GroupNumber + " (" + l.Group.Year + ")"
             });
 
             var filteredResult = ((IQueryable<LessonViewModel>)queryOptions.ApplyTo(result));
             return filteredResult;
         }
+
         public IHttpActionResult Post(LessonViewModel groupView)
         {
             if (!ModelState.IsValid)
@@ -47,33 +48,40 @@ namespace EasyTeach.Web.Controllers
 
             var create = groupView.ToLesson();
             _lessonService.CreateLesson(create);
-
             return Created(MapLessonToView(create));
         }
-        /*
-        [System.Web.Http.Route("")]
-        [System.Web.Http.HttpPut]
-        public IHttpActionResult Put(UpdateLessonViewModel lesson)
+        
+        public IHttpActionResult Put([FromODataUri] int key, LessonViewModel lessonView)
         {
-            if (lesson == null)
+            if (!ModelState.IsValid)
             {
-                throw new ArgumentNullException("lesson");
+                return BadRequest(ModelState);
+            }
+            
+            if (!_lessonService.GetLessons().Any(l => l.LessonId == key))
+            {
+                return BadRequest();
             }
 
-            _lessonService.UpdateLesson(lesson.ToLesson());
+            var update = lessonView.ToLesson();
+            _lessonService.UpdateLesson(update);
 
-            return Ok();
+            return Updated(MapLessonToView(update));
         }
 
-        [System.Web.Http.Route("")]
-        [System.Web.Http.HttpDelete]
-        public IHttpActionResult Delete(int lessonId)
+        public IHttpActionResult Delete([FromODataUri] int key)
         {
-            _lessonService.RemoveLesson(lessonId);
+            ILessonModel lesson = _lessonService.GetLessons().FirstOrDefault(l => l.LessonId == key);
 
-            return Ok();
+            if (lesson == null)
+            {
+                return NotFound();
+            }
+
+            _lessonService.RemoveLesson(key);
+
+            return StatusCode(HttpStatusCode.NoContent);
         }
-         * */
 
         private static LessonViewModel MapLessonToView(ILessonModel l)
         {

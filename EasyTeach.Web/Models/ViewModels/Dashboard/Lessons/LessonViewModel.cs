@@ -12,17 +12,20 @@ namespace EasyTeach.Web.Models.ViewModels.Dashboard.Lessons
 
         public int GroupId { get; set; }
 
+        public string GroupDisplayName { get; set; }
+
         public DateTime Date { get; set; }
 
         public virtual ILessonModel ToLesson()
         {
             return new Lesson
             {
+                LessonId = LessonId,
                 Date = Date,
                 Group = new Group
                 {
                     GroupId = GroupId
-                }
+                },
             };
         }
     }

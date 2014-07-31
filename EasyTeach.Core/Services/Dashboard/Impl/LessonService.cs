@@ -120,7 +120,9 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 Date = lesson.Date,
                 Group = new Group
                 {
-                    GroupId = lesson.GroupId
+                    GroupId = lesson.GroupId,
+                    GroupNumber = lesson.Group.GroupNumber,
+                    Year = lesson.Group.Year
                 }
             };
         }

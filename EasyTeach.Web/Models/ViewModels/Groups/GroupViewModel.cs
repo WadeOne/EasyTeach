@@ -13,6 +13,8 @@ namespace EasyTeach.Web.Models.ViewModels.Groups
 
         public int Year { get; set; }
 
+        public string DisplayName { get; set; }
+
         public string ContactEmail { get; set; }
 
         public string ContactPhone { get; set; }

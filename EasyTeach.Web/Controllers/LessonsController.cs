@@ -24,6 +24,7 @@ namespace EasyTeach.Web.Controllers
             _lessonService = lessonService;
         }
 
+        [HttpGet]
         public IQueryable<LessonViewModel> Get(ODataQueryOptions<LessonViewModel> queryOptions)
         {
             var result =  _lessonService.GetLessons().Select(l => new LessonViewModel
@@ -38,6 +39,7 @@ namespace EasyTeach.Web.Controllers
             return filteredResult;
         }
 
+        [HttpPost]
         public IHttpActionResult Post(LessonViewModel groupView)
         {
             if (!ModelState.IsValid)
@@ -51,6 +53,7 @@ namespace EasyTeach.Web.Controllers
             return Created(MapLessonToView(create));
         }
         
+        [HttpPut]
         public IHttpActionResult Put([FromODataUri] int key, LessonViewModel lessonView)
         {
             if (!ModelState.IsValid)
@@ -69,6 +72,7 @@ namespace EasyTeach.Web.Controllers
             return Updated(MapLessonToView(update));
         }
 
+        [HttpDelete]
         public IHttpActionResult Delete([FromODataUri] int key)
         {
             ILessonModel lesson = _lessonService.GetLessons().FirstOrDefault(l => l.LessonId == key);

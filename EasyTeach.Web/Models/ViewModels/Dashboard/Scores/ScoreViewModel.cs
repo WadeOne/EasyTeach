@@ -1,9 +1,10 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Web.Models.ViewModels.Dashboard.Scores
 {
-    public sealed class ScoreViewModel
+    public class ScoreViewModel
     {
         [Key]
         public int ScoreId { get; set; }
@@ -12,10 +13,36 @@ namespace EasyTeach.Web.Models.ViewModels.Dashboard.Scores
 
         public int AssignedToId { get; set; }
 
+        public string AssignedTo { get; set; }
+
         public int AssignedById { get; set; }
+
+        public string AssignedBy { get; set; }
 
         public IVariantProgressModel Task { get; set; }
 
         public int? VisitId { get; set; }
+
+        public virtual IScoreModel ToScore()
+        {
+            return new ScoreModel
+            {
+                ScoreId = ScoreId,
+                Score = Score,
+                AssignedTo = new User
+                {
+                    UserId = AssignedToId
+                },
+                AssignedBy = new User
+                {
+                    UserId = AssignedById
+                },
+                Task = Task,
+                Visit = new Visit
+                {
+                  
+                }
+            };
+        }
     }
 }

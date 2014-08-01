@@ -1,19 +1,18 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Http;
-using EasyTeach.Core.Entities;
+using System.Web.Http.OData;
+using System.Web.Http.OData.Query;
 using EasyTeach.Core.Services.Dashboard;
 using EasyTeach.Web.Models.ViewModels.Dashboard.Scores;
 
 namespace EasyTeach.Web.Controllers
 {
-
-    [RoutePrefix("api/Score")]
-    public class ScoreController : ApiControllerBase
+    public class ScoresController : ODataController
     {
         private readonly IScoreService _scoreService;
 
-        public ScoreController(IScoreService scoreService)
+        public ScoresController(IScoreService scoreService)
         {
             if (scoreService == null)
             {
@@ -23,20 +22,24 @@ namespace EasyTeach.Web.Controllers
             _scoreService = scoreService;
         }
 
-        [Route("")]
         [HttpGet]
-        public IQueryable<ScoreViewModel> Get()
+        public IQueryable<ScoreViewModel> Get(ODataQueryOptions<ScoreViewModel> queryOptions)
         {
-            return _scoreService.GetScores().Select(s => new ScoreViewModel
+            var result = _scoreService.GetScores().Select(s => new ScoreViewModel
             {
                 ScoreId = s.ScoreId,
                 Score = s.Score,
                 AssignedToId = s.AssignedTo.UserId,
                 AssignedById = s.AssignedBy.UserId,
+                AssignedTo = s.AssignedTo.FirstName + " " + s.AssignedTo.LastName,
+                AssignedBy = s.AssignedBy.FirstName + " " + s.AssignedBy.LastName,
                 Task = s.Task
             });
+            var filteredResult = ((IQueryable<ScoreViewModel>)queryOptions.ApplyTo(result));
+            return filteredResult;
         }
-
+        
+        /*
         [Route("")]
         [HttpPost]
         public IHttpActionResult Post(CreateScoreViewModel score)
@@ -73,5 +76,6 @@ namespace EasyTeach.Web.Controllers
 
             return Ok();
         }
+         * */
     }
 }

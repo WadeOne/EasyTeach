@@ -73,7 +73,7 @@ namespace EasyTeach.Data.Migrations
                 .PrimaryKey(t => t.QuizId);
             
             CreateTable(
-                "dbo.UserClaimDtoes",
+                "dbo.cDtoes",
                 c => new
                     {
                         UserClaimId = c.Int(nullable: false, identity: true),

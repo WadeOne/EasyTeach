@@ -1,22 +1,12 @@
 ﻿@{
-    ViewBag.Title = "Lessons";
+    ViewBag.Title = "Scores";
 }
-
-<link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.common.min.css">
-<link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.rtl.min.css">
-<link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.default.min.css">
-<link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.dataviz.min.css">
-<link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.dataviz.default.min.css">
-<link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.mobile.all.min.css">
-
-<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
-<script src="http://cdn.kendostatic.com/2014.2.716/js/kendo.all.min.js"></script>
 
 <div id="body">
     <section class="featured">
         <div class="content-wrapper">
             <hgroup class="title">
-                <h1>Lessons</h1>
+                <h1>Scores</h1>
             </hgroup>
             <div id="Grid" style="height: 380px"></div>
         </div>
@@ -29,8 +19,11 @@
         $(document).ready(function() {
             $("#Grid").kendoGrid({
                 columns: [
-                    { field: "Date", title: "Date", width: "100px", editor: datePickerEditor, type: "date", format: "{0:d MMM, yyyy}" },
-                    { field: "GroupDisplayName", title: "Group", width: "100px", editor: groupDropDownEditor },
+                    { field: "Score", title: "Score", width: "50px" },
+                    { field: "AssignedTo", title: "Assigned To", width: "150px", editor: userDropDownEditor },
+                    { field: "AssignedBy", title: "Assigned By", width: "150px", editor: userDropDownEditor },
+                    { field: "Task", title: "Task", width: "100px", editor: taskDropDownEditor },
+                    { field: "Visit", title: "Visit", width: "50px", editor: visitDropDownEditor },
                     { command: "edit", title: "Edit", width: "110px" },
                     { command: "destroy", title: "Delete", width: "110px" }
                 ],
@@ -74,12 +67,17 @@
                             return response['odata.count'];
                         },
                         model: {
-                            id: "LessonId",
+                            id: "ScoreId",
                             fields: {
-                                LessonId: { editable: false, type: "number" },
-                                Date: { nullable: true, type: "date" },
-                                GroupId: { type: "number", validation: { required: true }, editable: true },
-                                GroupDisplayName: { validation: { required: true }, editable: true },
+                                ScoreId: { editable: false, type: "number" },
+                                Score: { nullable: false, type: "number" },
+                                AssignedToId: { type: "number", validation: { required: true }, editable: true },
+                                AssignedTo: { validation: { required: true }, editable: true },
+                                AssignedById: { type: "number", validation: { required: true }, editable: true },
+                                AssignedBy: { validation: { required: true }, editable: true },
+                                Task: { type: "string", nullable: true },
+                                VisitId: { type: "number", validation: { required: true }, editable: true },
+                                Visit: { validation: { required: true }, editable: true },
                             }
                         },
                     },
@@ -87,33 +85,33 @@
                     error: error,
                     transport: {
                         create: {
-                            url: "/odata/Lessons",
+                            url: "/odata/Scores",
                             contentType: "application/json",
                             type: "POST",
-                            complete: function () {
+                            complete: function() {
                                 $('#Grid').data('kendoGrid').dataSource.read();
                             }
                         },
                         read: {
-                            url: "/odata/Lessons",
+                            url: "/odata/Scores",
                             dataType: "json",
                             contentType: "application/json"
                         },
                         update: {
                             url: function(record) {
-                                return "/odata/Lessons" + "(" + record.LessonId + ")";
+                                return "/odata/Scores" + "(" + record.ScoreId + ")";
                             },
                             dataType: "json",
                             contentType: "application/json",
                             type: "PUT",
                             headers: { Prefer: "return-content" },
-                            complete: function () {
+                            complete: function() {
                                 $('#Grid').data('kendoGrid').dataSource.read();
                             }
                         },
                         destroy: {
                             url: function(record) {
-                                return "/odata/Lessons" + "(" + record.LessonId + ")";
+                                return "/odata/Scores" + "(" + record.ScoreId + ")";
                             },
                             contentType: "application/json",
                             type: "DELETE"
@@ -131,8 +129,52 @@
             });
         });
 
-        function groupDropDownEditor(container) {
-            $('<input data-bind="value:GroupId"/>')
+        function userDropDownEditor(container) {
+            $('<input data-bind="value:UserId"/>')
+                .appendTo(container)
+                .kendoDropDownList({
+                    dataTextField: "Email",
+                    dataValueField: "UserId",
+                    optionLabel: "--Select User--",
+                    dataSource: {
+                        schema: {
+                            data: "value",
+                            total: function(response) {
+                                return response['odata.count'];
+                            },
+                            model: {
+                                id: "UserId",
+                                fields: {
+                                    UserId: { editable: false, type: "number" },
+                                    Email: { type: "string", nullable: false },
+                                }
+                            },
+                        },
+                        type: "odata",
+                        serverFiltering: true,
+                        serverPaging: true,
+                        pageSize: 20,
+                        transport: {
+                            read: {
+                                url: "/odata/Users",
+                                dataType: "json",
+                                contentType: "application/json"
+                            }
+                        },
+                        parametermap: function(data, operation) {
+                            if (operation === "read") {
+                                var parammap = kendo.data.transports.odata.parametermap(data);
+                                return parammap;
+                            }
+                            return json.stringify(data);
+                        }
+                    },
+
+                });
+        }
+
+        function taskDropDownEditor(container) {
+            $('<input data-bind="value:UserId"/>')
                 .appendTo(container)
                 .kendoDropDownList({
                     dataTextField: "DisplayName",
@@ -141,7 +183,7 @@
                     dataSource: {
                         schema: {
                             data: "value",
-                            total: function(response) {
+                            total: function (response) {
                                 return response['odata.count'];
                             },
                             model: {
@@ -163,7 +205,51 @@
                                 contentType: "application/json"
                             }
                         },
-                        parametermap: function(data, operation) {
+                        parametermap: function (data, operation) {
+                            if (operation === "read") {
+                                var parammap = kendo.data.transports.odata.parametermap(data);
+                                return parammap;
+                            }
+                            return json.stringify(data);
+                        }
+                    },
+
+                });
+        }
+
+        function visitDropDownEditor(container) {
+            $('<input data-bind="value:UserId"/>')
+                .appendTo(container)
+                .kendoDropDownList({
+                    dataTextField: "DisplayName",
+                    dataValueField: "GroupId",
+                    optionLabel: "--Select Group--",
+                    dataSource: {
+                        schema: {
+                            data: "value",
+                            total: function (response) {
+                                return response['odata.count'];
+                            },
+                            model: {
+                                id: "GroupId",
+                                fields: {
+                                    GroupId: { editable: false, type: "number" },
+                                    DisplayName: { type: "string", nullable: false },
+                                }
+                            },
+                        },
+                        type: "odata",
+                        serverFiltering: true,
+                        serverPaging: true,
+                        pageSize: 20,
+                        transport: {
+                            read: {
+                                url: "/odata/Groups",
+                                dataType: "json",
+                                contentType: "application/json"
+                            }
+                        },
+                        parametermap: function (data, operation) {
                             if (operation === "read") {
                                 var parammap = kendo.data.transports.odata.parametermap(data);
                                 return parammap;

@@ -3,6 +3,7 @@ using System.Web.Http.OData.Builder;
 using System.Web.Http.OData.Extensions;
 using EasyTeach.Web.Filters;
 using EasyTeach.Web.Models.ViewModels.Dashboard.Lessons;
+using EasyTeach.Web.Models.ViewModels.Dashboard.Scores;
 using EasyTeach.Web.Models.ViewModels.Groups;
 using Newtonsoft.Json.Serialization;
 
@@ -32,6 +33,7 @@ namespace EasyTeach.Web
             ODataModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<GroupViewModel>("Groups");
             builder.EntitySet<LessonViewModel>("Lessons");
+            builder.EntitySet<ScoreViewModel>("Scores");
             config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
         }
     }

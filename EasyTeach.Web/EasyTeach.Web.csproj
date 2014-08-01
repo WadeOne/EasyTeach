@@ -201,6 +201,7 @@
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\GroupController.cs" />
     <Compile Include="Areas\Admin\Controllers\LessonController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ScoreController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -231,7 +232,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\GroupsController.cs" />
     <Compile Include="Controllers\LessonsController.cs" />
-    <Compile Include="Controllers\ScoreController.cs" />
+    <Compile Include="Controllers\ScoresController.cs" />
     <Compile Include="Controllers\VisitController.cs" />
     <Compile Include="Models\ViewModels\Dashboard\Scores\CreateScoreViewModel.cs" />
     <Compile Include="Models\ViewModels\Dashboard\Scores\ScoreViewModel.cs" />
@@ -1354,6 +1355,7 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Group\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Lesson\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Score\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

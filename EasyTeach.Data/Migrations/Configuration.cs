@@ -50,6 +50,17 @@ namespace EasyTeach.Data.Migrations
                 });
             context.SaveChanges();
 
+            context.Scores.AddOrUpdate(
+                s => s.ScoreId,
+                new ScoreDto
+                {
+                    ScoreId = 1,
+                    Score = 9,
+                    AssignedToId = 2,
+                    AssignedById = 1
+                });
+            context.SaveChanges();
+
             context.Users.AddOrUpdate(
                 // password: testMoBiLe13
             new UserDto

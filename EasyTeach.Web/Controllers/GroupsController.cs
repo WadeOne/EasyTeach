@@ -42,6 +42,7 @@ namespace EasyTeach.Web.Controllers
             return filteredResult;
         }
 
+        [HttpPost]
         public IHttpActionResult Post(GroupViewModel groupView)
         {
             if (!ModelState.IsValid)
@@ -56,6 +57,7 @@ namespace EasyTeach.Web.Controllers
             return Created(MapGroupToView(create));
         }
 
+        [HttpPut]
         public IHttpActionResult Put([FromODataUri] int key, GroupViewModel groupView)
         {
             if (!ModelState.IsValid)
@@ -74,6 +76,7 @@ namespace EasyTeach.Web.Controllers
             return Updated(MapGroupToView(update));
         }
 
+        [HttpDelete]
         public IHttpActionResult Delete([FromODataUri] int key)
         {
             IGroupModel group = _groupService.GetAll().FirstOrDefault(g => g.GroupId == key);

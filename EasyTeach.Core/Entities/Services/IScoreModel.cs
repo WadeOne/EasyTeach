@@ -6,9 +6,9 @@
 
         int Score { get; }
 
-        IUserIdentityModel AssignedTo { get; }
+        IUserModel AssignedTo { get; }
 
-        IUserIdentityModel AssignedBy { get; }
+        IUserModel AssignedBy { get; }
 
         IVariantProgressModel Task { get; }
 

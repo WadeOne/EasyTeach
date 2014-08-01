@@ -52,9 +52,6 @@ namespace EasyTeach.Data.Repostitories
             oldGroup.ContactPhone = group.ContactPhone;
             oldGroup.GroupNumber = group.GroupNumber;
             oldGroup.Year = group.Year;
-
-            //_context.Groups.Attach(oldGroup);
-            //_context.Entry(oldGroup).State = System.Data.Entity.EntityState.Modified;
             _context.SaveChanges();
         }
 

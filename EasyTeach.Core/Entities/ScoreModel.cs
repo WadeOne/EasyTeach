@@ -1,6 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using EasyTeach.Core.Entities.Services;
+﻿using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Core.Entities
 {

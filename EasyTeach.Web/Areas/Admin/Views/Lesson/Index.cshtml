@@ -30,7 +30,7 @@
             $("#Grid").kendoGrid({
                 columns: [
                     { field: "Date", title: "Date", width: "100px", editor: datePickerEditor, type: "date", format: "{0:d MMM, yyyy}" },
-                    { field: "GroupDisplayName", title: "Group", width: "150px", editor: groupDropDownEditor, template: "#=GroupDisplayName#" },
+                    { field: "GroupDisplayName", title: "Group", width: "100px", editor: groupDropDownEditor, template: "#=GroupDisplayName#" },
                     { command: "edit", title: "Edit", width: "110px" },
                     { command: "destroy", title: "Delete", width: "110px" }
                 ],
@@ -47,13 +47,13 @@
                     pageSize: 5,
                     type: "odata",
                     schema: {
-                        parse: function (data) {
+                        parse: function(data) {
                             if (data.value === undefined) {
                                 if (data.Date && typeof data.Date === "string") {
                                     data.Date = new Date(data.Date);
                                 }
                             } else {
-                                $.each(data.value, function (idx, lesson) {
+                                $.each(data.value, function(idx, lesson) {
                                     if (lesson.Date && typeof lesson.Date === "string") {
                                         lesson.Date = new Date(lesson.Date);
                                     }
@@ -89,7 +89,10 @@
                         create: {
                             url: "/odata/Lessons",
                             contentType: "application/json",
-                            type: "POST"
+                            type: "POST",
+                            complete: function () {
+                                $('#Grid').data('kendoGrid').dataSource.read();
+                            }
                         },
                         read: {
                             url: "/odata/Lessons",
@@ -103,7 +106,10 @@
                             dataType: "json",
                             contentType: "application/json",
                             type: "PUT",
-                            headers: { Prefer: "return-content" }
+                            headers: { Prefer: "return-content" },
+                            complete: function () {
+                                $('#Grid').data('kendoGrid').dataSource.read();
+                            }
                         },
                         destroy: {
                             url: function(record) {

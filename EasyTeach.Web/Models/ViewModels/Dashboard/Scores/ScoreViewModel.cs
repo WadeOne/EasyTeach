@@ -1,14 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using EasyTeach.Core.Entities;
+﻿using System.ComponentModel.DataAnnotations;
 using EasyTeach.Core.Entities.Services;
 
 namespace EasyTeach.Web.Models.ViewModels.Dashboard.Scores
 {
     public sealed class ScoreViewModel
     {
+        [Key]
         public int ScoreId { get; set; }
 
         public int Score { get; set; }

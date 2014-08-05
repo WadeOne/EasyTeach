@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using EasyTeach.Data.Context;
@@ -23,7 +22,7 @@ namespace EasyTeach.Data.Migrations
         protected override void Seed(EasyTeachContext context)
         {
             context.Groups.AddOrUpdate(
-                g => g.GroupId, 
+                g => g.GroupId,
                 new GroupDto
                 {
                     GroupId = 1,
@@ -37,7 +36,6 @@ namespace EasyTeach.Data.Migrations
                     Year = 2011
                 }
                 );
-
             context.SaveChanges();
 
             context.Lessons.AddOrUpdate(
@@ -47,17 +45,6 @@ namespace EasyTeach.Data.Migrations
                     LessonId = 1,
                     GroupId = 1,
                     Date = new DateTime(2011, 2, 1, 0, 0, 0, DateTimeKind.Utc)
-                });
-            context.SaveChanges();
-
-            context.Scores.AddOrUpdate(
-                s => s.ScoreId,
-                new ScoreDto
-                {
-                    ScoreId = 1,
-                    Score = 9,
-                    AssignedToId = 2,
-                    AssignedById = 1
                 });
             context.SaveChanges();
 
@@ -86,6 +73,17 @@ namespace EasyTeach.Data.Migrations
             });
 
             context.SaveChanges();
+
+            context.Scores.AddOrUpdate(s => s.ScoreId,
+            new ScoreDto
+            {
+                ScoreId = 1,
+                Score = 9,
+                AssignedToId = 2,
+                AssignedById = 1
+            });
+            context.SaveChanges();
+
 
             context.UserClaims.AddOrUpdate(new UserClaimDto
             {

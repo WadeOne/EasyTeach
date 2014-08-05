@@ -25,7 +25,7 @@ namespace EasyTeach.Data.Repostitories
 
         public IQueryable<IVisitDto> GetAll()
         {
-            return _context.Visits;
+            return _context.Visits.Include("Lesson").Include("User");
         }
 
         public async Task CreateVisitAsync(IVisitDto visit)

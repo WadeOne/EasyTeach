@@ -47,7 +47,6 @@ namespace EasyTeach.Web.Controllers
                 return BadRequest(ModelState);
             }
 
-
             var create = groupView.ToLesson();
             _lessonService.CreateLesson(create);
             return Created(MapLessonToView(create));
@@ -89,7 +88,7 @@ namespace EasyTeach.Web.Controllers
 
         private static LessonViewModel MapLessonToView(ILessonModel l)
         {
-            return new LessonViewModel()
+            return new LessonViewModel
             {
                 LessonId = l.LessonId,
                 GroupId = l.Group.GroupId,

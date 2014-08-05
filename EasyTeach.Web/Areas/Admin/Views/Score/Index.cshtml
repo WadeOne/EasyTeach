@@ -22,8 +22,8 @@
                     { field: "Score", title: "Score", width: "50px" },
                     { field: "AssignedTo", title: "Assigned To", width: "150px", editor: userDropDownEditor },
                     { field: "AssignedBy", title: "Assigned By", width: "150px", editor: userDropDownEditor },
-                    { field: "Task", title: "Task", width: "100px", editor: taskDropDownEditor },
-                    { field: "Visit", title: "Visit", width: "50px", editor: visitDropDownEditor },
+                    { field: "Task", title: "Task", width: "75px", editor: taskDropDownEditor },
+                    { field: "Visit", title: "Visit", width: "75px", editor: visitDropDownEditor },
                     { command: "edit", title: "Edit", width: "110px" },
                     { command: "destroy", title: "Delete", width: "110px" }
                 ],
@@ -77,7 +77,7 @@
                                 AssignedBy: { validation: { required: true }, editable: true },
                                 Task: { type: "string", nullable: true },
                                 VisitId: { type: "number", validation: { required: true }, editable: true },
-                                Visit: { validation: { required: true }, editable: true },
+                                DisplayData: { validation: { required: true }, editable: true },
                             }
                         },
                     },

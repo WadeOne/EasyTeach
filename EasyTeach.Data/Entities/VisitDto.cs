@@ -13,6 +13,11 @@ namespace EasyTeach.Data.Entities
         [ForeignKey("Lesson")]
         public int LessonId { get; set; }
 
+        ILessonDto IVisitDto.Lesson
+        {
+            get { return Lesson; }
+        }
+
         public LessonDto Lesson { get; set; }
 
         public VisitStatus Status { get; set; }

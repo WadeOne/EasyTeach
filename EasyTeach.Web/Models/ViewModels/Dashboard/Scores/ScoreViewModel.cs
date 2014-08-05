@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Services;
 
@@ -23,6 +24,8 @@ namespace EasyTeach.Web.Models.ViewModels.Dashboard.Scores
 
         public int? VisitId { get; set; }
 
+        public DateTime DisplayData { get; set; }
+
         public virtual IScoreModel ToScore()
         {
             return new ScoreModel
@@ -38,10 +41,10 @@ namespace EasyTeach.Web.Models.ViewModels.Dashboard.Scores
                     UserId = AssignedById
                 },
                 Task = Task,
-                Visit = new Visit
+                Visit = VisitId.HasValue ? new Visit 
                 {
-                  
-                }
+                    VisitId = VisitId.Value
+                } : null
             };
         }
     }

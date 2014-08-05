@@ -33,7 +33,8 @@ namespace EasyTeach.Web.Controllers
                 AssignedById = s.AssignedBy.UserId,
                 AssignedTo = s.AssignedTo.FirstName + " " + s.AssignedTo.LastName,
                 AssignedBy = s.AssignedBy.FirstName + " " + s.AssignedBy.LastName,
-                Task = s.Task
+                VisitId = s.Visit.VisitId,
+                DisplayData = s.Visit.Lesson.Date
             });
             var filteredResult = ((IQueryable<ScoreViewModel>)queryOptions.ApplyTo(result));
             return filteredResult;

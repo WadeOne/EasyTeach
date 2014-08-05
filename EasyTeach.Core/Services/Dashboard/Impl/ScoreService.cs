@@ -97,8 +97,31 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             {
                 ScoreId = score.ScoreId,
                 Score = score.Score,
-                AssignedTo = new User { UserId = score.AssignedToId },
-                AssignedBy = new User { UserId = score.AssignedById },
+                AssignedTo = new User
+                {
+                    UserId = score.AssignedToId,
+                    FirstName = score.AssignedTo.FirstName,
+                    LastName = score.AssignedTo.LastName
+                },
+                AssignedBy = new User
+                {
+                    UserId = score.AssignedById,
+                    FirstName = score.AssignedBy.FirstName,
+                    LastName = score.AssignedBy.LastName
+                },
+                Visit = score.VisitId.HasValue ? new Visit 
+                {
+                    VisitId = score.VisitId.Value,
+                    Lesson = new Lesson
+                    {
+                        LessonId = score.Visit.LessonId,
+                        Date = score.Visit.Lesson.Date
+                    },
+                    Visitor = new User
+                    {
+                        UserId = score.AssignedToId
+                    }
+                } : null
             };
         }
     }

@@ -27,13 +27,19 @@ namespace EasyTeach.Data.Migrations
                 {
                     GroupId = 1,
                     GroupNumber = 1,
-                    Year = 2010
+                    Year = 2010,
+                    ContactEmail = "example@mail.com",
+                    ContactName = "John Doe",
+                    ContactPhone = "+37529123456"
                 },
                 new GroupDto
                 {
                     GroupId = 2,
                     GroupNumber = 2,
-                    Year = 2011
+                    Year = 2011,
+                    ContactEmail = "example@mail.com",
+                    ContactName = "Jaen Doe",
+                    ContactPhone = "+37529123456"
                 }
                 );
             context.SaveChanges();
@@ -44,8 +50,27 @@ namespace EasyTeach.Data.Migrations
                 {
                     LessonId = 1,
                     GroupId = 1,
-                    Date = new DateTime(2011, 2, 1, 0, 0, 0, DateTimeKind.Utc)
-                });
+                    Date = new DateTime(2014, 9, 1, 0, 0, 0, DateTimeKind.Utc)
+                },
+                new LessonDto
+                {
+                    LessonId = 2,
+                    GroupId = 1,
+                    Date = new DateTime(2014, 9, 8, 0, 0, 0, DateTimeKind.Utc)
+                },
+                new LessonDto
+                {
+                    LessonId = 3,
+                    GroupId = 1,
+                    Date = new DateTime(2014, 9, 15, 0, 0, 0, DateTimeKind.Utc)
+                },
+                new LessonDto
+                {
+                    LessonId = 4,
+                    GroupId = 1,
+                    Date = new DateTime(2014, 9, 22, 0, 0, 0, DateTimeKind.Utc)
+                }
+                );
             context.SaveChanges();
 
             context.Users.AddOrUpdate(
@@ -74,16 +99,25 @@ namespace EasyTeach.Data.Migrations
 
             context.SaveChanges();
 
+            context.Visits.AddOrUpdate(v => v.VisitId,
+            new VisitDto
+            {
+                VisitId = 1,
+                LessonId = 1,
+                UserId = 2
+            });
+            context.SaveChanges();
+
             context.Scores.AddOrUpdate(s => s.ScoreId,
             new ScoreDto
             {
                 ScoreId = 1,
                 Score = 9,
                 AssignedToId = 2,
-                AssignedById = 1
+                AssignedById = 1,
+                VisitId = 1
             });
             context.SaveChanges();
-
 
             context.UserClaims.AddOrUpdate(new UserClaimDto
             {

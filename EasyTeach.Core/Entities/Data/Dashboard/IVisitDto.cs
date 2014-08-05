@@ -8,6 +8,8 @@ namespace EasyTeach.Core.Entities.Data.Dashboard
 
         int LessonId { get; }
 
+        ILessonDto Lesson { get; }
+
         VisitStatus Status { get; }
 
         string Note { get; }

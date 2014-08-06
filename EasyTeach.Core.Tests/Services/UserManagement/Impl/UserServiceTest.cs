@@ -7,6 +7,7 @@ using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Enums;
+using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers;
 using EasyTeach.Core.Repositories.Mappers.UserManagement;
 using EasyTeach.Core.Services.Messaging;
@@ -51,6 +52,7 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
         private readonly IUserModel _validUser;
         private readonly EntityValidator _entityValidator;
         private readonly IUserModel _invalidEmptyUser;
+        private readonly IUserRepository _userRepository;
 
         public UserServiceTest()
         {
@@ -58,7 +60,15 @@ namespace EasyTeach.Core.Tests.Services.UserManagement.Impl
             _userDtoMapper = A.Fake<IUserDtoMapper>();
             _emailService = A.Fake<IEmailService>();
             _entityValidator = A.Fake<EntityValidator>();
-            _userService = new UserService(_userManager, _userDtoMapper, _emailService, _entityValidator, o => new ValidationContext(o, null, null));
+            _userRepository = A.Fake<IUserRepository>();
+
+
+            _userService = new UserService(_userManager,
+                _userDtoMapper, 
+                _emailService, 
+                _entityValidator,
+                _userRepository, 
+                o => new ValidationContext(o, null, null));
             _validUser = new User
             {
                 FirstName = "test",

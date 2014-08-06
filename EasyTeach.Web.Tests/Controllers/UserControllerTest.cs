@@ -37,7 +37,7 @@ namespace EasyTeach.Web.Tests.Controllers
         [Fact]
         public void Register_ValidUser_UserCreatedAndOkResultSent()
         {
-            var user = A.Fake<CreateUserViewModel>();
+            var user = A.Fake<UserViewModel>();
             var userModel = new User
             {
                 FirstName = "John",
@@ -57,7 +57,7 @@ namespace EasyTeach.Web.Tests.Controllers
         public void Register_InvalidUser_UserNotCreatedErrorResultSent()
         {
             var userModel = new User();
-            var user = A.Fake<CreateUserViewModel>();
+            var user = A.Fake<UserViewModel>();
 
             A.CallTo(() => user.ToUser()).Returns(userModel);
             A.CallTo(() => _userService.CreateUserAsync(userModel))

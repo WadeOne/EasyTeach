@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data.Entity;
 using System.Linq;
+using System.Runtime.InteropServices;
+using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data.Dashboard;
 using EasyTeach.Core.Repositories;
 using EasyTeach.Data.Context;
@@ -58,7 +60,12 @@ namespace EasyTeach.Data.Repostitories
 
         public IQueryable<IScoreDto> GetScores()
         {
-            return _context.Scores.Include("AssignedTo").Include("AssignedBy").Include("Visit");
+            var query =_context.Scores
+                .Include(s => s.AssignedTo)
+                .Include(s => s.AssignedBy)
+                .Include(s => s.Visit.Lesson);
+
+            return query;
         }
     }
 }

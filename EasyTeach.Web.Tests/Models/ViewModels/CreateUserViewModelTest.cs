@@ -17,7 +17,7 @@ namespace EasyTeach.Web.Tests.Models.ViewModels
             const string Email = "Email";
             Group Group = new Group { GroupNumber = 2, Year = 2009 };
 
-            var user = new CreateUserViewModel
+            var user = new UserViewModel
                        {
                            FirstName = FirstName,
                            Email = Email,

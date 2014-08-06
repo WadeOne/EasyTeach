@@ -20,10 +20,10 @@
             $("#Grid").kendoGrid({
                 columns: [
                     { field: "Score", title: "Score", width: "50px" },
-                    { field: "AssignedTo", title: "Assigned To", width: "150px", editor: userDropDownEditor },
-                    { field: "AssignedBy", title: "Assigned By", width: "150px", editor: userDropDownEditor },
+                    { field: "AssignedTo", title: "Assigned To", width: "150px", editor: toDropDownEditor },
+                    { field: "AssignedBy", title: "Assigned By", width: "150px", editor: byDropDownEditor },
                     { field: "Task", title: "Task", width: "75px", editor: taskDropDownEditor },
-                    { field: "Visit", title: "Visit", width: "75px", editor: visitDropDownEditor },
+                    { field: "DisplayDate", title: "Visit Date", width: "75px", editor: datePickerEditor, type: "date", format: "{0:d MMM, yyyy}" },
                     { command: "edit", title: "Edit", width: "110px" },
                     { command: "destroy", title: "Delete", width: "110px" }
                 ],
@@ -76,8 +76,7 @@
                                 AssignedById: { type: "number", validation: { required: true }, editable: true },
                                 AssignedBy: { validation: { required: true }, editable: true },
                                 Task: { type: "string", nullable: true },
-                                VisitId: { type: "number", validation: { required: true }, editable: true },
-                                DisplayData: { validation: { required: true }, editable: true },
+                                DisplayDate: { nullable: false, type: "date" },
                             }
                         },
                     },
@@ -129,13 +128,13 @@
             });
         });
 
-        function userDropDownEditor(container) {
+        function toDropDownEditor(container) {
             $('<input data-bind="value:UserId"/>')
                 .appendTo(container)
                 .kendoDropDownList({
-                    dataTextField: "Email",
+                    dataTextField: "DisplayName",
                     dataValueField: "UserId",
-                    optionLabel: "--Select User--",
+                    optionLabel: "--Select Student--",
                     dataSource: {
                         schema: {
                             data: "value",
@@ -146,7 +145,7 @@
                                 id: "UserId",
                                 fields: {
                                     UserId: { editable: false, type: "number" },
-                                    Email: { type: "string", nullable: false },
+                                    DisplayName: { type: "string", nullable: false },
                                 }
                             },
                         },
@@ -156,12 +155,56 @@
                         pageSize: 20,
                         transport: {
                             read: {
-                                url: "/odata/Users",
+                                url: "/odata/UserView",
                                 dataType: "json",
                                 contentType: "application/json"
                             }
                         },
                         parametermap: function(data, operation) {
+                            if (operation === "read") {
+                                var parammap = kendo.data.transports.odata.parametermap(data);
+                                return parammap;
+                            }
+                            return json.stringify(data);
+                        }
+                    },
+
+                });
+        }
+
+        function byDropDownEditor(container) {
+            $('<input data-bind="value:ScoreId"/>')
+                .appendTo(container)
+                .kendoDropDownList({
+                    dataTextField: "AssignedBy",
+                    dataValueField: "AssignedById",
+                    optionLabel: "--Select Teacher--",
+                    dataSource: {
+                        schema: {
+                            data: "value",
+                            total: function (response) {
+                                return response['odata.count'];
+                            },
+                            model: {
+                                id: "AssignedById",
+                                fields: {
+                                    AssignedById: { editable: false, type: "number" },
+                                    AssignedBy: { type: "string", nullable: false },
+                                }
+                            },
+                        },
+                        type: "odata",
+                        serverFiltering: true,
+                        serverPaging: true,
+                        pageSize: 20,
+                        transport: {
+                            read: {
+                                url: "/odata/Scores",
+                                dataType: "json",
+                                contentType: "application/json"
+                            }
+                        },
+                        parametermap: function (data, operation) {
                             if (operation === "read") {
                                 var parammap = kendo.data.transports.odata.parametermap(data);
                                 return parammap;

@@ -44,7 +44,7 @@ namespace EasyTeach.Web.Controllers
         /// <returns></returns>
         [Route("Register")]
         [ClaimsPrincipalPermission(SecurityAction.Demand, Operation = "Register", Resource = "User")]
-        public async Task<IHttpActionResult> Register(CreateUserViewModel user)
+        public async Task<IHttpActionResult> Register(UserViewModel user)
         {
             if (user == null)
             {

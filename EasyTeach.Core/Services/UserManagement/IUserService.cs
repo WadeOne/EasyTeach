@@ -1,4 +1,5 @@
-﻿using System.Security.Claims;
+﻿using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Services;
 
@@ -17,5 +18,7 @@ namespace EasyTeach.Core.Services.UserManagement
         Task SetUserPasswordAsync(int userId, string resetPasswordToken, string password);
 
         Task ResetUserPasswordAsync(string email);
+
+        IQueryable<IUserModel> GetUsers();
     }
 }

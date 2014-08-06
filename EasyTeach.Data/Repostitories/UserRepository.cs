@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Entity;
 using System.Linq;
 using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Data.User;
@@ -58,7 +59,7 @@ namespace EasyTeach.Data.Repostitories
 
         public IQueryable<IUserDto> GetUsers()
         {
-            return _context.Users;
+            return _context.Users.Include(u => u.Group);
         }
     }
 }

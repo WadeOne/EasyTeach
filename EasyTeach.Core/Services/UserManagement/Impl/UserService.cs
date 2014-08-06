@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Entities.Services;
+using EasyTeach.Core.Repositories;
 using EasyTeach.Core.Repositories.Mappers.UserManagement;
 using EasyTeach.Core.Services.Messaging;
 using EasyTeach.Core.Services.UserManagement.Exceptions;
@@ -20,6 +21,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
     {
         private readonly IUserDtoMapper _userDtoMapper;
         private readonly IEmailService _emailService;
+        private readonly IUserRepository _userRepository;
 
         private readonly Func<object, ValidationContext> _validationContextFactory;
 
@@ -27,7 +29,12 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
         private readonly EntityValidator _entityValidator;
 
-        public UserService(UserManager<IUserDto, int> userManager, IUserDtoMapper userDtoMapper, IEmailService emailService, EntityValidator entityValidator, Func<object, ValidationContext> validationContextFactory = null)
+        public UserService(UserManager<IUserDto, int> userManager,
+            IUserDtoMapper userDtoMapper,
+            IEmailService emailService,
+            EntityValidator entityValidator,
+            IUserRepository userRepository,
+            Func<object, ValidationContext> validationContextFactory = null)
         {
             if (userManager == null)
             {
@@ -44,6 +51,7 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
                 throw new ArgumentNullException("emailService");
             }
 
+            _userRepository = userRepository;
             _userDtoMapper = userDtoMapper;
             _emailService = emailService;
             _entityValidator = entityValidator;
@@ -197,12 +205,34 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             await _emailService.SendResetUserPasswordEmailAsync(userDto);
         }
 
+        
+
+        public IQueryable<IUserModel> GetUsers()
+        {
+            return _userRepository.GetUsers().Select(Map).AsQueryable();
+        }
+
         private static IUserIdentityModel CreateIdentityFromDto(IUserDto userDto)
         {
             return new User
             {
                 Email = userDto.Email,
                 UserId = userDto.UserId,
+            };
+        }
+
+        private User Map(IUserDto user)
+        {
+            return new User
+            {
+                UserId = user.UserId,
+                Email = user.Email,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Group = user.GroupId.HasValue ? new Group
+                {
+                    GroupId = user.GroupId.Value
+                } : null
             };
         }
     }

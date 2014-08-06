@@ -60,7 +60,7 @@ namespace EasyTeach.Data.Repostitories
 
         public IQueryable<ILessonDto> GetLessons()
         {
-            return _context.Lessons.Include("Group");
+            return _context.Lessons.Include(l => l.Group);
         }
     }
 }

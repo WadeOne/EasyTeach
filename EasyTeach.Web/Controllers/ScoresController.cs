@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Http;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Query;
+using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Services.Dashboard;
 using EasyTeach.Web.Models.ViewModels.Dashboard.Scores;
 
@@ -34,12 +35,26 @@ namespace EasyTeach.Web.Controllers
                 AssignedTo = s.AssignedTo.FirstName + " " + s.AssignedTo.LastName,
                 AssignedBy = s.AssignedBy.FirstName + " " + s.AssignedBy.LastName,
                 VisitId = s.Visit.VisitId,
-                DisplayData = s.Visit.Lesson.Date
+                LessonId = s.Visit.Lesson.LessonId,
+                DisplayDate = s.Visit.Lesson.Date
             });
             var filteredResult = ((IQueryable<ScoreViewModel>)queryOptions.ApplyTo(result));
             return filteredResult;
         }
-        
+
+        [HttpPost]
+        public IHttpActionResult Post(ScoreViewModel scoreView)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var create = scoreView.ToScore();
+            _scoreService.AddScore(create);
+            return Created(MapScoreToView(create));
+        }
+
         /*
         [Route("")]
         [HttpPost]
@@ -78,5 +93,20 @@ namespace EasyTeach.Web.Controllers
             return Ok();
         }
          * */
+
+        private static ScoreViewModel MapScoreToView(IScoreModel s)
+        {
+            return new ScoreViewModel
+            {
+                ScoreId = s.ScoreId,
+                AssignedById = s.AssignedBy.UserId,
+                AssignedToId = s.AssignedTo.UserId,
+                DisplayDate = s.Visit.Lesson.Date,
+                LessonId = s.Visit.Lesson.LessonId,
+                Score = s.Score,
+                VisitId = s.Visit.VisitId,
+                Task = s.Task
+            };
+        }
     }
 }

@@ -5,6 +5,7 @@ using EasyTeach.Web.Filters;
 using EasyTeach.Web.Models.ViewModels.Dashboard.Lessons;
 using EasyTeach.Web.Models.ViewModels.Dashboard.Scores;
 using EasyTeach.Web.Models.ViewModels.Groups;
+using EasyTeach.Web.Models.ViewModels.UserManagement;
 using Newtonsoft.Json.Serialization;
 
 namespace EasyTeach.Web
@@ -34,6 +35,7 @@ namespace EasyTeach.Web
             builder.EntitySet<GroupViewModel>("Groups");
             builder.EntitySet<LessonViewModel>("Lessons");
             builder.EntitySet<ScoreViewModel>("Scores");
+            builder.EntitySet<UserViewModel>("UserView");
             config.Routes.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
         }
     }

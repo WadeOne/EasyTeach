@@ -24,7 +24,9 @@ namespace EasyTeach.Web.Models.ViewModels.Dashboard.Scores
 
         public int? VisitId { get; set; }
 
-        public DateTime DisplayData { get; set; }
+        public int LessonId { get; set; }
+
+        public DateTime DisplayDate { get; set; }
 
         public virtual IScoreModel ToScore()
         {
@@ -43,7 +45,16 @@ namespace EasyTeach.Web.Models.ViewModels.Dashboard.Scores
                 Task = Task,
                 Visit = VisitId.HasValue ? new Visit 
                 {
-                    VisitId = VisitId.Value
+                    VisitId = VisitId.Value,
+                    Lesson = new Lesson
+                    {
+                        LessonId = LessonId,
+                        Date = DisplayDate
+                    },
+                    Visitor = new User
+                    {
+                        UserId = AssignedToId
+                    }
                 } : null
             };
         }

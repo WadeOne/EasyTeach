@@ -73,15 +73,29 @@ namespace EasyTeach.Data.Migrations
                 );
             context.SaveChanges();
 
+
+
             context.Users.AddOrUpdate(
+                // password: testMoBiLe13
+            new UserDto
+            {
+                UserId = 3,
+                Email = "sample@hiqo-solutions.com",
+                EmailIsValidated = true,
+                FirstName = "Styopa",
+                LastName = "Kolpachkov",
+                PasswordHash = "ALTARCbT6yTe7DSX5LSHgKhBB0t2cR+OPUabn0vmCEmxPBIVT/jb9r64jRVfvpwD5A==",
+                GroupId = 1
+            },
+
                 // password: testMoBiLe13
             new UserDto
             {
                 UserId = 2,
                 Email = "test@hiqo-solutions.com",
                 EmailIsValidated = true,
-                FirstName = "Леонид Сергеевич",
-                LastName = "Броневой",
+                FirstName = "Leoned",
+                LastName = "Bronevoy",
                 PasswordHash = "ALTARCbT6yTe7DSX5LSHgKhBB0t2cR+OPUabn0vmCEmxPBIVT/jb9r64jRVfvpwD5A==",
                 GroupId = 1
             },
@@ -92,8 +106,8 @@ namespace EasyTeach.Data.Migrations
                 UserId = 1,
                 Email = "svetlana.panina@hiqo-solutions.com",
                 EmailIsValidated = true,
-                FirstName = "Светлана",
-                LastName = "Панина",
+                FirstName = "Svetlana",
+                LastName = "Panina",
                 PasswordHash = "ALTARCbT6yTe7DSX5LSHgKhBB0t2cR+OPUabn0vmCEmxPBIVT/jb9r64jRVfvpwD5A=="
             });
 

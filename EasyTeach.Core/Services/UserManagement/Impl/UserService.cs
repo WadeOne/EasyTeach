@@ -22,11 +22,8 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
         private readonly IUserDtoMapper _userDtoMapper;
         private readonly IEmailService _emailService;
         private readonly IUserRepository _userRepository;
-
         private readonly Func<object, ValidationContext> _validationContextFactory;
-
         private readonly UserManager<IUserDto, int> _userManager;
-
         private readonly EntityValidator _entityValidator;
 
         public UserService(UserManager<IUserDto, int> userManager,
@@ -204,8 +201,6 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
             await _emailService.SendResetUserPasswordEmailAsync(userDto);
         }
-
-        
 
         public IQueryable<IUserModel> GetUsers()
         {

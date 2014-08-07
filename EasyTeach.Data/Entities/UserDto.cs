@@ -15,6 +15,12 @@ namespace EasyTeach.Data.Entities
 
         public string LastName { get; set; }
 
+        public string Email { get; set; }
+
+        public bool EmailIsValidated { get; set; }
+
+        public string PasswordHash { get; set; }
+
         [ForeignKey("Group")]
         public int? GroupId { get; set; }
 
@@ -24,12 +30,6 @@ namespace EasyTeach.Data.Entities
         }
 
         public GroupDto Group { get; set; }
-
-        public string Email { get; set; }
-
-        public bool EmailIsValidated { get; set; }
-
-        public string PasswordHash { get; set; }
 
         int IUser<int>.Id
         {

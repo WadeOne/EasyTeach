@@ -15,14 +15,14 @@ namespace EasyTeach.Web.Tests.Models.ViewModels
             const string FirstName = "FirstName";
             const string LastName = "LastName";
             const string Email = "Email";
-            Group Group = new Group { GroupNumber = 2, Year = 2009 };
+            Group Group = new Group { GroupId = 5, GroupNumber = 2, Year = 2009 };
 
             var user = new UserViewModel
                        {
                            FirstName = FirstName,
                            Email = Email,
                            LastName = LastName,
-                           Group = Group
+                           //GroupId = Group.GroupId
                        };
 
             var userModel = user.ToUser();

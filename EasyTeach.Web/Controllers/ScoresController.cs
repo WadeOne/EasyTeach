@@ -34,7 +34,7 @@ namespace EasyTeach.Web.Controllers
                 AssignedById = s.AssignedBy.UserId,
                 AssignedTo = s.AssignedTo.FirstName + " " + s.AssignedTo.LastName,
                 AssignedBy = s.AssignedBy.FirstName + " " + s.AssignedBy.LastName,
-                VisitId = s.Visit.VisitId,
+                VisitId = s.Visit == null ? (int?) null : s.Visit.VisitId,
                 LessonId = s.Visit.Lesson.LessonId,
                 DisplayDate = s.Visit.Lesson.Date
             });

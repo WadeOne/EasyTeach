@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Http;
 using System.Web.Http.OData;
 using System.Web.Http.OData.Query;
+using EasyTeach.Core.Entities.Services;
 using EasyTeach.Core.Services.UserManagement;
 using EasyTeach.Web.Models.ViewModels.UserManagement;
 
@@ -32,7 +33,7 @@ namespace EasyTeach.Web.Controllers
                 FirstName = s.FirstName,
                 LastName = s.LastName,
                 DisplayName = s.FirstName + " " + s.LastName,
-                Group = s.Group
+                GroupId = s.Group == null ? (int?)null : s.Group.GroupId
             });
             var filteredResult = ((IQueryable<UserViewModel>)queryOptions.ApplyTo(result));
             return filteredResult;

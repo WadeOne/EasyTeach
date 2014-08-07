@@ -59,7 +59,8 @@ namespace EasyTeach.Data.Repostitories
 
         public IQueryable<IUserDto> GetUsers()
         {
-            return _context.Users.Include(u => u.Group);
+            var query = _context.Users.Include(u => u.Group);
+            return query;
         }
     }
 }

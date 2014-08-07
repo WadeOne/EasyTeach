@@ -2,6 +2,16 @@
     ViewBag.Title = "Scores";
 }
 
+<link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.common.min.css">
+<link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.rtl.min.css">
+<link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.default.min.css">
+<link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.dataviz.min.css">
+<link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.dataviz.default.min.css">
+<link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.mobile.all.min.css">
+
+<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script src="http://cdn.kendostatic.com/2014.2.716/js/kendo.all.min.js"></script>
+
 <div id="body">
     <section class="featured">
         <div class="content-wrapper">
@@ -20,10 +30,10 @@
             $("#Grid").kendoGrid({
                 columns: [
                     { field: "Score", title: "Score", width: "50px" },
-                    { field: "AssignedTo", title: "Assigned To", width: "150px", editor: toDropDownEditor },
-                    { field: "AssignedBy", title: "Assigned By", width: "150px", editor: byDropDownEditor },
+                    { field: "AssignedTo", title: "Assigned To", width: "100px", editor: toDropDownEditor },
+                    { field: "AssignedBy", title: "Assigned By", width: "100px", editor: byDropDownEditor },
                     { field: "Task", title: "Task", width: "75px", editor: taskDropDownEditor },
-                    { field: "DisplayDate", title: "Visit Date", width: "75px", editor: datePickerEditor, type: "date", format: "{0:d MMM, yyyy}" },
+                    { field: "DisplayDate", title: "Visit Date", width: "75px", editor: dateVisitPickerEditor, type: "date", format: "{0:d MMM, yyyy}" },
                     { command: "edit", title: "Edit", width: "110px" },
                     { command: "destroy", title: "Delete", width: "110px" }
                 ],
@@ -129,7 +139,7 @@
         });
 
         function toDropDownEditor(container) {
-            $('<input data-bind="value:UserId"/>')
+            $('<input data-bind="value:AssignedToId"/>')
                 .appendTo(container)
                 .kendoDropDownList({
                     dataTextField: "DisplayName",
@@ -145,7 +155,7 @@
                                 id: "UserId",
                                 fields: {
                                     UserId: { editable: false, type: "number" },
-                                    DisplayName: { type: "string", nullable: false },
+                                    DisplayName: { type: "string", nullable: false }
                                 }
                             },
                         },
@@ -155,11 +165,12 @@
                         pageSize: 20,
                         transport: {
                             read: {
-                                url: "/odata/UserView",
+                                url: "/odata/UserView?&filter=GroupId ne null",
                                 dataType: "json",
-                                contentType: "application/json"
+                                contentType: "application/json",
                             }
                         },
+                        //filter: { filters: [{ field: "AssignedToId", operator: "ne", value: query }] },
                         parametermap: function(data, operation) {
                             if (operation === "read") {
                                 var parammap = kendo.data.transports.odata.parametermap(data);
@@ -168,16 +179,15 @@
                             return json.stringify(data);
                         }
                     },
-
                 });
         }
 
         function byDropDownEditor(container) {
-            $('<input data-bind="value:ScoreId"/>')
+            $('<input data-bind="value:AssignedById"/>')
                 .appendTo(container)
                 .kendoDropDownList({
-                    dataTextField: "AssignedBy",
-                    dataValueField: "AssignedById",
+                    dataTextField: "DisplayName",
+                    dataValueField: "UserId",
                     optionLabel: "--Select Teacher--",
                     dataSource: {
                         schema: {
@@ -186,10 +196,10 @@
                                 return response['odata.count'];
                             },
                             model: {
-                                id: "AssignedById",
+                                id: "UserId",
                                 fields: {
-                                    AssignedById: { editable: false, type: "number" },
-                                    AssignedBy: { type: "string", nullable: false },
+                                    UserId: { editable: false, type: "number" },
+                                    DisplayName: { type: "string", nullable: false }
                                 }
                             },
                         },
@@ -199,11 +209,12 @@
                         pageSize: 20,
                         transport: {
                             read: {
-                                url: "/odata/Scores",
+                                url: "/odata/UserView?&filter=GroupId eq null",
                                 dataType: "json",
-                                contentType: "application/json"
+                                contentType: "application/json",
                             }
                         },
+                        //filter: { filters: [{ field: "AssignedById", operator: "eq", value: query }] },
                         parametermap: function (data, operation) {
                             if (operation === "read") {
                                 var parammap = kendo.data.transports.odata.parametermap(data);
@@ -212,7 +223,6 @@
                             return json.stringify(data);
                         }
                     },
-
                 });
         }
 
@@ -226,7 +236,7 @@
                     dataSource: {
                         schema: {
                             data: "value",
-                            total: function (response) {
+                            total: function(response) {
                                 return response['odata.count'];
                             },
                             model: {
@@ -248,7 +258,7 @@
                                 contentType: "application/json"
                             }
                         },
-                        parametermap: function (data, operation) {
+                        parametermap: function(data, operation) {
                             if (operation === "read") {
                                 var parammap = kendo.data.transports.odata.parametermap(data);
                                 return parammap;
@@ -270,7 +280,7 @@
                     dataSource: {
                         schema: {
                             data: "value",
-                            total: function (response) {
+                            total: function(response) {
                                 return response['odata.count'];
                             },
                             model: {
@@ -292,7 +302,7 @@
                                 contentType: "application/json"
                             }
                         },
-                        parametermap: function (data, operation) {
+                        parametermap: function(data, operation) {
                             if (operation === "read") {
                                 var parammap = kendo.data.transports.odata.parametermap(data);
                                 return parammap;
@@ -316,7 +326,7 @@
             }
         };
 
-        function datePickerEditor(container) {
+        function dateVisitPickerEditor(container) {
             $('<input data-bind="value:Date" type="text"/>')
                 .appendTo(container)
                 .kendoDatePicker({
@@ -329,8 +339,18 @@
                             effects: "fadeIn zoom:in",
                             duration: 300
                         }
-                    }
+                    },
+                    beforeShowDay: unavailable
                 });
+        }
+        var unavailableDates = ["9-8-2014", "14-8-2014", "15-8-2014"];
+        function unavailable(date) {
+            var dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
+            if ($.inArray(dmy, unavailableDates) == -1) {
+                return [true, ""];
+            } else {
+                return [false, "", "Unavailable"];
+            }
         }
 
     </script>

@@ -1,7 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-using EasyTeach.Core.Entities;
+﻿using EasyTeach.Core.Entities;
 using EasyTeach.Core.Entities.Services;
+using System.ComponentModel.DataAnnotations;
+using EasyTeach.Web.Models.ViewModels.Groups;
 
 namespace EasyTeach.Web.Models.ViewModels.UserManagement
 {
@@ -16,7 +16,7 @@ namespace EasyTeach.Web.Models.ViewModels.UserManagement
 
         public string DisplayName { get; set; }
 
-        public IGroupModel Group { get; set; }
+        public int? GroupId { get; set; }
 
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
@@ -24,12 +24,15 @@ namespace EasyTeach.Web.Models.ViewModels.UserManagement
         public virtual User ToUser()
         {
             return new User
-                   {
-                       Email = Email,
-                       FirstName = FirstName,
-                       Group = Group,
-                       LastName = LastName
-                   };
-        }
+            {
+                Email = Email,
+                FirstName = FirstName,
+                LastName = LastName,
+                Group = GroupId.HasValue ? new Group
+                {
+                    GroupId = GroupId.Value
+                } : null
+            };
+}
     }
 }

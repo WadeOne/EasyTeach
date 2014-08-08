@@ -69,6 +69,12 @@ namespace EasyTeach.Data.Migrations
                     LessonId = 4,
                     GroupId = 1,
                     Date = new DateTime(2014, 9, 22, 0, 0, 0, DateTimeKind.Utc)
+                },
+                new LessonDto
+                {
+                    LessonId = 5,
+                    GroupId = 2,
+                    Date = new DateTime(2014, 9, 2, 0, 0, 0, DateTimeKind.Utc)
                 }
                 );
             context.SaveChanges();

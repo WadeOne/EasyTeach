@@ -290,26 +290,23 @@
                             }
                             return json.stringify(data);
                         }
-                    },
-
+                    }
                 });
         }
 
         function dateVisitPickerEditor(container) {
-            $(document).ready(function () {
-                var enableDays = [
-                    +new Date("9/1/2014"),
-                    +new Date("9/8/2014"),
-                    +new Date("9/15/2014")
-                ];
+            $(document).ready(function() {
 
+                var enableDays = [
+                ];
                 $('<input data-bind="value:Date" type="text"/>')
                     .appendTo(container)
                     .kendoDatePicker({
                         value: new Date(),
                         min: new Date(2013, 0, 1),
-                        max: new Date(2050, 0, 0),
-                        dates: enableDays,
+                        dates: {
+                        }
+                        /*[+new Date("9/1/2014")]*/,
                         month: {
                             content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +
                                 '<div class="enableDay">#= data.value #</div>' +
@@ -321,7 +318,8 @@
                             $(".disableDay").parent().removeClass("k-link");
                             $(".disableDay").parent().removeAttr("href");
                         }
-                    }).data("kendoDatePicker");
+                    })
+                    .data("kendoDatePicker");
             });
         }
 

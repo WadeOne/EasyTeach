@@ -9,6 +9,31 @@
 <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.dataviz.default.min.css">
 <link rel="stylesheet" href="http://cdn.kendostatic.com/2014.2.716/styles/kendo.mobile.all.min.css">
 
+<style type="text/css">
+    .enableDay {
+        display: block;
+        overflow: hidden;
+        min-height: 22px;
+        line-height: 22px;
+        padding: 0 .45em 0 .1em;
+        cursor: default;
+        opacity: 0.5;
+        color: royalblue;
+        font-weight:bold;
+    }
+    .disableDay {
+        display: block;
+        overflow: hidden;
+        min-height: 22px;
+        line-height: 22px;
+        padding: 0 .45em 0 .1em;
+        cursor: default;
+        opacity: 0.5;
+        color: gainsboro;
+        font-weight:bold;
+    }
+</style>
+
 <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 <script src="http://cdn.kendostatic.com/2014.2.716/js/kendo.all.min.js"></script>
 
@@ -192,7 +217,7 @@
                     dataSource: {
                         schema: {
                             data: "value",
-                            total: function (response) {
+                            total: function(response) {
                                 return response['odata.count'];
                             },
                             model: {
@@ -215,7 +240,7 @@
                             }
                         },
                         //filter: { filters: [{ field: "AssignedById", operator: "eq", value: query }] },
-                        parametermap: function (data, operation) {
+                        parametermap: function(data, operation) {
                             if (operation === "read") {
                                 var parammap = kendo.data.transports.odata.parametermap(data);
                                 return parammap;
@@ -270,48 +295,34 @@
                 });
         }
 
-        function visitDropDownEditor(container) {
-            $('<input data-bind="value:UserId"/>')
-                .appendTo(container)
-                .kendoDropDownList({
-                    dataTextField: "DisplayName",
-                    dataValueField: "GroupId",
-                    optionLabel: "--Select Group--",
-                    dataSource: {
-                        schema: {
-                            data: "value",
-                            total: function(response) {
-                                return response['odata.count'];
-                            },
-                            model: {
-                                id: "GroupId",
-                                fields: {
-                                    GroupId: { editable: false, type: "number" },
-                                    DisplayName: { type: "string", nullable: false },
-                                }
-                            },
-                        },
-                        type: "odata",
-                        serverFiltering: true,
-                        serverPaging: true,
-                        pageSize: 20,
-                        transport: {
-                            read: {
-                                url: "/odata/Groups",
-                                dataType: "json",
-                                contentType: "application/json"
-                            }
-                        },
-                        parametermap: function(data, operation) {
-                            if (operation === "read") {
-                                var parammap = kendo.data.transports.odata.parametermap(data);
-                                return parammap;
-                            }
-                            return json.stringify(data);
-                        }
-                    },
+        function dateVisitPickerEditor(container) {
+            $(document).ready(function () {
+                var enableDays = [
+                    +new Date("9/1/2014"),
+                    +new Date("9/8/2014"),
+                    +new Date("9/15/2014")
+                ];
 
-                });
+                $('<input data-bind="value:Date" type="text"/>')
+                    .appendTo(container)
+                    .kendoDatePicker({
+                        value: new Date(),
+                        min: new Date(2013, 0, 1),
+                        max: new Date(2050, 0, 0),
+                        dates: enableDays,
+                        month: {
+                            content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +
+                                '<div class="enableDay">#= data.value #</div>' +
+                                '# } else { #' +
+                                '<div class="disableDay">#= data.value #</div>' +
+                                '# } #'
+                        },
+                        open: function() {
+                            $(".disableDay").parent().removeClass("k-link");
+                            $(".disableDay").parent().removeAttr("href");
+                        }
+                    }).data("kendoDatePicker");
+            });
         }
 
         function error(e) {
@@ -326,32 +337,6 @@
             }
         };
 
-        function dateVisitPickerEditor(container) {
-            $('<input data-bind="value:Date" type="text"/>')
-                .appendTo(container)
-                .kendoDatePicker({
-                    animation: {
-                        close: {
-                            effects: "fadeOut zoom:out",
-                            duration: 300
-                        },
-                        open: {
-                            effects: "fadeIn zoom:in",
-                            duration: 300
-                        }
-                    },
-                    beforeShowDay: unavailable
-                });
-        }
-        var unavailableDates = ["9-8-2014", "14-8-2014", "15-8-2014"];
-        function unavailable(date) {
-            var dmy = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear();
-            if ($.inArray(dmy, unavailableDates) == -1) {
-                return [true, ""];
-            } else {
-                return [false, "", "Unavailable"];
-            }
-        }
-
     </script>
 }
+

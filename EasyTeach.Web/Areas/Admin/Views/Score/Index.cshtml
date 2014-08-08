@@ -295,18 +295,13 @@
         }
 
         function dateVisitPickerEditor(container) {
-            $(document).ready(function() {
-
-                var enableDays = [
-                ];
-                $('<input data-bind="value:Date" type="text"/>')
+            $.getJSON('/odata/Lessons', function(lessons) {
+                $('<input data-bind="value:LessonId"/>')
                     .appendTo(container)
                     .kendoDatePicker({
                         value: new Date(),
                         min: new Date(2013, 0, 1),
-                        dates: {
-                        }
-                        /*[+new Date("9/1/2014")]*/,
+                        dates: $.map(lessons, function(lesson) { return lesson.Date; }),
                         month: {
                             content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +
                                 '<div class="enableDay">#= data.value #</div>' +

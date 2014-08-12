@@ -10,6 +10,7 @@ using Microsoft.AspNet.Identity;
 using EasyTeach.Core.Entities.Data.User;
 using EasyTeach.Core.Services.Dashboard.Exceptions;
 using System.Security;
+using NLog;
 
 namespace EasyTeach.Core.Services.UserManagement.Impl
 {

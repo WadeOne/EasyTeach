@@ -69,13 +69,15 @@
                         create: {
                             url: "/odata/Groups",
                             contentType: "application/json",
-                            type: "POST"
+                            type: "POST",
+                            complete: function () {
+                                $('#Grid').data('kendoGrid').dataSource.read();
+                            }
                         },
                         read: {
                             url: "/odata/Groups",
                             dataType: "json",
-                            contentType: "application/json",
-
+                            contentType: "application/json"
                         },
                         update: {
                             url: function(record) {
@@ -84,7 +86,10 @@
                             dataType: "json",
                             contentType: "application/json",
                             type: "PUT",
-                            headers: { Prefer: "return-content" }
+                            headers: { Prefer: "return-content" },
+                            complete: function () {
+                                $('#Grid').data('kendoGrid').dataSource.read();
+                            }
                         },
                         destroy: {
                             url: function(record) {

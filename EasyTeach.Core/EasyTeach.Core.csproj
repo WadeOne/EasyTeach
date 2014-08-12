@@ -36,6 +36,9 @@
     <Reference Include="Microsoft.AspNet.Identity.Core">
       <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.0.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
     </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -144,6 +147,7 @@
     <Compile Include="Services\UserManagement\IGroupService.cs" />
     <Compile Include="Services\UserManagement\Impl\AuthGroupServiceWrapper.cs" />
     <Compile Include="Services\UserManagement\Impl\GroupService.cs" />
+    <Compile Include="Services\UserManagement\Impl\LogGroupServiceWrapper.cs" />
     <Compile Include="Services\UserManagement\Impl\PasswordValidator.cs" />
     <Compile Include="Services\UserManagement\Impl\UserService.cs" />
     <Compile Include="Services\UserManagement\Impl\UserStore.cs" />
@@ -157,6 +161,12 @@
     <Compile Include="Validation\EntityValidator\EntityValidator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="NLog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <None Include="NLog.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />

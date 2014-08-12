@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+VisualStudioVersion = 12.0.30501.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyTeach.Web", "EasyTeach.Web\EasyTeach.Web.csproj", "{F78E4C1A-A4C9-4A70-A17B-57BF3E292F17}"
 EndProject
@@ -23,6 +23,11 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyTeach.Web.Tests", "EasyTeach.Web.Tests\EasyTeach.Web.Tests.csproj", "{A7442666-9F4A-4670-8852-41A2145DCFCD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyTeach.Data.Tests", "EasyTeach.Data.Tests\EasyTeach.Data.Tests.csproj", "{8FE617AF-46F7-454E-A8DF-2AEB09319AB6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logs", "Logs", "{8A39970F-7386-47FF-988E-A4A5D856481A}"
+	ProjectSection(SolutionItems) = preProject
+		Logs.log = Logs.log
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

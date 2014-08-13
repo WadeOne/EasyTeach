@@ -123,6 +123,7 @@
     <Compile Include="Services\Dashboard\Impl\AuthScoreServiceWrapper.cs" />
     <Compile Include="Services\Dashboard\Impl\AuthVisitServiceWrapper.cs" />
     <Compile Include="Services\Dashboard\Impl\LessonService.cs" />
+    <Compile Include="Services\Dashboard\Impl\LogLessonServiceWrapper.cs" />
     <Compile Include="Services\Dashboard\Impl\VisitService.cs" />
     <Compile Include="Services\Dashboard\IVisitService.cs" />
     <Compile Include="Services\Messaging\Email.cs" />

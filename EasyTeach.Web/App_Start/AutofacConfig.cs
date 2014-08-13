@@ -41,6 +41,7 @@ namespace EasyTeach.Web
                 .Except<VisitService>()
                 .Except<ScoreService>()
                 .Except<AuthLessonServiceWrapper>()
+                .Except<LogLessonServiceWrapper>()
                 .Except<AuthGroupServiceWrapper>()
                 .Except<LogGroupServiceWrapper>()
                 .Except<AuthVisitServiceWrapper>()
@@ -61,16 +62,16 @@ namespace EasyTeach.Web
             builder.RegisterType<UserManager<IUserDto, int>>().AsSelf().PropertiesAutowired(PropertyWiringOptions.PreserveSetValues);
             builder.RegisterHttpRequestMessage(GlobalConfiguration.Configuration);
 
-            builder.RegisterType<LessonService>().Named<ILessonService>("lessonService");
-            builder.RegisterDecorator<ILessonService>(
-                (c, inner) =>
-                    new AuthLessonServiceWrapper(
-                        inner,
+            builder.RegisterType<LessonService>();
+            builder.Register<AuthLessonServiceWrapper>(c =>
+                new AuthLessonServiceWrapper(
+                    c.Resolve<LessonService>(),
                         c.Resolve<ClaimsPrincipal>(),
                         c.Resolve<EntityValidator>(),
                         c.Resolve<IUserStore<IUserDto, int>>(),
-                        c.Resolve<Core.Security.ClaimsAuthorizationManager>()),
-                "lessonService");
+                        c.Resolve<Core.Security.ClaimsAuthorizationManager>()
+                    ));
+            builder.Register<ILessonService>(c => new LogLessonServiceWrapper(c.Resolve<AuthLessonServiceWrapper>()));
 
             builder.RegisterType<GroupService>();
             builder.Register<AuthGroupServiceWrapper>(c =>
@@ -82,6 +83,17 @@ namespace EasyTeach.Web
                         c.Resolve<Core.Security.ClaimsAuthorizationManager>()
                     ));
             builder.Register<IGroupService>(c => new LogGroupServiceWrapper(c.Resolve<AuthGroupServiceWrapper>()));
+
+            //builder.RegisterType<LessonService>().Named<ILessonService>("lessonService");
+            //builder.RegisterDecorator<ILessonService>(
+            //    (c, inner) =>
+            //        new AuthLessonServiceWrapper(
+            //            inner,
+            //            c.Resolve<ClaimsPrincipal>(),
+            //            c.Resolve<EntityValidator>(),
+            //            c.Resolve<IUserStore<IUserDto, int>>(),
+            //            c.Resolve<Core.Security.ClaimsAuthorizationManager>()),
+            //    "lessonService");
 
             //builder.RegisterDecorator<IGroupService>(
             //    (c, inner) =>
@@ -97,20 +109,18 @@ namespace EasyTeach.Web
             //    (c, inner) => {
             //                      return new LogGroupServiceWrapper(inner);
             //    }, null, "logGroupsServiceWrapper");
-            
 
-            /*
-            builder.RegisterType<GroupService>().Named<IGroupService>("groupService");
-            builder.RegisterDecorator<IGroupService>(
-                (c, inner) =>
-                    new AuthGroupServiceWrapper(
-                        inner,
-                        c.Resolve<ClaimsPrincipal>(),
-                        c.Resolve<EntityValidator>(),
-                        c.Resolve<IUserStore<IUserDto, int>>(),
-                        c.Resolve<Core.Security.ClaimsAuthorizationManager>()),
-                "groupService");
-            * */
+            
+            //builder.RegisterType<GroupService>().Named<IGroupService>("groupService");
+            //builder.RegisterDecorator<IGroupService>(
+            //    (c, inner) =>
+            //        new AuthGroupServiceWrapper(
+            //            inner,
+            //            c.Resolve<ClaimsPrincipal>(),
+            //            c.Resolve<EntityValidator>(),
+            //            c.Resolve<IUserStore<IUserDto, int>>(),
+            //            c.Resolve<Core.Security.ClaimsAuthorizationManager>()),
+            //    "groupService");
 
             builder.RegisterType<VisitService>().Named<IVisitService>("visitService");
             builder.RegisterDecorator<IVisitService>(

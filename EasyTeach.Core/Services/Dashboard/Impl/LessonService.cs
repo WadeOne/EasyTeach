@@ -101,7 +101,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             ILessonDto lesson = _lessonRepository.GetLessonById(lessonId);
             if (lesson == null)
             {
-                return null;
+                throw new ArgumentNullException("lesson");
             }
 
             return Map(lesson);

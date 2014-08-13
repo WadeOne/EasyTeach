@@ -95,28 +95,18 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
 
         public void RemoveLesson(int lessonId)
         {
-             ILessonModel lesson =_lessonService.GetLessonById(lessonId);
-
+            ILessonModel lesson =_lessonService.GetLessonById(lessonId);
             if (lesson == null)
             {
-               _lessonService.RemoveLesson(lessonId);
+                throw new ArgumentNullException("lesson");
             }
-            else
-            {
-                /*
-                IUserDto user =_userStore.FindByNameAsync(_principal.Identity.Name).Result;
-                if (user.GroupId != lesson.Group.GroupId)
-                {
-                    
-                }
-                 * */
-                if (!_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "Delete")))
-                {
-                    throw new SecurityException("User doesn't have enough permission for removing lesson");
-                }
 
-               _lessonService.RemoveLesson(lessonId);
+            if (!_authorizationManager.CheckAccess(new AuthorizationContext(_principal, "Lesson", "Delete")))
+            {
+                throw new SecurityException("User doesn't have enough permission for removing lesson");
             }
+
+            _lessonService.RemoveLesson(lessonId);
         }
 
         public void UpdateLesson(ILessonModel lesson)
@@ -149,7 +139,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             ILessonModel lesson =_lessonService.GetLessonById(lessonId);
             if (lesson == null)
             {
-                return null;
+                throw new ArgumentNullException();
             }
 
             IUserDto user =_userStore.FindByNameAsync(_principal.Identity.Name).Result;

@@ -1,10 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Security;
-using System.Text;
 using System.Threading.Tasks;
 using EasyTeach.Core.Entities.Services;
+using EasyTeach.Core.Services.Base.Exceptions;
+using EasyTeach.Core.Services.Dashboard.Exceptions;
 using NLog;
 
 namespace EasyTeach.Core.Services.UserManagement.Impl
@@ -26,29 +26,108 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
 
         public IQueryable<IGroupModel> GetAll()
         {
-            _logger.Debug("| Get groups");
-            return _groupService.GetAll();
+            try
+            {
+                var result = _groupService.GetAll();
+                _logger.Debug("User received a list of groups");
+
+                return result;
+            }
+            catch (Exception)
+            {
+                _logger.Error("User has not received a list of groups.");
+                throw new Exception();
+            }
         }
 
         public Task CreateGroupAsync(IGroupModel groupModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = _groupService.CreateGroupAsync(groupModel);
+                _logger.Debug("User created group");
+
+                return result;
+            }
+            catch (ArgumentNullException)
+            {
+                _logger.Info("Group is null");
+                throw new ArgumentNullException();
+            }
+            catch (ModelValidationException)
+            {
+                _logger.Info("Model of group is not valid");
+                throw new ModelValidationException();
+            }
+            catch (SecurityException)
+            {
+                _logger.Info("User doesn't have enough permission for creating group");
+                throw new SecurityException();
+            }
+            catch (GroupNotFoundException)
+            {
+                _logger.Info("Group not found");
+                throw new GroupNotFoundException();
+            }
+            catch (Exception)
+            {
+                _logger.Error("User has not created a group.");
+                throw new Exception();
+            }
         }
 
         public Task UpdateGroupAsync(IGroupModel groupModel)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var result = _groupService.UpdateGroupAsync(groupModel);
+                _logger.Debug("User udated group");
+
+                return result;
+            }
+            catch (ArgumentNullException)
+            {
+                _logger.Info("Group is null");
+            }
+            catch (ModelValidationException)
+            {
+                _logger.Info("Model of group is not valid");
+            }
+            catch (SecurityException)
+            {
+                _logger.Info("User doesn't have enough permission for update group");
+            }
+            catch (GroupNotFoundException)
+            {
+                _logger.Info("Group not found");
+                throw new GroupNotFoundException();
+            }
+            catch (Exception)
+            {
+                _logger.Error("User has not updated a group.");
+                throw new Exception();
+            }
+
+            return Task.FromResult(0);
         }
 
         public Task DeleteGroupAsync(int groupId)
         {
             try
             {
-                return _groupService.DeleteGroupAsync(groupId);
+                var result = _groupService.DeleteGroupAsync(groupId);
+                _logger.Debug("User deleted a group");
+
+                return result;
             }
-            catch (SecurityException e)
+            catch (SecurityException)
             {
-                _logger.Info(" | User doesn't have enough permission for delete group ", e.ToString());
+                _logger.Info("User doesn't have enough permission for delete group.");
+            }
+            catch (EntityNotFoundException)
+            {
+                _logger.Info("Group not found");
+                throw new EntityNotFoundException("group", groupId);
             }
 
             return Task.FromResult(0);

@@ -1,4 +1,0 @@
-2014-08-12 18:17:14.2735 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug | Get groups
-2014-08-12 18:17:23.3012 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug | Get groups
-2014-08-12 18:17:23.3552 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.DeleteGroupAsync Info  | User doesn't have enough permission for delete group 
-2014-08-12 18:17:29.3324 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug | Get groups

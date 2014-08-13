@@ -33,30 +33,31 @@ namespace EasyTeach.Core.Services.UserManagement.Impl
             {
                 throw new ArgumentNullException("groupService");
             }
-            _groupService = groupService;
 
             if (principal == null)
             {
                 throw new ArgumentNullException("principal");
             }
-            _principal = principal;
 
             if (entityValidator == null)
             {
                 throw new ArgumentNullException("entityValidator");
             }
-            _entityValidator = entityValidator;
 
             if (userStore == null)
             {
                 throw new ArgumentNullException("userStore");
             }
-            _userStore = userStore;
 
             if (authorizationManager == null)
             {
                 throw new ArgumentNullException("authorizationManager");
             }
+
+            _groupService = groupService;
+            _principal = principal;
+            _entityValidator = entityValidator;
+            _userStore = userStore;
             _authorizationManager = authorizationManager;
         }
 

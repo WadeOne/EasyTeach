@@ -57,7 +57,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             _authorizationManager = authorizationManager;
         }
 
-        public void AddScore(IScoreModel score)
+        public void AddScore(IScoreModel score, int lessonId)
         {
             if (score == null)
             {
@@ -75,7 +75,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new SecurityException("User doesn't have enough permission for creating score");
             }
 
-            _scoreService.AddScore(score);
+            _scoreService.AddScore(score, lessonId);
         }
 
         public void DeleteScore(int scoreId)

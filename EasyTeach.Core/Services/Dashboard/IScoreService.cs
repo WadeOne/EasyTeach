@@ -5,7 +5,7 @@ namespace EasyTeach.Core.Services.Dashboard
 {
     public interface IScoreService
     {
-        void AddScore(IScoreModel score);
+        void AddScore(IScoreModel score, int lessonId);
 
         void DeleteScore(int scoreId);
 

@@ -47,7 +47,7 @@ namespace EasyTeach.Data.Migrations
             context.Lessons.AddOrUpdate(
                 l => l.LessonId,
                 new LessonDto
-                {
+                {   
                     LessonId = 1,
                     GroupId = 1,
                     Date = new DateTime(2014, 9, 1, 0, 0, 0, DateTimeKind.Utc)
@@ -69,13 +69,13 @@ namespace EasyTeach.Data.Migrations
                     LessonId = 4,
                     GroupId = 1,
                     Date = new DateTime(2014, 9, 22, 0, 0, 0, DateTimeKind.Utc)
-                },
-                new LessonDto
-                {
-                    LessonId = 5,
-                    GroupId = 2,
-                    Date = new DateTime(2014, 9, 2, 0, 0, 0, DateTimeKind.Utc)
                 }
+                //new LessonDto
+                //{
+                //    LessonId = 5,
+                //    GroupId = 2,
+                //    Date = new DateTime(2014, 9, 2, 0, 0, 0, DateTimeKind.Utc)
+                //}
                 );
             context.SaveChanges();
 

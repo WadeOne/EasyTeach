@@ -16,8 +16,10 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
         private readonly EntityValidator _entityValidator;
         private readonly IScoreRepository _scoreRepository;
         private readonly IScoreDtoMapper _scoreDtoMapper;
+        private readonly IVisitRepository _visitRepository;
+        private readonly ILessonRepository _lessonRepository;
 
-        public ScoreService(EntityValidator entityValidator, IScoreRepository scoreRepository, IScoreDtoMapper scoreDtoMapper)
+        public ScoreService(EntityValidator entityValidator, IScoreRepository scoreRepository, IScoreDtoMapper scoreDtoMapper, IVisitRepository visitRepository, ILessonRepository lessonRepository)
         {
             if (entityValidator == null)
             {
@@ -34,12 +36,24 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new ArgumentNullException("scoreDtoMapper");
             }
 
+            if (visitRepository == null)
+            {
+                throw new ArgumentNullException("visitRepository");
+            }
+
+            if (lessonRepository == null)
+            {
+                throw new ArgumentNullException("lessonRepository");
+            }
+
             _entityValidator = entityValidator;
             _scoreRepository = scoreRepository;
             _scoreDtoMapper = scoreDtoMapper;
+            _visitRepository = visitRepository;
+            _lessonRepository = lessonRepository;
         }
 
-        public void AddScore(IScoreModel score)
+        public void AddScore(IScoreModel score, int lessonId)
         {
             if (score == null)
             {
@@ -52,6 +66,17 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new InvalidScoreException(result.ValidationResults);
             }
 
+            if (score.Visit == null)
+            {
+                var lesson = _lessonRepository.GetLessonById(lessonId);
+                ((ScoreModel)score).Visit = new Visit
+                {
+                    Visitor = new User
+                    {
+                        UserId = score.AssignedTo.UserId
+                    }
+                };
+            }
             _scoreRepository.AddScore(_scoreDtoMapper.Map(score));
         }
 

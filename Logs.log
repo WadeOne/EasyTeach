@@ -1,0 +1,120 @@
+2014-08-13 15:50:06.8362 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 15:50:06.8362 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:46:39.1996 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:46:39.1996 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:47:11.3638 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:47:11.3978 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:47:31.2880 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:47:31.2880 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:48:53.1864 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:48:59.3316 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:48:59.3356 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:49:04.0742 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:49:37.3476 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:49:51.8803 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:49:51.8803 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:50:04.2580 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:50:04.2580 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:50:19.7799 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:50:19.7799 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:50:47.1247 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:50:47.1727 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:50:59.4176 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:51:05.7636 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:51:06.0610 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.RemoveLesson Debug User removed lesson
+2014-08-13 16:51:07.5157 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:51:38.6385 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:51:42.5725 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:51:42.6075 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:51:53.4330 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:52:00.1221 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.CreateLesson Debug User created lesson
+2014-08-13 16:52:00.1692 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:52:02.9654 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:52:14.8889 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:52:14.8889 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:53:51.7214 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:53:57.8938 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:54:05.6862 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:54:05.6902 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:54:48.6941 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:54:50.7801 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:54:54.8860 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:54:58.0996 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:54:58.3475 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.RemoveLesson Debug User removed lesson
+2014-08-13 16:55:02.8917 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:55:09.5035 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:55:09.5035 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:55:23.9490 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:55:29.7247 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.CreateLesson Debug User created lesson
+2014-08-13 16:55:29.7757 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:55:37.5688 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:55:37.6679 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:56:34.7583 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 16:56:34.7583 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:58:06.6169 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:58:12.5089 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:58:15.5459 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:58:20.5370 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:58:24.4497 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:58:24.6888 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.RemoveLesson Debug User removed lesson
+2014-08-13 16:58:25.9846 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:58:26.0689 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.RemoveLesson Debug User removed lesson
+2014-08-13 16:58:26.8429 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:58:28.9670 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:58:31.9281 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:58:32.8893 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:58:33.8057 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:58:34.6948 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:58:35.5697 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:58:36.6591 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:59:02.2441 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:59:05.1008 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:59:06.9722 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:59:46.0070 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:59:46.2432 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.RemoveLesson Debug User removed lesson
+2014-08-13 16:59:49.3805 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:59:53.5122 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 16:59:53.6022 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.RemoveLesson Debug User removed lesson
+2014-08-13 16:59:54.9692 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:02:38.1905 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:05:18.5534 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:05:37.5294 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 17:05:41.1953 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 17:05:48.5227 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.CreateLesson Debug User created lesson
+2014-08-13 17:05:48.6407 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:05:50.8277 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:05:51.9281 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:05:57.4454 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:06:23.1551 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:06:26.5698 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:07:12.4522 EasyTeach.Core.Services.UserManagement.Impl.LogGroupServiceWrapper.GetAll Debug User received a list of groups
+2014-08-13 17:08:16.0577 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:08:17.7372 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:08:18.8338 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:10:22.0992 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:17:49.9114 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:17:56.5719 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:18:02.2266 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:18:03.1082 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:18:07.4787 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:18:08.1920 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:18:09.7935 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:25:12.8454 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:25:15.0908 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:25:17.5647 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:25:17.7916 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.RemoveLesson Debug User removed lesson
+2014-08-13 17:25:18.2916 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:25:20.3903 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:25:20.4754 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.RemoveLesson Debug User removed lesson
+2014-08-13 17:25:21.6529 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:25:21.7380 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.RemoveLesson Debug User removed lesson
+2014-08-13 17:25:23.1951 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:25:23.2788 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.RemoveLesson Debug User removed lesson
+2014-08-13 17:25:24.3102 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:25:24.3933 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.RemoveLesson Debug User removed lesson
+2014-08-13 17:25:25.8156 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:25:25.9007 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.RemoveLesson Debug User removed lesson
+2014-08-13 17:25:26.7920 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:25:29.5314 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.
+2014-08-13 17:25:29.6165 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.RemoveLesson Debug User removed lesson
+2014-08-13 17:25:33.4659 EasyTeach.Core.Services.Dashboard.Impl.LogLessonServiceWrapper.GetLessons Debug User received a list of lessons.

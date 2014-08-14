@@ -17,9 +17,17 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
         private readonly IScoreRepository _scoreRepository;
         private readonly IScoreDtoMapper _scoreDtoMapper;
         private readonly IVisitRepository _visitRepository;
+        private readonly IVisitDtoMapper _visitDtoMapper;
         private readonly ILessonRepository _lessonRepository;
 
-        public ScoreService(EntityValidator entityValidator, IScoreRepository scoreRepository, IScoreDtoMapper scoreDtoMapper, IVisitRepository visitRepository, ILessonRepository lessonRepository)
+        public ScoreService(
+            EntityValidator entityValidator, 
+            IScoreRepository scoreRepository, 
+            IScoreDtoMapper scoreDtoMapper, 
+            IVisitRepository visitRepository, 
+            ILessonRepository lessonRepository,
+            IVisitDtoMapper visitDtoMapper
+            )
         {
             if (entityValidator == null)
             {
@@ -46,11 +54,17 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
                 throw new ArgumentNullException("lessonRepository");
             }
 
+            if (visitDtoMapper == null)
+            {
+                throw new ArgumentNullException("visitDtoMapper");
+            }
+
             _entityValidator = entityValidator;
             _scoreRepository = scoreRepository;
             _scoreDtoMapper = scoreDtoMapper;
             _visitRepository = visitRepository;
             _lessonRepository = lessonRepository;
+            _visitDtoMapper = visitDtoMapper;
         }
 
         public void AddScore(IScoreModel score, int lessonId)
@@ -68,15 +82,23 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
 
             if (score.Visit == null)
             {
-                var lesson = _lessonRepository.GetLessonById(lessonId);
                 ((ScoreModel)score).Visit = new Visit
                 {
                     Visitor = new User
                     {
-                        UserId = score.AssignedTo.UserId
+                        UserId = score.AssignedTo.UserId,
+                        FirstName = score.AssignedTo.FirstName,
+                        LastName = score.AssignedTo.LastName
+                    },
+                    Lesson = new Lesson
+                    {
+                        LessonId = lessonId
                     }
                 };
+
+                _visitRepository.CreateVisit(_visitDtoMapper.Map(score.Visit));
             }
+            
             _scoreRepository.AddScore(_scoreDtoMapper.Map(score));
         }
 

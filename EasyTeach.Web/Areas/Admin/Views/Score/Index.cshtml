@@ -111,7 +111,8 @@
                                 AssignedById: { type: "number", validation: { required: true }, editable: true },
                                 AssignedBy: { validation: { required: true }, editable: true },
                                 Task: { type: "string", nullable: true },
-                                DisplayDate: { nullable: false, type: "date" },
+                                LessonId: {editable: false, type: "number"},
+                                DisplayDate: { nullable: false, type: "date" }
                             }
                         },
                     },
@@ -301,7 +302,8 @@
                     .kendoDatePicker({
                         value: new Date(),
                         min: new Date(2013, 0, 1),
-                        dates: $.map(lessons.value, function(lesson) { return +new Date(lesson.Date);}),
+                        dates: $.map(lessons.value, function (lesson) { return +new Date(lesson.Date); }),
+                        
                         month: {
                             content: '# if ($.inArray(+data.date, data.dates) != -1) { #' +
                                 '<div class="enableDay">#= data.value #</div>' +

@@ -51,7 +51,7 @@ namespace EasyTeach.Web.Controllers
             }
 
             var create = scoreView.ToScore();
-            _scoreService.AddScore(create);
+            _scoreService.AddScore(create, 7);
             return Created(MapScoreToView(create));
         }
 

@@ -28,7 +28,7 @@ namespace EasyTeach.Data.Repostitories
             return _context.Visits.Include("Lesson").Include("User");
         }
 
-        public async Task CreateVisitAsync(IVisitDto visit)
+        public void CreateVisit(IVisitDto visit)
         {
             if (visit == null)
             {
@@ -36,7 +36,7 @@ namespace EasyTeach.Data.Repostitories
             }
 
             _context.Visits.Add((VisitDto) visit);
-            await _context.SaveChangesAsync();
+            _context.SaveChanges();
         }
 
         public async Task UpdateVisitAsync(IVisitDto visit)

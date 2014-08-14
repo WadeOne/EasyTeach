@@ -161,7 +161,7 @@ namespace EasyTeach.Core.Services.Dashboard.Impl
             IVisitDto visitDto = await _visitRepository.GetVisitAsync(user.UserId, lesson.LessonId);
             if (visitDto == null)
             {
-                await _visitRepository.CreateVisitAsync(_visitDtoMapper.Map(visit));
+                _visitRepository.CreateVisit(_visitDtoMapper.Map(visit));
             }
             else
             {

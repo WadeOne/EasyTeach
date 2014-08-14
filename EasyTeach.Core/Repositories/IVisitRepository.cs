@@ -8,7 +8,7 @@ namespace EasyTeach.Core.Repositories
     {
         IQueryable<IVisitDto> GetAll();
 
-        Task CreateVisitAsync(IVisitDto visit);
+        void CreateVisit(IVisitDto visit);
 
         Task UpdateVisitAsync(IVisitDto visit);
 
